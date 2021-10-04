@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +22,7 @@
           <br>
           <div class="indicator">
             <p>
-              <span>01. 아이디 입력</span>&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
+              <span>01. 아이디 입력</span>&nbsp;&nbsp;·&nbsp;&nbsp;
               <span class="text-black">02. 본인 확인</span>&nbsp;&nbsp;·&nbsp;&nbsp;
               <span>03. 비밀번호 재설정</span>
             </p>
@@ -52,44 +53,10 @@
           <br>
         </div>
     </section>
-    <script>
-        function paddedFormat(num) {
-            return num < 10 ? "0" + num : num; 
-        }
-
-        function startCountDown(duration, element) {
-
-            let secondsRemaining = duration;
-            let min = 0;
-            let sec = 0;
-
-            let countInterval = setInterval(function () {
-
-                min = parseInt(secondsRemaining / 60);
-                sec = parseInt(secondsRemaining % 60);
-
-                element.textContent = `${paddedFormat(min)}:${paddedFormat(sec)}`;
-
-                secondsRemaining = secondsRemaining - 1;
-                if (secondsRemaining < 0) { clearInterval(countInterval) };
-
-            }, 1000);
-        }
-
-        $("#code-send-btn").click(function () {
-            let time_minutes = 3; // Value in minutes
-            let time_seconds = 0; // Value in seconds
-
-            let duration = time_minutes * 60 + time_seconds;
-
-            element = document.querySelector('#count-down');
-            element.textContent = `${paddedFormat(time_minutes)}:${paddedFormat(time_seconds)}`;
-
-            startCountDown(--duration, element);
-        });
-    </script>
     
     <!-- footer -->
     <jsp:include page="../common/footer.jsp" />
+    
+    <script src="${ pageContext.servletContext.contextPath }/resources/js/member/findPassword2.js"></script>
 </body>
 </html>

@@ -180,5 +180,7 @@
 
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
+	
+	<script src="${ pageContext.servletContext.contextPath }/resources/js/member/signup.js"></script>
 </body>
 </html>
