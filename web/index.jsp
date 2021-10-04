@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	황성연<br>
-	최호진<br>
-	김종현<br>
-	김가희<br>
-	최유정<br>
+	<jsp:forward page="WEB-INF/views/main/mainPage.jsp"/>
 </body>
 </html>
