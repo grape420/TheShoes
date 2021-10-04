@@ -9,7 +9,7 @@
 }
 
 .logo {
-	width: 7em;
+	width: 7em !important;
 }
 
 /* header */

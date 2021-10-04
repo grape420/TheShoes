@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/footer.css">
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/common/footer.css">
 <title>THE SHOES</title>
 </head>
 <body>
