@@ -11,12 +11,13 @@
 <title>THE SHOES</title>
 </head>
 <body>
+	<!-- header -->
 	<jsp:include page="../common/header.jsp" />
 
 	<!-- section -->
     <section>
       <div class="section-main-div">
-        <img class="logo rounded mx-auto d-block" src="${ pageContext.servletContext.contextPath }/resources/uses/Logo.png">
+        <img class="logo-form rounded mx-auto d-block" src="${ pageContext.servletContext.contextPath }/resources/uses/Logo.png">
         <br><br><br>
         <h2 class="signup-text">회원 가입</h2>
         <br>
@@ -177,6 +178,7 @@
       })
     </script>
 
+	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>

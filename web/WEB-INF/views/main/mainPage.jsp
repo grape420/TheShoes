@@ -11,6 +11,7 @@
 <title>THE SHOES</title>
 </head>
 <body>
+	<!-- header -->
 	<jsp:include page="../common/header.jsp" />
 
 	<!-- section -->
@@ -80,6 +81,7 @@
 		</div>
 	</section>
 
+	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>

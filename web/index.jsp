@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:forward page="WEB-INF/views/member/signup.jsp"/>
+	<!-- 메인페이지로 포워드 -->
+	<jsp:forward page="WEB-INF/views/member/findPassword2.jsp"/>
 </body>
 </html>
