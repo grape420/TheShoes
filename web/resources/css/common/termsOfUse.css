@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.container {
+	width: auto !important;
+	max-width: 1000px !important;
+	padding: 0 15px !important;
+	margin-bottom: 100px !important;
+	line-height: 2 !important;
+	text-align: justify !important;
+}
+h6 {
+	font-weight: bold !important;
+}
+
+h2 {
+	margin-top: 50px !important;
+	font-weight: bold !important;
+}

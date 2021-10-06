@@ -1,6 +1,10 @@
 @charset "UTF-8";
-.shoes-div{
-	
+.row {
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+h2 {
+	color: red;
 }
 .orderby {
   display: flex;
