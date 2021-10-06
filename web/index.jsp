@@ -8,6 +8,6 @@
 </head>
 <body>
 	<!-- 메인페이지로 포워드 -->
-	<jsp:forward page="WEB-INF/views/member/signup.jsp"/>
+	<jsp:forward page="WEB-INF/views/common/header.jsp"/>
 </body>
 </html>

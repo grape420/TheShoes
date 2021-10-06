@@ -56,7 +56,8 @@ $("#birth").change(function() {
 })
 
 $("#phone").change(function() {
-	var phoneExp = /^[0-9]{11}$/;
+	/*var phoneExp = /^01(?:0|1|[6-9])[0-9]{8}$/;*/
+	var phoneExp = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/;
 
 	if (!phoneExp.test($(this).val())) {
 		$("#phone-result").text("올바르지 않은 휴대폰 번호 형식입니다.").css("color", "red");

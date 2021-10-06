@@ -1,0 +1,69 @@
+@charset "UTF-8";
+
+#delMemoWrite {
+	margin-top: 10px;
+}
+
+.btn {
+	border-radius: 40px !important;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before
+	{
+	background-color: black !important;
+}
+
+.custom-checkbox .custom-control-input:checked:focus ~
+	.custom-control-label::before {
+	box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25)
+}
+
+.custom-checkbox .custom-control-input:focus ~ .custom-control-label::before
+	{
+	box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25)
+}
+
+.custom-checkbox .custom-control-input:active ~ .custom-control-label::before
+	{
+	background-color: #535353e8;
+}
+
+/* radioBtn */
+.custom-radio .custom-control-input:checked ~ .custom-control-label::before
+	{
+	background-color: black !important;
+}
+
+.custom-radio .custom-control-input:checked:focus ~
+	.custom-control-label::before {
+	box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(85, 69, 69, 0.25)
+}
+
+.custom-radio .custom-control-input:focus ~ .custom-control-label::before
+	{
+	box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25)
+}
+
+.custom-radio .custom-control-input:active ~ .custom-control-label::before
+	{
+	background-color: #535353e8;
+}
+
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.name-result, .phone-result, .email-result {
+	font-size: 11px !important;
+}
+
+@media ( min-width : 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}

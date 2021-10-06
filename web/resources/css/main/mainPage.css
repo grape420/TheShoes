@@ -1,5 +1,22 @@
 @charset "UTF-8";
 
+.navbar .heart, .navbar .shopping-cart {
+	margin-left: 5px;
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	font-size: 24px;
+	color: rgba(0, 0, 0, 0.5);
+	text-align: center;
+	line-height: 40px;
+	cursor: pointer;
+}
+
+.navbar .heart:hover, .navbar .shopping-cart:hover {
+	background: #e5e5e5;
+	border-radius: 100%;
+}
+
 section {
 	width: 70%;
 	margin-left: auto;
@@ -101,5 +118,4 @@ section {
 .card:hover .card-text .hover {
 	opacity: 1;
 	transition: opacity 0.3s ease 0.3s;
-}
 }

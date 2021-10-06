@@ -1,0 +1,256 @@
+@charset "UTF-8";
+
+.orderby {
+	display: flex;
+	justify-content: flex-end;
+	padding: 15px 15px 0 0;
+	color: rgba(0, 0, 0, 0.5);
+}
+
+.orderby span {
+	padding-right: 10px;
+	cursor: pointer;
+}
+
+.orderby select {
+	border: 0;
+	-webkit-appearance: none;
+	color: rgba(0, 0, 0, 0.5);
+	cursor: pointer;
+	width: 107px;
+}
+
+.orderby select option {
+	border: none;
+}
+
+.orderby .select {
+	position: relative;
+}
+
+.orderby .select::after {
+	content: "\f078";
+	font-family: FontAwesome;
+	color: rgba(0, 0, 0, 0.5);
+	position: absolute;
+	right: 7px;
+	top: 0;
+	z-index: 1;
+	width: 10%;
+	height: 100%;
+	pointer-events: none;
+}
+
+.div-title {
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+.title {
+	font-size: 16px;
+	font-weight: 900;
+}
+
+.col-md-4 {
+	padding-left: 8px;
+	padding-right: 8px;
+	width: 100%;
+	display: inline-block;
+	position: relative;
+	min-height: 1px;
+	font-size: 16px;
+	line-height: 1.75;
+}
+
+/* 이미지 안의 추첨 날짜 */
+.launch-time {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+}
+
+.z10 {
+	z-index: 10;
+}
+
+.ta-sm-c {
+	text-align: center;
+}
+
+.ta-sm-l {
+	text-align: left;
+}
+
+.pl6-sm {
+	padding-left: 14px;
+}
+
+.pt6-sm {
+	padding-top: 14px;
+}
+
+.headline-4 {
+	margin-bottom: 1px;
+	margin-top: 15px;
+	margin-left: 10px;
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 1.2;
+}
+
+.headline-1 {
+	margin-left: 10px;
+	font-weight: 500;
+	font-size: 32px;
+	line-height: 1.125;
+}
+
+.row {
+	width: 100%;
+	margin: 0;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+.card {
+	border: 0;
+	cursor: pointer;
+}
+
+.shadow-sm {
+	box-shadow: none !important;
+}
+
+.card-text {
+	position: relative;
+}
+
+.card-text .none-hover {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	margin-bottom: 0;
+	opacity: 1;
+	transition: opacity 0.3s ease 0.3s;
+}
+
+.card-text .none-hover .tit {
+	font-size: 16px;
+}
+
+.card-text .none-hover {
+	font-size: 24px;
+	font-weight: 400;
+}
+
+.color {
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.card-text .hover {
+	opacity: 0;
+	text-align: center;
+	padding: 10px 0;
+	margin-bottom: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.card-text .hover a {
+	display: inline-block;
+	padding: 8px 24px;
+	border-radius: 20px;
+	background: #111;
+	color: #fff;
+}
+
+.card .stretched-link {
+	display: none;
+}
+
+.card:hover img {
+	opacity: 0.8;
+	transition: opacity 0.25s ease 0s;
+}
+
+.card:hover .stretched-link {
+	display: block;
+}
+
+.card:hover .card-text .none-hover {
+	opacity: 0;
+}
+
+.card:hover .card-text .hover {
+	opacity: 1;
+	transition: opacity 0.3s ease 0.3s;
+}
+
+/* paging */
+.album-main {
+	margin-left: auto !important;
+	margin-right: auto !important;
+	width: 70% !important;
+}
+
+.paging {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 19px;
+}
+
+.paging .hide {
+	display: block;
+	height: 0;
+	width: 0;
+	font-size: 0;
+	line-height: 0;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.paging a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 23px;
+	height: 23px;
+	padding-top: 2px;
+	vertical-align: middle;
+	color: #000;
+}
+
+.paging a:hover {
+	text-decoration: underline;
+}
+
+.paging .btn_arr {
+	text-decoration: none;
+}
+
+.paging .btn_arr {
+	color: #444;
+}
+
+.paging .on {
+	margin: 0 3px;
+	padding-top: 0;
+	border: 1px solid #ddd;
+	border-radius: 30px;
+}
+
+.paging .on {
+	height: 22px;
+	color: #fff;
+	font-weight: bold;
+	background: #000;
+}
+
+.paging .on:hover {
+	text-decoration: none;
+}
