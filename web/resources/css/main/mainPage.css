@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.row {
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
 .navbar .heart, .navbar .shopping-cart {
 	margin-left: 5px;
 	display: inline-block;

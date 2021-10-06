@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+/* sidebar */
+.bg-gradient-primary {
+	background-image: linear-gradient(180deg, #070707 10%, #000000 100%)
+		!important;
+	background-size: cover;
+}
+/* section */
+tr:hover {
+	background-color: darkgray;
+}
+
+.list_address {
+	display: block;
+}
+
+#content {
+	margin-top: 30px;
+}
+
+.sidebar {
+	border: 1px black solid;
+}
+
+button {
+	border-radius: 10px !important;
+	display: block !important;
+	margin: 20px auto !important;
+}
+
+.thumbnail-file-area input[type=file] {
+	display: none !important;
+}
+
+.title-img-area:hover, .content-img-area1:hover, .content-img-area2:hover,
+	.content-img-area3:hover, .content-img-area4:hover, .content-img-area5:hover
+	{
+	cursor: pointer;
+}

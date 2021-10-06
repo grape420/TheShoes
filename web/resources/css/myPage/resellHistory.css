@@ -1,0 +1,44 @@
+@charset "UTF-8";
+/* sidebar */
+.bg-gradient-primary {
+	background-image: linear-gradient(180deg, #070707 10%, #000000 100%) !important;
+	background-size: cover;
+}
+
+/* section */
+.nav-item.mr-2.ml-2>a {
+	text-decoration: none !important;
+	color: black !important;
+	font-size: 0.8em;
+}
+
+.navbar-nav.mr-3 {
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+.navbar-brand {
+	margin-left: 2.5em;
+}
+
+tr:hover {
+	background-color: darkgray;
+}
+
+.list_address {
+	display: block;
+}
+
+#content {
+	margin-top: 30px;
+}
+
+.item-info {
+	position: relative;
+}
+
+.btnDiv {
+	position: absolute;
+	right: 30px;
+	top: 30px;
+}

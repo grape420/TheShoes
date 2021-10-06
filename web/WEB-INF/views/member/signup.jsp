@@ -26,9 +26,10 @@
           <label class="id-result" id="id-result"></label>
           <br>
           <input required type="password" name="password" id="password" class="form-control" placeholder="영문 대 소문+숫자+특수문자 8~16자리">
-          <br>
-          <input required type="password" name="passwordCheck" id="passwordCheck" class="form-control" placeholder="패스워드를 다시 입력해주세요.">
           <label class="password-result" id="password-result"></label>
+          <br>
+          <input required type="password" name="password-check" id="password-check" class="form-control" placeholder="패스워드를 다시 입력해주세요.">
+          <label class="password-result" id="password-check-result"></label>
           <br>
           <input required type="text" name="name" id="name" class="form-control" placeholder="이름을 입력해 주세요.">
           <label class="name-result" id="name-result"></label>

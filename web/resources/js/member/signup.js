@@ -21,12 +21,12 @@ $("#password").change(function() {
 	}
 })
 
-$("#passwordCheck").change(function() {
+$("#password-check").change(function() {
 	if ($("#password").val() != $(this).val()) {
-		$("#password-result").text("비밀번호가 일치하지 않습니다.").css("color", "red");
+		$("#password-check-result").text("비밀번호가 일치하지 않습니다.").css("color", "red");
 		$(this).focus();
 	} else {
-		$("#password-result").text("").css("color", "green");
+		$("#password-check-result").text("").css("color", "green");
 	}
 })
 

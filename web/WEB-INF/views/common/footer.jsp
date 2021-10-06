@@ -10,7 +10,6 @@
 <body>
 	<!-- footer -->
 	<footer>
-		<hr class="m-0">
 		<div class="footer-main-div row m-0">
 			<div class="footer-info-div col-8">
 				<strong><a href="#">이용약관</a></strong> <strong><a href="#">공지사항</a></strong>
