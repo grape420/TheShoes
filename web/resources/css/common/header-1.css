@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+* {
+	font-family: 'Noto Sans', sans-serif;
+}
+
+.logo {
+	width: 7em !important;
+}
+
+.heart, .shopping-cart {
+	margin-left: 5px;
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	font-size: 24px;
+	color: rgba(0, 0, 0, 0.5);
+	text-align: center;
+	line-height: 40px;
+	cursor: pointer;
+}
+
+.heart:hover, .shopping-cart:hover {
+	background: #e5e5e5;
+	border-radius: 100%;
+}
+
+.nav-item.mr-2.ml-2>a {
+	text-decoration: none !important;
+	color: black !important;
+	font-size: 0.8em;
+}
+
+.navbar-nav.mr-3 {
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+.navbar-brand {
+	margin-left: 2.5em;
+}
+
+#scrollTop {
+	display: none;
+	position: fixed;
+	bottom: 30px;
+	right: 60px;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	line-height: 37px;
+	z-index: 999;
+	background: #ebebeb;
+	border-radius: 50%;
+}
+
+#scrollTop a {
+	font-size: 27px;
+	display: block;
+	color: #999;
+}
