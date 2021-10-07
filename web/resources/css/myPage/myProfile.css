@@ -5,6 +5,10 @@
 	background-size: cover;
 }
 
+.btn-primary {
+	border: 1px solid black !important;
+}
+
 /* section */
 .nav-item.mr-2.ml-2>a {
 	text-decoration: none !important;

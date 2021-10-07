@@ -1,0 +1,147 @@
+@charset "UTF-8";
+.container {
+      width: auto !important;
+      max-width: 1000px !important;
+      padding: 0 15px !important;
+      margin-bottom: 100px !important;
+      margin-top: 30px !important;
+    }
+    .realBonmun {
+      background-color: rgb(245, 245, 245);
+      height: 500px;
+      padding: 50px;
+      text-align: justify;
+      line-height: 2.0;
+    }
+     button {
+      border-radius: 10px !important;
+      display: block !important;
+      margin: 20px auto !important;
+    }
+
+    /* 사이드바 관련 css */
+    aside {
+        float: left;
+        margin-left: 180px;
+        margin-top: 5px;
+      }
+      .asideTitle {
+        font-weight: 900;
+        margin-left: 40px;
+      }
+      ul {
+        list-style: none;
+        line-height: 1.8;
+      }
+      ul a {
+        text-decoration: none !important;
+        color: black !important;
+      }
+      .list2, .list3 {
+        color: lightgray;
+      }
+
+    /* footer */
+    .footer-main-div {
+        background-color: black;
+        color: white;
+        padding: 3em;
+      }
+      .footer-main-div .footer-info-div > strong {
+        margin-left: 1em;
+        margin-right: 1em;
+        font-size: 15px;
+      }
+      .footer-main-div .footer-info-div > strong > a {
+        text-decoration: none;
+        color: white;
+      }
+      .footer-contact-div > h5 {
+        line-height: 1em;
+      }
+      .footer-contact-div > p {
+        font-size: 14px;
+        color: gray;
+      }
+      .footer-intro-div {
+        margin-left: 1em;
+        margin-right: 1em;
+      }
+      .footer-intro-div > p {
+        font-size: 14px;
+        color: gray;
+      }
+      .footer-intro-div > .group-intro-1 {
+        line-height: 1px;
+      }
+      .nav-item.mr-2.ml-2 > a{
+        text-decoration: none !important;
+        color: black !important;
+        font-size: 0.8em;
+      }
+      .navbar-nav.mr-3 {
+        margin-top: 3px;
+        margin-bottom: 3px;
+      }
+      .navbar-brand {
+        margin-left: 2.5em;
+      }
+      h2 {
+        margin-top: 30px;
+      } 
+      #a1 {
+        text-decoration: none;
+        color: black;
+      }
+      /* paging */
+        .paging {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 19px;
+  }
+  .paging .hide {
+    display: block;
+    height: 0;
+    width: 0;
+    font-size: 0;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  .paging a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 23px;
+    height: 23px;
+    padding-top: 2px;
+    vertical-align: middle;
+    color: #000;
+  }
+  .paging a:hover {
+    text-decoration: underline;
+  }
+  .paging .btn_arr {
+    text-decoration: none;
+  }
+  .paging .btn_arr {
+    color: #444;
+  }
+  .paging .on {
+    margin: 0 3px;
+    padding-top: 0;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+  }
+
+  .paging .on {
+    height: 22px;
+    color: #fff;
+    font-weight: bold;
+    background: #000;
+  }
+  .paging .on:hover {
+    text-decoration: none;
+  }

@@ -29,15 +29,17 @@
       <nav class="navbar navbar-expand-sm navbar-light bg-light" style="padding: 0;">
         <div class="collapse navbar-collapse justify-content-end">
           <ul class="navbar-nav mr-3">
-            <li class="nav-item mr-2 ml-2">
-              <a href="#">고객센터</a>
-            </li>
-            <li class="nav-item mr-2 ml-2">
-              <a href="#">로그인</a>
-            </li>
-            <li class="nav-item mr-2 ml-2">
-              <a href="#">회원가입</a>
-            </li>
+          	<c:if test="${ empty connectMember }">
+	            <li class="nav-item mr-2 ml-2">
+	              <a href="#">고객센터</a>
+	            </li>
+	            <li class="nav-item mr-2 ml-2">
+	              <a href="#">로그인</a>
+	            </li>
+	            <li class="nav-item mr-2 ml-2">
+	              <a href="#">회원가입</a>
+	            </li>
+	         </c:if>
           </ul>
         </div>
       </nav>
@@ -57,7 +59,6 @@
             <input class="form-control" type="text" placeholder="Search">
           </form>
           <a href="#"><span class="heart"><i class="fa fa-heart-o" aria-hidden="true"></i></span></a>
-          <a href="#"><span class="shopping-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span></a>
         </div>
       </nav>
       <hr class="m-0">
