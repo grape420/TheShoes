@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet"
-	href="${ pageContext.servletContext.contextPath }/resources/css/shoes/sell.css">
+	href="${ pageContext.servletContext.contextPath }/resources/css/resell/regResell.css">
 <link rel="shortcut icon"
 	href="${ pageContext.servletContext.contextPath }/resources/uses/the-shoes-favicon.png">
 <script
@@ -20,12 +20,6 @@
 	<!-- section -->
 	<!-- section -->
 	<section>
-		<div class="top_tab">
-			<div class="wrap">
-				<a href="#n" class="on">상품등록</a> <a href="#n">상품관리</a> <a href="#n">구매/판매
-					내역</a>
-			</div>
-		</div>
 		<div class="wrap">
 			<h3 class="titleA">
 				기본정보 <span class="pill">*필수항목</span>
@@ -107,6 +101,6 @@
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 	
-	<script src="${ pageContext.servletContext.contextPath }/resources/js/shoes/sell.js"></script>
+	<script src="${ pageContext.servletContext.contextPath }/resources/js/resell/regResell.js"></script>
 </body>
 </html>

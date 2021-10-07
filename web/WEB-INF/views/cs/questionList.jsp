@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/board/boardList.css">
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/cs/questionList.css">
 <link rel="shortcut icon" href="${ pageContext.servletContext.contextPath }/resources/uses/the-shoes-favicon.png">
 <link href="${ pageContext.servletContext.contextPath }/resources/uses/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -17,7 +17,6 @@
 <body>
 	<!-- header -->
 	<jsp:include page="../common/header.jsp" />
-
 	<!-- section -->
 	<section>
 		<!-- Page Wrapper -->
@@ -80,68 +79,40 @@
 
 					<!-- Page Heading -->
 					<br>
-					<h1 class="h3 mb-2 text-gray-800">공지사항</h1>
-					<p class="mb-4"></p>
+					<h1 class="h3 mb-2 text-gray-800">1:1 문의</h1>
+					<p class="mb-4">문의하신 내역을 확인할 수 있는 페이지입니다.</p>
+
 					<table class="table table-hover">
 						<tbody>
 							<tr>
-								<td colspan="3"><a href="notice_detail.html" id="a1">[이벤트
-										발표] LUCKY DRAW - 나이키 x 오프화이트 덩크로우 로트 50 & 샤넬 클래식 파우치</a></td>
-								<td></td>
-								<td></td>
+								<td class="question-td" colspan="3">
+									<a href="1dae1_detail.html" class="questionList"> 
+										<span id="category">[일반]</span> 
+										<span id="title">아닛!!! 이거 왜 안돼욧!!!</span>
+										<div style="text-align: right; float: right;">
+											<span id="questionTime">2021-10-07 오전 11:53</span>
+										</div>
+									</a>
+								</td>
 							</tr>
 							<tr>
-								<td colspan="3">[이벤트 발표] LUCKY DRAW - 나이키 x 오프화이트 덩크로우 로트
-									46 & 베어브릭 x 카카오 라이언 400%</td>
-								<td></td>
-								<td></td>
+								<td class="question-td" colspan="3">
+									<a href="1dae1_detail.html" class="questionList"> 
+										<span id="category">[일반]</span> 
+										<span id="title">아닛!!! 이거 왜 안돼욧!!!</span>
+										<div style="text-align: right; float: right;">
+											<span id="questionTime">2021-10-07 오전 11:53</span>
+										</div>
+									</a>
+								</td>
 							</tr>
-							<tr>
-								<td colspan="3">[이벤트 발표] LUCKY DRAW - 나이키 x 오프화이트 덩크로우 로트
-									18 & 프라다 에어팟프로 케이스</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="3">[공지] 추석 연휴 판매자 정산 일정 안내</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="3">[공지] 추석 연휴 쇼룸 및 오프라인 접수 운영 안내</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="3">[공지] 추석 연휴 고객센터 운영 안내</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="3">[공지] 추석 연휴 택배사 휴무에 따른 거래 일정 안내</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="3">[공지] 보관판매 판매자 심사 오류 안내</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="3">[공지] 개인정보처리방침 변경 안내</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="3">[이벤트 발표] LUCKY DRAW - 루이비통 포쉐트클레 & 나이키 x
-									오프화이트 덩크로우 로트 1</td>
-								<td></td>
-								<td></td>
-							</tr>
+
 						</tbody>
 					</table>
 
+					<!-- paging -->
 					<div class="paging">
+
 						<a href="#" class="btn_arr first"><i
 							class="fa fa-chevron-left" aria-hidden="true"></i><span
 							class="hide">처음페이지</span></a> <a href="#" class="btn_arr prev"><i
@@ -155,18 +126,22 @@
 							class="fa fa-chevron-right" aria-hidden="true"></i><span
 							class="hide">마지막페이지</span></a>
 					</div>
-
 					<div style="text-align: center; margin-top: 20px;">
-						<a class="namoon" href="notice_input.html">등록하기</a>
+						<a class="namoon" href="1dae1_input.html">문의하기</a>
 					</div>
 
+					<!-- //paging -->
 				</div>
 			</div>
+
 		</div>
 		<!-- 자자 해보자 -->
 	</section>
-
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
+
+	<script
+		src="${ pageContext.servletContext.contextPath }/resources/js/cs/regQuestion.js"></script>
+
 </body>
 </html>

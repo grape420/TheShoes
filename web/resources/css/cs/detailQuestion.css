@@ -1,33 +1,14 @@
 @charset "UTF-8";
-
+/* sidebar */
 .bg-gradient-primary {
 	background-image: linear-gradient(180deg, #070707 10%, #000000 100%) !important;
 	background-size: cover;
 }
 
-.realBonmun {
-	background-color: rgb(245, 245, 245);
-	height: 500px;
-	padding: 50px;
-	text-align: justify;
-	line-height: 2.0;
+.content {
+	/* text-align: center; */
 }
-
-button {
-	border-radius: 10px !important;
-	display: block !important;
-	margin: 20px auto !important;
-}
-
-h2 {
-	margin-top: 30px;
-}
-
-#a1 {
-	text-decoration: none;
-	color: black;
-}
-
+/* section */
 .nav-item.mr-2.ml-2>a {
 	text-decoration: none !important;
 	color: black !important;
@@ -73,7 +54,8 @@ tr:hover {
 	line-height: 2.0;
 }
 
-.btn-outline-secondary {
+button {
 	border-radius: 10px !important;
-	display: inline-block !important;
+	display: block !important;
+	margin: 20px auto !important;
 }

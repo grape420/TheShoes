@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/board/boardDetail.css">
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/board/regBoard.css">
 <link rel="shortcut icon" href="${ pageContext.servletContext.contextPath }/resources/uses/the-shoes-favicon.png">
 <link href="${ pageContext.servletContext.contextPath }/resources/uses/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -20,6 +20,7 @@
 
 	<!-- section -->
 	<section>
+		<!-- Page Wrapper -->
 		<div id="wrapper">
 
 			<!-- Sidebar -->
@@ -79,7 +80,7 @@
 
 					<!-- Page Heading -->
 					<br>
-					<h1 class="h3 mb-2 text-gray-800">공지사항 등록</h1>
+					<h1 class="h3 mb-2 text-gray-800">공지사항 수정</h1>
 					<p class="mb-4"></p>
 
 					<form class="needs-validation" novalidate>
@@ -101,7 +102,7 @@
 								<textarea class="form-control" id="exampleFormControlTextarea1"
 									rows="20"></textarea>
 							</div>
-							<button type="submit" class="btn btn-outline-secondary">등록</button>
+							<button type="submit" class="btn btn-outline-secondary">수정</button>
 						</div>
 					</form>
 

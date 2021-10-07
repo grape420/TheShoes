@@ -5,23 +5,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/cs/question.css">
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/cs/detailQuestion.css">
 <link rel="shortcut icon" href="${ pageContext.servletContext.contextPath }/resources/uses/the-shoes-favicon.png">
 <link href="${ pageContext.servletContext.contextPath }/resources/uses/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 <link href="${ pageContext.servletContext.contextPath }/resources/uses/css/sb-admin-2.min.css" rel="stylesheet">
 <link href="${ pageContext.servletContext.contextPath }/resources/uses/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <title>THE SHOES</title>
 </head>
 <body>
 	<!-- header -->
 	<jsp:include page="../common/header.jsp" />
-
 	<!-- section -->
 	<section>
-
 		<!-- Page Wrapper -->
 		<div id="wrapper">
 
@@ -36,7 +33,7 @@
 					href="index.html">
 					<div class="sidebar-brand-icon rotate-n-15">
 					</div>
-					<div class="sidebar-brand-text mx-3">MY PAGE</div>
+					<div class="sidebar-brand-text mx-3">NOTICE</div>
 				</a>
 
 				<!-- Divider -->
@@ -49,30 +46,14 @@
 				<li class="nav-item"><a class="nav-link collapsed" href="#"
 					data-toggle="collapse" data-target="#collapseTwo"
 					aria-expanded="true" aria-controls="collapseTwo"> <i
-						class="fas fa-fw fa-folder"></i> <span>쇼핑정보</span>
+						class="fas fa-fw fa-folder"></i> <span>고객센터</span>
 				</a>
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 						data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="#">응모 내역</a> <a
-								class="collapse-item" href="#">구매 내역</a> <a
-								class="collapse-item" href="#">판매 내역</a> <a
-								class="collapse-item" href="#">관심 상품</a>
-						</div>
-					</div></li>
-
-				<!-- Nav Item - Utilities Collapse Menu -->
-				<li class="nav-item"><a class="nav-link collapsed" href="#"
-					data-toggle="collapse" data-target="#collapseUtilities"
-					aria-expanded="true" aria-controls="collapseUtilities"> <i
-						class="fas fa-fw fa-folder"></i> <span>나의정보</span>
-				</a>
-					<div id="collapseUtilities" class="collapse"
-						aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="#">프로필 정보</a> <a
-								class="collapse-item" href="#">주소록</a> <a class="collapse-item"
-								href="#">결제 정보</a> <a class="collapse-item" href="#">회원 탈퇴</a>
+							<a class="collapse-item" href="notice.html">공지사항</a> <a
+								class="collapse-item" href="FAQ2.html">FAQ</a> <a
+								class="collapse-item" href="1dae1_list.html">1:1 문의</a>
 						</div>
 					</div></li>
 
@@ -95,48 +76,40 @@
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
+
+					<!-- Page Heading -->
 					<br>
 					<div class="container">
-    <h2 style="font-weight: 900;">1:1 문의</h2>
-    <hr>
-    <div class="bonmun">
-    <span id="questionTime">2021-10-07 오전 11:53</span>
-    <p>
-      <span id="category">[일반]</span>
-      <span id="title">아닛!!! 이거 왜 안돼욧!!!</span>
-    </p>
+						<h1 class="h3 mb-2 text-gray-800">1:1 문의</h1>
+						<p class="mb-4"></p>
+						<div class="bonmun">
+							<span id="questionTime">2021-10-07 오전 11:53</span>
+							<p>
+								<span id="category">[일반]</span> <span id="title">아닛!!! 이거
+									왜 안돼욧!!!</span>
+							</p>
+	
+							<div id="titleImgArea">
+								<img id="titleImg" class="title-img-area" width="300"
+									height="300">
+							</div>
+							<br>
+	
+							<div class="realBonmun">이 홈페이지는 되는게 하나도 없네욧!!!</div>
+							<button type="button" class="btn btn-outline-secondary"
+								id="listBtn" onclick="listBtn_click();">목록보기</button>
+						</div>
+					</div>
 
-      <div id="titleImgArea">
-        <img id="titleImg" class="title-img-area" width="300" height="300">
-      </div>
-      <br>
 
-
-
-
-
-    <div class="realBonmun">
-      이 홈페이지는 되는게 하나도 없네욧!!!
-    </div>
-    <button type="button" class="btn btn-outline-secondary" id="listBtn" onclick="listBtn_click();">목록보기</button>
-    </div>
-</div>
-		</div>
+					<!-- //paging -->
+				</div>
+			</div>
 		</div>
 		<!-- 자자 해보자 -->
-
-
-		<!-- Scroll to Top Button-->
-		<a class="scroll-to-top rounded" href="#page-top"> <i
-			class="fas fa-angle-up"></i>
-		</a>
-
 	</section>
-
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
-	
-	<script src="${ pageContext.servletContext.contextPath }/resources/js/myPage/myProfile.js"></script>
 
 </body>
 </html>
