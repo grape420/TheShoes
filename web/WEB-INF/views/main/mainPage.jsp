@@ -29,7 +29,7 @@
 					</a>
 					<div class="carousel-caption d-none d-md-block">
 						<h5 class="text-black">First slide label</h5>
-						<p class="text-black">Some representative placeholder content for the first slide.</p>
+						<p class="text-black"></p>
 					</div>
 				</div>
 				<div class="carousel-item">
@@ -37,7 +37,7 @@
 					</a>
 					<div class="carousel-caption d-none d-md-block">
 						<h5 class="text-black">Second slide label</h5>
-						<p class="text-black">Some representative placeholder content for the second slide.</p>
+						<p class="text-black"></p>
 					</div>
 				</div>
 				<div class="carousel-item">
