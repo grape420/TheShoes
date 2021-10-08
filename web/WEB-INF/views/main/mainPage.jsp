@@ -73,7 +73,7 @@
 									<a href="javascript:void(0)">Buy</a>
 								</p>
 							</div>
-							<a class="stretched-link" href="#"></a>
+							<a class="stretched-link" href="${ pageContext.servletContext.contextPath }/shoes/detail?shoesCode=i"></a>
 						</div>
 					</div>
 				</div>

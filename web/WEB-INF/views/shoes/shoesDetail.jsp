@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet"
-	href="${ pageContext.servletContext.contextPath }/resources/css/shoes/draw.css">
+	href="${ pageContext.servletContext.contextPath }/resources/css/shoes/shoesDetail.css">
 <link rel="shortcut icon"
 	href="${ pageContext.servletContext.contextPath }/resources/uses/the-shoes-favicon.png">
 <script

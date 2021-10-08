@@ -1,0 +1,286 @@
+@charset "UTF-8";
+
+section {
+  max-width: 65%;
+  margin: 0 auto;
+  padding-bottom: 40px;
+}
+.info-section {
+  display: flex;
+  padding: 25px 15px 0 15px;
+}
+.info-section .images {
+  display: flex;
+  flex-wrap: wrap;
+  width: 40.333333333333%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.info-section .images li {
+  width: 50%;
+}
+.info-section .images li figure {
+  padding: 20px 0;
+  background: whitesmoke;
+}
+.info-section .images li:nth-child(2n-1) {
+  padding-right: 8px;
+}
+.info-section .images li:nth-child(2n) {
+  padding-left: 8px;
+}
+.info-section .images li:nth-child(5),
+.info-section .images li:nth-child(6) {
+  padding-bottom: 0;
+}
+.info-section .images li img {
+  width: 100%;
+}
+.info-section .info {
+  width: 59.666666666666%;
+  text-align: center;
+  line-height: 1.75;
+  padding: 0 50px;
+  padding-top: 50px;
+}
+.info-section .info h1 {
+  padding-bottom: 12px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.commnets {
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    color: rgb(33, 33, 33);
+    letter-spacing: -0.5px;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    vertical-align: baseline;
+    margin-top: 10px;
+}
+
+.comments .boad {
+  margin-top: 10px;
+}
+.comments .boad .boad-area {
+  padding-top: 25px;
+}
+
+.comments .boad .boad-area .boad-body {
+  display: flex;
+  width: 100%;
+}
+
+.comments .boad .boad-area .boad-body .comments-date {
+  width: 150px;
+  display: block;
+  text-decoration: none;
+  padding-right: 30px;
+  border-right: 1px solid rgb(238, 238, 238);
+}
+
+.comments .boad .boad-area .boad-body .comments-date span {
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.comments .boad .boad-area .boad-body .boad-body2 {
+  width: 100%;
+  border-bottom: 1px solid rgb(238, 238, 238);
+  overflow: auto;
+}
+.comments .boad .boad-area .boad-body .boad-body2 .content {
+  line-height: 1.5;
+  white-space: pre-wrap;
+  margin: 20px 0px;;
+  padding: 20px;
+}
+
+.comments .boad .boad-area .boad-body .boad-body2 .comments-revice,
+.comments .boad .boad-area .boad-body .boad-body2 .comments-remove,
+.comments .boad .boad-area .boad-body .boad-body2 .comments-buy {
+    text-size-adjust: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+    line-height: 1.15;
+    margin: 0px;
+    overflow: visible;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: right;
+    letter-spacing: -0.5px;
+    appearance: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid rgb(238, 238, 238);
+    height: 32px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0px 20px;
+    font-size: 13px;
+    color: rgb(136, 136, 136);
+    justify-content: space-between;
+    float: right;
+}
+
+.comments .boad .boad-area .boad-body .boad-body2 .comments-revice img, 
+.comments .boad .boad-area .boad-body .boad-body2 .comments-remove img {
+  margin-right: 4px;
+  vertical-align: bottom;
+  border-style: none;
+  aspect-ratio: auto 15 / 16;
+
+}
+
+.comments .boad .boad-area .boad-body2 .user .user-id {
+  cursor: pointer;
+  text-decoration: none;
+  background-color: transparent;
+  color: rgb(36, 36, 36);
+  padding-left: 20px;
+}
+
+.comments .head {
+  padding: 60px 0px 15px;
+  font-size: 18px;
+  border-bottom: 1px solid rgb(238, 238, 238);
+  border-top: 1px solid rgb(238, 238, 238);
+}
+
+.comments .head h1 {
+  font-size: 18px;
+}
+
+.comments .head span {
+  color: rgb(247, 47, 51);
+}
+
+.comments .area1 {
+    border: 1px solid rgb(238, 238, 238);
+
+}
+
+.comments .area1 .write {
+    width: 100%;
+    padding: 20px;
+   overflow: auto;
+   border: 1px solid rgb(238, 238, 238);
+}
+
+.comments .area1 .write textarea {
+    overflow: auto;
+    outline: 0px;
+    width: 100%;
+    height: 100%;
+   height: 120px;
+    resize: none;
+    font-size: 13px;
+    line-height: 1.5;
+   border: 1px solid rgb(238, 238, 238);
+}
+
+.comments .area1 .write .secret-box {
+  font-size: 13px;
+  -webkit-box-align: center;
+  align-items: center;
+  float: right;
+}
+
+.comments .area1 .write .secret-box .secret-check::checked {
+  background-color: black;
+  border-color: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.comments .area1 .write .secret-box .secret-check::checked {
+  background-color: black;
+  border-color: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.comments .area1 .write2 {
+  display: flex;
+  width: 100%;
+  height: 50%;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  padding: 0px 10px;
+}
+
+.comments .area1 .write2 .num1 {
+  margin-left: 10px;
+  font-size: 12px;
+  color: rgb(136, 136, 136);
+}
+
+.comments .area1 .write2 .comments-click {
+    text-size-adjust: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+    line-height: 1.15;
+    margin: 0px;
+    overflow: visible;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    letter-spacing: -0.5px;
+    appearance: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid rgb(238, 238, 238);
+    height: 32px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0px 20px;
+    font-size: 13px;
+    color: rgb(136, 136, 136);
+}
+
+.comments .area1 .write2 .commemts-click img {
+  margin-right: 4px;
+  vertical-align: bottom;
+  border-style: none;
+  aspect-ratio: auto 15 / 16;
+
+}
+
+.comments .listback {
+  line-height: 1.5;
+  margin: 10px 0px;;
+  padding-bottom: 20px;
+}
+
+.comments .listback .list-button, 
+.comments .listback .revice-button {
+  font-size: 13px;
+  -webkit-box-align: center;
+  align-items: center;
+  float: right;
+  border: 2px solid rgb(238, 238, 238);
+  outline: none;
+  background-color: transparent;
+  padding: 0px 20px;
+  height: 32px;
+}
+
+.comments .listback .list-button a,
+.comments .listback .revice-button a {
+  color: black;
+}
