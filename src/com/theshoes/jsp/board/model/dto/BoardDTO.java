@@ -5,14 +5,14 @@ import java.sql.Date;
 
 public class BoardDTO implements Serializable{
 
-	private int boardNo;				
-	private String boardId;				
-	private int boardCategoryNo;		
-	private String boardTitle;			
-	private String boardContent;		
-	private Date boardRegDate;			
-	private int boardHit;				
-	private int categoryOrder;			
+	private int boardNo;				// 게시글번호
+	private String boardId;				// 아이디
+	private int boardCategoryNo;		// 게시글 카테고리 번호	
+	private String boardTitle;			// 제목
+	private String boardContent;		// 내용
+	private Date boardRegDate;			// 작성일자
+	private int boardHit;				// 조회수
+	private int categoryOrder;			// 카테고리별 게시글 순서
 	
 	public BoardDTO() {
 	}

@@ -18,6 +18,8 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import com.theshoes.jsp.board.model.dto.BoardDTO;
+
 import net.coobird.thumbnailator.Thumbnails;
 
 @WebServlet("/manager/regShoes")
@@ -154,6 +156,8 @@ public class RegShoesServlet extends HttpServlet {
 				System.out.println("parameter : " + parameter);
 				System.out.println("fileList : " + fileList);
 				
+				/* 서비스를 요청할 수 있도록 BoardDTO에 담는다. */
+				BoardDTO thumbnail = new BoardDTO();
 				
 				
 				
