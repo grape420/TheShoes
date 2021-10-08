@@ -34,7 +34,7 @@
 	              <a href="#">고객센터</a>
 	            </li>
 	            <li class="nav-item mr-2 ml-2">
-	              <a href="#">로그인</a>
+	              <a href="${ pageContext.servletContext.contextPath }/member/login">로그인</a>
 	            </li>
 	            <li class="nav-item mr-2 ml-2">
 	              <a href="#">회원가입</a>

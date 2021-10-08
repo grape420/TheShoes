@@ -19,7 +19,7 @@
 		<div class="section-main-div">
 			<img class="logo-form rounded mx-auto d-block" src="${ pageContext.servletContext.contextPath }/resources/uses/Logo.png">
 			<br><br><br>
-			<form action="#" method="POST">
+			<form action="${ pageContext.servletContext.contextPath }/member/login" method="POST">
 				<input type="text" name="id" id="id" class="form-control" placeholder="아이디" autofocus> <br> 
 				<input type="password" name="password" id="password" class="form-control" placeholder="비밀번호"> <br>
 				<button type="submit" class="hsy-btn btn btn-lg btn-block btn-outline-dark" value="로그인">로그인</button>
