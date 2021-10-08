@@ -5,14 +5,14 @@ import java.sql.Date;
 
 public class BoardDTO implements Serializable{
 
-	private int boardNo;				// °Ô½Ã±Û ¹øÈ£
-	private String boardId;				// ¾ÆÀÌµğ
-	private int boardCategoryNo;		// °Ô½Ã±Û Ä«Å×°í¸® ¹øÈ£	
-	private String boardTitle;			// Á¦¸ñ
-	private String boardContent;		// ³»¿ë
-	private Date boardRegDate;			// ÀÛ¼ºÀÏÀÚ
-	private int boardHit;				// Á¶È¸¼ö
-	private int categoryOrder;			// Ä«Å×°í¸®º° °Ô½Ã±Û ¼ø¼­	
+	private int boardNo;				// ê²Œì‹œê¸€ë²ˆí˜¸
+	private String boardId;				// ì•„ì´ë””
+	private int boardCategoryNo;		// ê²Œì‹œê¸€ ì¹´í…Œê³ ë¦¬ ë²ˆí˜¸	
+	private String boardTitle;			// ì œëª©
+	private String boardContent;		// ë‚´ìš©
+	private Date boardRegDate;			// ì‘ì„±ì¼ì
+	private int boardHit;				// ì¡°íšŒìˆ˜
+	private int categoryOrder;			// ì¹´í…Œê³ ë¦¬ë³„ ê²Œì‹œê¸€ ìˆœì„œ
 	
 	public BoardDTO() {
 	}

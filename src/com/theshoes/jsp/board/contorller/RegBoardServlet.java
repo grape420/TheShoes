@@ -11,14 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 public class RegBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/* 'µî·ÏÇÏ±â' ¹öÆ° Å¬¸¯ ½Ã get ¿äÃ» ->  */
+	/* 'ë“±ë¡í•˜ê¸°' ë²„íŠ¼ í´ë¦­ ì‹œ get ìš”ì²­ -> ê²Œì‹œê¸€ ì‘ì„±í•˜ëŠ” í˜ì´ì§€ë¡œ ì´ë™ */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String noticeTitle = request.getParameter("noticeTitle");
 		String noticeWriter = request.getParameter("noticeWriter");
 		String noticeDetail = request.getParameter("noticeDetail");
 	}
 
-	/* °øÁö»çÇ× ÀÛ¼º ÈÄ post ¿äÃ»À» ÇÒ °æ¿ì Ã³¸®ÇÏ´Â ¿ªÇÒ */
+	/* ê³µì§€ì‚¬í•­ ì‘ì„± í›„ post ìš”ì²­ì„ í•  ê²½ìš° ì²˜ë¦¬í•˜ëŠ” ì—­í•  */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
