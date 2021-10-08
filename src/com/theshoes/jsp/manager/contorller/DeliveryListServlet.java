@@ -1,4 +1,4 @@
-package com.theshoes.jsp.manager.cotorller;
+package com.theshoes.jsp.manager.contorller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
