@@ -1,4 +1,4 @@
-package com.theshoes.jsp.manager.model;
+package com.theshoes.jsp.member.model;
 
 import java.io.Serializable;
 import java.sql.Date;
