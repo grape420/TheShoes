@@ -15,20 +15,18 @@ public class BoardDAO {
 	}
 
 	/* 게시글 삽입 */
-	public int insertPost(SqlSession session, BoardDTO newNotice) {
-		// TODO Auto-generated method stub
+	public int registPost(SqlSession session, BoardDTO newNotice) {
 		return 0;
 	}
 
 	/* 게시글 조회수 증가 */
 	public int incrementPostCount(SqlSession session, int no) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	/* 게시글 상세보기 조회 */
 	public BoardDTO selectPostDetail(SqlSession session, int no) {
-		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

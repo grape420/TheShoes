@@ -17,8 +17,8 @@ public class BoardService {
 		boardDAO = new BoardDAO();
 	}
 	
-	/* 게시판 전체 목록 조회 */
-	public List<BoardDTO> selectAllNoticeList() {
+	/* 전체 게시글 목록 조회 */
+	public List<BoardDTO> selectAllPostList() {
 		
 		SqlSession session = getSqlSession();
 		
@@ -30,11 +30,11 @@ public class BoardService {
 	}
 	
 	/* 게시판에 새로운 글 추가 */
-	public int insertNotice(BoardDTO newNotice) {
+	public int registPost(BoardDTO newNotice) {
 		
 		SqlSession session = getSqlSession();
 		
-		int result = boardDAO.insertPost(session, newNotice);
+		int result = boardDAO.registPost(session, newNotice);
 		
 		if(result > 0) {
 			session.commit();
@@ -48,7 +48,7 @@ public class BoardService {
 	}
 	
 	/* 게시글 상세보기 */
-	public BoardDTO selectNoticeDetail(int no) {
+	public BoardDTO selectPostDetail(int no) {
 		
 		SqlSession session = getSqlSession();
 		BoardDTO postDetail = null;

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.theshoes.jsp.board.model.dto.BoardDTO;
+import com.theshoes.jsp.board.model.service.BoardService;
 
 @WebServlet("/board/reg")
 public class RegBoardServlet extends HttpServlet {
@@ -41,7 +42,7 @@ public class RegBoardServlet extends HttpServlet {
 		
 		/* BoardDTO에 값 넣기 */
 		BoardDTO noticeBoard = new BoardDTO();			
-//		noticeBoard.setBoardNo(0);							// 시퀀스 사용					
+//		noticeBoard.setBoardNo(0);							// xml 쿼리 내 시퀀스 사용					
 		noticeBoard.setBoardId(noticeWriterId);	
 		noticeBoard.setBoardCategoryNo(1);					// '공지사항' 게시글 카테고리 : 1
 		noticeBoard.setBoardTitle(noticeTitle);
@@ -49,5 +50,17 @@ public class RegBoardServlet extends HttpServlet {
 		noticeBoard.setBoardRegDate(noticeRegDate);		
 		noticeBoard.setBoardHit(0);
 		noticeBoard.setCategoryOrder(0);
+		
+		System.out.println("RegBoardServlet noticeBoard : " + noticeBoard);
+		
+		int result = new BoardService().registPost(noticeBoard);
+		
+		System.out.println("RegBoardServlet result : " + result);
+		
+		String page = "";
+		
+		if (result > 0) {
+			
+		}
 	}
 }
