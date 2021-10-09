@@ -14,4 +14,8 @@ public class MemberDAO {
 		return session.selectOne("MemberDAO.selectMemberByEmail", email);
 	}
 
+	public int registMember(SqlSession session, MemberDTO member) {
+		return 0;
+	}
+
 }

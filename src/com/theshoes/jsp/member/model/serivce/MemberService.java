@@ -52,4 +52,20 @@ public class MemberService {
 		return member;
 	}
 
+	public int registMember(MemberDTO member) {
+		SqlSession session = getSqlSession();
+		
+		int result = memberDAO.registMember(session, member);
+		
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
 }

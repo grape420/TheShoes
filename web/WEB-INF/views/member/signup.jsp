@@ -21,7 +21,7 @@
         <br><br><br>
         <h2 class="signup-text">회원 가입</h2>
         <br>
-        <form class="signup-form" action="#" method="POST">
+        <form class="signup-form" id="signup-form" action="#" method="POST">
         	<div class="row pb-0">
 		          <input required type="text" name="id" id="id" class="form-control col-8" placeholder="사용하실 ID를 입력해주세요." autofocus>
 		          <div class="col-1"></div>
@@ -68,7 +68,8 @@
             </div>
 	        <br>
 	          <h5>이용약관</h5>
-	          <textarea readonly>개인정보 처리 방침
+	          <div class="row">
+	          <textarea class="col-12 agree-textarea" readonly>개인정보 처리 방침
 	            1. "회원"은 언제든지 고객센터 또는 내 정보 관리 메뉴 등을 통하여 이용계약 해지(탈퇴) 신청을 할 수 있으며, "회사"는 관련 법령 등이 정하는 바에 따라 이를 즉시 처리합니다. 다만, 아래와 같은 경우 해지(탈퇴) 처리가 제한될 수 있습니다.가. "회원"에게 부과된 서비스 수수료나 부과된 페널티 금액의 미납이 있는 경우, 본 약관 제16조 제3항의 "마이너스(-) 포인트"가 남아 있는 경우, "회사"와 "회원" 사이에 분쟁 계속 중인 경우 등과 같이 이용계약을 해지하는 것이 적절하지 않은 경우에는 해당하는 사유가 완전히 해소될 때까지 해지(탈퇴) 처리가 제한될 수 있습니다.나. 만약 현재 진행 중인 거래, 문의, 또는 민원이 있거나 본 약관 제7조에 따라 이용제한 등의 조치가 된 경우에는 해지(탈퇴) 신청이 불가능하며, 해당하는 사유가 완전히 처리 완료된 후 본 약관 및 운영정책에서 정하는 바에 따라 탈퇴 및 이용계약 해지가 가능합니다.
 	            2.  "회원"이 계약을 해지할 경우, 관련법 및 개인정보취급방침에 따라 "회사"가 회원정보를 보유하는 경우를 제외하고는 해지 즉시 "회원"의 모든 데이터는 소멸됩니다.
 	            3. "회원"이 계약을 해지하는 경우, "회원"이 작성한 "게시물" 중 피드, 블로그 등과 같이 본인 계정에 등록된 게시물 일체는 삭제됩니다. 다만, 타인에 의해 담기, 스크랩 등이 되어 재게시되거나, 공용게시판에 등록된 "게시물" 등은 삭제되지 않으니 사전에 삭제 후 탈퇴하시기 바랍니다
@@ -113,12 +114,16 @@
 	            • 8.해지된 경우 회원 본인 계정에 등록된 게시물 또는 회원이 작성한 게시물 일체는 삭제됩니다. 다만, 다른 회원에 의해 스크랩되어 게시되거나 공용 게시판에 등록된 게시물은 삭제되지 않습니다.
 	            • 9.이용계약의 종료와 관련하여 발생한 손해는 이용계약이 종료된 해당 회원이 책임을 부담하여야 하고, 회사는 일체 책임을 지지 않습니다.
 	          </textarea>
-	          <div class="custom-control custom-checkbox">
-	            <input type="checkbox" class="custom-control-input" id="same-address" required>
-	            <label class="custom-control-label" for="same-address"> 이용약관의 동의 하겠습니다. </label>
 	          </div>
+	          <div class="custom-control custom-checkbox row">
+	            <input type="checkbox" class="custom-control-input" id="agree" required>
+	            <label class="custom-control-label" for="agree"> 이용약관의 동의 하겠습니다. </label>
+	          </div>
+	            <label class="email-result mb-0" id="agree-result"></label>
 	          <br><br>
-	          <button id="submit-btn" type="button" class="hsy-btn btn btn-lg btn-block btn-outline-dark" value="로그인">회원가입</button>
+	          <div class="row">
+	          <button id="submit-btn" type="button" class="col-12 hsy-btn btn btn-lg btn-block btn-outline-dark" value="로그인">회원가입</button>
+	          </div>
         </form>
       </div>
     </section>
@@ -131,6 +136,18 @@
 	<jsp:include page="../common/footer.jsp" />
 	
 	<script>
+	var code = "";
+	var idFlag = false;
+	var passwordFlag = false;
+	var nameFlag = false;
+	var birthFlag = false;
+	var phoneFlag = false;
+	var emailTextFlag = false;
+	var emailChangeFlag = false;
+	var emailFlag = false;
+	var min = 0;
+	var sec = 0;
+	
 		$("#id-check-btn").click(function() {
 			var idExp = /^(?=.*[a-zA-Z])(?!=.*[$@$!%*?&])(?=.*[0-9]).{4,12}$/;
 			const value = $("#id").val();
@@ -151,6 +168,7 @@
 							$("#id").val("").focus();
 						} else {
 							$("#id-result").text("사용 가능한 아이디 입니다.").css("color", "blue");
+							idFlag = true;
 						}
 					},
 					error: function(request, status, error) {
@@ -179,10 +197,14 @@
 					success: function(data) {
 						if(data == "fail") {
 							$("#email-result").text("중복된 이메일 입니다.").css("color", "red");
-							$(this).val("").focus();
+							$("#email").val("").focus();
 						} else {
 							$("#email-result").text("사용 가능한 이메일 입니다.").css("color", "blue");
 							countStart();
+							$("#count-down").css("color", "red");
+							emailTextFlag = true;
+							emailChangeFlag = true;
+							code = data;
 						}
 					},
 					error: function(request, status, error) {
@@ -195,7 +217,55 @@
 		});
 		
 		$("#submit-btn").click(function() {
+			if(!$("#agree").prop('checked')) {
+				$("#agree-result").text("이용 약관에 동의를 해주세요.").css("color", "red");
+			}
 			
+			if((min > 0 && sec > 0) && (code == $("#code").val()) && (emailTextFlag == true)) {
+				emailFlag = true;
+				clearInterval(countInterval);
+				
+				$("#count-down").text("인증 성공").css("color", "blue");
+			} else {
+				emailFlag = false;
+				console.log("이메일 테스트 이상함");
+			}
+			
+			if(emailFlag == false || emailChangeFlag == false) {
+				$("#email-result").text("이메일 인증을 다시 해주세요.").css("color", "red");
+				$("#count-down").text("03:00").css("color", "red");
+				$("#email").val("").focus();
+			}
+			
+			if(phoneFlag == false) {
+				$("#phone-result").text("휴대폰 번호를 다시 확인 해주세요").css("color", "red");
+				$("#phone").val("").focus();
+			}
+			
+			if(birthFlag == false) {
+				$("#birth-result").text("생년월일을 확인 해주세요.").css("color", "red");
+				$("#birth").val("").focus();
+			}
+			
+			if(nameFlag == false) {
+				$("#name-result").text("이름을 확인 해주세요.").css("color", "red");
+				$("#name").val("").focus();
+			}
+			
+			if(passwordFlag == false) {
+				$("#password-result").text("비밀번호를 다시 확인 해주세요.").css("color", "red");
+				$("#passowrd").val("").focus();
+			}
+			
+			if(idFlag == false) {
+				$("#id-result").text("아이디 중복 확인을 해주세요.").css("color", "red");
+				$("#id").val("").focus();
+			}
+			
+			if((idFlag == true) && (passwordFlag == true) && (nameFlag == true) && (birthFlag == true) && (phoneFlag == true) &&
+			   (emailFlag == true) && (emailChangeFlag == true) && $("#agree").prop('checked')) {
+				$("#signup-form").submit();
+			}
 		});
 	</script>
 	

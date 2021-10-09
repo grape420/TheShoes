@@ -10,8 +10,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class STMP_NAVER_SSL {
-	public static void main(String[] args) throws Exception {
+public class SmtpNaverSsl {
+	public static String sendEmailMessage(String receiveEmail) {
 		// 사용할 메일 - naver
 		String host = "smtp.naver.com";
 
@@ -66,7 +66,7 @@ public class STMP_NAVER_SSL {
 			msg.setFrom(from);
 
 			// 수신자 설정
-			msg.addRecipient(Message.RecipientType.TO, new InternetAddress("yujeong_study@naver.com"));
+			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(receiveEmail));
 
 			// 메일 제목
 			msg.setSubject("[The Shoes] 비밀번호 변경 인증 메일입니다.", "UTF-8");
@@ -74,10 +74,11 @@ public class STMP_NAVER_SSL {
 			msg.setText("인증 번호는 " + AuthenticationKey + " 입니다", "UTF-8");
 
 			Transport.send(msg);
-			System.out.println("ssl 버전 성공! 메일함 확인해보세요!");
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return AuthenticationKey;
 	}
 }

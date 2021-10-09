@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.theshoes.jsp.common.smtp.SmtpNaverSsl;
 import com.theshoes.jsp.member.model.dto.MemberDTO;
 import com.theshoes.jsp.member.model.serivce.MemberService;
 
@@ -24,6 +25,8 @@ public class doubleCheckServlet extends HttpServlet {
 		
 		MemberDTO member = new MemberDTO();
 		
+		String jsonString = null;
+		
 		if ("id".equals(request.getParameter("type"))) {
 			member = memberService.selectMemberById(request.getParameter("value"));
 			
@@ -31,10 +34,12 @@ public class doubleCheckServlet extends HttpServlet {
 			member = memberService.selectMemberByEmail(request.getParameter("value"));
 		}
 		
-		String jsonString = null;
-		
 		if(member == null) {
-			jsonString = new Gson().toJson("success");
+			if ("id".equals(request.getParameter("type"))) {
+				jsonString = new Gson().toJson("success");
+			} else if("email".equals(request.getParameter("type"))) {
+				jsonString = new Gson().toJson(SmtpNaverSsl.sendEmailMessage(request.getParameter("value")));
+			}
 		} else {
 			jsonString = new Gson().toJson("fail");
 		}
