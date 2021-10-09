@@ -82,8 +82,13 @@
           <p class="mb-4"></p>
 
           <div class="bonmun">
-            2021.09.13
-            <p>[공지]추석 연휴 판매자 정산 일정 안내</p>
+          <!--  작성일  -->
+            <c:out value="${ requestScope.notice.createdDate }"/>
+            
+            <!-- 공지사항 제목 -->
+            <p><c:out value="${ requestScope.notice.title }"/></p>
+            
+            <!-- 공지사항 내용 -->
             <div class="realBonmun">
               안녕하세요. THE SHOES입니다.<br><br>
 

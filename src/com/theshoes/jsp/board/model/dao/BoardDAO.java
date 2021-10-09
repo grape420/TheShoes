@@ -9,9 +9,9 @@ import com.theshoes.jsp.board.model.dto.BoardDTO;
 public class BoardDAO {
 
 	/* 게시판 목록 전체 조회 */
-	public List<BoardDTO> selectAllPostList(SqlSession session) {
+	public List<BoardDTO> selectAllNoticeList(SqlSession session) {
 		
-		return session.selectList("BoardDAO.selectAllPostList");
+		return session.selectList("BoardDAO.selectAllNoticeList");
 	}
 
 	/* 게시글 삽입 */

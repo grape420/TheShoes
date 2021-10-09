@@ -18,11 +18,11 @@ public class BoardService {
 	}
 	
 	/* 전체 게시글 목록 조회 */
-	public List<BoardDTO> selectAllPostList() {
+	public List<BoardDTO> selectAllNoticeList() {
 		
 		SqlSession session = getSqlSession();
 		
-		List<BoardDTO> noticeList = boardDAO.selectAllPostList(session);
+		List<BoardDTO> noticeList = boardDAO.selectAllNoticeList(session);
 		
 		session.close();
 		
