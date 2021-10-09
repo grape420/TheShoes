@@ -1,5 +1,5 @@
 /* 정규표현식을 이용 */
-$("#id").change(function() {
+/*$("#id").change(function() {
 	var idExp = /^(?=.*[a-zA-Z])(?!=.*[$@$!%*?&])(?=.*[0-9]).{4,12}$/;
 
 	if (!idExp.test($(this).val())) {
@@ -8,7 +8,7 @@ $("#id").change(function() {
 	} else {
 		$("#id-result").text("").css("color", "green");
 	}
-})
+})*/
 
 $("#password").change(function() {
 	var passwordEmp = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,16}/;
@@ -77,3 +77,40 @@ $("#email").change(function() {
 		$("#email-result").text("").css("color", "green");
 	}
 })
+
+/* count down 함수 */
+function paddedFormat(num) {
+	return num < 10 ? "0" + num : num;
+}
+
+function startCountDown(duration, element) {
+
+	let secondsRemaining = duration;
+	let min = 0;
+	let sec = 0;
+
+	let countInterval = setInterval(function() {
+
+		min = parseInt(secondsRemaining / 60);
+		sec = parseInt(secondsRemaining % 60);
+
+		element.textContent = `${paddedFormat(min)}:${paddedFormat(sec)}`;
+
+		secondsRemaining = secondsRemaining - 1;
+		if (secondsRemaining < 0) { clearInterval(countInterval) };
+
+	}, 1000);
+}
+
+function countStart() {
+	let time_minutes = 3; // Value in minutes
+	let time_seconds = 0; // Value in seconds
+
+	let duration = time_minutes * 60 + time_seconds;
+
+	element = document.querySelector('#count-down');
+	element.textContent = `${paddedFormat(time_minutes)}:${paddedFormat(time_seconds)}`;
+
+	startCountDown(--duration, element);
+};
+
