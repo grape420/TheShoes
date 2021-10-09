@@ -34,7 +34,7 @@
           <input required type="text" name="name" id="name" class="form-control" placeholder="이름을 입력해 주세요.">
           <label class="name-result" id="name-result"></label>
           <br>
-          <input required type="text" name="birth" id="birth" class="form-control" placeholder="생년월일    예)19990719">
+          <input required type="date" name="birth" id="birth" class="form-control" placeholder="생년월일    예)19990719">
           <label class="birth-result" id="birth-result"></label>
           <br>
           <input required type="text" name="phone" id="phone" class="form-control" placeholder="휴대폰 번호 '-'표 없이 입력해 주세요.">
