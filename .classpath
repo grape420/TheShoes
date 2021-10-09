@@ -24,8 +24,6 @@
 	<classpathentry kind="lib" path="web/WEB-INF/lib/mybatis-3-mybatis-3.5.7.zip"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/ojdbc6.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/resources.zip"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-api-1.7.30.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-log4j12-1.7.30.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/smtp_api_lib.zip"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-security-crypto-5.3.4.RELEASE.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/thumbnailator-0.4.8.jar"/>

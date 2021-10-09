@@ -87,11 +87,12 @@
 						<p class="mb-4">신발 정보를 등록할 수 있는 페이지입니다.</p>
 						<div>
 
-							<form class="needs-validation" method="get">
+							<form class="needs-validation" method="post" action="${ pageContext.servletContext.contextPath }/manager/regShoes">
 								<div class="row">
 									<div class="col-md-4 mb-3">
-										<label for="country">카테고리</label> <select
-											class="custom-select d-block w-100" id="country"
+										<label for="country">카테고리</label> 
+										<select
+											class="custom-select d-block w-100" id="infoCategoryNo"
 											name="infoCategoryNo" required>
 											<option value="1">나이키</option>
 											<option value="2">스캇</option>
@@ -99,47 +100,45 @@
 											<option value="4">사카이</option>
 											<option value="5">Dunk</option>
 										</select>
-										<div class="invalid-feedback">Please select a valid
-											country.</div>
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="lastName">모델명</label> <input type="text"
 											class="form-control" id="shoesModel" placeholder=""
-											name="shoesModel" required>
+											name="shoesModel" >
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="lastName">발매가</label> <input type="number"
 											class="form-control" id="shoesPrice" placeholder=""
-											name="shoesPrice" required>
+											name="shoesPrice" >
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="firstName">당첨자 발표일</label> <input
 											type="datetime-local" class="form-control" id="winnerDate"
-											placeholder="" name="winnerDate" required>
+											placeholder="" name="winnerDate" >
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="country">판매여부</label> <select
 											class="custom-select d-block w-100" id="salesYn"
-											name="salesYn" required>
-											<option value="yes">Y</option>
-											<option value="no">N</option>
+											name="salesYn" >
+											<option value="Y">Y</option>
+											<option value="N">N</option>
 										</select>
 									</div>
 
 									<div class="col-md-4 mb-3">
 										<label for="lastName">수량</label> <input type="number"
 											class="form-control" id="salesAmount" placeholder=""
-											name="salesAmount" required>
+											name="salesAmount" >
 									</div>
 									<div class="col-md-6 mb-3">
 										<label for="firstName">응모 시작일</label> <input
 											type="datetime-local" class="form-control" id="startDate"
-											placeholder="" name="startDate" required>
+											placeholder="" name="startDate" >
 									</div>
 									<div class="col-md-6 mb-3">
 										<label for="firstName">응모 종료일</label> <input
 											type="datetime-local" class="form-control" id="endDate"
-											placeholder="" name="endDate" required>
+											placeholder="" name="endDate" >
 									</div>
 
 										<div class="col-md-12 mb-3">
