@@ -2,6 +2,7 @@ package com.theshoes.jsp.shoes.model.dto;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 public class ShoesDTO implements Serializable{
 
@@ -14,16 +15,16 @@ public class ShoesDTO implements Serializable{
 	private String salesYn;						// 판매 여부
 	private int salesAmount;					// 판매 수량
 	private int reamaningAmount;				// 잔여 수량
-	private java.sql.Date startDate;			// 응모 시작일
-	private java.sql.Date endDate;				// 응모 종료일
-	private java.sql.Date winnerDate;			// 당첨자 발표일
+	private java.util.Date startDate;			// 응모 시작일
+	private java.util.Date endDate;				// 응모 종료일
+	private java.util.Date winnerDate;			// 당첨자 발표일
 	private String eventEndYn;					// 추첨 종료 상태
-	
+	private List<ShoesThumbDTO> thumbList;		// 신발 섬네일 리스트
 	public ShoesDTO() {
 	}
-	
 	public ShoesDTO(int shoesNo, int infoCategoryNo, String shoesModel, int shoesPrice, String salesYn, int salesAmount,
-			int reamaningAmount, Date startDate, Date endDate, Date winnerDate, String eventEndYn) {
+			int reamaningAmount, java.util.Date startDate, java.util.Date endDate, java.util.Date winnerDate,
+			String eventEndYn, List<ShoesThumbDTO> thumbList) {
 		this.shoesNo = shoesNo;
 		this.infoCategoryNo = infoCategoryNo;
 		this.shoesModel = shoesModel;
@@ -35,8 +36,8 @@ public class ShoesDTO implements Serializable{
 		this.endDate = endDate;
 		this.winnerDate = winnerDate;
 		this.eventEndYn = eventEndYn;
+		this.thumbList = thumbList;
 	}
-	
 	public int getShoesNo() {
 		return shoesNo;
 	}
@@ -79,22 +80,22 @@ public class ShoesDTO implements Serializable{
 	public void setReamaningAmount(int reamaningAmount) {
 		this.reamaningAmount = reamaningAmount;
 	}
-	public java.sql.Date getStartDate() {
+	public java.util.Date getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(java.sql.Date startDate) {
+	public void setStartDate(java.util.Date startDate) {
 		this.startDate = startDate;
 	}
-	public java.sql.Date getEndDate() {
+	public java.util.Date getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(java.sql.Date endDate) {
+	public void setEndDate(java.util.Date endDate) {
 		this.endDate = endDate;
 	}
-	public java.sql.Date getWinnerDate() {
+	public java.util.Date getWinnerDate() {
 		return winnerDate;
 	}
-	public void setWinnerDate(java.sql.Date winnerDate) {
+	public void setWinnerDate(java.util.Date winnerDate) {
 		this.winnerDate = winnerDate;
 	}
 	public String getEventEndYn() {
@@ -103,16 +104,25 @@ public class ShoesDTO implements Serializable{
 	public void setEventEndYn(String eventEndYn) {
 		this.eventEndYn = eventEndYn;
 	}
+	public List<ShoesThumbDTO> getThumbList() {
+		return thumbList;
+	}
+	public void setThumbList(List<ShoesThumbDTO> thumbList) {
+		this.thumbList = thumbList;
+	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
 	@Override
 	public String toString() {
 		return "ShoesDTO [shoesNo=" + shoesNo + ", infoCategoryNo=" + infoCategoryNo + ", shoesModel=" + shoesModel
 				+ ", shoesPrice=" + shoesPrice + ", salesYn=" + salesYn + ", salesAmount=" + salesAmount
 				+ ", reamaningAmount=" + reamaningAmount + ", startDate=" + startDate + ", endDate=" + endDate
-				+ ", winnerDate=" + winnerDate + ", eventEndYn=" + eventEndYn + "]";
+				+ ", winnerDate=" + winnerDate + ", eventEndYn=" + eventEndYn + ", thumbList=" + thumbList + "]";
 	}
+	
+	
+	
+	
 
 }

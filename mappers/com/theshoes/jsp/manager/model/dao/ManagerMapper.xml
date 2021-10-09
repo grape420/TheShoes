@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.theshoes.jsp.manager.model.dao.ManagerMapper">
+<mapper namespace="ManagerMapper">
 
 	 <resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesDTO" id="shoesResultMap">
 		<id property="shoesNo" column="SHOES_NO"/>
@@ -19,8 +19,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="eventEndYn" column="EVENT_END_YN"/>
 	</resultMap> 
 	
-	<insert id="insertShoes">
-		<!-- INSERT
+	<insert id="insertShoes" parameterType="com.theshoes.jsp.shoes.model.dto.ShoesDTO">
+	   INSERT
 			  INTO SHOES_INFO A
 			(
 			  A.SHOES_NO
@@ -43,41 +43,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			, #{ shoesPrice }
 			, #{ salesYn }
 			, #{ salesAmount }
-			, #{ reamaningAmount }
+			, #{ salesAmount }
 			, #{ startDate }
 			, #{ endDate }
 			, #{ winnerDate }
-			, #{ eventEndYn }
-			) -->
-		INSERT
-			  INTO SHOES_INFO A
-			(
-			  A.SHOES_NO
-			, A.INFO_CATEGORY_NO
-			, A.SHOES_MODEL
-			, A.SHOES_PRICE
-			, A.SALES_YN
-			, A.SALES_AMOUNT
-			, A.REAMANING_AMOUNT
-			, A.START_DATE
-			, A.END_DATE
-			, A.WINNER_DATE
-			, A.EVENT_END_YN
-			)
-			VALUES
-			(
-			  SEQ_SHOES_CODE.NEXTVAL
-			, null
-			, null
-			, null
-			, null
-			, null
-			, null
-			, null
-			, null
-			, null
-			, null
-			)	
+			, 'N'
+			) 
 	</insert>
 	
 </mapper>
