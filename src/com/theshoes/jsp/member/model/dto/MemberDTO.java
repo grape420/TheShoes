@@ -16,14 +16,14 @@ public class MemberDTO implements Serializable{
 	private String blackReason;
 	private String blackListYn;
 	private String withDrawYn;
-	private java.util.Date birth;
+	private String birth;
 	private String role;
 	
 	public MemberDTO() {
 	}
 
 	public MemberDTO(String id, String name, String pwd, String email, String phone, java.util.Date enrollDate,
-			String blackReason, String blackListYn, String withDrawYn, java.util.Date birth, String role) {
+			String blackReason, String blackListYn, String withDrawYn, String birth, String role) {
 		this.id = id;
 		this.name = name;
 		this.pwd = pwd;
@@ -109,11 +109,11 @@ public class MemberDTO implements Serializable{
 		this.withDrawYn = withDrawYn;
 	}
 
-	public java.util.Date getBirth() {
+	public String getBirth() {
 		return birth;
 	}
 
-	public void setBirth(java.util.Date birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 

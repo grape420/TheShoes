@@ -15,7 +15,7 @@ public class MemberDAO {
 	}
 
 	public int registMember(SqlSession session, MemberDTO member) {
-		return 0;
+		return session.insert("MemberDAO.registMember", member);
 	}
 
 }

@@ -40,6 +40,17 @@
 	              <a href="${ pageContext.servletContext.contextPath }/member/signup">회원가입</a>
 	            </li>
 	         </c:if>
+	         <c:if test="${ !empty sessionScope.entryMember }">
+	            <li class="nav-item mr-2 ml-2">
+	              <a href="#">고객센터</a>
+	            </li>
+	            <li class="nav-item mr-2 ml-2">
+	              <a href="${ pageContext.servletContext.contextPath }/member/login">로그아웃</a>
+	            </li>
+	            <li class="nav-item mr-2 ml-2">
+	              <a href="${ pageContext.servletContext.contextPath }/member/signup">마이페이지</a>
+	            </li>
+	         </c:if>
           </ul>
         </div>
       </nav>

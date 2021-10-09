@@ -18,7 +18,7 @@
 	</resultMap>
 	
 	<select id="selectMemberById" resultMap="memberResultMap">
-		SELECT /* com.greedy.jsp.member.model.dao.MemberDAO#selectLoginMember() */
+		SELECT /* com.theshoes.jsp.member.model.dao.MemberDAO#selectMemberById() */
 			   A.MEMBER_ID
 		     , A.NAME
 		     , A.PWD
@@ -28,13 +28,15 @@
 		     , A.BLACK_REASON
 		     , A.BLACKLIST_YN
 		     , A.WITHDRAW_YN
+		     , A.BIRTH
+		     , A.ROLE
 		 FROM  MEMBER A
 		WHERE  A.BLACKLIST_YN = 'N'
 		  AND  A.MEMBER_ID = #{ id }
 	</select>
 	
 	<select id="selectMemberByEmail" resultMap="memberResultMap">
-		SELECT /* com.greedy.jsp.member.model.dao.MemberDAO#selectLoginMember() */
+		SELECT /* com.theshoes.jsp.member.model.dao.MemberDAO#selectMemberByEmail() */
 			   A.MEMBER_ID
 		     , A.NAME
 		     , A.PWD
@@ -44,8 +46,42 @@
 		     , A.BLACK_REASON
 		     , A.BLACKLIST_YN
 		     , A.WITHDRAW_YN
+		     , A.BIRTH
+		     , A.ROLE
 		 FROM  MEMBER A
 		WHERE  A.BLACKLIST_YN = 'N'
 		  AND  A.EMAIL = #{ email }
 	</select>
+	
+	<insert id="registMember" parameterType="com.theshoes.jsp.member.model.dto.MemberDTO">
+		INSERT /* com.theshoes.jsp.member.model.dao.MemberDAO#registMember() */
+          INTO MEMBER A
+        (
+          A.MEMBER_ID
+	    , A.NAME
+	    , A.PWD
+	    , A.EMAIL
+	    , A.PHONE_NO
+	    , A.ENROLL_DATE
+	    , A.BLACK_REASON
+	    , A.BLACKLIST_YN
+	    , A.WITHDRAW_YN
+	    , A.BIRTH
+		, A.ROLE
+        )
+        VALUES 
+        (
+          #{ id }
+        , #{ name }
+        , #{ pwd }
+        , #{ email }
+        , #{ phone }
+        , SYSDATE
+        , NULL
+        , #{ blackListYn }
+        , #{ withDrawYn }
+        , #{ birth }
+        , #{ role }
+        )
+	</insert>
 </mapper>
