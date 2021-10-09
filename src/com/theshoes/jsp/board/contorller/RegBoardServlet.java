@@ -34,33 +34,31 @@ public class RegBoardServlet extends HttpServlet {
 		String noticeWriterId = request.getParameter("noticeWriterId");		// 공지사항 작성자 id
 		String noticeContent = request.getParameter("noticeContent");		// 공지사항 세부내용
 		
-		/* 오늘 날짜 객체 생성 */
+		/* 작성일 - 오늘 날짜 객체 생성 */
 		Calendar cal = new GregorianCalendar();
 		
-		/* java.sql.Date 형으로 변환 */
+		/* 작성일 - java.sql.Date 형으로 변환 */
 		Date noticeRegDate = new Date(cal.getTimeInMillis());
 		
 		/* BoardDTO에 값 넣기 */
 		BoardDTO noticeBoard = new BoardDTO();			
-//		noticeBoard.setBoardNo(0);							// xml 쿼리 내 시퀀스 사용					
+//		noticeBoard.setBoardNo(0);							// SEQ_BOARD_CODE				
 		noticeBoard.setBoardId(noticeWriterId);	
-		noticeBoard.setBoardCategoryNo(1);					// '공지사항' 게시글 카테고리 : 1
-		noticeBoard.setBoardTitle(noticeTitle);
-		noticeBoard.setBoardContent(noticeContent);
-		noticeBoard.setBoardRegDate(noticeRegDate);		
-		noticeBoard.setBoardHit(0);
-		noticeBoard.setCategoryOrder(0);
+		noticeBoard.setBoardTitle(noticeTitle);				
+		noticeBoard.setBoardContent(noticeContent);			
+		noticeBoard.setBoardRegDate(noticeRegDate);			
+//		noticeBoard.setCategoryOrder(0);					// SEQ_CATEGORY_NOTICE_CODE (DESC 정렬 사용)
 		
-		System.out.println("RegBoardServlet noticeBoard : " + noticeBoard);
+		int result = new BoardService().registNotice(noticeBoard);
 		
-		int result = new BoardService().registPost(noticeBoard);
-		
-		System.out.println("RegBoardServlet result : " + result);
-		
-		String page = "";
+		String path = "";
 		
 		if (result > 0) {
-			
+			path = "/WEB-INF/views/board/boardList.jsp";
+		} else {
+			path = "/WEB-INF/views/common/errorPage.jsp";
 		}
+		
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 }

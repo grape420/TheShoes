@@ -77,6 +77,7 @@ public class BoardAndCommentsDTO implements Serializable{
 	public void setCategoryOrder(int categoryOrder) {
 		this.categoryOrder = categoryOrder;
 	}
+	
 	@Override
 	public String toString() {
 		return "BoardAndCommentsDTO [boardNo=" + boardNo + ", boardId=" + boardId + ", boardCategoryNo="

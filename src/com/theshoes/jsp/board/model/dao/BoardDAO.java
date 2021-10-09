@@ -15,8 +15,8 @@ public class BoardDAO {
 	}
 
 	/* 게시글 삽입 */
-	public int registPost(SqlSession session, BoardDTO newNotice) {
-		return 0;
+	public int registNotice(SqlSession session, BoardDTO noticeBoard) {
+		return session.insert("BoardDAO.registNotice", noticeBoard);
 	}
 
 	/* 게시글 조회수 증가 */

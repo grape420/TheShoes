@@ -5,6 +5,7 @@ import java.sql.Date;
 
 public class BoardDTO implements Serializable{
 
+	private static final long serialVersionUID = -6463008676139563236L;
 	private int boardNo;				// 게시글번호
 	private String boardId;				// 아이디
 	private int boardCategoryNo;		// 게시글 카테고리 번호	

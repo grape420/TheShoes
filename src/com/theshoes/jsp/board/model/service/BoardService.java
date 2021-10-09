@@ -29,12 +29,12 @@ public class BoardService {
 		return noticeList;
 	}
 	
-	/* 게시판에 새로운 글 추가 */
-	public int registPost(BoardDTO newNotice) {
+	/* 공지사항 게시판에 새로운 글 추가 */
+	public int registNotice(BoardDTO noticeBoard) {
 		
 		SqlSession session = getSqlSession();
 		
-		int result = boardDAO.registPost(session, newNotice);
+		int result = boardDAO.registNotice(session, noticeBoard);
 		
 		if(result > 0) {
 			session.commit();
