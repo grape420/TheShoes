@@ -19,6 +19,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.theshoes.jsp.board.model.dto.BoardDTO;
+import com.theshoes.jsp.manager.model.service.RegShoesService;
 
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -28,9 +29,24 @@ public class RegShoesServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String path = "/WEB-INF/views/manager/regShoes.jsp";
+//		String path = "/WEB-INF/views/manager/regShoes.jsp";
+//		
+//		request.getRequestDispatcher(path).forward(request, response);
 		
-		request.getRequestDispatcher(path).forward(request, response);
+		String shoesModel = request.getParameter("shoesModel");
+		
+		RegShoesService regShoesService = new RegShoesService();
+		int result = regShoesService.insertModel(shoesModel);
+		
+		BoardDTO board = new BoardDTO();
+		
+		if (result > 0) {
+			System.out.println("성공!");
+		} else {
+			System.out.println("실패!");
+		}
+		
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

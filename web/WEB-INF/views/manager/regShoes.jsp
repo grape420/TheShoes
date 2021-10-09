@@ -87,7 +87,7 @@
 						<p class="mb-4">신발 정보를 등록할 수 있는 페이지입니다.</p>
 						<div>
 
-							<form class="needs-validation" novalidate>
+							<form class="needs-validation" method="get">
 								<div class="row">
 									<div class="col-md-4 mb-3">
 										<label for="country">카테고리</label> <select
@@ -104,22 +104,22 @@
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="lastName">모델명</label> <input type="text"
-											class="form-control" id="lastName" placeholder=""
+											class="form-control" id="shoesModel" placeholder=""
 											name="shoesModel" required>
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="lastName">발매가</label> <input type="number"
-											class="form-control" id="lastName" placeholder=""
+											class="form-control" id="shoesPrice" placeholder=""
 											name="shoesPrice" required>
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="firstName">당첨자 발표일</label> <input
-											type="datetime-local" class="form-control" id="firstName"
+											type="datetime-local" class="form-control" id="winnerDate"
 											placeholder="" name="winnerDate" required>
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="country">판매여부</label> <select
-											class="custom-select d-block w-100" id="country"
+											class="custom-select d-block w-100" id="salesYn"
 											name="salesYn" required>
 											<option value="yes">Y</option>
 											<option value="no">N</option>
@@ -128,25 +128,20 @@
 
 									<div class="col-md-4 mb-3">
 										<label for="lastName">수량</label> <input type="number"
-											class="form-control" id="lastName" placeholder=""
+											class="form-control" id="salesAmount" placeholder=""
 											name="salesAmount" required>
 									</div>
 									<div class="col-md-6 mb-3">
 										<label for="firstName">응모 시작일</label> <input
-											type="datetime-local" class="form-control" id="firstName"
+											type="datetime-local" class="form-control" id="startDate"
 											placeholder="" name="startDate" required>
 									</div>
 									<div class="col-md-6 mb-3">
 										<label for="firstName">응모 종료일</label> <input
-											type="datetime-local" class="form-control" id="firstName"
+											type="datetime-local" class="form-control" id="endDate"
 											placeholder="" name="endDate" required>
 									</div>
 
-
-									<!-- 요기다 만들어-->
-									<form
-										action="${ pageContext.servletContext.contextPath }/thumbnail/insert"
-										method="post" encType="multipart/form-data">
 										<div class="col-md-12 mb-3">
 											<div class="text-center">
 												<label style="margin: 10px;">대표 사진</label>
@@ -218,7 +213,6 @@
 												id="thumbnailImg6" name="thumbnailImg4"
 												onchange="loadImg(this,6)">
 										</div>
-									</form>
 									<!-- 요기다 만들어-->
 
 									<div class="col-md-12">
@@ -227,9 +221,7 @@
 									</div>
 
 									<div class="col-md-12 mb-3">
-										<button type="submit" id="registBtn"
-											onclick="registBtn_click();"
-											class="btn btn-outline-secondary">등록</button>
+										<button type="submit" id="registBtn" class="btn btn-outline-secondary">등록</button>
 									</div>
 								</div>
 							</form>
@@ -243,7 +235,6 @@
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 
-	<script
-		src="${ pageContext.servletContext.contextPath }/resources/js/manager/regShoes.js"></script>
+	<script src="${ pageContext.servletContext.contextPath }/resources/js/manager/regShoes.js"></script>
 </body>
 </html>
