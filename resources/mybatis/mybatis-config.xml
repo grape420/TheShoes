@@ -20,5 +20,6 @@
 		<!-- <mapper resource="com/theshoes/jsp/member/model/dao/MemberDAO.xml"/>
 		<mapper resource="com/theshoes/jsp/notice/model/dao/NoticeDAO.xml"/>
 		<mapper resource="com/theshoes/jsp/board/model/dao/BoardDAO.xml"/> -->
+		<!-- <mapper resource="com/theshoes/jsp/board/model/dao/BoardDAO.xml"/> -->
 	</mappers>
 </configuration>
