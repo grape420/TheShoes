@@ -22,9 +22,11 @@ public class MemberService {
 		MemberDTO returnMember = null;
 		MemberDTO loginMember = memberDAO.selectMemberById(session, member.getId());
 
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		if(passwordEncoder.matches(member.getPwd(), loginMember.getPwd())) {
-			returnMember = loginMember;
+		if(loginMember != null) {
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			if(passwordEncoder.matches(member.getPwd(), loginMember.getPwd())) {
+				returnMember = loginMember;
+			}
 		}
 		
 		session.close();

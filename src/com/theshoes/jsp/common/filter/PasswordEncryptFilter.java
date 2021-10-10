@@ -33,7 +33,7 @@ public class PasswordEncryptFilter implements Filter {
 		System.out.println("intent : " + intent);
 		
 		/* 로그인 요청이 아닌 경우에만 암호화를 한다. */
-		if(!"/login".equals(intent)) {
+		if(!(("/login".equals(intent)) || ("/check".equals(intent)))) {
 			
 			EncryptRequestWrapper wrapper = new EncryptRequestWrapper(hrequest);
 			

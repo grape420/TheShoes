@@ -29,10 +29,10 @@
       <nav class="navbar navbar-expand-sm navbar-light bg-light" style="padding: 0;">
         <div class="collapse navbar-collapse justify-content-end">
           <ul class="navbar-nav mr-3">
+            <li class="nav-item mr-2 ml-2">
+              <a href="${ pageContext.servletContext.contextPath }/board/List">고객센터</a>
+            </li>
           	<c:if test="${ empty sessionScope.entryMember }">
-	            <li class="nav-item mr-2 ml-2">
-	              <a href="#">고객센터</a>
-	            </li>
 	            <li class="nav-item mr-2 ml-2">
 	              <a href="${ pageContext.servletContext.contextPath }/member/login">로그인</a>
 	            </li>
@@ -42,10 +42,7 @@
 	         </c:if>
 	         <c:if test="${ !empty sessionScope.entryMember }">
 	            <li class="nav-item mr-2 ml-2">
-	              <a href="#">고객센터</a>
-	            </li>
-	            <li class="nav-item mr-2 ml-2">
-	              <a href="${ pageContext.servletContext.contextPath }/member/login">로그아웃</a>
+	              <a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</a>
 	            </li>
 	            <li class="nav-item mr-2 ml-2">
 	              <a href="${ pageContext.servletContext.contextPath }/member/signup">마이페이지</a>

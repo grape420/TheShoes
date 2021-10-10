@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 .agree-textarea {
 	height: 200px;
 }
@@ -25,8 +26,8 @@ section {
 	height: auto !important;
 }
 
-.id-result, .password-result, .name-result, .phone-result, .email-result, .birth-result
-	{
+.id-result, .password-result, .name-result, .phone-result, .email-result,
+	.birth-result {
 	margin-top: 2px;
 	font-size: 11px;
 }

@@ -15,7 +15,7 @@ import com.theshoes.jsp.member.model.dto.MemberDTO;
 import com.theshoes.jsp.member.model.serivce.MemberService;
 
 @WebServlet("/member/doubleCheck")
-public class doubleCheckServlet extends HttpServlet {
+public class DoubleCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
