@@ -1,4 +1,4 @@
-package com.theshoes.jsp.common.controller;
+package com.theshoes.jsp.board.contorller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,18 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-
-@WebServlet("/common/mainPage")
-public class MainPageServlet extends HttpServlet {
+@WebServlet("/resell/detail")
+public class ResellDetailBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/main/mainPage.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		
+			
+		}
 	}
 
-}
+

@@ -29,7 +29,7 @@
       <nav class="navbar navbar-expand-sm navbar-light bg-light" style="padding: 0;">
         <div class="collapse navbar-collapse justify-content-end">
           <ul class="navbar-nav mr-3">
-          	<c:if test="${ empty connectMember }">
+          	<c:if test="${ empty sessionScope.entryMember }">
 	            <li class="nav-item mr-2 ml-2">
 	              <a href="#">고객센터</a>
 	            </li>
@@ -37,7 +37,7 @@
 	              <a href="${ pageContext.servletContext.contextPath }/member/login">로그인</a>
 	            </li>
 	            <li class="nav-item mr-2 ml-2">
-	              <a href="#">회원가입</a>
+	              <a href="${ pageContext.servletContext.contextPath }/member/signup">회원가입</a>
 	            </li>
 	         </c:if>
           </ul>
@@ -45,7 +45,9 @@
       </nav>
       <hr class="m-0">
       <nav class="navbar navbar-expand-sm navbar-light bg-light">
-        <a class="navbar-brand font-weight-bold" href="#"><img src="${ pageContext.servletContext.contextPath }/resources/uses/Logo-simple.png" alt="" class="logo"></a>
+        <a class="navbar-brand font-weight-bold" href="${ pageContext.servletContext.contextPath }/common/mainPage">
+	        <img src="${ pageContext.servletContext.contextPath }/resources/uses/Logo-simple.png" alt="" class="logo">
+         </a>
         <div class="collapse navbar-collapse justify-content-end">
           <ul class="navbar-nav mr-3">
             <li class="nav-item mr-1">

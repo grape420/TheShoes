@@ -3,102 +3,33 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MemberDAO">
-	<resultMap type="com.greedy.jsp.member.model.dto.MemberDTO" id="memberResultMap">
-		<id property="no" column="MEMBER_NO"/>
-		<result property="id" column="MEMBER_ID"/>
-		<result property="pwd" column="MEMBER_PWD"/>
-		<result property="nickname" column="NICKNAME"/>
-		<result property="phone" column="PHONE"/>
+	<resultMap type="com.theshoes.jsp.member.model.dto.MemberDTO" id="memberResultMap">
+		<id property="id" column="MEMBER_ID"/>
+		<result property="name" column="NAME"/>
+		<result property="pwd" column="PWD"/>
 		<result property="email" column="EMAIL"/>
-		<result property="address" column="ADDRESS"/>
+		<result property="phone" column="PHONE_NO"/>
 		<result property="enrollDate" column="ENROLL_DATE"/>
-		<result property="role" column="MEMBER_ROLE"/>
-		<result property="status" column="MEMBER_STATUS"/>
+		<result property="blackReason" column="BLACK_REASON"/>
+		<result property="blackListYn" column="BLACKLIST_YN"/>
+		<result property="withDrawYn" column="WITHDRAW_YN"/>
+		<result property="birth" column="BIRTH"/>
+		<result property="role" column="ROLE"/>
 	</resultMap>
-
-	<insert id="insertMember" parameterType="com.greedy.jsp.member.model.dto.MemberDTO">
-        INSERT /* com.greedy.jsp.member.model.dao.MemberDAO#insertMember() */
-          INTO TBL_MEMBER A
-        (
-          A.MEMBER_NO
-        , A.MEMBER_ID
-        , A.MEMBER_PWD
-        , A.NICKNAME
-        , A.PHONE
-        , A.EMAIL
-        , A.ADDRESS
-        )
-        VALUES 
-        (
-          SEQ_MEMBER_NO.NEXTVAL
-        , #{ id }
-        , #{ pwd }
-        , #{ nickname }
-        , #{ phone }
-        , #{ email }
-        , #{ address }
-        )
-	</insert>
-	<select id="selectEncryptedPwd" resultType="java.lang.String">
-        SELECT /* com.greedy.jsp.member.model.dao.MemberDAO#selectEncryptedPwd() */
-               A.MEMBER_PWD
-          FROM TBL_MEMBER A
-         WHERE A.MEMBER_STATUS = 'Y'
-           AND A.MEMBER_ID = #{ id }
-	</select>
 	
-	<select id="selectLoginMember" resultMap="memberResultMap">
+	<select id="selectMemberOne" resultMap="memberResultMap">
 		SELECT /* com.greedy.jsp.member.model.dao.MemberDAO#selectLoginMember() */
-			   A.MEMBER_NO
-		     , A.MEMBER_ID
-		     , A.NICKNAME
-		     , A.PHONE
+			   A.MEMBER_ID
+		     , A.NAME
+		     , A.PWD
 		     , A.EMAIL
-		     , A.ADDRESS
+		     , A.PHONE_NO
 		     , A.ENROLL_DATE
-		     , A.MEMBER_ROLE
-		     , A.MEMBER_STATUS
-		 FROM  TBL_MEMBER A
-		WHERE  A.MEMBER_STATUS = 'Y'
+		     , A.BLACK_REASON
+		     , A.BLACKLIST_YN
+		     , A.WITHDRAW_YN
+		 FROM  MEMBER A
+		WHERE  A.BLACKLIST_YN = 'N'
 		  AND  A.MEMBER_ID = #{ id }
 	</select>
-	
-	<!-- 아직 완료 안됨 -->
-	<update id="updateMember">
-		UPDATE /* com.kh.jsp.member.model.dao#MemberDao#updateMember() */
-		       member
-		   SET nick_name = ?
-		     , phone = ?
-		     , email = ?
-		     , address = ?
-		 WHERE status = 'Y'
-		   AND mid = ?
-		   AND member_pwd = ?
-	</update>
-	
-	<select id="selectChangedMemberInfo">
-		SELECT /* com.greedy.jsp.member.model.dao.MemberDAO#selectChangedMemberInfo() */
-			   mid
-		     , member_id
-		     , member_pwd
-		     , nick_name
-		     , phone
-		     , email
-		     , address
-		     , enroll_date
-		     , status
-		  FROM member
-		 WHERE status = 'Y'
-		   AND mid = ?
-	</select>
-	
-	<update id="deleteMember">		
-		UPDATE /* com.greedy.jsp.member.model.dao.MemberDAO#deleteMember() */
-		       member
-		   SET status = 'N'
-		 WHERE status = 'Y'
-		   AND mid = ?
-		   AND member_pwd = ?
-	</update>
-
 </mapper>
