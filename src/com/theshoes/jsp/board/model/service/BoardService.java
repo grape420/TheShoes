@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.theshoes.jsp.board.model.dao.BoardDAO;
 import com.theshoes.jsp.board.model.dto.BoardDTO;
+import com.theshoes.jsp.common.paging.SelectCriteria;
 
 public class BoardService {
 	
@@ -17,13 +18,26 @@ public class BoardService {
 		boardDAO = new BoardDAO();
 	}
 	
-	/* 전체 게시글 목록 조회 */
+	
+	/* 페이징 처리를 위한 공지사항 게시물 수 조회용 메소드 */
+	public int selectNoticeTotalCount() {
+		
+		SqlSession session = getSqlSession();
+		
+		int totalCount = boardDAO.selectNoticeTotalCount(session);
+		
+		session.close();
+		
+		return totalCount;
+	}
+	
+	/* 공지사항 게시물 전체 조회용 메소드 */
 	public List<BoardDTO> selectAllNoticeList() {
 		
 		SqlSession session = getSqlSession();
 		
 		List<BoardDTO> noticeList = boardDAO.selectAllNoticeList(session);
-		
+		System.out.println("noticeList : " + noticeList);
 		session.close();
 		
 		return noticeList;

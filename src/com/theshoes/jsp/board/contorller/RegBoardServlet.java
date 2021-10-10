@@ -42,12 +42,10 @@ public class RegBoardServlet extends HttpServlet {
 		
 		/* BoardDTO에 값 넣기 */
 		BoardDTO noticeBoard = new BoardDTO();			
-//		noticeBoard.setBoardNo(0);							// SEQ_BOARD_CODE				
 		noticeBoard.setBoardId(noticeWriterId);	
 		noticeBoard.setBoardTitle(noticeTitle);				
 		noticeBoard.setBoardContent(noticeContent);			
 		noticeBoard.setBoardRegDate(noticeRegDate);			
-//		noticeBoard.setCategoryOrder(0);					// SEQ_CATEGORY_NOTICE_CODE (DESC 정렬 사용)
 		
 		int result = new BoardService().registNotice(noticeBoard);
 		

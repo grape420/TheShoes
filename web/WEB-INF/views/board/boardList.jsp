@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,27 +84,21 @@
 					<p class="mb-4"></p>
 					<table class="table table-hover">
 						<tbody>
-<%-- 							<c:forEach items="${ noticeList }" var="notice">
-								<tr>
-									<td colspan="3"><a id="a1"><c:out value="${ boardTitle }"/></td>
-									<td><c:out value="${ boardId }"/></td>
-									<td><c:out value="${ boardHit }"/></td>
-								</tr>
-							</c:forEach> --%>
-							 <tr>
+							<tr>
 								<td colspan="3"><a id="a1">[이벤트
 										발표] LUCKY DRAW - 나이키 x 오프화이트 덩크로우 로트 50 & 샤넬 클래식 파우치</a></td>
 								<td>작성자</td>
 								<td>작성일</td>
 								<td>조회수</td>
 							</tr>
-							 <tr>
-								<td colspan="3">[이벤트 발표] LUCKY DRAW - 나이키 x 오프화이트 덩크로우 로트
-									46 & 베어브릭 x 카카오 라이언 400%</td>
-								<td>작성자</td>
-								<td>작성일</td>
-								<td>조회수</td>
-							</tr>
+							<c:forEach var="noticeList" items="${ requestScope.noticeList }" >
+								<tr>
+									<td colspan="3"><c:out value="${ noticeList.boardTitle }"/></td>
+									<td><c:out value="${ noticeList.boardId }"/></td>
+									<td><c:out value="${ noticeList.boardHit }"/></td>
+									<td><c:out value="${ noticeList.boardRegDate }"/></td>
+								</tr>
+							</c:forEach> 
 						</tbody>
 					</table>
 
@@ -129,7 +123,7 @@
 					<!-- 로그인이 안된 상태에서는 sessionScope가 null,,? 에러나나?? -->
 					<%-- <c:if test="${ sessionScope.entryMember.role eq 'Y'}"> --%>
 						<div style="text-align: center; margin-top: 20px;">
-							<a href="#" class="namoon" onclick="location.href='/TheShoes/board/reg';">등록하기</a>
+							<a href="#" class="namoon" onclick="location.href='${ pageContext.servletContext.contextPath }/board/reg';">등록하기</a>
 						</div>
 					<%-- </c:if> --%>
 				</div>
