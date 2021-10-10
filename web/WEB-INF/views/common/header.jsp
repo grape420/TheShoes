@@ -30,7 +30,7 @@
         <div class="collapse navbar-collapse justify-content-end">
           <ul class="navbar-nav mr-3">
             <li class="nav-item mr-2 ml-2">
-              <a href="${ pageContext.servletContext.contextPath }/board/List">고객센터</a>
+              <a href="${ pageContext.servletContext.contextPath }/board/list">고객센터</a>
             </li>
           	<c:if test="${ empty sessionScope.entryMember }">
 	            <li class="nav-item mr-2 ml-2">
