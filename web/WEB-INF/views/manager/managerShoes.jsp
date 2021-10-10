@@ -122,8 +122,7 @@
 						</div>
 					</div>
 					<div style="text-align: center;">
-						<a href="shoes_regist.html" id="registShoes">신발 등록</a>
-
+						<a href="${ pageContext.servletContext.contextPath }/manager/regShoes" id="registShoes">신발 등록</a>
 					</div>
 
 					<!-- /.container-fluid -->

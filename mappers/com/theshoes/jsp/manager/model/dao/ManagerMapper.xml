@@ -19,6 +19,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="eventEndYn" column="EVENT_END_YN"/>
 	</resultMap> 
 	
+	<resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO" id="shoesThumbResultMap">
+		<id property="shoesThumbNo" column="SHOES_THUMB_NO"/>
+		<result property="stNo" column="ST_NO"/>
+		<result property="originalName" column="ORIGINAL_NAME"/>
+		<result property="savedName" column="SAVED_NAME"/>
+		<result property="savePath" column="SAVE_PATH"/>
+		<result property="fileType" column="FILE_TYPE"/>
+		<result property="thumbnailPath" column="THUMBNAIL_PATH"/>
+		<result property="status" column="ATTACHMENT_STATUS"/>
+	</resultMap>
+	
 	<insert id="insertShoes" parameterType="com.theshoes.jsp.shoes.model.dto.ShoesDTO">
 	   INSERT
 			  INTO SHOES_INFO A
@@ -49,6 +60,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			, #{ winnerDate }
 			, 'N'
 			) 
+			<selectKey keyProperty="shoesNo" resultType="Integer" order="AFTER">
+				SELECT
+					   SEQ_SHOES_CODE.CURRVAL
+				  FROM DUAL
+			</selectKey>
+	</insert>
+	
+	<insert id="insertShoesThumb" parameterType="com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO">
+		INSERT 
+			  INTO SHOES_THUMB A
+			(
+			  A.SHOES_THUMB_NO
+			, A.ST_NO
+			, A.ORIGINAL_NAME
+			, A.SAVED_NAME
+			, A.SAVE_PATH
+			, A.FILE_TYPE
+			, A.THUMBNAIL_PATH
+			, A.ATTACHMENT_STATUS
+			)
+			VALUES
+			(
+			  SEQ_SHOES_THUMB_CODE.NEXTVAL
+			, SEQ_SHOES_CODE.CURRVAL
+			, #{ originalName }
+			, #{ savedName }
+			, #{ savePath }
+			, #{ fileType }
+			, #{ thumbnailPath }
+			, 'Y'
+			)
 	</insert>
 	
 </mapper>

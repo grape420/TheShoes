@@ -39,6 +39,8 @@ public class RegShoesServlet extends HttpServlet {
 		String path = "/WEB-INF/views/manager/regShoes.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
+		
+		System.out.println("wlsWk?");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,8 +55,8 @@ public class RegShoesServlet extends HttpServlet {
 			System.out.println("최대 업로드 파일 용량 : " + maxFileSize);
 			System.out.println("인코딩 방식 : " + encodingType);
 			
-			String fileUploadDirectory = rootLocation + "/resources/upload/original/";
-			String thumbnailDirectory = rootLocation + "/resources/upload/thumbnail/";
+			String fileUploadDirectory = rootLocation + "/resources/upload/image/shoes/";
+			String thumbnailDirectory = rootLocation + "/resources/upload/thumb/";
 			
 			File directory = new File(fileUploadDirectory);
 			File directory2 = new File(thumbnailDirectory);
@@ -213,7 +215,7 @@ public class RegShoesServlet extends HttpServlet {
 				/* 성공 실패 페이지를 구분하여 연결한다. */
 				String path = "";
 				if(result > 0) {
-					path = "/WEB-INF/views/manager/manager.jsp";
+					path = "/WEB-INF/views/manager/managerShoes.jsp";
 				} else {
 					path = "/WEB-INF/views/common/errorPage.jsp";
 				}
