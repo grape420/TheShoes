@@ -62,5 +62,4 @@
          FROM BOARD A
         WHERE A.BOARD_CATEGORY_NO = 1
 	</select>
-	
 </mapper>

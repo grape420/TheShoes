@@ -1,6 +1,7 @@
 package com.theshoes.jsp.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.theshoes.jsp.member.model.dto.MemberDTO;
 import com.theshoes.jsp.member.model.serivce.MemberService;
 
@@ -35,10 +37,16 @@ public class LoginServlet extends HttpServlet {
 		if(member != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("entryMember", member);
-
+			System.out.println("Test");
 			request.getRequestDispatcher("/WEB-INF/views/main/mainPage.jsp").forward(request, response);
 		} else {
-			request.getRequestDispatcher("/WEB-INF/views/main/mainPage.jsp").forward(request, response);
+			response.setContentType("application/json; charset=UTF-8");
+			String jsonString = null;
+			jsonString = new Gson().toJson("fail");
+			PrintWriter out = response.getWriter();
+			out.print(jsonString);
+			out.flush();
+			out.close();
 		}
 	}
 

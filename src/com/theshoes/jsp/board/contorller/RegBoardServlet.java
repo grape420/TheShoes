@@ -21,7 +21,6 @@ public class RegBoardServlet extends HttpServlet {
 	/* '등록하기' 버튼 클릭 시 get 요청 -> 게시글 작성하는 페이지로 이동 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("dbwjd");
 		String path = "/WEB-INF/views/board/regBoard.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);

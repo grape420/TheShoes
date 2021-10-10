@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.theshoes.jsp.board.model.dto.BoardDTO;
 import com.theshoes.jsp.board.model.service.BoardService;
 
-//import com.theshoes.jsp.common.paging.Pagenation;
-//import com.theshoes.jsp.common.paging.SelectCriteria;
+import com.theshoes.jsp.common.paging.Pagenation;
+import com.theshoes.jsp.common.paging.SelectCriteria;
 
 @WebServlet("/board/list")
 public class BoardListServlet extends HttpServlet {
@@ -59,7 +59,9 @@ public class BoardListServlet extends HttpServlet {
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 	}
 }
