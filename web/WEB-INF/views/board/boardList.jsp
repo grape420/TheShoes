@@ -85,8 +85,7 @@
 					<table class="table table-hover">
 						<tbody>
 							<tr>
-								<td colspan="3"><a id="a1">[이벤트
-										발표] LUCKY DRAW - 나이키 x 오프화이트 덩크로우 로트 50 & 샤넬 클래식 파우치</a></td>
+								<td colspan="3"></td>
 								<td>작성자</td>
 								<td>작성일</td>
 								<td>조회수</td>

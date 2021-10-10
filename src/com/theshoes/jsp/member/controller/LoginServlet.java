@@ -37,7 +37,6 @@ public class LoginServlet extends HttpServlet {
 		if(member != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("entryMember", member);
-			System.out.println("Test");
 			request.getRequestDispatcher("/WEB-INF/views/main/mainPage.jsp").forward(request, response);
 		} else {
 			response.setContentType("application/json; charset=UTF-8");

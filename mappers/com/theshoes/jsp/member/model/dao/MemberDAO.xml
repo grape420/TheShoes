@@ -84,4 +84,10 @@
         , #{ role }
         )
 	</insert>
+	
+	<update id="passwordChange" parameterType="com.theshoes.jsp.member.model.dto.MemberDTO">
+		UPDATE MEMBER A /* com.theshoes.jsp.member.model.dao.MemberDAO#passwordChange() */
+           SET A.PWD = #{ pwd }
+         WHERE A.MEMBER_ID = #{ id }
+	</update>
 </mapper>

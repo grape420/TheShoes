@@ -18,4 +18,9 @@ public class MemberDAO {
 		return session.insert("MemberDAO.registMember", member);
 	}
 
+	public int passwordChange(SqlSession session, MemberDTO member) {
+		return session.update("MemberDAO.passwordChange", member);
+	}
+
+
 }

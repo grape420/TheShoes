@@ -47,6 +47,11 @@
 	            <li class="nav-item mr-2 ml-2">
 	              <a href="${ pageContext.servletContext.contextPath }/member/signup">마이페이지</a>
 	            </li>
+		         <c:if test="${ sessionScope.entryMember.role eq 'MANAGER'}">
+		            <li class="nav-item mr-2 ml-2">
+		              <a href="${ pageContext.servletContext.contextPath }/manager/shoes">관리자 페이지</a>
+		            </li>
+		         </c:if>
 	         </c:if>
           </ul>
         </div>
