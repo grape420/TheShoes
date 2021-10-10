@@ -11,15 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.theshoes.jsp.board.model.dto.BoardDTO;
 import com.theshoes.jsp.board.model.service.BoardService;
-import com.theshoes.jsp.common.paging.Pagenation;
-import com.theshoes.jsp.common.paging.SelectCriteria;
+
+//import com.theshoes.jsp.common.paging.Pagenation;
+//import com.theshoes.jsp.common.paging.SelectCriteria;
 
 @WebServlet("/board/list")
 public class BoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("0");
 //		/* 페이징처리 */
 //		String currentPage = request.getParameter("currentPage");
 //		int pageNo = 1;
@@ -48,7 +49,6 @@ public class BoardListServlet extends HttpServlet {
 		/* 조회 */
 		List<BoardDTO> noticeList = boardService.selectAllNoticeList();
 		
-		
 		String path = "";
 		if(noticeList != null) {
 			path = "/WEB-INF/views/board/boardList.jsp";
@@ -56,14 +56,10 @@ public class BoardListServlet extends HttpServlet {
 		} else {
 			path = "/WEB-INF/views/common/errorPage.jsp";
 		}
-		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
-
 }
