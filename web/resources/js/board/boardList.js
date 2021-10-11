@@ -1,4 +1,4 @@
-window.onload = function() {
+/*window.onload = function() {
 	
 	if(document.getElementsByTagName("td")) {
 			const $tds = document.getElementsByTagName("td");
@@ -13,10 +13,10 @@ window.onload = function() {
 				}
 				
 				$tds[i].onclick = function() {
-					/* 게시물 번호까지 알아왔으니 이제 상세보기는 할 수 있겠죠? */
+					 게시물 번호까지 알아왔으니 이제 상세보기는 할 수 있겠죠? 
 					const no = this.parentNode.children[0].innerText;
-/*					location.replace = "${ pageContext.servletContext.contextPath }/board/detail?no=" + no;
-*/					
+					location.replace = "${ pageContext.servletContext.contextPath }/board/detail?no=" + no;
+					
 					console.log(this);
 					
 					console.log(this.parentNode);
@@ -29,4 +29,4 @@ window.onload = function() {
 			
 		}
 		
-}
+}*/

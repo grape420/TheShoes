@@ -57,7 +57,7 @@
         ORDER BY A.CATEGORY_ORDER DESC
 	</select> -->
 	
-	<select id="selectAllNoticeList" resultMap="noticeResultMap" >
+	<select id="selectAllNoticeList" resultMap="noticeResultMap" parameterType="com.theshoes.jsp.common.paging.SelectCriteria">
 		  SELECT /* com.theshoes.jsp.board.model.dao.BoardDAO#selectAllNoticeList() */
 	          A.RNUM
 	        , A.BOARD_NO
@@ -86,10 +86,11 @@
          			       , C.BOARD_HIT
          			       , C.CATEGORY_ORDER
          			    FROM BOARD C
-         			ORDER BY CATEGORY_ORDER DESC) B
+         			   WHERE C.BOARD_CATEGORY_NO = 1 
+         			ORDER BY C.CATEGORY_ORDER DESC) B
          		<![CDATA[
-         	    WHERE ROWNUM <=  10 ]]>) A
-         	  WHERE A.RNUM >= 1
+         	    WHERE ROWNUM <= #{ endRow,jdbcType=VARCHAR } ]]> ) A
+         	  WHERE A.RNUM >= #{ startRow, jdbcType=VARCHAR }
 	</select>
 	
 	<select id="selectNoticeTotalCount" resultType="_int">
