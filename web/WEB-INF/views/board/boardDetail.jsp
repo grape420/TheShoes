@@ -78,33 +78,34 @@
 
           <!-- Page Heading -->
           <br>
-          <h1 class="h3 mb-2 text-gray-800">공지사항</h1>
-          <p class="mb-4"></p>
-
+          <h1 class="h3 mb-2 text-gray-800" >공지사항</h1>
+          <!-- <p class="mb-4"></p> -->
+			<hr>
           <div class="bonmun">
-            2021.09.13
-            <p>[공지]추석 연휴 판매자 정산 일정 안내</p>
+            
+          <!-- 공지사항 제목 -->
+          <span style="font-weight:bold;"><c:out value="${ requestScope.notice.boardTitle }"/></span>
+
+          <!--  작성일  -->
+            <p class="mb-2" ><c:out value="${ requestScope.notice.boardRegDate }"/></p>
+            
+            <!-- 공지사항 내용 -->
             <div class="realBonmun">
-              안녕하세요. THE SHOES입니다.<br><br>
-
-              추석 연휴로 인해 관계사의 업무 일정이 조정될 예정이며, 이에 따라 변경될 판매 대급의 정산 일정을
-              안내드립니다.<br><br>
-
-              정산 일정 변경 대상 | 9월 17일 (금) ~ 9월 23일 (목) 검수 합격 건
-              정산 예정일 | 9월 24일 (금)<br><br>
-
-              판매 거래 전, 안내드린 정산 일정 참고 부탁드립니다.<br>
-              감사합니다.<br><br>
+            <c:out value="${ requestScope.notice.boardContent}"></c:out>
             </div>
             <div style="text-align: center; margin: 30px;">
               <button type="button" class="btn btn-outline-secondary" id="listBtn"
-                onclick="listBtn_click();">목록보기</button>
+                onclick="location.href='${ pageContext.servletContext.contextPath }/board/list'">목록보기</button>
+             
+             <!-- 관리자 확인 --> 
+		<%-- <c:if test="${ sessionScope.entryMember.role eq 'Y'}"> --%>
               <button type="button" class="btn btn-outline-secondary" id="modifyBtn"
-                onclick="modifyBtn_click();">수정</button>
+                onclick="location.href='${ pageContext.servletContext.contextPath }/board/update?categoryOrder=${ requestScope.notice.categoryOrder }'">수정</button>
+        <%-- </c:if> --%>
+        
             </div>
           </div>
 
-          <!-- //paging -->
         </div>
       </div>
     </div>

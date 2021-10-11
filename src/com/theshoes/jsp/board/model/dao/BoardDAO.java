@@ -10,9 +10,9 @@ import com.theshoes.jsp.common.paging.SelectCriteria;
 public class BoardDAO {
 
 	/* 공지사항 목록 전체 조회 */
-	public List<BoardDTO> selectAllNoticeList(SqlSession session) {
-		System.out.println("BoardDAO");
-		return session.selectList("BoardDAO.selectAllNoticeList");
+	public List<BoardDTO> selectAllNoticeList(SqlSession session, SelectCriteria selectCriteria) {
+		System.out.println(selectCriteria);
+		return session.selectList("BoardDAO.selectAllNoticeList", selectCriteria);
 	}
 
 	/* 공지사항 전체 게시글 수 조회 */
@@ -25,13 +25,15 @@ public class BoardDAO {
 		return session.insert("BoardDAO.registNotice", noticeBoard);
 	}
 
-	/* 게시글 상세보기 조회 */
-	public BoardDTO selectPostDetail(SqlSession session, int no) {
-		return null;
+	/* 게시글 조회수 증가 */
+	public int incrementNoticeCount(SqlSession session, int categoryOrder) {
+		return session.update("BoardDAO.incrementNoticeCount", categoryOrder);
 	}
 
-	/* 게시글 조회수 증가 */
-	public int incrementPostCount(SqlSession session, int no) {
-		return 0;
+	/* 게시글 상세보기 조회 */
+	public BoardDTO selectNoticeDetail(SqlSession session, int categoryOrder) {
+		System.out.println("BoardDAO : categoryOrder" + categoryOrder);
+		
+		return session.selectOne("BoardDAO.selectNoticeDetail", categoryOrder);
 	}
 }

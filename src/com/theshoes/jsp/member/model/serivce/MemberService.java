@@ -16,20 +16,58 @@ public class MemberService {
 		memberDAO = new MemberDAO();
 	}
 	
-	public MemberDTO loginMember(MemberDTO requestMember) {
+	public MemberDTO loginMember(MemberDTO member) {
 		SqlSession session = getSqlSession();
 		
 		MemberDTO returnMember = null;
-		MemberDTO loginMember = memberDAO.selectMemberOne(session, requestMember);
+		MemberDTO loginMember = memberDAO.selectMemberById(session, member.getId());
 
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		if(passwordEncoder.matches(requestMember.getPwd(), loginMember.getPwd())) {
-			returnMember = loginMember;
+		if(loginMember != null) {
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			if(passwordEncoder.matches(member.getPwd(), loginMember.getPwd())) {
+				returnMember = loginMember;
+			}
 		}
 		
 		session.close();
 		
 		return returnMember;
+	}
+
+	public MemberDTO selectMemberById(String id) {
+		SqlSession session = getSqlSession();
+		
+		MemberDTO member = memberDAO.selectMemberById(session, id);
+		
+		session.close();
+		
+		return member;
+	}
+
+	public MemberDTO selectMemberByEmail(String email) {
+		SqlSession session = getSqlSession();
+		
+		MemberDTO member = memberDAO.selectMemberByEmail(session, email);
+		
+		session.close();
+		
+		return member;
+	}
+
+	public int registMember(MemberDTO member) {
+		SqlSession session = getSqlSession();
+		
+		int result = memberDAO.registMember(session, member);
+		
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
 	}
 
 }
