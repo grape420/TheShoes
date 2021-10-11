@@ -61,18 +61,18 @@ public class BoardService {
 	}
 	
 	/* 게시글 상세보기 */
-	public BoardDTO selectPostDetail(int no) {
+	public BoardDTO selectNoticeDetail(int categoryOrderNo) {
 		
 		SqlSession session = getSqlSession();
-		BoardDTO postDetail = null;
+		BoardDTO noticeDetail = null;
 		
 		/* 게시글 조회수 */
-		int result = boardDAO.incrementPostCount(session, no);
+		int result = boardDAO.incrementPostCount(session, categoryOrderNo);
 		
 		if(result > 0) {
-			postDetail = boardDAO.selectPostDetail(session, no);
+			noticeDetail = boardDAO.selectNoticeDetail(session, categoryOrderNo);
 			
-			if(postDetail != null) {
+			if(noticeDetail != null) {
 				session.commit();
 			} else {
 				session.rollback();
@@ -83,7 +83,9 @@ public class BoardService {
 		
 		session.close();
 		
-		return postDetail;
+		return noticeDetail;
 	}
+
+
 	
 }

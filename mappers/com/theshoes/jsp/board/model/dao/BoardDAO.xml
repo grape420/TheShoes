@@ -99,4 +99,21 @@
          FROM BOARD A
         WHERE A.BOARD_CATEGORY_NO = 1
 	</select>
+	
+	<select id="selectNoticeDetail" resultMap="noticeResultMap">
+        SELECT
+               A.NOTICE_NO
+             , A.NOTICE_TITL
+             , A.NOTICE_BODY
+             , A.NOTICE_WRITER_MEMBER_NO
+             , B.NICKNAME
+             , A.NOTICE_COUNT
+             , A.CREATED_DATE
+          FROM TBL_NOTICE A
+          JOIN TBL_MEMBER B ON (A.NOTICE_WRITER_MEMBER_NO = B.MEMBER_NO)
+         WHERE A.NOTICE_STATUS = 'Y'
+           AND A.NOTICE_NO = #{ no }
+	</select>
+	
+	
 </mapper>

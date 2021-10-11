@@ -10,7 +10,6 @@
 <body>
 	<div class="paging">
 					
-						<!-- 비활성화 처리하기 -->
 						<!-- 처음 페이지 버튼 -->
 						<c:if test="${ requestScope.selectCriteria.pageNo <= 1 }">
 							<a class="btn_arr first" style="text-decoration:none;">

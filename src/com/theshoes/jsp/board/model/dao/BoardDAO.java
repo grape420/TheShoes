@@ -25,13 +25,13 @@ public class BoardDAO {
 		return session.insert("BoardDAO.registNotice", noticeBoard);
 	}
 
-	/* 게시글 상세보기 조회 */
-	public BoardDTO selectPostDetail(SqlSession session, int no) {
-		return null;
-	}
-
 	/* 게시글 조회수 증가 */
 	public int incrementPostCount(SqlSession session, int no) {
 		return 0;
+	}
+
+	/* 게시글 상세보기 조회 */
+	public BoardDTO selectNoticeDetail(SqlSession session, int categoryOrderNo) {
+		return session.selectOne("BoardDAO.selectNoticeDetail", categoryOrderNo);
 	}
 }
