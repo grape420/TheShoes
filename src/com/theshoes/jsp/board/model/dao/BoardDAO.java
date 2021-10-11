@@ -33,7 +33,6 @@ public class BoardDAO {
 	/* 공지사항 상세보기 조회 */
 	public BoardDTO selectNoticeDetail(SqlSession session, int categoryOrder) {
 		System.out.println("BoardDAO : categoryOrder" + categoryOrder);
-		
 		return session.selectOne("BoardDAO.selectNoticeDetail", categoryOrder);
 	}
 
