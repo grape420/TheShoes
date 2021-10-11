@@ -11,7 +11,6 @@ public class BoardDAO {
 
 	/* 공지사항 목록 전체 조회 */
 	public List<BoardDTO> selectAllNoticeList(SqlSession session) {
-		System.out.println("BoardDAO");
 		return session.selectList("BoardDAO.selectAllNoticeList");
 	}
 
