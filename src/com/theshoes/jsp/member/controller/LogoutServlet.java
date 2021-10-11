@@ -13,8 +13,7 @@ public class LogoutServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().invalidate();
-		System.out.println(request.getContextPath());
-		request.getRequestDispatcher("/WEB-INF/views/main/mainPage.jsp").forward(request, response);
+		response.sendRedirect(request.getContextPath());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

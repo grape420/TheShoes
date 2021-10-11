@@ -64,16 +64,17 @@
         <div class="collapse navbar-collapse justify-content-end">
           <ul class="navbar-nav mr-3">
             <li class="nav-item mr-1">
-              <a class="nav-link font-weight-bold" href="#">THE DRAW</a>
+              <a class="nav-link font-weight-bold" href="${ pageContext.servletContext.contextPath }/shoes/list">THE DRAW</a>
             </li>
             <li class="nav-item mr-1">
-              <a class="nav-link font-weight-bold" href="#">RESELL</a>
+              <a class="nav-link font-weight-bold" href="${ pageContext.servletContext.contextPath }/resell/resellList">RESELL</a>
             </li>
           </ul>
-          <form>
-            <input class="form-control" type="text" placeholder="Search">
-          </form>
-          <a href="#"><span class="heart"><i class="fa fa-heart-o" aria-hidden="true"></i></span></a>
+          <c:set var="test" value="" />
+          <form action="${ pageContext.servletContext.contextPath }/shoes/list?search=${ test }" method="GET">
+            <input id="search" name="search" class="form-control" type="text" placeholder="Search">
+          </form >
+          <a href="${ pageContext.servletContext.contextPath }/myPage/wishList"><span class="heart"><i class="fa fa-heart-o" aria-hidden="true"></i></span></a>
         </div>
       </nav>
       <hr class="m-0">
@@ -87,6 +88,12 @@
 	<script src="${ pageContext.servletContext.contextPath }/resources/uses/js/demo/datatables-demo.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/js/common/jquery.mousewheel.min.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/js/common/main.js"></script>
+    
+    <script>
+    	$('#search').change(function() {
+    		${ test } = $("#search").val();
+    	});
+    </script>
     
 </body>
 </html>
