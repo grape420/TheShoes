@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("password");
-		
+		System.out.println(pwd);
 		MemberDTO member = new MemberDTO();
 		member.setId(id);
 		member.setPwd(pwd);

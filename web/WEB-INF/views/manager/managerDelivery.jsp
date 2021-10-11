@@ -52,10 +52,10 @@
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 						data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="manager_shoes.html">신발 정보 관리</a> <a
-								class="collapse-item" href="manager.html">회원 정보 관리</a> <a
-								class="collapse-item" href="manager_delivery.html">배송 정보 관리</a>
-							<a class="collapse-item" href="manager_board.html">회원 게시글 관리</a>
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/manager/shoes">신발 정보 관리</a> 
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/manager/memberList">회원 정보 관리</a> 
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/manager/delivery">배송 정보 관리</a>
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/manager/board">회원 게시글 관리</a>
 						</div>
 					</div></li>
 
@@ -95,14 +95,14 @@
 									<table class="table table-bordered" width="100%"
 										cellspacing="0">
 										<thead>
-											<tr>
-												<th>주문날짜</th>
-												<th>회원이름</th>
-												<th>회원아이디</th>
-												<th>신발명</th>
-												<th>발매가</th>
-												<th>주소</th>
-												<th>배송 상태</th>
+											<tr style="background-color : black; color : white;">
+												<th style="width: 150px; text-align : center;">주문날짜</th>
+												<th style="width: 150px; text-align : center;">회원이름</th>
+												<th style="width: 150px; text-align : center;">회원아이디</th>
+												<th style="width: 150px; text-align : center;">신발명</th>
+												<th style="width: 150px; text-align : center;">발매가</th>
+												<th style="width: 150px; text-align : center;">주소</th>
+												<th style="width: 150px; text-align : center;">배송 상태</th>
 											</tr>
 										</thead>
 										<tbody>

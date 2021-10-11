@@ -79,18 +79,17 @@
 					<div style="padding: 0 60px;">
 
 						<!-- Page Heading -->
-						<h1 class="h2 mb-4 text-gray-800">신발 등록</h1>
-						<p class="mb-4">신발 정보를 등록할 수 있는 페이지입니다.</p>
+						<h1 class="h2 mb-4 text-gray-800">신발 수정</h1>
+						<p class="mb-4">신발 정보를 수정할 수 있는 페이지입니다.</p>
 						<div>
 
-							<form class="needs-validation" method="post" action="${ pageContext.servletContext.contextPath }/manager/regShoes"
+							<form class="needs-validation" method="post" action="${ pageContext.servletContext.contextPath }/manager/modShoes"
 							enctype="multipart/form-data">
 								<div class="row">
 									<div class="col-md-4 mb-3">
 										<label for="country">카테고리</label> 
-										<select
-											class="custom-select d-block w-100" id="infoCategoryNo"
-											name="infoCategoryNo" required>
+										<select class="custom-select d-block w-100" id="infoCategoryNo" name="infoCategoryNo">
+											<option hidden><c:out value="${ shoes.category.shoesCategoryName }" /></option>
 											<option value="1">나이키</option>
 											<option value="2">스캇</option>
 											<option value="3">Jordan</option>
@@ -99,47 +98,42 @@
 										</select>
 									</div>
 									<div class="col-md-4 mb-3">
-										<label for="lastName">모델명</label> <input type="text"
-											class="form-control" id="shoesModel" placeholder=""
-											name="shoesModel" >
+										<label for="lastName">모델명</label> 
+										<input type="text" class="form-control" id="shoesModel" placeholder="" name="shoesModel" value="${ shoes.shoesModel }">
 									</div>
 									<div class="col-md-4 mb-3">
-										<label for="lastName">발매가</label> <input type="number"
-											class="form-control" id="shoesPrice" placeholder=""
-											name="shoesPrice" >
+										<label for="lastName">발매가</label> 
+										<input type="number" class="form-control" id="shoesPrice" placeholder="" name="shoesPrice" value="${ shoes.shoesPrice }">
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="firstName">당첨자 발표일</label> 
-										<input type="datetime-local" class="form-control" id="winnerDate"
-											placeholder="" name="winnerDate" >
+										<input type="datetime-local" class="form-control" id="winnerDate" placeholder="" name="winnerDate" value="${ shoes.winnerDate }">
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="country">판매여부</label> 
-										<select class="custom-select d-block w-100" id="salesYn"
-											name="salesYn" >
+										<select class="custom-select d-block w-100" id="salesYn" name="salesYn" >
+										<option hidden><c:out value="${ shoes.salesYn }" /></option>
 											<option value="Y">Y</option>
 											<option value="N">N</option>
 										</select>
 									</div>
 
 									<div class="col-md-4 mb-3">
-										<label for="lastName">수량</label> <input type="number"
-											class="form-control" id="salesAmount" placeholder=""
-											name="salesAmount" >
+										<label for="lastName">수량</label> 
+										<input type="number" class="form-control" id="salesAmount" placeholder="" name="salesAmount" value="${ shoes.salesAmount }">
 									</div>
 									<div class="col-md-4 mb-3">
-										<label for="firstName">응모 시작일</label> <input
-											type="datetime-local" class="form-control" id="startDate"
-											placeholder="" name="startDate" >
+										<label for="firstName">응모 시작일</label> 
+										<input type="datetime-local" class="form-control" id="startDate" placeholder="" name="startDate" value="${ shoes.startDate }">
 									</div>
 									<div class="col-md-4 mb-3">
-										<label for="firstName">응모 종료일</label> <input
-											type="datetime-local" class="form-control" id="endDate"
-											placeholder="" name="endDate" >
+										<label for="firstName">응모 종료일</label> 
+										<input type="datetime-local" class="form-control" id="endDate" placeholder="" name="endDate" value="${ shoes.endDate }">
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="firstName">추첨 종료 상태</label>
 										<select class="custom-select d-block w-100" id="eventEndYn" name="eventEndYn" >
+										<option hidden><c:out value="${ shoes.eventEndYn }" /></option>
 											<option value="Y">Y</option>
 											<option value="N">N</option>
 										</select>
@@ -207,7 +201,7 @@
 			                            </div>
 
 									<div class="col-md-12 mb-3">
-										<button type="submit" id="registBtn" class="btn btn-outline-secondary">등록</button>
+										<button type="submit" id="registBtn" class="btn btn-outline-secondary">수정</button>
 									</div>
 								</div>
 							</form>

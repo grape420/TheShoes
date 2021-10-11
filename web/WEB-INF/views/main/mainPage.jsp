@@ -25,7 +25,7 @@
 			</ol>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<a href="#"> <img src="${ shoesList[0]. }" class="d-block w-100 carouselImg" alt="...">
+					<a href="#"> <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/sample/first.png" class="d-block w-100 carouselImg" alt="...">
 					</a>
 					<div class="carousel-caption d-none d-md-block">
 						<h5 class="text-black">First slide label</h5>

@@ -52,10 +52,10 @@
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 						data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="manager_shoes.html">신발 정보 관리</a> <a
-								class="collapse-item" href="manager.html">회원 정보 관리</a> <a
-								class="collapse-item" href="manager_delivery.html">배송 정보 관리</a>
-							<a class="collapse-item" href="manager_board.html">회원 게시글 관리</a>
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/manager/shoes">신발 정보 관리</a> 
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/manager/memberList">회원 정보 관리</a> 
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/manager/delivery">배송 정보 관리</a>
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/manager/board">회원 게시글 관리</a>
 						</div>
 					</div></li>
 
@@ -92,29 +92,39 @@
 
 								<div class="table-responsive">
 
-									<table class="table table-bordered" width="100%"
-										cellspacing="0">
+									<table class="table table-bordered" width="100%" cellspacing="0">
 
 										<thead>
-											<tr>
-												<th>신발 카테고리</th>
-												<th>모델명</th>
-												<th>발매가</th>
-												<th>출시일</th>
-												<th>판매 수량</th>
-												<th>잔여 수량</th>
+											<tr style="background-color : black; color : white;">
+												<th style="width: 150px; text-align : center;">번호</th>
+												<th style="width: 150px; text-align : center;">카테고리</th>
+												<th style="width: 150px; text-align : center;">모델명</th>
+												<th style="width: 100px; text-align : center;">발매가</th>
+												<th style="width: 100px; text-align : center;">판매 수량</th>
+												<th style="width: 100px; text-align : center;">잔여 수량</th>
+												<th style="width: 100px; text-align : center;">판매 여부</th>
+												<th style="width: 150px; text-align : center;">추첨 종료 상태</th>
+												<th style="width: 150px; text-align : center;">응모 시작일</th>
+												<th style="width: 150px; text-align : center;">응모 종료일</th>
+												<th style="width: 150px; text-align : center;">당첨자 발표일</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr onclick="location.href='shoes_modify.html';"
-												style="cursor: pointer;">
-												<td>스니커즈</td>
-												<td>조던</td>
-												<td>250,000원</td>
-												<td>2020/04/25</td>
-												<td>5</td>
-												<td>5</td>
-											</tr>
+												<c:forEach var="shoes" items="${ requestScope.shoesList }">										
+													<tr style="cursor: pointer;">
+														<td style="text-align: center;"><label><c:out value="${ shoes.shoesNo }"/></label></td>
+														<td style="text-align: center;"><c:out value="${ shoes.category.shoesCategoryName }"/></td>
+														<td style="text-align: center;"><c:out value="${ shoes.shoesModel }"/> </td>
+														<td style="text-align: center;"><c:out value="${ shoes.shoesPrice }"/></td>
+														<td style="text-align: center;"><c:out value="${ shoes.salesAmount }"/></td>
+														<td style="text-align: center;"><c:out value="${ shoes.reamaningAmount }"/></td>
+														<td style="text-align: center;"><c:out value="${ shoes.salesYn }"/></td>
+														<td style="text-align: center;"><c:out value="${ shoes.eventEndYn }"/></td>
+														<td style="text-align: center;"><c:out value="${ shoes.startDate }"/></td>
+														<td style="text-align: center;"><c:out value="${ shoes.endDate }"/></td>
+														<td style="text-align: center;"><c:out value="${ shoes.winnerDate }"/></td>
+													</tr>
+												</c:forEach>	
 										</tbody>
 									</table>
 								</div>
@@ -122,8 +132,7 @@
 						</div>
 					</div>
 					<div style="text-align: center;">
-						<a href="shoes_regist.html" id="registShoes">신발 등록</a>
-
+						<a href="${ pageContext.servletContext.contextPath }/manager/regShoes" id="registShoes">신발 등록</a>
 					</div>
 
 					<!-- /.container-fluid -->
@@ -135,11 +144,11 @@
 							class="hide">이전페이지</span></a> <a href="#" class="on">1</a>
 						<!-- D : 활성화페이지일 경우 : on 처리 -->
 						<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-						<a href="#" class="btn_arr next"><i
-							class="fa fa-chevron-right" aria-hidden="true"></i><span
-							class="hide">다음페이지</span></a> <a href="#" class="btn_arr last"><i
-							class="fa fa-chevron-right" aria-hidden="true"></i><span
-							class="hide">마지막페이지</span></a>
+						<a href="#" class="btn_arr next"><i class="fa fa-chevron-right" aria-hidden="true"></i>
+						<span class="hide">다음페이지</span></a> 
+						<a href="#" class="btn_arr last">
+						<i class="fa fa-chevron-right" aria-hidden="true"></i>
+						<span class="hide">마지막페이지</span></a>
 					</div>
 				</div>
 				<!-- End of Main Content -->
@@ -150,7 +159,16 @@
 
 	</section>
 
+	
+	<script type="text/javascript">
+		$("tr").click(function() {
+			let shoesNo = $(this).find("label").text();
+			console.log(shoesNo);
+			location.href = "${ pageContext.servletContext.contextPath }/manager/modShoes?shoesNo=" + shoesNo; 
+		});
+	</script>
 	<!-- footer -->
-	<jsp:include page="../common/footer.jsp" />
+	<jsp:include page="../common/footer.jsp"/>
+	
 </body>
 </html>

@@ -521,19 +521,19 @@ REFERENCES MEMBER (
 
 
 -- 회원 정보 MEMBER INSERT
-INSERT INTO MEMBER VALUES ('USER01', '한호열', 'RaydacNxCy9naFpEGZrXFAvil9yLh70qB4O7kWCeHxg=', 'tightPassion@naver.com',
+INSERT INTO MEMBER VALUES ('USER01', '한호열', '$2a$10$oRdLtCg9ZWJYB27XLpkZMenwcEKe1psC1JOcLyM17tP.BNO8VYmam', 'tightPassion@naver.com',
                            '01012345678', SYSDATE, NULL,
                            DEFAULT, DEFAULT, '19821214', 'MEMBER');
-INSERT INTO MEMBER VALUES ('USER02', '김정은', 'lPMbZP3mPzFMeAlpwUPmVZR0LRBR80oY/TIlBmmYiTw=', 'northBoss@naver.com',
+INSERT INTO MEMBER VALUES ('USER02', '김정은', '$2a$10$YbNqx.iQZ4jicVYXfaqFn.mPvwSGf0Gq044qm3x/QEaARlla23Wuu', 'northBoss@naver.com',
                            '01023456789', SYSDATE, NULL,
                            DEFAULT, DEFAULT, '19840108', 'MEMBER');
-INSERT INTO MEMBER VALUES ('USER03', '이지은', 'axgbcfoUQKQLuM+RqXXfs2m9O4RX/OXVOWbkc61qXtU=', 'leeNow@naver.com',
+INSERT INTO MEMBER VALUES ('USER03', '이지은', '$2a$10$f/Rdjzz/sXovi3e1Aj4LaOi8jKv49kjDE3DGJIlvdhUcQNLcudNpW', 'leeNow@naver.com',
                            '01034567890', SYSDATE, NULL,
                            DEFAULT, DEFAULT, '19930516', 'MANAGER');
-INSERT INTO MEMBER VALUES ('USER04', '이찬혁', 'WsvHAivHjSwgRU7AjxH9zDih+kJMntnTeAfmRGiz7to=', 'brothersuhyun@naver.com',
+INSERT INTO MEMBER VALUES ('USER04', '이찬혁', '$2a$10$hdOtSrU5W9j5erqqmq9R6.2oXbrSWj.3/zjAjoGB92wwt6g43vWwa', 'brothersuhyun@naver.com',
                            '01011112222', SYSDATE, NULL,
                            DEFAULT, DEFAULT, '19860912', 'MEMBER');
-INSERT INTO MEMBER VALUES ('USER05', '아누팜', 'h3mTm2nkHumfG79wY7BcppbB4yyJF4jaWq8usMfRHiU=', 'salAli@naver.com',
+INSERT INTO MEMBER VALUES ('USER05', '아누팜', '$2a$10$z.j54bIq.MNKDY7TxMlMKOdx3HRtE8n4KYRYYPAgbwoljMYpeten6', 'salAli@naver.com',
                            '01012121212', SYSDATE, NULL,
                            DEFAULT, DEFAULT, '19881102', 'MEMBER');                        
 
