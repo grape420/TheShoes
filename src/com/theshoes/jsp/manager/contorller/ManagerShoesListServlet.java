@@ -12,12 +12,25 @@ import javax.servlet.http.HttpServletResponse;
 import com.theshoes.jsp.manager.model.service.ShoesService;
 import com.theshoes.jsp.shoes.model.dto.ShoesDTO;
 
-@WebServlet("/manager/shoes/list")
-public class ShoesListServlet extends HttpServlet {
+@WebServlet("/manager/shoes")
+public class ManagerShoesListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		ShoesService shoesService = new ShoesService();
+		
+		List<ShoesDTO> shoesList = shoesService.selectShoesList();
+		
+		String path = "";
+		if (shoesList != null) {
+			path = "/WEB-INF/views/manager/managerShoes.jsp";
+			request.setAttribute("shoesList", shoesList);
+		} else {
+			path = "/WEB-INF/views/common/errorPage.jsp";
+		}
+		
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 }

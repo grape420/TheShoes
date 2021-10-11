@@ -118,6 +118,4 @@
 		     , A.BOARD_CONTENT = #{ boardContent }
          WHERE A.CATEGORY_ORDER = #{ categoryOrder }
 	</update>
-	
-	
 </mapper>
