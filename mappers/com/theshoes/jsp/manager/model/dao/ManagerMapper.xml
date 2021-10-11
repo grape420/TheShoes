@@ -25,6 +25,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 		<!-- 이거 해야만 조인 됨 -->
 		<association property="category" resultMap="shoesCategoryResultMap" />
+		
+		<collection property="thumbList" resultMap="shoesThumbResultMap"></collection>
 	</resultMap> 
 	
 	<resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO" id="shoesThumbResultMap">
@@ -37,6 +39,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="thumbnailPath" column="THUMBNAIL_PATH"/>
 		<result property="status" column="ATTACHMENT_STATUS"/>
 	</resultMap>
+	
+	
 	
 	<insert id="insertShoes" parameterType="com.theshoes.jsp.shoes.model.dto.ShoesDTO">
 	   INSERT
@@ -75,6 +79,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</selectKey>
 	</insert>
 	
+	<insert id="updateShoes" parameterType="com.theshoes.jsp.shoes.model.dto.ShoesDTO">
+	<!-- 만약애 -->
+		INSERT
+			  INTO SHOES_INFO A
+			(
+			  A.SHOES_NO
+			, A.INFO_CATEGORY_NO
+			, A.SHOES_MODEL
+			, A.SHOES_PRICE
+			, A.SALES_YN
+			, A.SALES_AMOUNT
+			, A.REAMANING_AMOUNT
+			, A.START_DATE
+			, A.END_DATE
+			, A.WINNER_DATE
+			, A.EVENT_END_YN
+			)
+			VALUES
+			(
+			  SEQ_SHOES_CODE.NEXTVAL
+			, #{ infoCategoryNo }
+			, #{ shoesModel }
+			, #{ shoesPrice }
+			, #{ salesYn }
+			, #{ salesAmount }
+			, #{ salesAmount }
+			, #{ startDate }
+			, #{ endDate }
+			, #{ winnerDate }
+			, #{ eventEndYn }
+			) 
+			<selectKey keyProperty="shoesNo" resultType="Integer" order="AFTER">
+				SELECT
+					   SEQ_SHOES_CODE.CURRVAL
+				  FROM DUAL
+			</selectKey>
+		 
+	</insert>
+	
 	<insert id="insertShoesThumb" parameterType="com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO">
 		INSERT 
 			  INTO SHOES_THUMB A
@@ -100,6 +143,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			, 'Y'
 			)
 	</insert>
+	
+	<update id="updateShoesThumb" parameterType="com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO">
+		UPDATE
+		       SHOES_THUMB A
+		   SET A.ORIGINAL_NAME = #{ originalName }
+		     , A.SAVED_NAME = #{ savedName }
+		     , A.SAVE_PATH = #{ savePath }
+		     , A.FILE_TYPE = #{ fileType }
+		     , A.THUMBNAIL_PATH = #{ thumbnailPath }
+		 WHERE A.SHOES_NO = #{ shoesNo }
+	</update>
 	
 	<select id="selectShoesList" resultMap="shoesResultMap">
 	<!-- 여기서 조인해주고 resultMap에서 association도 해줘야 함 -->
@@ -135,8 +189,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		     , A.END_DATE
 		     , A.WINNER_DATE
 		     , A.EVENT_END_YN
+		     , C.SHOES_THUMB_NO
+		     , C.ORIGINAL_NAME
+		     , C.SAVED_NAME
+		     , C.SAVE_PATH
+		     , C.FILE_TYPE
+		     , C.THUMBNAIL_PATH
 		  FROM SHOES_INFO A
 		  LEFT JOIN SHOES_CATEGORY B ON (A.INFO_CATEGORY_NO = B.SHOES_CATEGORY_NO)
+		  LEFT JOIN SHOES_THUMB C ON (A.SHOES_NO = C.ST_NO)
 		 WHERE A.SHOES_NO = #{ shoesNo }
 	</select>
 	

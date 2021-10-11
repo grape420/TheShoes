@@ -12,6 +12,4 @@ public class ShoesDAO {
 		return session.selectList("ShoesDAO.selectShoesList");
 	}
 	
-	
-	
 }
