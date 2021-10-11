@@ -135,21 +135,12 @@
 						<a href="${ pageContext.servletContext.contextPath }/manager/regShoes" id="registShoes">신발 등록</a>
 					</div>
 
-					<!-- /.container-fluid -->
-					<div class="paging">
-						<a href="#" class="btn_arr first"><i
-							class="fa fa-chevron-left" aria-hidden="true"></i><span
-							class="hide">처음페이지</span></a> <a href="#" class="btn_arr prev"><i
-							class="fa fa-chevron-left" aria-hidden="true"></i><span
-							class="hide">이전페이지</span></a> <a href="#" class="on">1</a>
-						<!-- D : 활성화페이지일 경우 : on 처리 -->
-						<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-						<a href="#" class="btn_arr next"><i class="fa fa-chevron-right" aria-hidden="true"></i>
-						<span class="hide">다음페이지</span></a> 
-						<a href="#" class="btn_arr last">
-						<i class="fa fa-chevron-right" aria-hidden="true"></i>
-						<span class="hide">마지막페이지</span></a>
-					</div>
+					<!-- 페이징처리 넣기 -->
+				
+					
+					
+					
+					
 				</div>
 				<!-- End of Main Content -->
 			</div>
