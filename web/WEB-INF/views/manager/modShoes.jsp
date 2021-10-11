@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,6 +97,8 @@
 											<option value="4">사카이</option>
 											<option value="5">Dunk</option>
 										</select>
+										<input type="text" value="${ shoes.shoesNo }" hidden name="shoesNo">
+										
 									</div> 
 									<div class="col-md-4 mb-3">
 										<label for="lastName">모델명</label> 
@@ -107,7 +110,8 @@
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="firstName">당첨자 발표일</label> 
-										<input type="datetime-local" class="form-control" id="winnerDate" placeholder="" name="winnerDate" value="${ shoes.winnerDate }">
+										<input type="datetime-local" class="form-control" id="winnerDate" placeholder="" name="winnerDate" 
+										value="<fmt:formatDate value="${ shoes.winnerDate }" pattern="yyyy-MM-dd'T'hh:mm"/>">
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="country">판매여부</label> 
@@ -124,11 +128,13 @@
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="firstName">응모 시작일</label> 
-										<input type="datetime-local" class="form-control" id="startDate" placeholder="" name="startDate" value="${ shoes.startDate }">
+										<input type="datetime-local" class="form-control" id="startDate" placeholder="" name="startDate" 
+										value="<fmt:formatDate value="${ shoes.startDate }" pattern="yyyy-MM-dd'T'hh:mm"/>">
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="firstName">응모 종료일</label> 
-										<input type="datetime-local" class="form-control" id="endDate" placeholder="" name="endDate" value="${ shoes.endDate }">
+										<input type="datetime-local" class="form-control" id="endDate" placeholder="" name="endDate" 
+										value="<fmt:formatDate value="${ shoes.endDate }" pattern="yyyy-MM-dd'T'hh:mm"/>">
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="firstName">추첨 종료 상태</label>

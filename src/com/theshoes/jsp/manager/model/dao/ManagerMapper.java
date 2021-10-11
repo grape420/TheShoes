@@ -26,8 +26,8 @@ public class ManagerMapper {
 	}
 
 	public int updateShoes(SqlSession session, ShoesDTO shoes) {
-		System.out.println("여기는 DAO");
-		return session.insert("ManagerMapper.updateShoes", shoes);
+		System.out.println("여기는 DAO" + shoes.getInfoCategoryNo());
+		return session.update("ManagerMapper.updateShoes", shoes);
 	}
 
 	public int updateShoesThumb(SqlSession session, ShoesThumbDTO shoesThumb) {

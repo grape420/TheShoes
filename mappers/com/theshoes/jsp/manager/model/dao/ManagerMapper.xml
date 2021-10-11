@@ -79,44 +79,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</selectKey>
 	</insert>
 	
-	<insert id="updateShoes" parameterType="com.theshoes.jsp.shoes.model.dto.ShoesDTO">
-	<!-- 만약애 -->
-		INSERT
-			  INTO SHOES_INFO A
-			(
-			  A.SHOES_NO
-			, A.INFO_CATEGORY_NO
-			, A.SHOES_MODEL
-			, A.SHOES_PRICE
-			, A.SALES_YN
-			, A.SALES_AMOUNT
-			, A.REAMANING_AMOUNT
-			, A.START_DATE
-			, A.END_DATE
-			, A.WINNER_DATE
-			, A.EVENT_END_YN
-			)
-			VALUES
-			(
-			  SEQ_SHOES_CODE.NEXTVAL
-			, #{ infoCategoryNo }
-			, #{ shoesModel }
-			, #{ shoesPrice }
-			, #{ salesYn }
-			, #{ salesAmount }
-			, #{ salesAmount }
-			, #{ startDate }
-			, #{ endDate }
-			, #{ winnerDate }
-			, #{ eventEndYn }
-			) 
-			<selectKey keyProperty="shoesNo" resultType="Integer" order="AFTER">
-				SELECT
-					   SEQ_SHOES_CODE.CURRVAL
-				  FROM DUAL
-			</selectKey>
-		 
-	</insert>
+	<update id="updateShoes" parameterType="com.theshoes.jsp.shoes.model.dto.ShoesDTO">
+		UPDATE
+		       SHOES_INFO A
+		   SET A.INFO_CATEGORY_NO = #{ infoCategoryNo }
+		     , A.SHOES_MODEL = #{ shoesModel }
+		     , A.SHOES_PRICE = #{ shoesPrice }
+		     , A.SALES_YN = #{ salesYn }
+		     , A.SALES_AMOUNT = #{ salesAmount }
+		     , A.START_DATE = #{ startDate }
+		     , A.END_DATE = #{ endDate }
+		     , A.WINNER_DATE = #{ winnerDate }
+		     , A.EVENT_END_YN = #{ eventEndYn }
+		 WHERE A.SHOES_NO = #{ shoesNo }
+	</update>
 	
 	<insert id="insertShoesThumb" parameterType="com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO">
 		INSERT 

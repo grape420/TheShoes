@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.ibatis.reflection.SystemMetaObject;
 
 import com.theshoes.jsp.manager.model.service.ShoesService;
 import com.theshoes.jsp.shoes.model.dto.ShoesDTO;
@@ -172,14 +173,31 @@ if (ServletFileUpload.isMultipartContent(request)) {
 				System.out.println("parameter : " + parameter);
 				System.out.println("fileList : " + fileList);
 				
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
 				
 				java.util.Date winner = sdf.parse(parameter.get("winnerDate"));
 				java.util.Date start = sdf.parse(parameter.get("startDate"));
 				java.util.Date end = sdf.parse(parameter.get("endDate"));
+				System.out.println(winner);
+				System.out.println(start);
+				System.out.println(end);
 				
 				ShoesDTO shoes = new ShoesDTO();
-				shoes.setInfoCategoryNo(Integer.valueOf(parameter.get("infoCategoryNo")));
+				String infoCategory = parameter.get("infoCategoryNo");
+				int infoCategoryNo = 1;
+				
+				if("스캇".equals(infoCategory)) {
+					infoCategoryNo = 2;
+				} else if ("Jordan".equals(infoCategory)) {
+					infoCategoryNo = 3;
+				} else if ("사카이".equals(infoCategory)) {
+					infoCategoryNo = 4;
+				} else if ("Dunk".equals(infoCategory)) {
+					infoCategoryNo = 5;
+				} 
+				
+				shoes.setShoesNo(Integer.valueOf(parameter.get("shoesNo")));
+				shoes.setInfoCategoryNo(infoCategoryNo);
 				shoes.setShoesModel(parameter.get("shoesModel"));
 				shoes.setShoesPrice(Integer.valueOf(parameter.get("shoesPrice")));
 				shoes.setWinnerDate(winner);
@@ -188,6 +206,8 @@ if (ServletFileUpload.isMultipartContent(request)) {
 				shoes.setStartDate(start);
 				shoes.setEndDate(end);
 				shoes.setEventEndYn(parameter.get("eventEndYn"));
+				
+				System.out.println(shoes.getWinnerDate());
 				
 				shoes.setThumbList(new ArrayList<ShoesThumbDTO>());
 				List<ShoesThumbDTO> list = shoes.getThumbList();

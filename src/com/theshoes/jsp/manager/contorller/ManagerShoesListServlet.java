@@ -13,7 +13,7 @@ import com.theshoes.jsp.manager.model.service.ShoesService;
 import com.theshoes.jsp.shoes.model.dto.ShoesDTO;
 
 @WebServlet("/manager/shoes")
-public class ShoesListServlet extends HttpServlet {
+public class ManagerShoesListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
