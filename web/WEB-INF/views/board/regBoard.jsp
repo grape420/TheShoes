@@ -101,7 +101,7 @@
 								<textarea class="form-control" id="exampleFormControlTextarea1"
 									rows="20" name="noticeContent"></textarea>
 							</div>
-							<button type="submit" class="btn btn-outline-secondary">등록</button>
+							<button type="submit" class="btn btn-outline-secondary" onclick="location.href='${ pageContext.servletContext.contextPath }/board/list'">등록</button>
 						</div>
 					</form>
 

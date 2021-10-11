@@ -6,6 +6,10 @@
 }
 
 /* section */
+ .bgray {
+	background-color: darkgray !important;
+}
+
 .nav-item.mr-2.ml-2>a {
 	text-decoration: none !important;
 	color: black !important;
