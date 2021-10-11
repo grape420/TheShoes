@@ -86,7 +86,7 @@
 							<form class="needs-validation" method="post" action="${ pageContext.servletContext.contextPath }/manager/modShoes"
 							enctype="multipart/form-data">
 								<div class="row">
-									<div class="col-md-4 mb-3">
+								  <div class="col-md-4 mb-3">
 										<label for="country">카테고리</label> 
 										<select class="custom-select d-block w-100" id="infoCategoryNo" name="infoCategoryNo">
 											<option hidden><c:out value="${ shoes.category.shoesCategoryName }" /></option>
@@ -96,12 +96,12 @@
 											<option value="4">사카이</option>
 											<option value="5">Dunk</option>
 										</select>
-									</div>
+									</div> 
 									<div class="col-md-4 mb-3">
 										<label for="lastName">모델명</label> 
 										<input type="text" class="form-control" id="shoesModel" placeholder="" name="shoesModel" value="${ shoes.shoesModel }">
 									</div>
-									<div class="col-md-4 mb-3">
+									 <div class="col-md-4 mb-3">
 										<label for="lastName">발매가</label> 
 										<input type="number" class="form-control" id="shoesPrice" placeholder="" name="shoesPrice" value="${ shoes.shoesPrice }">
 									</div>
@@ -143,8 +143,8 @@
 											<div class="text-center">
 												<label style="margin: 10px;">대표 사진</label>
 												<div id="titleImgArea">
-													<img id="titleImg" class="title-img-area" width="300"
-														height="300">
+													<img src="${ pageContext.servletContext.contextPath }${ shoes.thumbList[0].thumbnailPath }"
+													id="titleImg" class="title-img-area" width="300" height="300">
 												</div>
 											</div>
 										</div>
@@ -153,7 +153,8 @@
 			                              <div class="text-center">
 			                                <label>사진1</label>
 			                                <div id="contentImgArea1">
-			                                <img id="contentImg1" class="content-img-area1" width="250" height="250">
+			                                <img src="${ pageContext.servletContext.contextPath }${ shoes.thumbList[1].thumbnailPath }"
+			                                id="contentImg1" class="content-img-area1" width="250" height="250">
 			                              </div>
 			                            </div>
 
@@ -161,7 +162,8 @@
 				                              <label>사진2</label>
 				                              <div style="margin: 0 25px;">
 				                              <div id="contentImgArea2">
-				                                <img id="contentImg2" class="content-img-area2" width="250" height="250">
+				                                <img src="${ pageContext.servletContext.contextPath }${ shoes.thumbList[2].thumbnailPath }"
+				                                id="contentImg2" class="content-img-area2" width="250" height="250">
 				                              </div>
 				                            </div>
 				                             </div>
@@ -169,7 +171,8 @@
 											<div class="text-center">
 				                            <label>사진3</label>
 				                              <div id="contentImgArea3">
-				                                <img id="contentImg3" class="content-img-area3" width="250" height="250">
+				                                <img src="${ pageContext.servletContext.contextPath }${ shoes.thumbList[3].thumbnailPath }"
+				                                id="contentImg3" class="content-img-area3" width="250" height="250">
 				                              </div>
 				                            </div>
 
@@ -177,7 +180,8 @@
 				                              <label>사진4</label>
 				                              <div style="margin: 0 25px;">
 				                                <div id="contentImgArea4">
-				                                  <img id="contentImg4" class="content-img-area4" width="250" height="250">
+				                                  <img src="${ pageContext.servletContext.contextPath }${ shoes.thumbList[4].thumbnailPath }"
+				                                  id="contentImg4" class="content-img-area4" width="250" height="250">
 				                                </div>
 				                              </div>
 				                              </div>
@@ -185,7 +189,8 @@
 											<div class="text-center">
 			                                <label>사진5</label>
 			                                  <div id="contentImgArea5">
-			                                    <img id="contentImg5" class="content-img-area5" width="250" height="250">
+			                                    <img src="${ pageContext.servletContext.contextPath }${ shoes.thumbList[5].thumbnailPath }"
+			                                    id="contentImg5" class="content-img-area5" width="250" height="250">
 			                                  </div>
 			                                </div>
 

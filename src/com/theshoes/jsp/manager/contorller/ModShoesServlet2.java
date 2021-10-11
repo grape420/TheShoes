@@ -25,13 +25,24 @@ import com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO;
 
 import net.coobird.thumbnailator.Thumbnails;
 
-@WebServlet("/manager/regShoes")
-public class RegShoesServlet extends HttpServlet {
+@WebServlet("/manager/modShoes2")
+public class ModShoesServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String path = "/WEB-INF/views/manager/regShoes.jsp";
+		int shoesNo = Integer.valueOf(request.getParameter("shoesNo"));
+		
+		ShoesService shoesService = new ShoesService();
+		ShoesDTO shoes = shoesService.selectShoesDetail(shoesNo);
+		
+		String path = "";
+		if(shoes != null) {
+			path = "/WEB-INF/views/manager/modShoes.jsp";
+			request.setAttribute("shoes", shoes);
+		} else {
+			path = "/WEB-INF/views/common/errorPage.jsp";
+		}
 		
 		request.getRequestDispatcher(path).forward(request, response);
 		
@@ -168,7 +179,7 @@ public class RegShoesServlet extends HttpServlet {
 				java.util.Date end = sdf.parse(parameter.get("endDate"));
 				
 				ShoesDTO shoes = new ShoesDTO();
-				shoes.setInfoCategoryNo(Integer.valueOf(parameter.get("infoCategoryNo")));
+				shoes.setInfoCategoryNo(Integer.valueOf(parameter.get("infoCategoryNo"))); 
 				shoes.setShoesModel(parameter.get("shoesModel"));
 				shoes.setShoesPrice(Integer.valueOf(parameter.get("shoesPrice")));
 				shoes.setWinnerDate(winner);
@@ -196,13 +207,13 @@ public class RegShoesServlet extends HttpServlet {
 				System.out.println("thumbnail board : " + shoes);
 				
 				ShoesService regShoesService = new ShoesService();
-				int result = regShoesService.insertShoes(shoes);
-				
+				int result = regShoesService.updateShoes(shoes);
+				System.out.println("여기 오면 성공! : " + result);
 				/* 성공 실패 페이지를 구분하여 연결한다. */
 				String path = "";
 				if(result > 0) {
 					path = "/WEB-INF/views/common/success.jsp";
-					request.setAttribute("successCode", "insertShoes");
+					request.setAttribute("successCode", "updateShoes");
 				} else {
 					path = "/WEB-INF/views/common/errorPage.jsp";
 				}

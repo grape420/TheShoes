@@ -22,7 +22,6 @@ public class ShoesListServlet extends HttpServlet {
 		
 		List<ShoesDTO> shoesList = shoesService.selectShoesList();
 		
-		System.out.println(shoesList.get(0));
 		String path = "";
 		if (shoesList != null) {
 			path = "/WEB-INF/views/manager/managerShoes.jsp";

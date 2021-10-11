@@ -80,6 +80,40 @@ public class ShoesService {
 		
 		return shoesDetail;
 	}
+
+	public int updateShoes(ShoesDTO shoes) {
+		/* Connection 생성 */
+		SqlSession session = getSqlSession();
+		
+		/* 최종적으로 반환할 result 선언 */
+		int result = 0;
+		
+		int shoesResult = mapper.updateShoes(session, shoes);
+		
+		System.out.println("shoesResult : " + shoesResult);
+		
+		List<ShoesThumbDTO> fileList = shoes.getThumbList();
+		
+		for (int i = 0; i < fileList.size(); i++) {
+			fileList.get(i).setStNo(shoes.getShoesNo());
+		}
+		
+		int shoesThumbResult = 0;
+		for (int i = 0; i < fileList.size(); i++) {
+			shoesThumbResult += mapper.updateShoesThumb(session, fileList.get(i));
+		}
+		
+		if (shoesResult > 0 && shoesThumbResult == fileList.size()) {
+			session.commit();
+			result = 1;
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
 		
 		
 		
