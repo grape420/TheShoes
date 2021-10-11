@@ -14,6 +14,7 @@
 		<result property="boardHit" column="BOARD_HIT"/>
 		<result property="categoryOrder" column="CATEGORY_ORDER"/>
 	</resultMap>
+
 	 
 	<insert id="registNotice">
         INSERT /* com.theshoes.jsp.board.model.dao.BoardDAO#registNotice() */
@@ -41,23 +42,7 @@
         )
 	</insert>
 	
-<!-- 	<select id="selectAllNoticeList" resultMap="noticeResultMap">
-        SELECT /* com.theshoes.jsp.board.model.dao.BoardDAO#selectAllNoticeList() */
-	          ROWNUM RNUM
-	        , A.BOARD_NO
-	        , A.BOARD_ID
-	        , A.BOARD_CATEGORY_NO
-	        , A.BOARD_TITLE
-	        , A.BOARD_CONTENT
-	        , A.BOARD_REGDATE
-	        , A.BOARD_HIT
-	        , A.CATEGORY_ORDER
-         FROM BOARD A
-        WHERE A.BOARD_CATEGORY_NO = 1 
-        ORDER BY A.CATEGORY_ORDER DESC
-	</select> -->
-	
-	<select id="selectAllNoticeList" resultMap="noticeResultMap" parameterType="com.theshoes.jsp.common.paging.SelectCriteria">
+	<select id="selectAllNoticeList" resultMap="noticeResultMap">
 		  SELECT /* com.theshoes.jsp.board.model.dao.BoardDAO#selectAllNoticeList() */
 	          A.RNUM
 	        , A.BOARD_NO
@@ -102,18 +87,28 @@
 	
 	<select id="selectNoticeDetail" resultMap="noticeResultMap">
         SELECT
-               A.NOTICE_NO
-             , A.NOTICE_TITL
-             , A.NOTICE_BODY
-             , A.NOTICE_WRITER_MEMBER_NO
-             , B.NICKNAME
-             , A.NOTICE_COUNT
-             , A.CREATED_DATE
-          FROM TBL_NOTICE A
-          JOIN TBL_MEMBER B ON (A.NOTICE_WRITER_MEMBER_NO = B.MEMBER_NO)
-         WHERE A.NOTICE_STATUS = 'Y'
-           AND A.NOTICE_NO = #{ no }
+               A.BOARD_NO
+		     , A.BOARD_ID
+		     , A.BOARD_CATEGORY_NO
+		     , A.BOARD_TITLE
+		     , A.BOARD_CONTENT
+		     , A.BOARD_REGDATE
+		     , A.BOARD_HIT
+		     , A.CATEGORY_ORDER
+          FROM BOARD A
+         WHERE A.BOARD_CATEGORY_NO = 1
+           AND A.CATEGORY_ORDER = #{ categoryOrder }
 	</select>
+	
+	<update id="incrementNoticeCount">
+        UPDATE /* com.theshoes.jsp.board.model.dao.BoardDAO#incrementNoticeCount() */
+               BOARD A
+           SET A.BOARD_HIT = (SELECT B.BOARD_HIT
+                                   FROM BOARD B
+                                  WHERE B.CATEGORY_ORDER = #{ categoryOrder }
+                                ) + 1
+         WHERE A.CATEGORY_ORDER = #{ categoryOrder }
+	</update>
 	
 	
 </mapper>

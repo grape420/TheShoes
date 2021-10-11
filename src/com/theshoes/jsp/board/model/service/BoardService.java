@@ -61,16 +61,18 @@ public class BoardService {
 	}
 	
 	/* 게시글 상세보기 */
-	public BoardDTO selectNoticeDetail(int categoryOrderNo) {
+	public BoardDTO selectNoticeDetail(int categoryOrder) {
 		
 		SqlSession session = getSqlSession();
 		BoardDTO noticeDetail = null;
 		
 		/* 게시글 조회수 */
-		int result = boardDAO.incrementPostCount(session, categoryOrderNo);
-		
+		int result = boardDAO.incrementNoticeCount(session, categoryOrder);
+				
 		if(result > 0) {
-			noticeDetail = boardDAO.selectNoticeDetail(session, categoryOrderNo);
+			noticeDetail = boardDAO.selectNoticeDetail(session, categoryOrder);
+			
+			System.out.println(noticeDetail);
 			
 			if(noticeDetail != null) {
 				session.commit();

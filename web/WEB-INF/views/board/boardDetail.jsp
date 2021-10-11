@@ -78,15 +78,16 @@
 
           <!-- Page Heading -->
           <br>
-          <h1 class="h3 mb-2 text-gray-800">공지사항</h1>
-          <p class="mb-4"></p>
-
+          <h1 class="h3 mb-2 text-gray-800" >공지사항</h1>
+          <!-- <p class="mb-4"></p> -->
+			<hr>
           <div class="bonmun">
-          <!--  작성일  -->
-            <c:out value="${ requestScope.notice.boardRegDate }"/>
             
-            <!-- 공지사항 제목 -->
-            <p><c:out value="${ requestScope.notice.boardTitle }"/></p>
+          <!-- 공지사항 제목 -->
+          <span style="font-weight:bold;"><c:out value="${ requestScope.notice.boardTitle }"/></span>
+
+          <!--  작성일  -->
+            <p class="mb-2" ><c:out value="${ requestScope.notice.boardRegDate }"/></p>
             
             <!-- 공지사항 내용 -->
             <div class="realBonmun">
@@ -94,9 +95,14 @@
             </div>
             <div style="text-align: center; margin: 30px;">
               <button type="button" class="btn btn-outline-secondary" id="listBtn"
-                onclick="">목록보기</button>
+                onclick="location.href='${ pageContext.servletContext.contextPath }/board/list'">목록보기</button>
+             
+             <!-- 관리자 확인 --> 
+		<%-- <c:if test="${ sessionScope.entryMember.role eq 'Y'}"> --%>
               <button type="button" class="btn btn-outline-secondary" id="modifyBtn"
-                onclick="">수정</button>
+                onclick="location.href='${ pageContext.servletContext.contextPath }/board/update?categoryOrder=${ requestScope.notice.categoryOrder }'">수정</button>
+        <%-- </c:if> --%>
+        
             </div>
           </div>
 

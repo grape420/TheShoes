@@ -82,6 +82,7 @@
 					<br>
 					<h1 class="h3 mb-2 text-gray-800">공지사항</h1>
 					<p class="mb-4"></p>
+					
 					<table class="table table-hover" id="noticeTable">
 						<tbody>
 							<tr style="background-color:black; color:white;">
@@ -127,8 +128,9 @@
 		$("#noticeTable td").hover(function() {
 			$(this).parent().css({"cursor":"pointer"});
 		}).click(function() {
-			const categoryOrderNo = $(this).parent().children(":eq(0)").text();
-			location.href = "${ pageContext.servletContext.contextPath }/board/detail?no=" + categoryOrderNo;
+			let categoryOrder = $(this).parent().children(":eq(0)").text();
+			console.log(categoryOrder);
+			location.href = "${ pageContext.servletContext.contextPath }/board/detail?categoryOrder=" + categoryOrder;
 		});
 	});
 	</script>

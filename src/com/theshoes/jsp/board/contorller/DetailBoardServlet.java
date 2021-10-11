@@ -17,12 +17,14 @@ public class DetailBoardServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int categoryOrderNo = Integer.parseInt(request.getParameter("categoryOrder"));		// categoryOrder
+		System.out.println(request.getParameter("categoryOrder"));
 		
-		System.out.println("detailSer - categoryOrderNo : " + categoryOrderNo);
+		int categoryOrder = Integer.parseInt(request.getParameter("categoryOrder"));
+		
+		System.out.println("detailSer - categoryOrder : " + categoryOrder);
 		
 		BoardService boardService = new BoardService();
-		BoardDTO noticeDetail = boardService.selectNoticeDetail(categoryOrderNo);
+		BoardDTO noticeDetail = boardService.selectNoticeDetail(categoryOrder);
 		
 		System.out.println("noticeDetail : " + noticeDetail);
 		
