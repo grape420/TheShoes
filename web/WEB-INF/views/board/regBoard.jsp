@@ -104,12 +104,9 @@
 							<button type="submit" class="btn btn-outline-secondary" onclick="location.href='${ pageContext.servletContext.contextPath }/board/list'">등록</button>
 						</div>
 					</form>
-
-					<!-- //paging -->
 				</div>
 			</div>
 		</div>
-		<!-- 자자 해보자 -->
 	</section>
 
 	<!-- footer -->

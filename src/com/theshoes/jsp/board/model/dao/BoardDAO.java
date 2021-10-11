@@ -40,6 +40,4 @@ public class BoardDAO {
 	public int updateNoticeDetail(SqlSession session, BoardDTO notice) {
 		return session.update("BoardDAO.updateNoticeDetail", notice);
 	}
-	
-	
 }
