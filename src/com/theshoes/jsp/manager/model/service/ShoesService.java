@@ -10,30 +10,15 @@ import com.theshoes.jsp.manager.model.dao.ManagerMapper;
 import com.theshoes.jsp.shoes.model.dto.ShoesDTO;
 import com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO;
 
-public class RegShoesService {
+public class ShoesService {
 	
 	private final ManagerMapper mapper;
 	
-	public RegShoesService() {
+	public ShoesService() {
 		mapper = new ManagerMapper();
 	}
 
 	public int insertShoes(ShoesDTO shoes) {
-//		SqlSession sqlSession = getSqlSession();
-//		
-//		int result = mapper.insertShoes(sqlSession, shoes);
-//		
-//		if (result > 0) {
-//			System.out.println("신발 등록 성공!");
-//			sqlSession.commit();
-//		} else {
-//			System.out.println("신발 등록 실패!");
-//			sqlSession.rollback();
-//		}
-//		
-//		sqlSession.close();
-//		
-//		return result;
 		
 		/* Connection 생성 */
 		SqlSession session = getSqlSession();
@@ -67,7 +52,33 @@ public class RegShoesService {
 		session.close();
 		
 		return result;
+	}
+
+	public List<ShoesDTO> selectShoesList() {
+		SqlSession session = getSqlSession();
 		
+		List<ShoesDTO> shoesList = mapper.selectShoesList(session);
+		
+		session.close();
+		
+		return shoesList;
+	}
+
+	public ShoesDTO selectShoesDetail(int shoesNo) {
+		SqlSession session = getSqlSession();
+		ShoesDTO shoesDetail = null;
+		
+		shoesDetail = mapper.selectShoesDetail(session, shoesNo);
+		
+		if (shoesDetail != null) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return shoesDetail;
 	}
 		
 		

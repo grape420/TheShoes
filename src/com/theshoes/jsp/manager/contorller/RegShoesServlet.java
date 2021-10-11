@@ -2,9 +2,6 @@ package com.theshoes.jsp.manager.contorller;
 
 import java.io.File;
 import java.io.IOException;
-import java.security.Timestamp;
-import java.sql.Date;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,10 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.ibatis.reflection.SystemMetaObject;
 
-import com.theshoes.jsp.board.model.dto.BoardDTO;
-import com.theshoes.jsp.manager.model.service.RegShoesService;
+import com.theshoes.jsp.manager.model.service.ShoesService;
 import com.theshoes.jsp.shoes.model.dto.ShoesDTO;
 import com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO;
 
@@ -40,7 +35,6 @@ public class RegShoesServlet extends HttpServlet {
 		
 		request.getRequestDispatcher(path).forward(request, response);
 		
-		System.out.println("wlsWk?");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -191,6 +185,7 @@ public class RegShoesServlet extends HttpServlet {
 				shoes.setSalesAmount(Integer.valueOf(parameter.get("salesAmount")));
 				shoes.setStartDate(start);
 				shoes.setEndDate(end);
+				shoes.setEventEndYn(parameter.get("eventEndYn"));
 				
 				shoes.setThumbList(new ArrayList<ShoesThumbDTO>());
 				List<ShoesThumbDTO> list = shoes.getThumbList();
@@ -209,13 +204,14 @@ public class RegShoesServlet extends HttpServlet {
 				
 				System.out.println("thumbnail board : " + shoes);
 				
-				RegShoesService regShoesService = new RegShoesService();
+				ShoesService regShoesService = new ShoesService();
 				int result = regShoesService.insertShoes(shoes);
 				
 				/* 성공 실패 페이지를 구분하여 연결한다. */
 				String path = "";
 				if(result > 0) {
-					path = "/WEB-INF/views/manager/managerShoes.jsp";
+					path = "/WEB-INF/views/common/success.jsp";
+					request.setAttribute("successCode", "insertShoes");
 				} else {
 					path = "/WEB-INF/views/common/errorPage.jsp";
 				}

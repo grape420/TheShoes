@@ -51,10 +51,10 @@
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 						data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="manager_shoes.html">신발 정보 관리</a> <a
-								class="collapse-item" href="manager.html">회원 정보 관리</a> <a
-								class="collapse-item" href="manager_delivery.html">배송 정보 관리</a>
-							<a class="collapse-item" href="manager_board.html">회원 게시글 관리</a>
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/manager/shoes">신발 정보 관리</a> 
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/manager/memberList">회원 정보 관리</a> 
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/manager/delivery">배송 정보 관리</a>
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/manager/board">회원 게시글 관리</a>
 						</div>
 					</div></li>
 
@@ -109,13 +109,13 @@
 											name="shoesPrice" >
 									</div>
 									<div class="col-md-4 mb-3">
-										<label for="firstName">당첨자 발표일</label> <input
-											type="datetime-local" class="form-control" id="winnerDate"
+										<label for="firstName">당첨자 발표일</label> 
+										<input type="datetime-local" class="form-control" id="winnerDate"
 											placeholder="" name="winnerDate" >
 									</div>
 									<div class="col-md-4 mb-3">
-										<label for="country">판매여부</label> <select
-											class="custom-select d-block w-100" id="salesYn"
+										<label for="country">판매여부</label> 
+										<select class="custom-select d-block w-100" id="salesYn"
 											name="salesYn" >
 											<option value="Y">Y</option>
 											<option value="N">N</option>
@@ -127,15 +127,22 @@
 											class="form-control" id="salesAmount" placeholder=""
 											name="salesAmount" >
 									</div>
-									<div class="col-md-6 mb-3">
+									<div class="col-md-4 mb-3">
 										<label for="firstName">응모 시작일</label> <input
 											type="datetime-local" class="form-control" id="startDate"
 											placeholder="" name="startDate" >
 									</div>
-									<div class="col-md-6 mb-3">
+									<div class="col-md-4 mb-3">
 										<label for="firstName">응모 종료일</label> <input
 											type="datetime-local" class="form-control" id="endDate"
 											placeholder="" name="endDate" >
+									</div>
+									<div class="col-md-4 mb-3">
+										<label for="firstName">추첨 종료 상태</label>
+										<select class="custom-select d-block w-100" id="eventEndYn" name="eventEndYn" >
+											<option value="Y">Y</option>
+											<option value="N">N</option>
+										</select>
 									</div>
 
 										<div class="col-md-12 mb-3">

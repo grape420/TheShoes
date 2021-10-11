@@ -10,6 +10,7 @@ public class ShoesDTO implements Serializable{
 	
 	private int shoesNo;						// 신발 번호
 	private int infoCategoryNo;					// 신발 카테고리 번호
+	private ShoesCategoryDTO category;			
 	private String shoesModel;					// 모델명
 	private int shoesPrice;						// 발매가
 	private String salesYn;						// 판매 여부
@@ -20,13 +21,16 @@ public class ShoesDTO implements Serializable{
 	private java.util.Date winnerDate;			// 당첨자 발표일
 	private String eventEndYn;					// 추첨 종료 상태
 	private List<ShoesThumbDTO> thumbList;		// 신발 섬네일 리스트
+	
 	public ShoesDTO() {
 	}
-	public ShoesDTO(int shoesNo, int infoCategoryNo, String shoesModel, int shoesPrice, String salesYn, int salesAmount,
-			int reamaningAmount, java.util.Date startDate, java.util.Date endDate, java.util.Date winnerDate,
-			String eventEndYn, List<ShoesThumbDTO> thumbList) {
+	
+	public ShoesDTO(int shoesNo, int infoCategoryNo, ShoesCategoryDTO category, String shoesModel, int shoesPrice,
+			String salesYn, int salesAmount, int reamaningAmount, java.util.Date startDate, java.util.Date endDate,
+			java.util.Date winnerDate, String eventEndYn, List<ShoesThumbDTO> thumbList) {
 		this.shoesNo = shoesNo;
 		this.infoCategoryNo = infoCategoryNo;
+		this.category = category;
 		this.shoesModel = shoesModel;
 		this.shoesPrice = shoesPrice;
 		this.salesYn = salesYn;
@@ -38,6 +42,7 @@ public class ShoesDTO implements Serializable{
 		this.eventEndYn = eventEndYn;
 		this.thumbList = thumbList;
 	}
+	
 	public int getShoesNo() {
 		return shoesNo;
 	}
@@ -49,6 +54,12 @@ public class ShoesDTO implements Serializable{
 	}
 	public void setInfoCategoryNo(int infoCategoryNo) {
 		this.infoCategoryNo = infoCategoryNo;
+	}
+	public ShoesCategoryDTO getCategory() {
+		return category;
+	}
+	public void setCategory(ShoesCategoryDTO category) {
+		this.category = category;
 	}
 	public String getShoesModel() {
 		return shoesModel;
@@ -113,15 +124,15 @@ public class ShoesDTO implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
 	@Override
 	public String toString() {
-		return "ShoesDTO [shoesNo=" + shoesNo + ", infoCategoryNo=" + infoCategoryNo + ", shoesModel=" + shoesModel
-				+ ", shoesPrice=" + shoesPrice + ", salesYn=" + salesYn + ", salesAmount=" + salesAmount
-				+ ", reamaningAmount=" + reamaningAmount + ", startDate=" + startDate + ", endDate=" + endDate
-				+ ", winnerDate=" + winnerDate + ", eventEndYn=" + eventEndYn + ", thumbList=" + thumbList + "]";
+		return "ShoesDTO [shoesNo=" + shoesNo + ", infoCategoryNo=" + infoCategoryNo + ", category=" + category
+				+ ", shoesModel=" + shoesModel + ", shoesPrice=" + shoesPrice + ", salesYn=" + salesYn
+				+ ", salesAmount=" + salesAmount + ", reamaningAmount=" + reamaningAmount + ", startDate=" + startDate
+				+ ", endDate=" + endDate + ", winnerDate=" + winnerDate + ", eventEndYn=" + eventEndYn + ", thumbList="
+				+ thumbList + "]";
 	}
-	
-	
 	
 	
 

@@ -5,6 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="ManagerMapper">
 
+	<resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesCategoryDTO" id="shoesCategoryResultMap">
+		<id property="shoesCategoryNo" column="SHOES_CATEGORY_NO"/>
+		<result property="shoesCategoryName" column="SHOES_CATEGORY_NAME"/>
+	</resultMap>
+
 	 <resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesDTO" id="shoesResultMap">
 		<id property="shoesNo" column="SHOES_NO"/>
 		<result property="infoCategoryNo" column="INFO_CATEGORY_NO"/>
@@ -17,6 +22,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="endDate" column="END_DATE"/>
 		<result property="winnerDate" column="WINNER_DATE"/>
 		<result property="eventEndYn" column="EVENT_END_YN"/>
+		
+		<!-- 이거 해야만 조인 됨 -->
+		<association property="category" resultMap="shoesCategoryResultMap" />
 	</resultMap> 
 	
 	<resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO" id="shoesThumbResultMap">
@@ -58,7 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			, #{ startDate }
 			, #{ endDate }
 			, #{ winnerDate }
-			, 'N'
+			, #{ eventEndYn }
 			) 
 			<selectKey keyProperty="shoesNo" resultType="Integer" order="AFTER">
 				SELECT
@@ -92,5 +100,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			, 'Y'
 			)
 	</insert>
+	
+	<select id="selectShoesList" resultMap="shoesResultMap">
+	<!-- 여기서 조인해주고 resultMap에서 association도 해줘야 함 -->
+		SELECT
+		       A.SHOES_NO
+		     , A.INFO_CATEGORY_NO
+		     , B.SHOES_CATEGORY_NAME
+		     , A.SHOES_MODEL
+		     , A.SHOES_PRICE
+		     , A.SALES_YN
+		     , A.SALES_AMOUNT
+		     , A.REAMANING_AMOUNT
+		     , A.START_DATE
+		     , A.END_DATE
+		     , A.WINNER_DATE
+		     , A.EVENT_END_YN
+		  FROM SHOES_INFO A
+		  LEFT JOIN SHOES_CATEGORY B ON (A.INFO_CATEGORY_NO = B.SHOES_CATEGORY_NO)
+		 ORDER BY A.SHOES_NO DESC
+	</select>
+	
+	<select id="selectShoesDetail" resultMap="shoesResultMap">
+		SELECT
+		       A.SHOES_NO
+		     , A.INFO_CATEGORY_NO
+		     , B.SHOES_CATEGORY_NAME
+		     , A.SHOES_MODEL
+		     , A.SHOES_PRICE
+		     , A.SALES_YN
+		     , A.SALES_AMOUNT
+		     , A.REAMANING_AMOUNT
+		     , A.START_DATE
+		     , A.END_DATE
+		     , A.WINNER_DATE
+		     , A.EVENT_END_YN
+		  FROM SHOES_INFO A
+		  LEFT JOIN SHOES_CATEGORY B ON (A.INFO_CATEGORY_NO = B.SHOES_CATEGORY_NO)
+		 WHERE A.SHOES_NO = #{ shoesNo }
+	</select>
 	
 </mapper>
