@@ -5,6 +5,11 @@ section {
 	padding-bottom: 70px;
 }
 
+.email-result {
+	margin-top: 2px;
+	font-size: 11px;
+}
+
 .section-main-div {
 	width: 400px;
 	margin-bottom: 5em;

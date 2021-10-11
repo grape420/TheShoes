@@ -11,7 +11,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class SmtpNaverSsl {
-	public static String sendEmailMessage(String receiveEmail) {
+	public static String sendEmailMessage(String receiveEmail, String context) {
 		// 사용할 메일 - naver
 		String host = "smtp.naver.com";
 
@@ -67,12 +67,19 @@ public class SmtpNaverSsl {
 
 			// 수신자 설정
 			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(receiveEmail));
-
-			// 메일 제목
-			msg.setSubject("[The Shoes] 비밀번호 변경 인증 메일입니다.", "UTF-8");
-			// 메일 내용
-			msg.setText("인증 번호는 " + AuthenticationKey + " 입니다", "UTF-8");
-
+			
+			if(context == null) {
+				// 메일 제목
+				msg.setSubject("[The Shoes] 비밀번호 인증 메일입니다.", "UTF-8");
+				// 메일 내용
+				msg.setText("인증 번호는 " + AuthenticationKey + " 입니다", "UTF-8");
+			} else {
+				// 메일 제목
+				msg.setSubject("[The Shoes] 아이디 찾기 이메일입니다..", "UTF-8");
+				// 메일 내용
+				msg.setText("회원님의 아이디는 " + context + " 입니다", "UTF-8");
+			}
+			
 			Transport.send(msg);
 
 		} catch (Exception e) {

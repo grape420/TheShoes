@@ -147,6 +147,7 @@
 	var emailFlag = false;
 	var min = 0;
 	var sec = 0;
+	var countInterval;
 	
 		$("#id-check-btn").click(function() {
 			var idExp = /^(?=.*[a-zA-Z])(?!=.*[$@$!%*?&])(?=.*[0-9]).{4,12}$/;
@@ -188,6 +189,7 @@
 				$("#email-result").text("올바르지 않은 이메일 형식입니다.").css("color", "red");
 				$("#email").focus();
 			} else {
+				clearInterval(countInterval);
 				$.ajax({
 					url: "${ pageContext.servletContext.contextPath }/member/doubleCheck",
 					type: "GET",
@@ -228,7 +230,6 @@
 				$("#count-down").text("인증 성공").css("color", "blue");
 			} else {
 				emailFlag = false;
-				console.log("이메일 테스트 이상함");
 			}
 			
 			if(emailFlag == false || emailChangeFlag == false) {

@@ -70,4 +70,20 @@ public class MemberService {
 		return result;
 	}
 
+	public int passwordChange(MemberDTO member) {
+		SqlSession session = getSqlSession();
+		
+		int result = memberDAO.passwordChange(session, member);
+		
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
 }

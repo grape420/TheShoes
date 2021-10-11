@@ -14,7 +14,7 @@ public class BoardDAO {
 		System.out.println(selectCriteria);
 		return session.selectList("BoardDAO.selectAllNoticeList", selectCriteria);
 	}
-
+	
 	/* 공지사항 전체 게시글 수 조회 */
 	public int selectNoticeTotalCount(SqlSession session) {
 		return session.selectOne("BoardDAO.selectNoticeTotalCount");

@@ -29,10 +29,11 @@
           </div>
           <hr>
           <br>
-          <form action="#" method="POST">
+          <form action="#" method="GET">
             <input type="text" name="id" id="id" class="form-control" placeholder="아이디" autofocus required>
+            <label class="id-result mb-0" id="id-result"></label>
             <br>
-            <button type="submit" class="hsy-btn btn btn-lg btn-block btn-outline-dark" value="아이디 찾기">다음</button>
+            <button type="button" id="findId" class="hsy-btn btn btn-lg btn-block btn-outline-dark" value="아이디 찾기">다음</button>
           </form>
           <br>
         </div>
@@ -40,5 +41,31 @@
     
     <!-- footer -->
     <jsp:include page="../common/footer.jsp" />
+    
+    <script>
+	    $("#findId").click(function() {
+			const id = $("#id").val();
+			
+			$.ajax({
+				url: "${ pageContext.servletContext.contextPath }/member/findPassword?step=1",
+				type: "GET",
+				data: { id : id },
+				success: function(data) {
+					console.log(data);
+					if(data == "fail") {
+						$("#id-result").text("아이디를 다시 확인해 주세요.").css("color", "red");
+					} else {
+						$("#id-result").text("").css("color", "blue");
+						location.replace("${ pageContext.servletContext.contextPath }/member/findPassword?step=2");
+					}
+				},
+				error: function(request, status, error) {
+					alert("code:" + request.responseText + "\n"
+						+ "message:" + request.responseText + "\n"
+						+ "error:" + error);
+				}
+			});
+		});
+    </script>
 </body>
 </html>

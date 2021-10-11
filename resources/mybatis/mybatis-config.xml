@@ -19,5 +19,7 @@
 	</environments>
 	<mappers>
 		<mapper resource="com/theshoes/jsp/board/model/dao/BoardDAO.xml"/>
+		<mapper resource="com/theshoes/jsp/shoes/model/dao/ShoesDAO.xml"/>
+		<mapper resource="com/theshoes/jsp/manager/model/dao/ManagerMapper.xml"/>
 	</mappers>
 </configuration>

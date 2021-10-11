@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("password");
-		
+		System.out.println(pwd);
 		MemberDTO member = new MemberDTO();
 		member.setId(id);
 		member.setPwd(pwd);
@@ -37,7 +37,6 @@ public class LoginServlet extends HttpServlet {
 		if(member != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("entryMember", member);
-			System.out.println("Test");
 			request.getRequestDispatcher("/WEB-INF/views/main/mainPage.jsp").forward(request, response);
 		} else {
 			response.setContentType("application/json; charset=UTF-8");
