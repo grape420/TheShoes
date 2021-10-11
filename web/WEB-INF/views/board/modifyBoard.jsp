@@ -97,9 +97,7 @@
 							</div>
 							<div class="col-md-12">
 								<label for="exampleFormControlTextarea1">내용</label>
-								<textarea class="form-control" name="noticeContent" id="exampleFormControlTextarea1" rows="20">
-									<c:out value="${ requestScope.notice.boardContent }"></c:out>
-								</textarea>
+								<textarea class="form-control" name="noticeContent" id="exampleFormControlTextarea1" rows="20">${ requestScope.notice.boardContent }</textarea>
 							</div>
 
 							<!-- 수정은 불가하지만 필요한 값  -->
