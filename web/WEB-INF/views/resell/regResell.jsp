@@ -104,16 +104,5 @@
 	<jsp:include page="../common/footer.jsp" />
 	
 	<script src="${ pageContext.servletContext.contextPath }/resources/js/resell/regResell.js" type="text/javascript"></script>
-	<script type="text/javascript" src="/scripts/amcharts/amcharts.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/amcharts/serial.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-util.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-selectbox.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-link-selectbox.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-table.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-search.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-layerpopup.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-widget.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-searchpopup.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/searchbox-autocomplete.js?v=<%=System.currentTimeMillis() %>"></script>
 </body>
 </html>
