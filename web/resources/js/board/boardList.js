@@ -8,19 +8,20 @@ window.onload = function() {
 					this.parentNode.style.cursor = "pointer";
 				}
 				
-				/* $tds[i].onmouseout = function() {
+				$tds[i].onmouseout = function() {
 					this.parentNode.style.backgroundColor = "black";
-				}*/
+				}
 				
 				$tds[i].onclick = function() {
 					/* 게시물 번호까지 알아왔으니 이제 상세보기는 할 수 있겠죠? */
 					const no = this.parentNode.children[0].innerText;
-/*					location.href = "/TheShoes/board/detail?no=" + no;
-*/					console.log(this);
+/*					location.replace = "${ pageContext.servletContext.contextPath }/board/detail?no=" + no;
+*/					
+					console.log(this);
 					
 					console.log(this.parentNode);
 					console.log(this.parentNode.children);
-					console.log(this.parentNode.children[0]);
+					console.log($(this).text());
 					
 				}
 				

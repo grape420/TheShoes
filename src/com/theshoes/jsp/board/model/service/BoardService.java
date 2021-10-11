@@ -18,7 +18,6 @@ public class BoardService {
 		boardDAO = new BoardDAO();
 	}
 	
-	
 	/* 페이징 처리를 위한 공지사항 게시물 수 조회용 메소드 */
 	public int selectNoticeTotalCount() {
 		
@@ -32,11 +31,11 @@ public class BoardService {
 	}
 	
 	/* 공지사항 게시물 전체 조회용 메소드 */
-	public List<BoardDTO> selectAllNoticeList() {
+	public List<BoardDTO> selectAllNoticeList(SelectCriteria selectCriteria) {
 		
 		SqlSession session = getSqlSession();
 		
-		List<BoardDTO> noticeList = boardDAO.selectAllNoticeList(session);
+		List<BoardDTO> noticeList = boardDAO.selectAllNoticeList(session, selectCriteria);
 		System.out.println("noticeList : " + noticeList);
 		session.close();
 		

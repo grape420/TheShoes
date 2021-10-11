@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,18 +46,17 @@ public class RegBoardServlet extends HttpServlet {
 		noticeBoard.setBoardId(noticeWriterId);	
 		noticeBoard.setBoardTitle(noticeTitle);				
 		noticeBoard.setBoardContent(noticeContent);			
-		noticeBoard.setBoardRegDate(noticeRegDate);			
+		noticeBoard.setBoardRegDate(noticeRegDate);		
 		
-		int result = new BoardService().registNotice(noticeBoard);
-		
-		String path = "";
-		
+		BoardService boardService = new BoardService();
+
+		int result = boardService.registNotice(noticeBoard);
+				
 		if (result > 0) {
-			path = "/WEB-INF/views/board/boardList.jsp";
-		} else {
-			path = "/WEB-INF/views/common/errorPage.jsp";
-		}
+//			List<BoardDTO> noticeList = boardService.selectAllNoticeList();
+//			request.setAttribute("noticeList", noticeList);
+			request.getRequestDispatcher("/WEB-INF/views/board/boardList.jsp").forward(request, response);
+		} 
 		
-		request.getRequestDispatcher(path).forward(request, response);
 	}
 }

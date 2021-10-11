@@ -41,9 +41,10 @@
         )
 	</insert>
 	
-	<select id="selectAllNoticeList" resultMap="noticeResultMap">
+<!-- 	<select id="selectAllNoticeList" resultMap="noticeResultMap">
         SELECT /* com.theshoes.jsp.board.model.dao.BoardDAO#selectAllNoticeList() */
-	          A.BOARD_NO
+	          ROWNUM RNUM
+	        , A.BOARD_NO
 	        , A.BOARD_ID
 	        , A.BOARD_CATEGORY_NO
 	        , A.BOARD_TITLE
@@ -52,8 +53,43 @@
 	        , A.BOARD_HIT
 	        , A.CATEGORY_ORDER
          FROM BOARD A
-        WHERE A.BOARD_CATEGORY_NO = 1
+        WHERE A.BOARD_CATEGORY_NO = 1 
         ORDER BY A.CATEGORY_ORDER DESC
+	</select> -->
+	
+	<select id="selectAllNoticeList" resultMap="noticeResultMap" >
+		  SELECT /* com.theshoes.jsp.board.model.dao.BoardDAO#selectAllNoticeList() */
+	          A.RNUM
+	        , A.BOARD_NO
+	        , A.BOARD_ID
+	        , A.BOARD_CATEGORY_NO
+	        , A.BOARD_TITLE
+	        , A.BOARD_CONTENT
+	        , A.BOARD_REGDATE
+	        , A.BOARD_HIT
+	        , A.CATEGORY_ORDER
+         FROM (SELECT ROWNUM RNUM
+         			, B.BOARD_NO
+         			, B.BOARD_ID
+         			, B.BOARD_CATEGORY_NO
+         			, B.BOARD_TITLE
+         			, B.BOARD_CONTENT
+         			, B.BOARD_REGDATE
+         			, B.BOARD_HIT
+         			, B.CATEGORY_ORDER 
+         		FROM (SELECT C.BOARD_NO
+         				   , C.BOARD_ID
+         		       	   , C.BOARD_CATEGORY_NO
+         			       , C.BOARD_TITLE
+         			       , C.BOARD_CONTENT
+         			       , C.BOARD_REGDATE
+         			       , C.BOARD_HIT
+         			       , C.CATEGORY_ORDER
+         			    FROM BOARD C
+         			ORDER BY CATEGORY_ORDER DESC) B
+         		<![CDATA[
+         	    WHERE ROWNUM <=  10 ]]>) A
+         	  WHERE A.RNUM >= 1
 	</select>
 	
 	<select id="selectNoticeTotalCount" resultType="_int">

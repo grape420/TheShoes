@@ -10,9 +10,9 @@ import com.theshoes.jsp.common.paging.SelectCriteria;
 public class BoardDAO {
 
 	/* 공지사항 목록 전체 조회 */
-	public List<BoardDTO> selectAllNoticeList(SqlSession session) {
+	public List<BoardDTO> selectAllNoticeList(SqlSession session, SelectCriteria selectCriteria) {
 		System.out.println("BoardDAO");
-		return session.selectList("BoardDAO.selectAllNoticeList");
+		return session.selectList("BoardDAO.selectAllNoticeList", selectCriteria);
 	}
 
 	/* 공지사항 전체 게시글 수 조회 */
