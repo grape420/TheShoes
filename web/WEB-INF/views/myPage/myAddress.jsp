@@ -120,42 +120,45 @@
 									<div class="contents">
 										<div class="address-form"
 											data-module-shipping-address-write="{isModify:false}">
-											<form class="manage-account" method="POST" id="test"
-												action="${ pageContext.servletContext.contextPath }/myPage/address">
-
+										<form class="manage-account" method="POST" id="test" action="${ pageContext.servletContext.contextPath }/myPage/address">
+												
+												<h2 class="tit">순번</h2>
+												<input required type="text" name="addressNoMM" id="addressNo"
+													class="form-control" placeholder="순번"> 
+												<label class="addressNo" id="addressNo"></label>
+											
 												<h2 class="tit">배송지 이름</h2>
 												<input required type="text" name="addressNameMM"
 													id="addressName" class="form-control" placeholder="배송지 이름">
 												<label class="addressName-result" id="addressName-result"></label>
+												
 												<h2 class="tit">이름</h2>
 												<input required type="text" name="name" id="nameMM"
-													class="form-control" placeholder="이름"> <label
-													class="name-result" id="name-result"></label>
-
-												<h2 class="tit">전화번호</h2>
-												<input required type="text" name="phone" id="phoneMM"
-													class="form-control" placeholder="전화번호"> <label
-													class="phone-result" id="phone-result"></label>
-
-												<h2 class="tit">배송지 검색</h2>
+													class="form-control" placeholder="이름"> 
+													<label class="name-result" id="name-result"></label>
+													
+											 	<h2 class="tit">배송지 검색</h2>
 												<input required type="text" name="address1" id="address1MM"
 													class="form-control" value="" placeholder="예) 사랑시 고백구 행복동">
-												<input type="hidden" id="address3MM"
-													name="address.addressLine3" value=""> <input
-													type="hidden" id="addr_save_fild"> <input
-													type="button" id="searchZipCode" class="btn_search"
+												<input type="hidden" id="address3MM" name="address.addressLine3" value=""> 
+												<input type="hidden" id="addr_save_fild">  
+												<input type="button" id="searchZipCode" class="btn_search"
 													value="검색">
 												<h2 class="tit">상세주소</h2>
 												<input required type="text" name="address2" id="address2MM"
-													class="form-control" value="" placeholder="상세주소">
-												<button type="button" class="abtn-link width-large"
-													id="sizeBtn">배송지 추가</button>
+													class="form-control" placeholder="상세주소">
+												<div class="btn-wrap">
+													<button type="button" class="abtn-link width-large"
+														id="sizeBtn" data-dismiss="modal">배송지 추가</button>
+												</div>
 											</form>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+						
+						
 						<!-- 주소록 리스트 -->
 						<div class="cart-list" data-order="">
 							<div class="item-info">
@@ -245,41 +248,40 @@
 	<!-- 다음 우편번호 api -->
 	<!-- 참고 링크 : http://postcode.map.daum.net/guide -->
 	<script>
-		const $searchZipCode = document.getElementById("searchZipCode");
-		const $sizeBtn = document.getElementById("sizeBtn");
-
-		$searchZipCode.onclick = function() {
-
+				const $searchZipCode = document.getElementById("searchZipCode");
+				const $sizeBtn = document.getElementById("sizeBtn");
+		
+				$searchZipCode.onclick = function()  {  
+		
 			//다음 우편번호 검색 창을 오픈하면서 동작할 콜백 메소드를 포함한 객체를 매개변수로 전달한다.
-			new daum.Postcode(
-					{
-						oncomplete : function(data) {
-							//팝업에서 검색결과 항목을 클릭했을 시 실행할 코드를 작성하는 부분
-							document.getElementById("address1MM").value = data.zonecode;
-							document.getElementById("address2MM").value = data.address;
-
-						}
-					}).open();
+			new daum.Postcode({
+				oncomplete: function(data){
+					//팝업에서 검색결과 항목을 클릭했을 시 실행할 코드를 작성하는 부분
+					document.getElementById("address1MM").value = data.zonecode;
+					document.getElementById("address2MM").value = data.address;
+				
+				}
+			}).open();
 		}
 		$sizeBtn.onclick = function() {
 			location.href = "${ pageContext.servletContext.contextPath }";
 		}
+		
 	</script>
 
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 
 	<script src="${ pageContext.servletContext.contextPath }/resources/js/myPage/myProfile.js">
-		
 	</script>
-
+	
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+	
 	<script>
-		$("#sizeBtn").click(function() {
-			$("#test").submit();
-		});
-	</script>
-
+      $("#sizeBtn").click(function() {
+         $("#test").submit();
+      });
+   </script>
+	
 </body>
 </html>

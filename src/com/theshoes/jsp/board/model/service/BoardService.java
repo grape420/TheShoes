@@ -18,7 +18,6 @@ public class BoardService {
 		boardDAO = new BoardDAO();
 	}
 	
-	
 	/* 페이징 처리를 위한 공지사항 게시물 수 조회용 메소드 */
 	public int selectNoticeTotalCount() {
 		
@@ -32,11 +31,11 @@ public class BoardService {
 	}
 	
 	/* 공지사항 게시물 전체 조회용 메소드 */
-	public List<BoardDTO> selectAllNoticeList() {
+	public List<BoardDTO> selectAllNoticeList(SelectCriteria selectCriteria) {
 		
 		SqlSession session = getSqlSession();
 		
-		List<BoardDTO> noticeList = boardDAO.selectAllNoticeList(session);
+		List<BoardDTO> noticeList = boardDAO.selectAllNoticeList(session, selectCriteria);
 		System.out.println("noticeList : " + noticeList);
 		session.close();
 		
@@ -44,11 +43,11 @@ public class BoardService {
 	}
 	
 	/* 공지사항 게시판에 새로운 글 추가 */
-	public int registNotice(BoardDTO noticeBoard) {
+	public int registNotice(BoardDTO notice) {
 		
 		SqlSession session = getSqlSession();
 		
-		int result = boardDAO.registNotice(session, noticeBoard);
+		int result = boardDAO.registNotice(session, notice);
 		
 		if(result > 0) {
 			session.commit();
@@ -62,18 +61,20 @@ public class BoardService {
 	}
 	
 	/* 게시글 상세보기 */
-	public BoardDTO selectPostDetail(int no) {
+	public BoardDTO selectNoticeDetail(int categoryOrder) {
 		
 		SqlSession session = getSqlSession();
-		BoardDTO postDetail = null;
+		BoardDTO noticeDetail = null;
 		
 		/* 게시글 조회수 */
-		int result = boardDAO.incrementPostCount(session, no);
-		
+		int result = boardDAO.incrementNoticeCount(session, categoryOrder);
+				
 		if(result > 0) {
-			postDetail = boardDAO.selectPostDetail(session, no);
+			noticeDetail = boardDAO.selectNoticeDetail(session, categoryOrder);
 			
-			if(postDetail != null) {
+			System.out.println(noticeDetail);
+			
+			if(noticeDetail != null) {
 				session.commit();
 			} else {
 				session.rollback();
@@ -84,7 +85,26 @@ public class BoardService {
 		
 		session.close();
 		
-		return postDetail;
+		return noticeDetail;
 	}
+
+	/* 공지사항 수정하기 */
+	public int updateNoticeDetail(BoardDTO notice) {
+		SqlSession session = getSqlSession();
+		
+		int result = boardDAO.updateNoticeDetail(session, notice);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
+
 	
 }

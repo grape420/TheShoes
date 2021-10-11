@@ -90,8 +90,10 @@
     <script src="${ pageContext.servletContext.contextPath }/resources/js/common/main.js"></script>
     
     <script>
+    	var test = "${ test }";
+    	
     	$('#search').change(function() {
-    		${ test } = $("#search").val();
+    		test = $("#search").val();
     	});
     </script>
     
