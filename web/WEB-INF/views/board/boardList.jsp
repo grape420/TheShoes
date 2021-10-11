@@ -85,6 +85,13 @@
 					
 					<table class="table table-hover" id="noticeTable">
 						<tbody>
+							<tr style="background-color:black; color:white;">
+								<th colspan="1" class="text-center">번호</th>
+								<th colspan="5" class="text-center">제목</th>
+								<th colspan="1" class="text-center">작성자</th>
+								<th colspan="1" class="text-center">조회수</th>
+								<th colspan="1" class="text-center">작성일</th>
+							</tr>
 							<c:forEach var="noticeList" items="${ requestScope.noticeList }" >
 								<tr>							
 									<td class="text-center"><c:out value="${ noticeList.categoryOrder }"/></td>
