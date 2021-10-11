@@ -45,7 +45,7 @@
 	              <a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</a>
 	            </li>
 	            <li class="nav-item mr-2 ml-2">
-	              <a href="${ pageContext.servletContext.contextPath }/myPage/address">마이페이지</a>
+	              <a href="${ pageContext.servletContext.contextPath }/member/signup">마이페이지</a>
 	            </li>
 		         <c:if test="${ sessionScope.entryMember.role eq 'MANAGER'}">
 		            <li class="nav-item mr-2 ml-2">
@@ -90,8 +90,10 @@
     <script src="${ pageContext.servletContext.contextPath }/resources/js/common/main.js"></script>
     
     <script>
+    	var test = "${ test }";
+    	
     	$('#search').change(function() {
-    		${ test } = $("#search").val();
+    		test = $("#search").val();
     	});
     </script>
     
