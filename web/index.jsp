@@ -2,15 +2,15 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 <head>
-<
-
-
-meta charset="UTF-8">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>	
-	<jsp:forward page="WEB-INF/views/board/reBoard.jsp"/>	
+<body>
+
+	<!-- 메인페이지로 포워드 -->
+	<script>
+		location.replace("${ pageContext.servletContext.contextPath }/main/mainPage");
+	</script>
 </body>
 </html>
