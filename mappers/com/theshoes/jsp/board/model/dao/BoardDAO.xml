@@ -14,6 +14,7 @@
 		<result property="boardHit" column="BOARD_HIT"/>
 		<result property="categoryOrder" column="CATEGORY_ORDER"/>
 	</resultMap>
+
 	 
 	<insert id="registNotice">
         INSERT /* com.theshoes.jsp.board.model.dao.BoardDAO#registNotice() */
@@ -42,8 +43,9 @@
 	</insert>
 	
 	<select id="selectAllNoticeList" resultMap="noticeResultMap">
-        SELECT /* com.theshoes.jsp.board.model.dao.BoardDAO#selectAllNoticeList() */
-	          A.BOARD_NO
+		  SELECT /* com.theshoes.jsp.board.model.dao.BoardDAO#selectAllNoticeList() */
+	          A.RNUM
+	        , A.BOARD_NO
 	        , A.BOARD_ID
 	        , A.BOARD_CATEGORY_NO
 	        , A.BOARD_TITLE
@@ -51,9 +53,29 @@
 	        , A.BOARD_REGDATE
 	        , A.BOARD_HIT
 	        , A.CATEGORY_ORDER
-         FROM BOARD A
-        WHERE A.BOARD_CATEGORY_NO = 1
-        ORDER BY A.CATEGORY_ORDER DESC
+         FROM (SELECT ROWNUM RNUM
+         			, B.BOARD_NO
+         			, B.BOARD_ID
+         			, B.BOARD_CATEGORY_NO
+         			, B.BOARD_TITLE
+         			, B.BOARD_CONTENT
+         			, B.BOARD_REGDATE
+         			, B.BOARD_HIT
+         			, B.CATEGORY_ORDER 
+         		FROM (SELECT C.BOARD_NO
+         				   , C.BOARD_ID
+         		       	   , C.BOARD_CATEGORY_NO
+         			       , C.BOARD_TITLE
+         			       , C.BOARD_CONTENT
+         			       , C.BOARD_REGDATE
+         			       , C.BOARD_HIT
+         			       , C.CATEGORY_ORDER
+         			    FROM BOARD C
+         			   WHERE C.BOARD_CATEGORY_NO = 1 
+         			ORDER BY C.CATEGORY_ORDER DESC) B
+         		<![CDATA[
+         	    WHERE ROWNUM <= #{ endRow,jdbcType=VARCHAR } ]]> ) A
+         	  WHERE A.RNUM >= #{ startRow, jdbcType=VARCHAR }
 	</select>
 	
 	<select id="selectNoticeTotalCount" resultType="_int">
@@ -63,4 +85,37 @@
         WHERE A.BOARD_CATEGORY_NO = 1
 	</select>
 	
+	<select id="selectNoticeDetail" resultMap="noticeResultMap">
+        SELECT
+               A.BOARD_NO
+		     , A.BOARD_ID
+		     , A.BOARD_CATEGORY_NO
+		     , A.BOARD_TITLE
+		     , A.BOARD_CONTENT
+		     , A.BOARD_REGDATE
+		     , A.BOARD_HIT
+		     , A.CATEGORY_ORDER
+          FROM BOARD A
+         WHERE A.BOARD_CATEGORY_NO = 1
+           AND A.CATEGORY_ORDER = #{ categoryOrder }
+	</select>
+	
+	<update id="incrementNoticeCount">
+        UPDATE /* com.theshoes.jsp.board.model.dao.BoardDAO#incrementNoticeCount() */
+               BOARD A
+           SET A.BOARD_HIT = (SELECT B.BOARD_HIT
+                                   FROM BOARD B
+                                  WHERE B.CATEGORY_ORDER = #{ categoryOrder }
+                                ) + 1
+         WHERE A.CATEGORY_ORDER = #{ categoryOrder }
+	</update>
+	
+	<update id="updateNoticeDetail">
+        UPDATE /* com.theshoes.jsp.board.model.dao.BoardDAO#updateNoticeDetail() */
+               BOARD A
+		   SET A.BOARD_ID = #{ boardId }
+		   	 , A.BOARD_TITLE = #{ boardTitle }
+		     , A.BOARD_CONTENT = #{ boardContent }
+         WHERE A.CATEGORY_ORDER = #{ categoryOrder }
+	</update>
 </mapper>
