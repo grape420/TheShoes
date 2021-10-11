@@ -43,11 +43,11 @@ public class BoardService {
 	}
 	
 	/* 공지사항 게시판에 새로운 글 추가 */
-	public int registNotice(BoardDTO noticeBoard) {
+	public int registNotice(BoardDTO notice) {
 		
 		SqlSession session = getSqlSession();
 		
-		int result = boardDAO.registNotice(session, noticeBoard);
+		int result = boardDAO.registNotice(session, notice);
 		
 		if(result > 0) {
 			session.commit();
@@ -86,6 +86,23 @@ public class BoardService {
 		session.close();
 		
 		return noticeDetail;
+	}
+
+	/* 공지사항 수정하기 */
+	public int updateNoticeDetail(BoardDTO notice) {
+		SqlSession session = getSqlSession();
+		
+		int result = boardDAO.updateNoticeDetail(session, notice);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
 	}
 
 

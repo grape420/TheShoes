@@ -110,5 +110,14 @@
          WHERE A.CATEGORY_ORDER = #{ categoryOrder }
 	</update>
 	
+	<update id="updateNoticeDetail">
+        UPDATE /* com.theshoes.jsp.board.model.dao.BoardDAO#updateNoticeDetail() */
+               BOARD A
+		   SET A.BOARD_ID = #{ boardId }
+		   	 , A.BOARD_TITLE = #{ boardTitle }
+		     , A.BOARD_CONTENT = #{ boardContent }
+         WHERE A.CATEGORY_ORDER = #{ categoryOrder }
+	</update>
+	
 	
 </mapper>

@@ -100,7 +100,7 @@
              <!-- 관리자 확인 --> 
 		<%-- <c:if test="${ sessionScope.entryMember.role eq 'Y'}"> --%>
               <button type="button" class="btn btn-outline-secondary" id="modifyBtn"
-                onclick="location.href='${ pageContext.servletContext.contextPath }/board/update?categoryOrder=${ requestScope.notice.categoryOrder }'">수정</button>
+                onclick="location.href='${ pageContext.servletContext.contextPath }/board/modify?categoryOrder=${ requestScope.notice.categoryOrder }'">수정</button>
         <%-- </c:if> --%>
         
             </div>

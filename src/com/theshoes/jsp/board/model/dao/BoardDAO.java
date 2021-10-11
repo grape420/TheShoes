@@ -21,19 +21,26 @@ public class BoardDAO {
 	}
 
 	/* 새로운 공지사항 삽입 */
-	public int registNotice(SqlSession session, BoardDTO noticeBoard) {
-		return session.insert("BoardDAO.registNotice", noticeBoard);
+	public int registNotice(SqlSession session, BoardDTO notice) {
+		return session.insert("BoardDAO.registNotice", notice);
 	}
 
-	/* 게시글 조회수 증가 */
+	/* 공지사항 조회수 증가 */
 	public int incrementNoticeCount(SqlSession session, int categoryOrder) {
 		return session.update("BoardDAO.incrementNoticeCount", categoryOrder);
 	}
 
-	/* 게시글 상세보기 조회 */
+	/* 공지사항 상세보기 조회 */
 	public BoardDTO selectNoticeDetail(SqlSession session, int categoryOrder) {
 		System.out.println("BoardDAO : categoryOrder" + categoryOrder);
 		
 		return session.selectOne("BoardDAO.selectNoticeDetail", categoryOrder);
 	}
+
+	/* 공지사항 수정 */
+	public int updateNoticeDetail(SqlSession session, BoardDTO notice) {
+		return session.update("BoardDAO.updateNoticeDetail", notice);
+	}
+	
+	
 }

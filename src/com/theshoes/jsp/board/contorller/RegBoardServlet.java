@@ -42,15 +42,15 @@ public class RegBoardServlet extends HttpServlet {
 		Date noticeRegDate = new Date(cal.getTimeInMillis());
 		
 		/* BoardDTO에 값 넣기 */
-		BoardDTO noticeBoard = new BoardDTO();			
-		noticeBoard.setBoardId(noticeWriterId);	
-		noticeBoard.setBoardTitle(noticeTitle);				
-		noticeBoard.setBoardContent(noticeContent);			
-		noticeBoard.setBoardRegDate(noticeRegDate);		
+		BoardDTO notice = new BoardDTO();			
+		notice.setBoardId(noticeWriterId);	
+		notice.setBoardTitle(noticeTitle);				
+		notice.setBoardContent(noticeContent);			
+		notice.setBoardRegDate(noticeRegDate);		
 		
 		BoardService boardService = new BoardService();
 
-		int result = boardService.registNotice(noticeBoard);
+		int result = boardService.registNotice(notice);
 				
 		if (result > 0) {
 //			List<BoardDTO> noticeList = boardService.selectAllNoticeList();
