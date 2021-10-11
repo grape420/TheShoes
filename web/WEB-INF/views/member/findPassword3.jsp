@@ -29,14 +29,14 @@
           </div>
           <hr>
           <br>
-          <form action="#" method="POST">
+          <form id="change-password" action="#" method="POST">
             <input type="password" name="password" id="password" class="form-control" placeholder="변경할 비밀번호를 입력해주세요." autofocus required>
             <label class="password-result" id="password-result"></label>
             <br>
             <input type="password" name="password-check" id="password-check" class="form-control" placeholder="비밀번호를 재입력해주세요." required>
             <label class="password-result" id="password-check-result"></label>
             <br>
-            <button type="submit" class="hsy-btn btn btn-lg btn-block btn-outline-dark" value="아이디 찾기">다음</button>
+            <button type="button" id="next" class="hsy-btn btn btn-lg btn-block btn-outline-dark" value="아이디 찾기">다음</button>
           </form>
           <br>
         </div>
@@ -46,5 +46,52 @@
 	<jsp:include page="../common/footer.jsp" />
 	
 	<script src="${ pageContext.servletContext.contextPath }/resources/js/member/findPassword3.js"></script>
+	
+	<script>
+		var passwordFlag = false;
+		var passwordCheckFlag = false;
+		
+		$("#next").click(function() {
+			$("#change-password").submit();
+		});
+	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

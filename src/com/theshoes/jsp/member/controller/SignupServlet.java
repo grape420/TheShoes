@@ -29,6 +29,8 @@ public class SignupServlet extends HttpServlet {
 		String phone = request.getParameter("phone");
 		String birth = request.getParameter("birth");
 		
+		System.out.println(pwd);
+		
 		MemberDTO member = new MemberDTO(id, name, pwd, email, phone, null, null, "N", "N", birth, "MEMBER");
 		
 		MemberService memberService = new MemberService();
@@ -36,9 +38,9 @@ public class SignupServlet extends HttpServlet {
 		int result = memberService.registMember(member);
 		
 		if (result > 0) {
-			request.getRequestDispatcher("/WEB-INF/views/main/mainPage.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/member/login.jsp").forward(request, response);
 		} else {
-			request.getRequestDispatcher("/WEB-INF/views/main/mainPage.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(request, response);
 		}
 	}
 

@@ -38,7 +38,7 @@ public class DoubleCheckServlet extends HttpServlet {
 			if ("id".equals(request.getParameter("type"))) {
 				jsonString = new Gson().toJson("success");
 			} else if("email".equals(request.getParameter("type"))) {
-				jsonString = new Gson().toJson(SmtpNaverSsl.sendEmailMessage(request.getParameter("value")));
+				jsonString = new Gson().toJson(SmtpNaverSsl.sendEmailMessage(request.getParameter("value"), null));
 			}
 		} else {
 			jsonString = new Gson().toJson("fail");

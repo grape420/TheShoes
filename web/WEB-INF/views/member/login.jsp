@@ -65,6 +65,5 @@
 		});
 	</script>
 	
-	<script src="${ pageContext.servletContext.contextPath }/resources/js/member/login.js"></script>
 </body>
 </html>

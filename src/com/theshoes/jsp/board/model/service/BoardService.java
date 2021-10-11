@@ -18,6 +18,7 @@ public class BoardService {
 		boardDAO = new BoardDAO();
 	}
 	
+	
 	/* 페이징 처리를 위한 공지사항 게시물 수 조회용 메소드 */
 	public int selectNoticeTotalCount() {
 		
@@ -31,11 +32,11 @@ public class BoardService {
 	}
 	
 	/* 공지사항 게시물 전체 조회용 메소드 */
-	public List<BoardDTO> selectAllNoticeList(SelectCriteria selectCriteria) {
+	public List<BoardDTO> selectAllNoticeList() {
 		
 		SqlSession session = getSqlSession();
 		
-		List<BoardDTO> noticeList = boardDAO.selectAllNoticeList(session, selectCriteria);
+		List<BoardDTO> noticeList = boardDAO.selectAllNoticeList(session);
 		System.out.println("noticeList : " + noticeList);
 		session.close();
 		
@@ -61,20 +62,18 @@ public class BoardService {
 	}
 	
 	/* 게시글 상세보기 */
-	public BoardDTO selectNoticeDetail(int categoryOrder) {
+	public BoardDTO selectPostDetail(int no) {
 		
 		SqlSession session = getSqlSession();
-		BoardDTO noticeDetail = null;
+		BoardDTO postDetail = null;
 		
 		/* 게시글 조회수 */
-		int result = boardDAO.incrementNoticeCount(session, categoryOrder);
-				
+		int result = boardDAO.incrementPostCount(session, no);
+		
 		if(result > 0) {
-			noticeDetail = boardDAO.selectNoticeDetail(session, categoryOrder);
+			postDetail = boardDAO.selectPostDetail(session, no);
 			
-			System.out.println(noticeDetail);
-			
-			if(noticeDetail != null) {
+			if(postDetail != null) {
 				session.commit();
 			} else {
 				session.rollback();
@@ -85,9 +84,7 @@ public class BoardService {
 		
 		session.close();
 		
-		return noticeDetail;
+		return postDetail;
 	}
-
-
 	
 }
