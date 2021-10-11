@@ -15,7 +15,7 @@ public class AddressService {
 	
 	public AddressService() {
 		addressDAO = new AddressDAO();
-		System.out.println("addressService");
+		System.out.println("나는야 서비스 ");
 	}
 		
 		/* 주소록 전체 조회용 메소드 */
@@ -33,19 +33,19 @@ public class AddressService {
 
 		/* 주소록 추가 메소드 */
 		public int insertAddress(AddressDTO newAddress) {
-			
 			SqlSession session = getSqlSession();
-			
 			int result = addressDAO.insertAddress(session, newAddress);
-			
 			if(result > 0) {
 				session.commit();
 			} else {
 				session.rollback();
 			}
-			
 			session.close();
 			
 			return result;
 		}
+
+		/* 주소록 수정 메소드 */ 
+		
+
 }
