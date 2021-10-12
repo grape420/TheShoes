@@ -9,8 +9,7 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/resell/regResell.css">
 <link rel="shortcut icon"
 	href="${ pageContext.servletContext.contextPath }/resources/uses/the-shoes-favicon.png">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <title>THE SHOES</title>
 </head>
 <body>
@@ -34,13 +33,13 @@
 					<div class="right">
 						<ul class="img_list">
 							<li class="input_img">이미지 등록<input type="file"
-								accept="image/jpg, image/jpeg, image/png"></li>
+								accept="image/jpg, image/jpeg, image/png" multiple=""></li>
 							<!--이미지 등록했을때 화면 필요 없을시 아래의 내용 삭제-->
-							<!-- <li>
+							<!--<li>
                   <div class="title_img">대표이미지</div>
                   <img src="image/search02.jpg" alt="상품이미지">
                   <button type="button" class="close_img"></button>
-                </li> -->
+                </li>-->
 							<!--이미지 등록했을때 화면 필요 없을시 아래의 내용 삭제-->
 						</ul>
 						<p class="p"></p>
@@ -60,7 +59,7 @@
 					</div>
 					<div class="right">
 						<input type="text" id="productName" class="textlength" placeholder="상품 제목을 입력해 주세요."
-							style="width: 92%;" onkeyup="onKeyUp()" /> 
+							style="width: 91%;" /> 
 							<span class="count black" id="title_count">0/40</span>
 						<!--제목 input 클릭시 나옴 필요 없을시 아래의 내용 삭제-->
 
@@ -103,6 +102,6 @@
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 	
-	<script src="${ pageContext.servletContext.contextPath }/resources/js/resell/regResell.js" type="text/javascript"></script>
+	<script src="${ pageContext.servletContext.contextPath }/resources/js/resell/regResell.js"></script>
 </body>
 </html>
