@@ -24,7 +24,7 @@
 			<h3 class="titleA">
 				기본정보 <span class="pill">*필수항목</span>
 			</h3>
-			<form class="resellReg" method="post" action="${ pageContext.servletContext.contextPath }/resell/regResell"enctype="multipart/form-data">
+			<form class="resellReg" method="post" action="${ pageContext.servletContext.contextPath }/resell/regResell" enctype="multipart/form-data">
 			<ul class="sell_table">
 				<li>
 					<div class="left">
@@ -34,13 +34,13 @@
 					<div class="right">
 						<ul class="img_list">
 							<li class="input_img">이미지 등록<input type="file"
-								accept="image/jpg, image/jpeg, image/png" multiple=""></li>
+								accept="image/jpg, image/jpeg, image/png"></li>
 							<!--이미지 등록했을때 화면 필요 없을시 아래의 내용 삭제-->
-							<!--<li>
+							<!-- <li>
                   <div class="title_img">대표이미지</div>
                   <img src="image/search02.jpg" alt="상품이미지">
                   <button type="button" class="close_img"></button>
-                </li>-->
+                </li> -->
 							<!--이미지 등록했을때 화면 필요 없을시 아래의 내용 삭제-->
 						</ul>
 						<p class="p"></p>
@@ -104,16 +104,5 @@
 	<jsp:include page="../common/footer.jsp" />
 	
 	<script src="${ pageContext.servletContext.contextPath }/resources/js/resell/regResell.js" type="text/javascript"></script>
-	<script type="text/javascript" src="/scripts/amcharts/amcharts.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/amcharts/serial.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-util.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-selectbox.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-link-selectbox.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-table.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-search.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-layerpopup.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-widget.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-searchpopup.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/searchbox-autocomplete.js?v=<%=System.currentTimeMillis() %>"></script>
 </body>
 </html>
