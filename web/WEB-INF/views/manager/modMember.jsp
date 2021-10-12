@@ -133,8 +133,7 @@
 										<option value="부적절한 게시물 올림">부적절한 게시물 올림</option>
 										<option value="그냥">그냥</option>
 										<option value="내맘">내맘</option>
-										<option value="self" id="selfInput">직접입력</option>
-										
+										<option value="self">직접입력</option>
 										<div>
 										<input type="text" hidden class="form-control mt-3" id="delMemoWrite" name="selfInput"
 										placeholder="블랙리스트 사유를 15자 이내로 입력해주세요.">
@@ -161,7 +160,7 @@
 	<jsp:include page="../common/footer.jsp" />
 	<script src="${ pageContext.servletContext.contextPath }/resources/js/shoes/pay.js"></script>
 	<script type="text/javascript">
-	 $(function() {
+	
 	      $("#delMemoWrite").keyup(function() {
 	        console.log($(this).val());
 
@@ -179,13 +178,9 @@
 	          $("#registBtn").attr("disabled", true);
 	        }
 	      })
-	    })
 	    
-	    
-	    $(function() {
 	    	
-	    	
-				$('#delMemo').change(
+		$('#delMemo').change(
 				function() {
 				if ($("#delMemo option:selected") .val() == 'self') {
 					$("#delMemoWrite").removeAttr("hidden");
@@ -196,9 +191,7 @@
 					$("#limitNum").attr("hidden", true);
 				}
 			})
-		})
 		
-		$(function() {
 				$('#blackListYn').change(
 				function() {
 				if ($("#blackListYn option:selected").val() == 'N') {
@@ -207,11 +200,15 @@
 					$("#bl").removeAttr("hidden");
 				}
 			})
-		})
 		
+		/* 3번 봐라 좋은 말로 할때 */
 		$("#delMemoWrite").change(function() {
 			$(this).val($(this).text);
 			console.log($("#selfInput").val());
+		})
+		
+		$("#delMemo").change(function () {
+			$("#delMemoWrite").val("").text("");
 		})
 		
 	</script>

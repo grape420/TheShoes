@@ -40,13 +40,14 @@ public class ModMemberServlet extends HttpServlet {
 		String blackListYn = request.getParameter("blackListYn");
 		String blackReason = "";
 		
-		if (request.getParameter("selfInput") != null ) {
-			 blackReason = request.getParameter("selfInput");
-			 System.out.println("blackReason");
+		/* 이것도 3번 봐라 */
+		if ("".equals(request.getParameter("selfInput"))) {
+			blackReason = request.getParameter("blackReason");
 		} else {
-			 blackReason = request.getParameter("blackReason");
+			blackReason = request.getParameter("selfInput");
 		}
-		System.out.println(request.getParameter("selfInput"));
+		System.out.println("이거 뭐야 : " + request.getParameter("selfInput"));
+		
 		ManagerMemberService managerMemberService = new ManagerMemberService();
 
 		MemberDTO member = new MemberDTO();
