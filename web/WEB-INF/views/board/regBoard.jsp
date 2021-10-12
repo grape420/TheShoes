@@ -102,7 +102,7 @@
 									rows="20" name="noticeContent"></textarea>
 							</div>
 							<button type="submit" class="btn btn-outline-secondary" onclick="location.href='${ pageContext.servletContext.contextPath }/board/list'">등록</button>
-						</div>
+							</div>
 					</form>
 				</div>
 			</div>

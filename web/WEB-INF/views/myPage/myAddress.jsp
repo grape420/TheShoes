@@ -103,16 +103,15 @@
 
 						<!-- 주소록 추가 modal-->
 						<button type="button" class="Add-addressBTN" data-toggle="modal"
-							data-target="#exampleModal" data-whatever="@getbootstrap">+
-							배송지추가</button>
+							data-target="#exampleModal" data-whatever="@getbootstrap">
+							+ 배송지추가</button>
 
 						<div class="modal fade" id="exampleModal" tabindex="-1"
 							aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-H">
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
@@ -121,36 +120,24 @@
 										<div class="address-form"
 											data-module-shipping-address-write="{isModify:false}">
 										<form class="manage-account" method="POST" id="test" action="${ pageContext.servletContext.contextPath }/myPage/address">
-												
-												<h2 class="tit">순번</h2>
-												<input required type="text" name="addressNoMM" id="addressNo"
-													class="form-control" placeholder="순번"> 
-												<label class="addressNo" id="addressNo"></label>
 											
 												<h2 class="tit">배송지 이름</h2>
-												<input required type="text" name="addressNameMM"
-													id="addressName" class="form-control" placeholder="배송지 이름">
+												<input required type="text" name="addressNameMM" id="addressName" class="form-control" placeholder="배송지 이름">
 												<label class="addressName-result" id="addressName-result"></label>
 												
 												<h2 class="tit">이름</h2>
-												<input required type="text" name="name" id="nameMM"
-													class="form-control" placeholder="이름"> 
-													<label class="name-result" id="name-result"></label>
+												<input required type="text" name="name" id="nameMM"	class="form-control" placeholder="이름"> 
+												<label class="name-result" id="name-result"></label>
 													
 											 	<h2 class="tit">배송지 검색</h2>
-												<input required type="text" name="address1" id="address1MM"
-													class="form-control" value="" placeholder="예) 사랑시 고백구 행복동">
-												<input type="hidden" id="address3MM" name="address.addressLine3" value=""> 
-												<input type="hidden" id="addr_save_fild">  
-												<input type="button" id="searchZipCode" class="btn_search"
-													value="검색">
+												<input required type="text" name="address1" id="address1MM" class="form-control" value="" placeholder="예) 사랑시 고백구 행복동">
+												<input type="button" id="searchZipCode" class="btn_search" value="검색">
+													
 												<h2 class="tit">상세주소</h2>
-												<input required type="text" name="address2" id="address2MM"
-													class="form-control" placeholder="상세주소">
-												<div class="btn-wrap">
-													<button type="button" class="abtn-link width-large"
-														id="sizeBtn" data-dismiss="modal">배송지 추가</button>
-												</div>
+												<input required type="text" name="address2" id="address2MM"class="form-control" placeholder="상세주소">
+												
+												<button type="submit" class="abtn-link width-large" id="sizeBtn" data-dismiss="modal"> 배송지 추가</button>
+												 
 											</form>
 										</div>
 									</div>
@@ -158,26 +145,24 @@
 							</div>
 						</div>
 						
-						
-						<!-- 주소록 리스트 -->
-						<div class="cart-list" data-order="">
+						<!-- 주소록 리스트 예시용 -->
+						<div class="cart-list" >
 							<div class="item-info">
-								<div class="basic" data-order="">
+								<div class="basic">
 									<div class="my_item is_active" default-mark="기본 배송지">
 										<div class="info_bind">
 											<div class="address_info">
 												<div class="name_box">
-													<span class="name" id="name">최호진</span> <span class="markT"
-														id="markT">기본 배송지</span> <br> <span class="phone"
-														id="phone">010-7769-3476</span> <br> <span
-														class="zipcode" id="zipcode">(07909)</span> <span
-														class="address" id="address">서울 양천구 남부순환로30길 10-1 </span>
-
+													<span class="name"  id="name">최호진</span> 
+													<span class="markT" id="markT">기본 배송지</span> <br> 
+													<span class="phone" id="phone">010-7769-3476</span> <br> 
+													<span class="zipcode" id="zipcode">(07909)</span> 
+													<span class="address" id="address">서울 양천구 남부순환로30길 10-1 </span>
 													<div class="right_btm">
-														<a href="#" type="button" class="btn outlinegrey small"
-															data-toggle="modal" data-target="#exampleModa"
-															data-whatever="@getbootstrap"> 수정 </a> <a href="#"
-															type="button" class="btn outlinegrey small"> 삭제 </a>
+													
+													<a href="#" type="button" class="btn outlinegrey small" data-toggle="modal" 
+												    	data-target="#exampleModa" data-whatever="@getbootstrap"> 수정 </a>
+													<a href="#" type="button" class="btn outlinegrey small"> 삭제 </a>
 													</div>
 												</div>
 											</div>
@@ -186,6 +171,18 @@
 								</div>
 							</div>
 						</div>
+						
+						<!-- 주소록 리스트 -->
+						<c:forEach var="addressList" items="${ requestScope.addressList }">
+						<span class = "name"> <c:out value="${ addressList.name }"/> </span>
+						<span class = "markT"> <c:out value="${ addressList.markT }"/> </span>
+						<span class = "phone"> <c:out value="${ addressList.phone }"/> </span>
+						<span class = "zipcode"> <c:out value="${ addressList.zipcode }"/> </span>
+						<span class = "address"> <c:out value="${ addressList.address }"/> </span>
+						</c:forEach>
+						
+						
+						
 					</div>
 				</div>
 			</div>
@@ -228,7 +225,7 @@
 									placeholder="예) 사랑시 고백구 행복동"> <input type="hidden"
 									id="address3" name="address.addressLine3" value=""> <input
 									type="hidden" id="addr_save_fild"> <input type="button"
-									onclick="" class="btn_search" value="검색">
+									class="btn_search" value="검색">
 
 								<h2 class="tit">상세주소</h2>
 								<input required type="text" name="address2" id="address2"

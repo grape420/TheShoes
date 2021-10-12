@@ -25,7 +25,6 @@
         VALUES
         (
           SEQ_ADDRESS_CODE.NEXTVAL 
-        , #{ addressNo } 
         , #{ nameMM }
         , #{ address1MM }
         , #{ address2MM }
@@ -34,13 +33,14 @@
 	</insert>
 	
 	<select id="selectAllAddressList" resultMap="addressResultMap">
-		SELECT 
-       		 A.ADDRESS_NO
-     	   , A.ADDRESS_ID
+		SELECT   /* com.theshoes.jsp.member.model.dao.AddressDAO#selectAllAddressList() */
+       		 A.ADDRESS_NO 
+     	   , A.ADDRESS_ID 
      	   , A.ADDRESS_ZIP 
-      	   , A.ADDRESS_DETAIL
-    	   , A.ADDRESS_NAME
-      	  FROM ADDRESS A
+      	   , A.ADDRESS_DETAIL 
+    	   , A.ADDRESS_NAME 
+      	  FROM ADDRESS A 
+      	  WHERE A.ADDRESS_NO  = 1
 	</select>
 	
 </mapper>
