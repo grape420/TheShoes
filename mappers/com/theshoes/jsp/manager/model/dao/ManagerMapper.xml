@@ -131,7 +131,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE A.SHOES_NO = #{ shoesNo }
 	</update>
 	
-	<select id="selectShoesList" resultMap="shoesResultMap">
+	<select id="selectShoesList" resultMap="shoesResultMap">			<!-- 이거 필요없음 -->
 	<!-- 여기서 조인해주고 resultMap에서 association도 해줘야 함 -->
 		SELECT
 		       A.SHOES_NO
@@ -175,6 +175,55 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  LEFT JOIN SHOES_CATEGORY B ON (A.INFO_CATEGORY_NO = B.SHOES_CATEGORY_NO)
 		  LEFT JOIN SHOES_THUMB C ON (A.SHOES_NO = C.ST_NO)
 		 WHERE A.SHOES_NO = #{ shoesNo }
+	</select>
+	
+	<select id="selectAllNoticeList" resultMap="shoesResultMap">
+       	  SELECT /* com.theshoes.jsp.board.model.dao.BoardDAO#selectAllNoticeList() */
+		          A.RNUM
+		        , A.SHOES_NO
+		        , A.INFO_CATEGORY_NO
+	            , D.SHOES_CATEGORY_NAME
+		        , A.SHOES_MODEL
+		        , A.SHOES_PRICE
+		        , A.SALES_YN
+		        , A.SALES_AMOUNT
+		        , A.START_DATE
+		        , A.END_DATE
+		        , A.WINNER_DATE
+		        , A.EVENT_END_YN
+	         FROM (SELECT ROWNUM RNUM
+	         			, B.SHOES_NO
+	         			, B.INFO_CATEGORY_NO
+	         			, B.SHOES_MODEL
+	         			, B.SHOES_PRICE
+	         			, B.SALES_YN
+	         			, B.SALES_AMOUNT
+	         			, B.START_DATE
+	         			, B.END_DATE
+	         			, B.WINNER_DATE
+	         			, B.EVENT_END_YN
+	         		FROM (SELECT C.SHOES_NO
+	         				   , C.INFO_CATEGORY_NO
+	         		       	   , C.SHOES_MODEL
+	         			       , C.SHOES_PRICE
+	         			       , C.SALES_YN
+	         			       , C.SALES_AMOUNT
+	         			       , C.START_DATE
+	         			       , C.END_DATE
+	         			       , C.WINNER_DATE
+	         			       , C.EVENT_END_YN
+	         			    FROM SHOES_INFO C
+	         			ORDER BY C.SHOES_NO DESC) B
+	         			<![CDATA[
+	         	    WHERE ROWNUM <= #{ endRow,jdbcType=VARCHAR } ]]> ) A
+	                LEFT JOIN SHOES_CATEGORY D ON (A.INFO_CATEGORY_NO = D.SHOES_CATEGORY_NO)
+	         	  WHERE A.RNUM >= #{ startRow, jdbcType=VARCHAR }
+	</select>
+	
+	<select id="selectShoesTotalCount" resultType="_int">
+		SELECT 
+	          COUNT(*)
+         FROM SHOES_INFO A
 	</select>
 	
 </mapper>

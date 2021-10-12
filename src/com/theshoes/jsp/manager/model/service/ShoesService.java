@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.theshoes.jsp.board.model.dto.BoardDTO;
+import com.theshoes.jsp.common.paging.SelectCriteria;
 import com.theshoes.jsp.manager.model.dao.ManagerMapper;
 import com.theshoes.jsp.shoes.model.dto.ShoesDTO;
 import com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO;
@@ -54,7 +56,7 @@ public class ShoesService {
 		return result;
 	}
 
-	public List<ShoesDTO> selectShoesList() {
+	public List<ShoesDTO> selectShoesList() {				// 좀이따 주석
 		SqlSession session = getSqlSession();
 		
 		List<ShoesDTO> shoesList = mapper.selectShoesList(session);
@@ -64,7 +66,7 @@ public class ShoesService {
 		return shoesList;
 	}
 
-	public ShoesDTO selectShoesDetail(int shoesNo) {
+	public ShoesDTO selectShoesDetail(int shoesNo) {				
 		SqlSession session = getSqlSession();
 		ShoesDTO shoesDetail = null;
 		
@@ -113,6 +115,26 @@ public class ShoesService {
 		session.close();
 		
 		return result;
+	}
+
+	public List<ShoesDTO> selectAllShoesList(SelectCriteria selectCriteria) {
+		SqlSession session = getSqlSession();
+		
+		List<ShoesDTO> shoesList = mapper.selectAllNoticeList(session, selectCriteria);
+		System.out.println("shoesList : " + shoesList);
+		session.close();
+		
+		return shoesList;
+	}
+
+	public int selectShoesTotalCount() {
+		SqlSession session = getSqlSession();
+		
+		int totalCount = mapper.selectShoesTotalCount(session);
+		
+		session.close();
+		
+		return totalCount;
 	}
 		
 		
