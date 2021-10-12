@@ -59,8 +59,6 @@
 						</div>
 					</div></li>
 
-
-
 				<!-- Divider -->
 				<hr class="sidebar-divider">
 
@@ -136,7 +134,7 @@
 					</div>
 
 					<!-- 페이징처리 넣기 -->
-					<jsp:include page="paging.jsp" />
+					<jsp:include page="shoesPaging.jsp" />
 					
 					
 					

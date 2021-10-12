@@ -45,8 +45,6 @@ public class ManagerShoesListServlet extends HttpServlet {
 		System.out.println(selectCriteria);
 		
 		List<ShoesDTO> shoesList = shoesService.selectAllShoesList(selectCriteria);
-		shoesList.get(0).getCategory().getShoesCategoryName();
-		System.out.println("여기는 서블릿" + shoesList.get(0).getCategory().getShoesCategoryName());
 		
 		String path = "";
 		if (shoesList != null) {

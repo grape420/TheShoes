@@ -40,6 +40,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="status" column="ATTACHMENT_STATUS"/>
 	</resultMap>
 	
+	<resultMap type="com.theshoes.jsp.member.model.dto.MemberDTO" id="memberResultMap">
+		<id property="id" column="MEMBER_ID"/>
+		<result property="name" column="NAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="phone" column="PHONE_NO"/>
+		<result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="blackReason" column="BLACK_REASON"/>
+		<result property="blackListYn" column="BLACKLIST_YN"/>
+		<result property="withDrawYn" column="WITHDRAW_YN"/>
+		<result property="birth" column="BIRTH"/>
+		<result property="role" column="ROLE"/>
+	</resultMap>
+	
 	
 	
 	<insert id="insertShoes" parameterType="com.theshoes.jsp.shoes.model.dto.ShoesDTO">
@@ -177,6 +190,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE A.SHOES_NO = #{ shoesNo }
 	</select>
 	
+	<select id="selectMemberDetail" resultMap="memberResultMap">
+		SELECT
+		       A.MEMBER_ID
+		     , A.NAME
+		     , A.EMAIL
+		     , A.PHONE_NO
+		     , A.ENROLL_DATE
+		     , A.BLACK_REASON
+		     , A.BLACKLIST_YN
+		     , A.WITHDRAW_YN
+		     , A.BIRTH
+		     , A.ROLE
+		  FROM MEMBER A
+		 WHERE A.MEMBER_ID = #{ memberId }
+		   AND A.ROLE = 'MEMBER'
+	</select>
+	
 	<select id="selectAllNoticeList" resultMap="shoesResultMap">
        	  SELECT /* com.theshoes.jsp.board.model.dao.BoardDAO#selectAllNoticeList() */
 		          A.RNUM
@@ -222,8 +252,57 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="selectShoesTotalCount" resultType="_int">
 		SELECT 
-	          COUNT(*)
-         FROM SHOES_INFO A
+	           COUNT(*)
+         FROM  SHOES_INFO A
+	</select>
+	
+	<select id="selectMemberTotalCount" resultType="_int">
+		SELECT 
+	           COUNT(*)
+         FROM  MEMBER A
+	</select>
+	
+	<select id="selectAllMemberList" resultMap="memberResultMap">
+       	  SELECT /* com.theshoes.jsp.board.model.dao.BoardDAO#selectAllNoticeList() */
+		          A.RNUM
+		        , A.MEMBER_ID
+		        , A.NAME
+		        , A.EMAIL
+		        , A.PHONE_NO
+		        , A.ENROLL_DATE
+		        , A.BLACK_REASON
+		        , A.BLACKLIST_YN
+		        , A.WITHDRAW_YN
+		        , A.BIRTH
+		        , A.ROLE
+	         FROM (SELECT ROWNUM RNUM
+	         			, B.MEMBER_ID
+				        , B.NAME
+				        , B.EMAIL
+				        , B.PHONE_NO
+				        , B.ENROLL_DATE
+				        , B.BLACK_REASON
+				        , B.BLACKLIST_YN
+				        , B.WITHDRAW_YN
+				        , B.BIRTH
+				        , B.ROLE
+	         		FROM (SELECT C.MEMBER_ID
+					           , C.NAME
+					           , C.EMAIL
+					           , C.PHONE_NO
+					           , C.ENROLL_DATE
+					           , C.BLACK_REASON
+					           , C.BLACKLIST_YN
+					           , C.WITHDRAW_YN
+					           , C.BIRTH
+					           , C.ROLE
+	         			    FROM MEMBER C
+	         			ORDER BY C.MEMBER_ID DESC) B
+	         			<![CDATA[
+	         	    WHERE ROWNUM <= #{ endRow,jdbcType=VARCHAR } ]]> ) A
+	         	  WHERE A.RNUM >= #{ startRow, jdbcType=VARCHAR }
+	         	    AND A.ROLE = 'MEMBER'
+	         	  	
 	</select>
 	
 </mapper>

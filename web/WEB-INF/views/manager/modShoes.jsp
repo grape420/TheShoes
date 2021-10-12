@@ -97,7 +97,7 @@
 											<option value="4">사카이</option>
 											<option value="5">Dunk</option>
 										</select>
-										<input type="text" value="${ shoes.shoesNo }" hidden name="shoesNo">
+										<input type="hidden" value="${ shoes.shoesNo }" name="shoesNo">
 										
 									</div> 
 									<div class="col-md-4 mb-3">

@@ -51,7 +51,7 @@ public class ModShoesServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-if (ServletFileUpload.isMultipartContent(request)) {
+		if (ServletFileUpload.isMultipartContent(request)) {
 			
 			String rootLocation = getServletContext().getRealPath("/");
 			int maxFileSize = 1024 * 1024 * 10;

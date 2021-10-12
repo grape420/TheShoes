@@ -23,7 +23,7 @@ tr:hover {
 	border: 1px black solid;
 }
 
-button {
+#registBtn {
 	border-radius: 10px !important;
 	display: block !important;
 	margin: 20px auto !important;
