@@ -65,5 +65,10 @@
 		 WHERE A.SALES_YN = 'Y'
 		 ORDER BY A.SHOES_NO DESC
 	</select>
+	
+	<select id="selectShoesListCnt" resultType="_int">
+		SELECT COUNT(*) 
+		FROM SHOES_INFO
+	</select>
 			
 </mapper>
