@@ -31,35 +31,20 @@ $(document).ready(function() {
 
 });
 
-
-function onKeyUp() {
-	//var re2 = /^.{1,20}$/ 정규화 적용시 굳이 할필요없어서 2글자이상만조건으로 했습니다.
-
-	if (!(document.getElementById('productName').value.length >= 2)) {
-		document.getElementById('twoName').innerHTML = '<p class="input_show" >상품명을 2자 이상 입력해주세요.</p>';
-		$('#productName').css('border', '2px solid #dc5b5b');
-	} else {
-		document.getElementById('twoName').innerHTML = '';
-		$('#productName').css('border', '2px solid rgb(195, 194, 204)');
-	}
-}
-
-$('#productName').change(function (){
+$('#productName').keydown(function (){
     var content = $(this).val();
-    $('#title_count').text("("+content.length+" / 40)");    //글자수 실시간 카운팅
-		console.log("dd");
+    $('#title_count').html(+content.length+" / 40");    //글자수 실시간 카운팅
 
     if (content.length > 40){
         alert("최대 40자까지 입력 가능합니다.");
         $(this).val(content.substring(0, 40));
-        $('#title_count').text("(40 / 40)");
+        $('#title_count').html("(40 / 40)");
     }
 });
 
-$('#content_body').keyup(function (e){
+$('#content_body').keydown(function (){
     var content = $(this).val();
-    $('#content_count').html("("+content.length+" / 2000)");    //글자수 실시간 카운팅
-		console.log("콘솔");
+    $('#content_count').html(+content.length+" / 2000");    //글자수 실시간 카운팅
 	
     if (content.length > 2000){
         alert("최대 2000자까지 입력 가능합니다.");
@@ -68,4 +53,51 @@ $('#content_body').keyup(function (e){
     }
 });
 
+/* 사진 등록 */
+
+function lodaFile(input) {
+	var file = input.files[0];
+	
+	var name = document.getElementById()
+}
+
+
+/*$(document).ready(function(){
+	$("#resell_img").click(function() {
+		$("ul#img_body1").show();
+		
+		var lastImgNo = $("#resell_img:last").attr("id").replace("img_body", "");
+		
+		var newImg = $("#resell_img:eq(1)").clone();
+		
+		newImg.attr("id", "img_body" + (parseInt(lastImgNo) + 1));
+		
+		if(lastImgNo == 4) {
+			alert("5개 이상 등록 할 수 없습니다.")
+		} else {
+			$("resell_img").append(newImg);
+		}
+	});
+});*/
+
+const $resell_img = document.getElementById("resell_imgfile");
+
+$resell_img.onclick = function() {a
+			document.getElementById("img_body1").click();
+		}	
+		
+function loadImg(value, num) {
+    if (value.files && value.files[0]) {
+      const reader = new FileReader();
+
+      reader.readAsDataURL(value.files[0]);
+
+      reader.onload = function(e) {
+        switch(num) {
+          case 1 : document.getElementById("resell_imgfile").src = e.target.result; break;
+
+        }
+      }
+    }
+  }
 

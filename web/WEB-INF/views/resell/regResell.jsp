@@ -29,12 +29,13 @@
 				<li>
 					<div class="left">
 						<p class="text pill_text">상품이미지</p>
-						<span class="count">(0/12)</span>
+						<span class="count">(0/4)</span>
 					</div>
 					<div class="right">
 						<ul class="img_list">
-							<li class="input_img">이미지 등록<input type="file"
-								accept="image/jpg, image/jpeg, image/png" multiple=""></li>
+							<li class="input_img" id="img_body1">이미지 등록<input type="file"
+								accept="image/jpg, image/jpeg, image/png" id="resell_img" multiple=""></li>
+							<li id="resell_imgfile"></li>
 							<!--이미지 등록했을때 화면 필요 없을시 아래의 내용 삭제-->
 							<!--<li>
                   <div class="title_img">대표이미지</div>
