@@ -50,6 +50,7 @@ public class AddressDTO implements java.io.Serializable{
 	public String toString() {
 		return "AddressDTO [nameMM=" + nameMM + ", addressNo=" + addressNo + ", addressName=" + addressName
 				+ ", address1MM=" + address1MM + ", address2MM=" + address2MM + "]";
+		
 	}
 
 	
