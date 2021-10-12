@@ -118,7 +118,11 @@
 														<td style="text-align: center;"><c:out value="${ member.role }"/></td>
 														<td style="text-align: center;"><c:out value="${ member.withDrawYn }"/></td>
 														<td style="text-align: center;"><c:out value="${ member.blackListYn }"/></td>
-														<td style="text-align: center;"><c:out value="${ member.blackReason }"/></td>
+														<td style="text-align: center;">
+														<c:if test="${ member.blackListYn eq 'Y' }">
+														<c:out value="${ member.blackReason }"/>
+														</c:if>
+														</td>
 													</tr>
 												</c:forEach>
 										</tbody>

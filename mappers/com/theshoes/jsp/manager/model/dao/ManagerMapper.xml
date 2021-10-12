@@ -107,6 +107,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE A.SHOES_NO = #{ shoesNo }
 	</update>
 	
+	<update id="modifyBlackList" parameterType="com.theshoes.jsp.member.model.dto.MemberDTO">
+		UPDATE
+		       MEMBER A
+		   SET A.BLACKLIST_YN = #{ blackListYn }
+		     , A.BLACK_REASON = #{ blackReason }
+		 WHERE A.MEMBER_ID = #{ id }
+	</update>
+	
 	<insert id="insertShoesThumb" parameterType="com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO">
 		INSERT 
 			  INTO SHOES_THUMB A

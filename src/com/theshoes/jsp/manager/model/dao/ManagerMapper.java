@@ -58,6 +58,11 @@ public class ManagerMapper {
 		return session.selectOne("ManagerMapper.selectMemberDetail", memberId);
 	}
 
+	public int modifyBlackList(SqlSession session, MemberDTO member) {
+		System.out.println("여기는 DAO : " + member);
+		return session.update("ManagerMapper.modifyBlackList", member);
+	}
+
 	
 
 	

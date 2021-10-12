@@ -36,5 +36,31 @@ public class ModMemberServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String memberId = request.getParameter("id");
+		String blackListYn = request.getParameter("blackListYn");
+		String blackReason = request.getParameter("blackReason");
+		
+		ManagerMemberService managerMemberService = new ManagerMemberService();
+
+		MemberDTO member = new MemberDTO();
+		member.setId(memberId);
+		member.setBlackListYn(blackListYn);
+		member.setBlackReason(blackReason);
+		
+		System.out.println("member : " + member);
+		
+		int result = managerMemberService.modifyBlackList(member);
+		
+		System.out.println("result : " + result);
+		
+		String path = "";
+		if(result > 0) {
+			path = "/WEB-INF/views/common/success.jsp";
+			request.setAttribute("successCode", "updateMember");
+		} else {
+			path = "/WEB-INF/views/common/errorPage.jsp";
+		}
+		
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 }

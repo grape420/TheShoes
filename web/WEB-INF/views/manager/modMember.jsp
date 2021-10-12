@@ -88,6 +88,7 @@
 									<div class="col-md-4 mb-3">
 										<label>아이디</label> 
 										<input type="text" class="form-control" id="id" value="${ member.id }" name="id" disabled="disabled">
+										<input type="hidden" value="${ member.id }" name="id">
 									</div>
 									
 									<div class="col-md-4 mb-3">
@@ -124,23 +125,29 @@
 										</select>
 									</div>
 									
-									<div class="col-md-12 mb-3">
+								 <div class="col-md-12 mb-3">
+								 	<div id="bl">
 										<label for="address">블랙리스트 사유</label> 
-										<select class="custom-select d-block w-100" id="delMemo" name="blackReason" required>
-										<option value="selectMemo" hidden>블랙리스트 사유를 선택해주세요.</option>
-										<option value="callMe">부적절한 게시물 올림</option>
-										<option value="fast">그냥</option>
-										<option value="securityOffice">내맘</option>
-										<option value="self">직접입력</option>
-										<!-- 직접입력 시 텍스트박스 생성 -->
-										<div class="col-md-12 mb-3">
+										<select class="custom-select d-block w-100" id="delMemo" name="blackReason">
+										<option value="" hidden selected>블랙리스트 사유를 선택해주세요.</option>
+										<option value="부적절한 게시물 올림">부적절한 게시물 올림</option>
+										<option value="그냥">그냥</option>
+										<option value="내맘">내맘</option>
+										<option value="self" name="blackReason">직접입력</option>
+										
+										<div>
 										<textarea hidden class="form-control mt-3" id="delMemoWrite" name="blackReason"
-										placeholder="블랙리스트 사유를 선택해주세요." rows="20" required></textarea>
-										</div>
-									</select>
+										placeholder="블랙리스트 사유를 15자 이내로 입력해주세요."></textarea>
+									    <p style="text-align: right; font-size: 20px; padding: 10px;" id="limitNum" hidden><span id="counter">0</span>/15</p>
+									  	</div>
+										
+										</select>
 									</div>
+									</div> 
 									
-										<button type="submit" id="" class="btn btn-outline-secondary">블랙리스트 등록</button>
+									<div class="col-md-12 mb-3">
+										<button type="submit" id="registBtn" class="btn btn-outline-secondary">블랙리스트 등록</button>
+									</div>
 								</div>
 							</form>
 						</div>
@@ -153,6 +160,54 @@
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 	<script src="${ pageContext.servletContext.contextPath }/resources/js/shoes/pay.js"></script>
+	<script type="text/javascript">
+	 $(function() {
+	      $("textarea").keyup(function() {
+	        console.log($(this).val());
 
+	        var inputLength = $(this).val().length;
+
+	        $("#counter").text(inputLength);
+
+	        var remain = 15 - inputLength;
+
+	        if (remain >= 0) {
+	          $("#counter").parent().css("color", "black");
+	          $("#registBtn").removeAttr("disabled");
+	        } else {
+	          $("#counter").parent().css("color", "red");
+	          $("#registBtn").attr("disabled", true);
+	        }
+	      })
+	    })
+	    
+	    
+	    $(function() {
+	    	
+	    	
+				$('#delMemo').change(
+				function() {
+				if ($("#delMemo option:selected") .val() == 'self') {
+					$("#delMemoWrite").removeAttr("hidden");
+					$("#delMemoWrite").focus();
+					$("#limitNum").removeAttr("hidden");
+				} else {
+					$("#delMemoWrite").attr("hidden", true);
+					$("#limitNum").attr("hidden", true);
+				}
+			})
+		})
+		
+		$(function() {
+				$('#blackListYn').change(
+				function() {
+				if ($("#blackListYn option:selected").val() == 'N') {
+					$("#bl").attr("hidden", true);
+				} else {
+					$("#bl").removeAttr("hidden");
+				}
+			})
+		})
+	</script>
 </body>
 </html>

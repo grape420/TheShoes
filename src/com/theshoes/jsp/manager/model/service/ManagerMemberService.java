@@ -57,4 +57,24 @@ public class ManagerMemberService {
 		return memberDetail;
 	}
 
+	public int modifyBlackList(MemberDTO member) {
+		SqlSession session = getSqlSession();
+		
+		System.out.println("여기는 서비스");
+		
+		int result = mapper.modifyBlackList(session, member);
+		
+		System.out.println("여기는 서비스 result : " + result);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
 }

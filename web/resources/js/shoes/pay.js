@@ -10,6 +10,8 @@ $(function() {
 	})
 })
 
+
+
 $("#name").change(function() {
 
 	/* 한글자만 최소 2자 이상 */
