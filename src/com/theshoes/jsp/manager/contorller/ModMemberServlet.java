@@ -38,8 +38,15 @@ public class ModMemberServlet extends HttpServlet {
 		
 		String memberId = request.getParameter("id");
 		String blackListYn = request.getParameter("blackListYn");
-		String blackReason = request.getParameter("blackReason");
+		String blackReason = "";
 		
+		if (request.getParameter("selfInput") != null ) {
+			 blackReason = request.getParameter("selfInput");
+			 System.out.println("blackReason");
+		} else {
+			 blackReason = request.getParameter("blackReason");
+		}
+		System.out.println(request.getParameter("selfInput"));
 		ManagerMemberService managerMemberService = new ManagerMemberService();
 
 		MemberDTO member = new MemberDTO();

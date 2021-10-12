@@ -133,11 +133,11 @@
 										<option value="부적절한 게시물 올림">부적절한 게시물 올림</option>
 										<option value="그냥">그냥</option>
 										<option value="내맘">내맘</option>
-										<option value="self" name="blackReason">직접입력</option>
+										<option value="self" id="selfInput">직접입력</option>
 										
 										<div>
-										<textarea hidden class="form-control mt-3" id="delMemoWrite" name="blackReason"
-										placeholder="블랙리스트 사유를 15자 이내로 입력해주세요."></textarea>
+										<input type="text" hidden class="form-control mt-3" id="delMemoWrite" name="selfInput"
+										placeholder="블랙리스트 사유를 15자 이내로 입력해주세요.">
 									    <p style="text-align: right; font-size: 20px; padding: 10px;" id="limitNum" hidden><span id="counter">0</span>/15</p>
 									  	</div>
 										
@@ -162,7 +162,7 @@
 	<script src="${ pageContext.servletContext.contextPath }/resources/js/shoes/pay.js"></script>
 	<script type="text/javascript">
 	 $(function() {
-	      $("textarea").keyup(function() {
+	      $("#delMemoWrite").keyup(function() {
 	        console.log($(this).val());
 
 	        var inputLength = $(this).val().length;
@@ -208,6 +208,12 @@
 				}
 			})
 		})
+		
+		$("#delMemoWrite").change(function() {
+			$(this).val($(this).text);
+			console.log($("#selfInput").val());
+		})
+		
 	</script>
 </body>
 </html>
