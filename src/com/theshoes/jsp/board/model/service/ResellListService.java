@@ -59,7 +59,7 @@ public class ResellListService {
 		
 		ResellListDTO resell = null;
 		
-		int result = resellListDAO.incrementBoardCount(session, no);
+		int result = ResellListDAO.incrementBoardCount(session, no);
 		
 		if(result > 0) {
 			resell = resellListDAO.selectOneResell(session, no);
@@ -77,6 +77,7 @@ public class ResellListService {
 		
 		return resell;
 	}
+	
 
 	public int insertshoes(ResellDetailDTO resellShoes) {
 		
@@ -84,7 +85,7 @@ public class ResellListService {
 		
 		int result = 0;
 		
-		int resellResult = ResellListDAO.insertShoes(session, resellShoes);
+		int resellResult = ResellListDAO.insertResellShoes(session, resellShoes);
 		
 		List<ResellThumbDTO> fileList = resellShoes.getResellThumb();
 		

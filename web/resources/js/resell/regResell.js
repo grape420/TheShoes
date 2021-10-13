@@ -31,9 +31,10 @@ $(document).ready(function() {
 
 });
 
+
 $('#productName').keydown(function (){
     var content = $(this).val();
-    $('#title_count').html(+content.length+" / 40");    //글자수 실시간 카운팅
+    $('#title_count').html(+content.length+" / 40");    // 제목 글자수 실시간 카운팅
 
     if (content.length > 40){
         alert("최대 40자까지 입력 가능합니다.");
@@ -44,7 +45,7 @@ $('#productName').keydown(function (){
 
 $('#content_body').keydown(function (){
     var content = $(this).val();
-    $('#content_count').html(+content.length+" / 2000");    //글자수 실시간 카운팅
+    $('#content_count').html(+content.length+" / 2000");    // 설명 글자수 실시간 카운팅
 	
     if (content.length > 2000){
         alert("최대 2000자까지 입력 가능합니다.");
@@ -55,35 +56,22 @@ $('#content_body').keydown(function (){
 
 /* 사진 등록 */
 
-function lodaFile(input) {
-	var file = input.files[0];
-	
-	var name = document.getElementById()
-}
+const $img_body1 = document.getElementById("img_file1");
+const $img_body2 = document.getElementById("img_file2");
+const $img_body3 = document.getElementById("img_file3");
+const $img_body4 = document.getElementById("img_file4");
 
-
-/*$(document).ready(function(){
-	$("#resell_img").click(function() {
-		$("ul#img_body1").show();
-		
-		var lastImgNo = $("#resell_img:last").attr("id").replace("img_body", "");
-		
-		var newImg = $("#resell_img:eq(1)").clone();
-		
-		newImg.attr("id", "img_body" + (parseInt(lastImgNo) + 1));
-		
-		if(lastImgNo == 4) {
-			alert("5개 이상 등록 할 수 없습니다.")
-		} else {
-			$("resell_img").append(newImg);
-		}
-	});
-});*/
-
-const $resell_img = document.getElementById("resell_imgfile");
-
-$resell_img.onclick = function() {a
-			document.getElementById("img_body1").click();
+$img_body1.onclick = function() {
+			document.getElementById("resell_img1").click();
+		}	
+$img_body2.onclick = function() {
+			document.getElementById("resell_img2").click();
+		}	
+$img_body3.onclick = function() {
+			document.getElementById("resell_img3").click();
+		}	
+$img_body4.onclick = function() {
+			document.getElementById("resell_img4").click();
 		}	
 		
 function loadImg(value, num) {
@@ -94,7 +82,10 @@ function loadImg(value, num) {
 
       reader.onload = function(e) {
         switch(num) {
-          case 1 : document.getElementById("resell_imgfile").src = e.target.result; break;
+          case 1 : document.getElementById("img_file1").src = e.target.result; break;
+          case 2 : document.getElementById("img_file2").src = e.target.result; break;
+          case 3 : document.getElementById("img_file3").src = e.target.result; break;
+          case 4 : document.getElementById("img_file4").src = e.target.result; break;
 
         }
       }
