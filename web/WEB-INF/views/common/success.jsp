@@ -18,6 +18,9 @@
 				case "insertShoes" :
 					movePath = "${ pageContext.servletContext.contextPath }/manager/shoes";
 					break;
+				case "mainPage" :
+					movePath = "${ pageContext.servletContext.contextPath }/common/mainPage";
+					break;
 			}
 			
 			location.replace(movePath);

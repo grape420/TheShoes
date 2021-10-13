@@ -95,40 +95,11 @@
           <h1 class="h3 mb-2 text-gray-800">회원탈퇴</h1>
           <br />
           <!--회원탈퇴 항목-->
-          <div class="secession">
-            <p class="title">회원탈퇴 사유</p>
-            <ul class="radio_box" onclick='reason1_click()'>
-              <li>
-                <input type="radio" id="reason01" name="reason1" />
-                <label for="reason01">회원탈퇴 후 재가입을 위해서</label>
-              </li>
-              <li>
-                <input type="radio" id="reason02" name="reason1" />
-                <label for="reason02">상품 구매 빈도가 낮아 이용할 필요가 없어서</label>
-              </li>
-              <li>
-                <input type="radio" id="reason03" name="reason1" />
-                <label for="reason03">서비스 및 고객지원이 만족스럽지 못해서</label>
-              </li>
-              <li>
-                <input type="radio" id="reason04" name="reason1" />
-                <label for="reason04">사용 PC 또는 모바일의 환경이 맞지 않아서</label>
-              </li>
-              <li>
-                <input type="radio" id="reason05" name="reason1" />
-                <label for="reason05">별다른 이유없이 탈퇴</label>
-              </li>
-            </ul>
-            <p class="red" id="reason1"></p>
-
-            <p class="title">탈퇴하시려는 사유를 입력해주세요.</p>
-            <textarea id="reason_2" placeholder="하시고 싶은 말씀이 있으시면 남겨주세요. 2,000자까지 입력 할 수 있습니다."
-              onkeyup="onKey()"></textarea>
-            <p class="red" id="reason2"></p>
+          <div class="secession pb-0">
 
             <p class="title">회원 탈퇴 동의</p>
             <div class="check_box">
-              <input type="checkbox" id="reason_check" name="reason_check" onchange="onChange()" />
+              <input type="checkbox" id="reason_check" name="reason_check" />
               <label for="reason_check">회원탈퇴 안내를 모두 확인하였으며 탈퇴에 동의합니다.</label>
             </div>
             <p class="red" id="reason3"></p>
@@ -142,33 +113,28 @@
               <li data-num="4.">탈퇴 이후에는 어떠한 방법으로도 삭제된 회원정보를 복원할 수 없습니다.</li>
             </ul>
 
-            <a href="#n" class="black_btn pop_open">탈퇴하기</a>
+            <button id="withDrawbtn" type="button" class="black_btn pop_open mt-5">탈퇴하기</button>
           </div>
 
-          <!--탈퇴하기 버튼 클릭시 알림창-->
-          <span class="shadow"></span>
-          <div class="alert">
-            <div class="inner">
-              <p>정말 탈퇴 하시겠습니까?</p>
-              <div class="btnArea">
-                <a href="#n" class="gray_btn pop_close">취소</a>
-                <a href="#n" id="check" class="black_btn pop_close">확인</a>
-              </div>
-            </div>
-          </div>
-          <!--//탈퇴하기 버튼 클릭시 알림창-->
-        </div>
-        <!--//회원탈퇴 항목-->
-      </div>
-    </div>
-  </div>
 	</section>
 
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 
-	<script
-		src="${ pageContext.servletContext.contextPath }/resources/js/myPage/myProfile.js"></script>
+	<script src="${ pageContext.servletContext.contextPath }/resources/js/myPage/withDraw.js"></script>
+		
+	<script>
+		$("#withDrawbtn").click(function() {
+			if($("#reason_check").prop("checked") && ($("#reason_2").val() != ""))
+				console.log("Test");
+				 if (confirm("정말로 탈퇴 하시겠습니까?")) {
+					location.replace("${ pageContext.servletContext.contextPath }/myPage/withDraw");
+			    } else {
+			    	location.replace("${ pageContext.servletContext.contextPath }/common/mainPage");
+			    }
+		});
+		
+	</script>
 
 </body>
 </html>

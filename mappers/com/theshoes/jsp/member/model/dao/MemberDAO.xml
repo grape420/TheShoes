@@ -3,6 +3,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MemberDAO">
+
+	<resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesCategoryDTO" id="shoesCategoryResultMap">
+		<id property="shoesCategoryNo" column="SHOES_CATEGORY_NO"/>
+		<result property="shoesCategoryName" column="SHOES_CATEGORY_NAME"/>
+	</resultMap>
+	
+	<resultMap type="com.theshoes.jsp.member.model.dto.WishDTO" id="wishResultMap">
+		<id property="wishNo" column="WISH_NO"/>
+		<result property="wishId" column="WISH_ID"/>
+	</resultMap>
+	
+	<resultMap type="com.theshoes.jsp.member.model.dto.WishListDTO" id="wishListResultMap">
+		<id property="wishNo" column="WISH_NO"/>
+		<result property="shoesCategoryName" column="SHOES_CATEGORY_NAME"/>
+		<result property="shoesName" column="SHOES_MODEL"/>
+		<result property="shoesPrice" column="SHOES_PRICE"/>
+		<result property="savedName" column="SAVED_NAME"/>
+	</resultMap>
+	
 	<resultMap type="com.theshoes.jsp.member.model.dto.MemberDTO" id="memberResultMap">
 		<id property="id" column="MEMBER_ID"/>
 		<result property="name" column="NAME"/>
@@ -15,7 +34,38 @@
 		<result property="withDrawYn" column="WITHDRAW_YN"/>
 		<result property="birth" column="BIRTH"/>
 		<result property="role" column="ROLE"/>
+		
+		<collection property="wishList" resultMap="wishResultMap"/>
 	</resultMap>
+	
+	<resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO" id="shoesThumbResultMap">
+		<id property="shoesThumbNo" column="SHOES_THUMB_NO"/>
+		<result property="stNo" column="ST_NO"/>
+		<result property="originalName" column="ORIGINAL_NAME"/>
+		<result property="savedName" column="SAVED_NAME"/>
+		<result property="savePath" column="SAVE_PATH"/>
+		<result property="fileType" column="FILE_TYPE"/>
+		<result property="thumbnailPath" column="THUMBNAIL_PATH"/>
+		<result property="status" column="ATTACHMENT_STATUS"/>
+	</resultMap>
+	
+	<resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesDTO" id="shoesResultMap">
+		<id property="shoesNo" column="SHOES_NO"/>
+		<result property="infoCategoryNo" column="INFO_CATEGORY_NO"/>
+		<result property="shoesModel" column="SHOES_MODEL"/>
+		<result property="shoesPrice" column="SHOES_PRICE"/>
+		<result property="salesYn" column="SALES_YN"/>
+		<result property="salesAmount" column="SALES_AMOUNT"/>
+		<result property="reamaningAmount" column="REAMANING_AMOUNT"/>
+		<result property="startDate" column="START_DATE"/>
+		<result property="endDate" column="END_DATE"/>
+		<result property="winnerDate" column="WINNER_DATE"/>
+		<result property="eventEndYn" column="EVENT_END_YN"/>
+		
+		<association property="category" resultMap="shoesCategoryResultMap" />
+		<collection property="wish" resultMap="wishResultMap"/>
+		<collection property="thumbList" resultMap="shoesThumbResultMap"/>
+	</resultMap> 
 	
 	<select id="selectMemberById" resultMap="memberResultMap">
 		SELECT /* com.theshoes.jsp.member.model.dao.MemberDAO#selectMemberById() */
@@ -30,9 +80,10 @@
 		     , A.WITHDRAW_YN
 		     , A.BIRTH
 		     , A.ROLE
-		 FROM  MEMBER A
-		WHERE  A.BLACKLIST_YN = 'N'
-		  AND  A.MEMBER_ID = #{ id }
+		  FROM MEMBER A
+		 WHERE A.BLACKLIST_YN = 'N'
+		   AND A.WITHDRAW_YN = 'N'
+		   AND A.MEMBER_ID = #{ id }
 	</select>
 	
 	<select id="selectMemberByEmail" resultMap="memberResultMap">
@@ -90,4 +141,26 @@
            SET A.PWD = #{ pwd }
          WHERE A.MEMBER_ID = #{ id }
 	</update>
+	
+	<update id="withDraw" parameterType="com.theshoes.jsp.member.model.dto.MemberDTO">
+		UPDATE MEMBER A /* com.theshoes.jsp.member.model.dao.MemberDAO#withDraw() */
+           SET A.WITHDRAW_YN = 'Y'
+         WHERE A.MEMBER_ID = #{ id }
+	</update>
+	
+	<select id="selectAllWishList" resultMap="wishListResultMap">
+		SELECT /* com.theshoes.jsp.member.model.dao.MemberDAO#selectAllWishList() */
+			   B.WISH_NO
+			 , D.SHOES_CATEGORY_NAME
+			 , C.SHOES_MODEL
+			 , C.SHOES_PRICE
+			 , E.SAVED_NAME
+  		  FROM MEMBER A
+  		  LEFT JOIN WISHLIST B ON (A.MEMBER_ID = B.WISH_ID)
+  		  LEFT JOIN SHOES_INFO C ON (B.WISH_NO = C.SHOES_NO)
+  		  LEFT JOIN SHOES_CATEGORY D ON(C.INFO_CATEGORY_NO = D.SHOES_CATEGORY_NO)
+  		  LEFT JOIN SHOES_THUMB E ON (C.SHOES_NO = E.ST_NO)
+ 		 WHERE A.MEMBER_ID = #{ id }
+   		   AND E.FILE_TYPE = 'TITLE'
+	</select>
 </mapper>

@@ -2,11 +2,14 @@ package com.theshoes.jsp.member.model.serivce;
 
 import static com.theshoes.jsp.common.mybatis.Template.getSqlSession;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.theshoes.jsp.member.model.dao.MemberDAO;
 import com.theshoes.jsp.member.model.dto.MemberDTO;
+import com.theshoes.jsp.member.model.dto.WishListDTO;
 
 public class MemberService {
 	
@@ -84,6 +87,32 @@ public class MemberService {
 		session.close();
 		
 		return result;
+	}
+
+	public int withDraw(MemberDTO member) {
+		SqlSession session = getSqlSession();
+		
+		int result = memberDAO.withDraw(session, member);
+		
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
+	public List<WishListDTO> selectAllWishList(String id) {
+		SqlSession session = getSqlSession();
+		
+		List<WishListDTO> wishList = memberDAO.selectAllWishList(session, id);
+		
+		session.close();
+		
+		return wishList;
 	}
 
 }

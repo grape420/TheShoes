@@ -71,12 +71,11 @@
 					aria-expanded="true" aria-controls="collapseUtilities"> <i
 						class="fas fa-fw fa-wrench"></i> <span>나의정보</span>
 				</a>
-					<div id="collapseUtilities" class="collapse"
-						aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+					<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
 							<a class="collapse-item" href="#">프로필 정보</a> <a
-								class="collapse-item" href="#">주소록</a> <a class="collapse-item"
-								href="#">결제 정보</a> <a class="collapse-item" href="#">회원 탈퇴</a>
+								class="collapse-item" href="#">주소록</a> 
+								<a class="collapse-item" href="#">결제 정보</a> <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/common/nav?no=2">회원 탈퇴</a>
 						</div>
 					</div></li>
 				<!-- Divider -->
