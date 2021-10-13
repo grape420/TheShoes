@@ -96,9 +96,8 @@
 										cellspacing="0">
 										<thead>
 											<tr style="background-color : black; color : white;">
-												<th style="width: 150px; text-align : center;">주문날짜</th>
-												<th style="width: 150px; text-align : center;">회원이름</th>
 												<th style="width: 150px; text-align : center;">회원아이디</th>
+												<th style="width: 150px; text-align : center;">회원이름</th>
 												<th style="width: 150px; text-align : center;">신발명</th>
 												<th style="width: 150px; text-align : center;">발매가</th>
 												<th style="width: 150px; text-align : center;">주소</th>
@@ -106,15 +105,16 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>2021-10-01</td>
-												<td>홍길동</td>
-												<td>user01</td>
-												<td>조던</td>
-												<td>350,000원</td>
-												<td>서울시 강남구</td>
-												<td><span style="color: burlywood;">배송중</span></td>
-											</tr>
+												<c:forEach var="delivery" items="${ requestScope.deliveryList }">										
+													<tr style="cursor: pointer;">
+														<td style="text-align: center;"><label><c:out value="${ delivery.id }"/></label></td>
+														<td style="text-align: center;"><c:out value="${ delivery.name }"/></td>
+														<td style="text-align: center;"><c:out value="${ delivery.event[0].shoes.shoesModel }"/> </td>
+														<td style="text-align: center;"><c:out value="${ delivery.event[0].shoes.shoesPrice }"/></td>
+														<td style="text-align: center;"><c:out value="${ delivery.address[0].addressZip }"/></td>
+														<td style="text-align: center;"><c:out value="${ delivery.event[0].eventStatus }"/></td> 
+													</tr>
+												</c:forEach>	
 										</tbody>
 									</table>
 								</div>
@@ -123,20 +123,7 @@
 
 					</div>
 					<!-- /.container-fluid -->
-					<div class="paging">
-						<a href="#" class="btn_arr first"><i
-							class="fa fa-chevron-left" aria-hidden="true"></i><span
-							class="hide">처음페이지</span></a> <a href="#" class="btn_arr prev"><i
-							class="fa fa-chevron-left" aria-hidden="true"></i><span
-							class="hide">이전페이지</span></a> <a href="#" class="on">1</a>
-						<!-- D : 활성화페이지일 경우 : on 처리 -->
-						<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-						<a href="#" class="btn_arr next"><i
-							class="fa fa-chevron-right" aria-hidden="true"></i><span
-							class="hide">다음페이지</span></a> <a href="#" class="btn_arr last"><i
-							class="fa fa-chevron-right" aria-hidden="true"></i><span
-							class="hide">마지막페이지</span></a>
-					</div>
+					<jsp:include page="paging.jsp" />
 
 				</div>
 				<!-- End of Main Content -->
@@ -147,8 +134,16 @@
 		<!-- End of Page Wrapper -->
 
 	</section>
-
+	
+	<script type="text/javascript">
+		$("tr").click(function() {
+			let memberId = $(this).find("label").text();
+			console.log(memberId);
+			location.href = "${ pageContext.servletContext.contextPath }/manager/delivery?memberId=" + memberId; 
+		});
+	</script>
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
+	
 </body>
 </html>

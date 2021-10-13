@@ -137,7 +137,7 @@
 					</div>
 					<!-- /.container-fluid -->
 					
-					<jsp:include page="memberPaging.jsp" />
+					<jsp:include page="paging.jsp" />
 				</div>
 				<!-- End of Main Content -->
 

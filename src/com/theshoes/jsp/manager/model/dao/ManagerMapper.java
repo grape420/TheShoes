@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.theshoes.jsp.common.paging.SelectCriteria;
+import com.theshoes.jsp.manager.model.dto.DeliveryDTO;
 import com.theshoes.jsp.member.model.dto.MemberDTO;
 import com.theshoes.jsp.shoes.model.dto.ShoesDTO;
 import com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO;
@@ -61,6 +62,15 @@ public class ManagerMapper {
 	public int modifyBlackList(SqlSession session, MemberDTO member) {
 		System.out.println("여기는 DAO : " + member);
 		return session.update("ManagerMapper.modifyBlackList", member);
+	}
+
+	public int selectDeliveryTotalCount(SqlSession session) {
+		return session.selectOne("ManagerMapper.selectDeliveryTotalCount");
+	}
+
+	public List<DeliveryDTO> selectAllDeliveryList(SqlSession session, SelectCriteria selectCriteria) {
+		System.out.println("여기는 DAO : " + selectCriteria);
+		return session.selectList("ManagerMapper.selectAllDeliveryList", selectCriteria);
 	}
 
 	

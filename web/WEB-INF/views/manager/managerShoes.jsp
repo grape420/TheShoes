@@ -134,7 +134,7 @@
 					</div>
 
 					<!-- 페이징처리 넣기 -->
-					<jsp:include page="shoesPaging.jsp" />
+					<jsp:include page="paging.jsp" />
 					
 					
 					

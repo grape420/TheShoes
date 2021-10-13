@@ -50,6 +50,7 @@ public class MemberListServlet extends HttpServlet {
 		String path = "";
 		if (memberList != null) {
 			path = "/WEB-INF/views/manager/manager.jsp";
+			request.setAttribute("pagingPath", "memberList");
 			request.setAttribute("memberList", memberList);
 			request.setAttribute("selectCriteria", selectCriteria);
 		} else {

@@ -49,6 +49,7 @@ public class ManagerShoesListServlet extends HttpServlet {
 		String path = "";
 		if (shoesList != null) {
 			path = "/WEB-INF/views/manager/managerShoes.jsp";
+			request.setAttribute("pagingPath", "shoes");
 			request.setAttribute("shoesList", shoesList);
 			request.setAttribute("selectCriteria", selectCriteria);
 		} else {

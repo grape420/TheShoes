@@ -5,11 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="ManagerMapper">
 
+	<!-- 신발 카테고리 -->
 	<resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesCategoryDTO" id="shoesCategoryResultMap">
 		<id property="shoesCategoryNo" column="SHOES_CATEGORY_NO"/>
 		<result property="shoesCategoryName" column="SHOES_CATEGORY_NAME"/>
 	</resultMap>
 
+	<!-- 신발  -->
 	 <resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesDTO" id="shoesResultMap">
 		<id property="shoesNo" column="SHOES_NO"/>
 		<result property="infoCategoryNo" column="INFO_CATEGORY_NO"/>
@@ -29,6 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<collection property="thumbList" resultMap="shoesThumbResultMap"></collection>
 	</resultMap> 
 	
+	<!-- 신발 썸네일 -->
 	<resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO" id="shoesThumbResultMap">
 		<id property="shoesThumbNo" column="SHOES_THUMB_NO"/>
 		<result property="stNo" column="ST_NO"/>
@@ -40,6 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="status" column="ATTACHMENT_STATUS"/>
 	</resultMap>
 	
+	<!-- 멤버 -->
 	<resultMap type="com.theshoes.jsp.member.model.dto.MemberDTO" id="memberResultMap">
 		<id property="id" column="MEMBER_ID"/>
 		<result property="name" column="NAME"/>
@@ -53,6 +57,52 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="role" column="ROLE"/>
 	</resultMap>
 	
+	<!-- 조인을 위한 멤버 테이블 -->
+	<resultMap type="com.theshoes.jsp.manager.model.dto.DeliveryDTO" id="deliveryResultMap">
+		<id property="id" column="MEMBER_ID"/>
+		<result property="name" column="NAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="phone" column="PHONE_NO"/>
+		<result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="blackReason" column="BLACK_REASON"/>
+		<result property="blackListYn" column="BLACKLIST_YN"/>
+		<result property="withDrawYn" column="WITHDRAW_YN"/>
+		<result property="birth" column="BIRTH"/>
+		<result property="role" column="ROLE"/>
+		
+		<collection property="event" resultMap="eventResultMap" />
+		<collection property="winner" resultMap="winnerResultMap" />
+		<collection property="address" resultMap="addressResultMap" />
+	</resultMap>
+	
+	<!-- 응모 -->
+	<resultMap type="com.theshoes.jsp.manager.model.dto.EventDTO" id="eventResultMap">
+		<id property="eventNo" column="EVENT_NO"/>
+		<result property="eventId" column="EVENT_ID"/>
+		<result property="eventShoesId" column="EVENT_SHOES_ID"/>
+		<result property="eventDate" column="EVENT_DATE"/>
+		<result property="randomNo" column="RANDOM_NO"/>
+		<result property="eventStatus" column="EVENT_STATUS"/>
+		
+		<association property="shoes" resultMap="shoesResultMap" />
+	</resultMap>
+	
+	<!-- 당첨자 -->
+	<resultMap type="com.theshoes.jsp.manager.model.dto.WinnerDTO" id="winnerResultMap">
+		<id property="winnerId" column="WINNER_ID"/>
+		<result property="winnerNo" column="WINNER_NO"/>
+		<result property="winnerYn" column="WINNER_YN"/>
+		<result property="winnerDeadLine" column="WINNER_DEADLINE"/>
+	</resultMap>
+	
+	<!-- 주소 -->
+	<resultMap type="com.theshoes.jsp.manager.model.dto.AddressDTO" id="addressResultMap">
+		<id property="addressNo" column="ADDRESS_NO"/>
+		<result property="addressId" column="ADDRESS_ID"/>
+		<result property="addressZip" column="ADDRESS_ZIP"/>
+		<result property="addressDetail" column="ADDRESS_DETAIL"/>
+		<result property="addressName" column="ADDRESS_NAME"/>
+	</resultMap>
 	
 	
 	<insert id="insertShoes" parameterType="com.theshoes.jsp.shoes.model.dto.ShoesDTO">
@@ -270,6 +320,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          FROM  MEMBER A
 	</select>
 	
+	<select id="selectDeliveryTotalCount" resultType="_int">
+		SELECT
+		       COUNT(*)
+		  FROM MEMBER A
+		  LEFT JOIN EVENT B ON (A.MEMBER_ID = B.EVENT_ID)
+		  LEFT JOIN SHOES_INFO C ON (B.EVENT_SHOES_ID = C.SHOES_NO)
+		  LEFT JOIN WINNER D ON (A.MEMBER_ID = D.WINNER_ID)
+		  LEFT JOIN ADDRESS E ON (A.MEMBER_ID = E.ADDRESS_ID)
+	</select>
+	
 	<select id="selectAllMemberList" resultMap="memberResultMap">
        	  SELECT /* com.theshoes.jsp.board.model.dao.BoardDAO#selectAllNoticeList() */
 		          A.RNUM
@@ -310,7 +370,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	         	    WHERE ROWNUM <= #{ endRow,jdbcType=VARCHAR } ]]> ) A
 	         	  WHERE A.RNUM >= #{ startRow, jdbcType=VARCHAR }
 	         	    AND A.ROLE = 'MEMBER'
-	         	  	
+	</select>
+	
+	<select id="selectAllDeliveryList" resultMap="deliveryResultMap">
+		 SELECT
+		       B.EVENT_NO
+		     , A.NAME
+		     , A.MEMBER_ID
+		     , C.SHOES_MODEL
+		     , C.SHOES_PRICE
+		     , E.ADDRESS_ZIP
+		     , B.EVENT_STATUS
+		  FROM MEMBER A
+		  LEFT JOIN EVENT B ON (A.MEMBER_ID = B.EVENT_ID)
+		  LEFT JOIN SHOES_INFO C ON (B.EVENT_SHOES_ID = C.SHOES_NO)
+		  LEFT JOIN WINNER D ON (A.MEMBER_ID = D.WINNER_ID)
+		  LEFT JOIN ADDRESS E ON (A.MEMBER_ID = E.ADDRESS_ID)
+		 WHERE A.ROLE = 'MEMBER'
+		   AND A.BLACKLIST_YN = 'N'
+		   AND A.WITHDRAW_YN = 'N'
 	</select>
 	
 </mapper>
