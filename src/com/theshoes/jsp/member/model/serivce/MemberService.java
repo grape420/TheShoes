@@ -115,4 +115,20 @@ public class MemberService {
 		return member;
 	}
 
+	public int deleteWish(String wishNo) {
+		SqlSession session = getSqlSession();
+		
+		int result = memberDAO.deleteWish(session, wishNo);
+		
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
 }

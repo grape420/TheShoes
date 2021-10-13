@@ -33,5 +33,9 @@ public class MemberDAO {
 		return session.selectOne("MemberDAO.selectAllWishList", id);
 	}
 
+	public int deleteWish(SqlSession session, String wishNo) {
+		return session.delete("MemberDAO.deleteWish", wishNo);
+	}
+
 
 }

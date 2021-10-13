@@ -156,5 +156,12 @@
   		  LEFT JOIN SHOES_THUMB E ON (C.SHOES_NO = E.ST_NO)
   		 WHERE MEMBER_ID = #{ id }
   		 AND E.FILE_TYPE = 'TITLE'
+  		 ORDER BY 1
 	</select>
+	
+	<delete id="deleteWish">
+		DELETE
+		  FROM WISHLIST A
+		 WHERE A.WISH_NO = #{ wishNo }
+	</delete>
 </mapper>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -98,6 +97,7 @@
 						<br />
 						<!-- 관심상품 리스트 -->
 						<div class="cart-list" data-order="">
+							<c:if test="${ !empty wishList }">
 							<c:forEach var="wish" items="${ wishList }" begin="${ selectCriteria.startRow - 1 }" end="${ selectCriteria.endRow - 1 }">
 								<div class="item-info">
 									<div class="img-wrap">
@@ -115,11 +115,12 @@
 												<em>구매</em>
 												<span class="price_num"><fmt:formatNumber value="${ wish.shoes.shoesPrice }" pattern="#,###,###"></fmt:formatNumber> 원</span>
 											</a>
-											<button type="button" class="delete">삭제</button>
+											<a href="${ pageContext.servletContext.contextPath }/myPage/wishList?currentPage=${ selectCriteria.pageNo }&delete=${ wish.wishNo }"><button id="deleteBtn" type="button" class="delete">삭제</button></a>
 										</div>
 									</div>
 								</div>
 							</c:forEach>
+							</c:if>
 						</div>
 						<!-- //관심상품 리스트 -->
 						<!-- paging -->
@@ -135,8 +136,14 @@
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 
-	<script
-		src="${ pageContext.servletContext.contextPath }/resources/js/myPage/myProfile.js"></script>
-
+	<script src="${ pageContext.servletContext.contextPath }/resources/js/myPage/myProfile.js"></script>
+	
+	<script>
+	let flag = "${ requestScope.deleteRequest }";
+	
+		if(flag == "0") {
+			alert("관심 품목이 정삭적으로 삭제되었습니다.");
+		}
+	</script>
 </body>
 </html>

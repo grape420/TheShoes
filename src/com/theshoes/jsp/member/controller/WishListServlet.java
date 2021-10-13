@@ -21,6 +21,16 @@ public class WishListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MemberService memberService = new MemberService();
 		
+		if(request.getParameter("delete") != null) {
+			int result = memberService.deleteWish(request.getParameter("delete"));
+			
+			if (result > 0) {
+				request.setAttribute("deleteRequest", "0");
+			} else {
+				request.setAttribute("deleteRequest", "1");
+			}
+		}
+		
 		HttpSession session = request.getSession();
 		MemberDTO member = memberService.selectAllWishList(((MemberDTO)session.getAttribute("entryMember")).getId());
 		
@@ -29,11 +39,19 @@ public class WishListServlet extends HttpServlet {
 			nowPage = Integer.valueOf(request.getParameter("currentPage"));
 		}
 		
-		SelectCriteria sc = Pagenation.getSelectCriteria(nowPage, member.getWishList().size(), 5, 5);
+		SelectCriteria sc = null;
+		
+		if(member != null) {
+			sc = Pagenation.getSelectCriteria(nowPage, member.getWishList().size(), 2, 5);
+			request.setAttribute("wishList", member.getWishList());
+		} else {
+			sc = Pagenation.getSelectCriteria(nowPage, 0, 2, 5);
+		}
+		
 		
 		request.setAttribute("pagingPath", "myPage/wishList");
-		request.setAttribute("wishList", member.getWishList());
 		request.setAttribute("selectCriteria", sc);
+		
 		request.getRequestDispatcher("/WEB-INF/views/myPage/wishList.jsp").forward(request, response);
 	}
 
