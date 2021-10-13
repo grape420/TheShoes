@@ -103,92 +103,80 @@
 
 						<!-- 주소록 추가 modal-->
 						<button type="button" class="Add-addressBTN" data-toggle="modal"
-							data-target="#exampleModal" data-whatever="@getbootstrap">
-							+ 배송지추가</button>
+							data-target="#exampleModal" data-whatever="@getbootstrap">	+ 배송지추가</button>
 
 						<div class="modal fade" id="exampleModal" tabindex="-1"
 							aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-H">
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
-
+									
 									<div class="contents">
 										<div class="address-form"
 											data-module-shipping-address-write="{isModify:false}">
-										<form class="manage-account" method="POST" id="test" action="${ pageContext.servletContext.contextPath }/myPage/address">
-											
+											<form class="manage-account" method="POST" id="test"
+												action="${ pageContext.servletContext.contextPath }/myPage/address">
+
 												<h2 class="tit">배송지 이름</h2>
-												<input required type="text" name="addressNameMM" id="addressName" class="form-control" placeholder="배송지 이름">
+												<input required type="text" name="addressNameMM"
+													id="addressName" class="form-control" placeholder="배송지 이름">
 												<label class="addressName-result" id="addressName-result"></label>
-												
-												<h2 class="tit">이름</h2>
-												<input required type="text" name="name" id="nameMM"	class="form-control" placeholder="이름"> 
-												<label class="name-result" id="name-result"></label>
-													
-											 	<h2 class="tit">배송지 검색</h2>
-												<input required type="text" name="address1" id="address1MM" class="form-control" value="" placeholder="예) 사랑시 고백구 행복동">
-												<input type="button" id="searchZipCode" class="btn_search" value="검색">
-													
+									
+												<h2 class="tit">배송지 검색</h2>
+												<input required type="text" name="address1" id="address1MM"
+													class="form-control" value="" placeholder="예) 사랑시 고백구 행복동">
+												<input type="button" id="searchZipCode" class="btn_search"
+													value="검색">
+
 												<h2 class="tit">상세주소</h2>
-												<input required type="text" name="address2" id="address2MM"class="form-control" placeholder="상세주소">
-												
-												<button type="submit" class="abtn-link width-large" id="sizeBtn" data-dismiss="modal"> 배송지 추가</button>
-												 
+												<input required type="text" name="address2" id="address2MM"
+													class="form-control" placeholder="상세주소">
+
+												<button type="submit" class="abtn-link width-large"
+													id="sizeBtn" data-dismiss="modal">배송지 추가</button>
 											</form>
 										</div>
 									</div>
+									
 								</div>
 							</div>
 						</div>
-						
-						<!-- 주소록 리스트 예시용 -->
-						<div class="cart-list" >
-							<div class="item-info">
-								<div class="basic">
-									<div class="my_item is_active" default-mark="기본 배송지">
-										<div class="info_bind">
-											<div class="address_info">
-												<div class="name_box">
-													<span class="name"  id="name">최호진</span> 
-													<span class="markT" id="markT">기본 배송지</span> <br> 
-													<span class="phone" id="phone">010-7769-3476</span> <br> 
-													<span class="zipcode" id="zipcode">(07909)</span> 
-													<span class="address" id="address">서울 양천구 남부순환로30길 10-1 </span>
-													<div class="right_btm">
-													
-													<a href="#" type="button" class="btn outlinegrey small" data-toggle="modal" 
-												    	data-target="#exampleModa" data-whatever="@getbootstrap"> 수정 </a>
-													<a href="#" type="button" class="btn outlinegrey small"> 삭제 </a>
+
+						<!-- 주소록 리스트 -->
+						<div class="cart-list">
+							<c:forEach var="addressA" items="${ addressList }">
+								<div class="item-info">
+									<div class="basic">
+										<div class="my_item is_active" >
+											<div class="info_bind">
+												<div class="address_info">
+													<div class="name_box">
+														<span class="name"> <c:out value="${ addressA.addressName }"/> </span> <br>
+														<span class="zipcode"> <c:out value="${ addressA.address1MM }"/> </span> 
+														<span class="address"> <c:out value="${ addressA.address2MM }"/> </span>
+														<div class="right_btm">
+														<a href="#" type="button" class="btn outlinegrey small"	data-toggle="modal" data-target="#exampleModa"
+														   data-whatever="@getbootstrap"> 수정 </a> 
+														<a href="#" type="button" class="btn outlinegrey small"> 삭제 </a>
+														</div>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							</c:forEach>
 						</div>
-						
-						<!-- 주소록 리스트 -->
-						<c:forEach var="addressList" items="${ requestScope.addressList }">
-						<span class = "name"> <c:out value="${ addressList.name }"/> </span>
-						<span class = "markT"> <c:out value="${ addressList.markT }"/> </span>
-						<span class = "phone"> <c:out value="${ addressList.phone }"/> </span>
-						<span class = "zipcode"> <c:out value="${ addressList.zipcode }"/> </span>
-						<span class = "address"> <c:out value="${ addressList.address }"/> </span>
-						</c:forEach>
-						
-						
-						
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<!-- 주소록수정  modal-->
+			<!-- 주소록수정  modal-->
 		<div class="modal fade" id="exampleModa" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -201,40 +189,27 @@
 					</div>
 					<div class="contents">
 						<div class="address-form">
-							<form class="manage-account" method="POST" action=""
-								novalidate="">
-
+							<form class="manage-account" novalidate action="${ pageContext.servletContext.contextPath }/myPage/modifyAddress" method="post">
+								
 								<h2 class="tit">배송지 이름</h2>
-								<input required type="text" name="addressName2"
-									id="addressName2" class="form-control" placeholder="배송지 이름">
-								<label class="addressName-result2" id="addressName-result"></label>
-
-								<h2 class="tit">이름</h2>
-								<input required type="text" name="name2" id="name2"
-									class="form-control" placeholder="이름"> <label
-									class="name-result2" id="name-result"></label>
-
-								<h2 class="tit">전화번호</h2>
-								<input required type="text" name="phone2" id="phone2"
-									class="form-control" placeholder="전화번호"> <label
-									class="phone-result2" id="phone-result"></label>
+								<input type="text" name="addressName2" id="addressName2" class="form-control" value="${ requestScope.address.addressName }" required >
+								<label class="addressName-result2" id="addressName-result" ></label>
 
 								<h2 class="tit">배송지 검색</h2>
-								<input required type="text" name="address1" id="address1"
-									class="form-control address-search"
-									placeholder="예) 사랑시 고백구 행복동"> <input type="hidden"
-									id="address3" name="address.addressLine3" value=""> <input
-									type="hidden" id="addr_save_fild"> <input type="button"
-									class="btn_search" value="검색">
+								<input type="text" name="address1" id="address1" class="form-control address-search" value ="${ reqiestScope.address.address1MM }" required>
+								 <input type="button" class="btn_search" value="검색">
 
 								<h2 class="tit">상세주소</h2>
-								<input required type="text" name="address2" id="address2"
-									class="form-control" placeholder="상세주소">
-
+								<input type="text" name="address2" id="address2" class="form-control" value ="${ reqiestScope.address.address2MM }" required>
+        
 								<div class="btn-wrap">
-									<button type="submit" class="abtn-link width-large"
-										id="changeBtn" data-dismiss="modal">배송지 수정</button>
+									
+									<button type="submit" class="abtn-link width-large"	id="changeBtn" data-dismiss="modal">배송지 수정</button>
+									<!-- 전체 데이터를 불러와서 수정을 해야하는데 수정불가하지만 필요한 값 -->
+									<input type="hidden" name="addressNo" value="${ requestScope.address.nameMM }">							
+									<input type="hidden" name="nameMM" value="${ requestScope.address.addressNo }">
 								</div>
+							</form>
 						</div>
 					</div>
 				</div>

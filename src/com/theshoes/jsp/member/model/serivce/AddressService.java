@@ -18,7 +18,6 @@ public class AddressService {
 		addressDAO = new AddressDAO();
 		System.out.println("나는야 서비스 ");
 	}
-		
 
 		/* 주소록 추가 메소드 */
 		public int insertAddress(AddressDTO newAddress) {
@@ -33,6 +32,7 @@ public class AddressService {
 			
 			return result;
 		}
+		
 
 		/* 주소록 전체 조회용 메소드 */
 		public List<AddressDTO> selectAllAddressList() {
@@ -43,9 +43,5 @@ public class AddressService {
 			return addressList;
 		}
 
-		
-
-		/* 주소록 수정 메소드 */ 
-		
 
 }

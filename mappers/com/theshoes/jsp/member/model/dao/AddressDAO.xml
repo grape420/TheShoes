@@ -3,11 +3,11 @@
 <mapper namespace="AddressDAO">
 
 	<resultMap type="com.theshoes.jsp.member.model.dto.AddressDTO" id="addressResultMap">
-		<id property="no" column="ADDRESS_NO"/>
-		<result property="id" column="ADDRESS_ID"/>
-		<result property="zip" column="ADDRESS_ZIP"/>
-		<result property="detail" column="ADDRESS_DETAIL"/>
-		<result property="name" column="ADDRESS_NAME"/>
+		<id property="addressNo" column="ADDRESS_NO"/>
+		<result property="nameMM" column="ADDRESS_ID"/>
+		<result property="address1MM" column="ADDRESS_ZIP"/>
+		<result property="address2MM" column="ADDRESS_DETAIL"/>
+		<result property="addressName" column="ADDRESS_NAME"/>
 
 	</resultMap>
 	
@@ -39,8 +39,12 @@
      	   , A.ADDRESS_ZIP 
       	   , A.ADDRESS_DETAIL 
     	   , A.ADDRESS_NAME 
-      	  FROM ADDRESS A 
-      	  WHERE A.ADDRESS_NO  = 1
+      	  FROM ADDRESS A  
+      	  JOIN MEMBER B ON(B.MEMBER_ID = A.ADDRESS_ID)
+	
 	</select>
+
+	
+	
 	
 </mapper>

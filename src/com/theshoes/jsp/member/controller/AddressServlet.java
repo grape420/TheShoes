@@ -22,7 +22,6 @@ public class AddressServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		
-		
 		/* 전체 주소록 조회 */ 
 		List<AddressDTO> addressList = new AddressService().selectAllAddressList();
 		
@@ -36,12 +35,10 @@ public class AddressServlet extends HttpServlet {
 			request.setAttribute("addressList", addressList);
 		} else {
 			path = "/WEB-INF/views/common/errorPage.jsp";
-			request.setAttribute("message", "공지사항 조회 실패!");
 		}
 		request.getRequestDispatcher(path).forward(request, response);
 		
 		
-
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,12 +46,12 @@ public class AddressServlet extends HttpServlet {
 		/* address 추가 */  
 		HttpSession session = request.getSession();
 		String nameMM =  ((MemberDTO)session.getAttribute("entryMember")).getId();
-		String addressNo = request.getParameter("addressNoMM");
+		String addressNo = request.getParameter("addressNo");
 		String addressName = request.getParameter("addressNameMM"); 
 		String address1MM = request.getParameter("address1"); 
 		String address2MM = request.getParameter("address2");
 		
-		System.out.println("AddressServlet");
+		System.out.println("AddressServlet 쓰윽~");
 		
 		AddressDTO newAddress = new AddressDTO();
 		newAddress.setNameMM(nameMM);
@@ -68,8 +65,18 @@ public class AddressServlet extends HttpServlet {
 		AddressService addressService = new AddressService();
 		int result = addressService.insertAddress(newAddress);
 		
+		String path = "";
 		
-		
+		/* address 추가 후 주소록 메인페이지로 이동  */
+		if(result > 0) {
+			path = "/WEB-INF/views/common/success.jsp";
+			request.setAttribute("myAddressCode", "insertAddress");
+		} else {
+			path = "/WEB-INF/views/common/errorPage.jsp";
+		}
+		request.getRequestDispatcher(path).forward(request, response);
 	}
-		/* address 수정 */ 
+	
+
+	
 }
