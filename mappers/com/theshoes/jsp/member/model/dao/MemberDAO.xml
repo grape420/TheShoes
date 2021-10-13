@@ -9,19 +9,6 @@
 		<result property="shoesCategoryName" column="SHOES_CATEGORY_NAME"/>
 	</resultMap>
 	
-	<resultMap type="com.theshoes.jsp.member.model.dto.WishDTO" id="wishResultMap">
-		<id property="wishNo" column="WISH_NO"/>
-		<result property="wishId" column="WISH_ID"/>
-	</resultMap>
-	
-	<resultMap type="com.theshoes.jsp.member.model.dto.WishListDTO" id="wishListResultMap">
-		<id property="wishNo" column="WISH_NO"/>
-		<result property="shoesCategoryName" column="SHOES_CATEGORY_NAME"/>
-		<result property="shoesName" column="SHOES_MODEL"/>
-		<result property="shoesPrice" column="SHOES_PRICE"/>
-		<result property="savedName" column="SAVED_NAME"/>
-	</resultMap>
-	
 	<resultMap type="com.theshoes.jsp.member.model.dto.MemberDTO" id="memberResultMap">
 		<id property="id" column="MEMBER_ID"/>
 		<result property="name" column="NAME"/>
@@ -34,8 +21,13 @@
 		<result property="withDrawYn" column="WITHDRAW_YN"/>
 		<result property="birth" column="BIRTH"/>
 		<result property="role" column="ROLE"/>
-		
 		<collection property="wishList" resultMap="wishResultMap"/>
+	</resultMap>
+	
+	<resultMap type="com.theshoes.jsp.member.model.dto.WishDTO" id="wishResultMap">
+		<id property="wishNo" column="WISH_NO"/>
+		<id property="wishId" column="WISH_ID"/>
+		<association property="shoes" resultMap="shoesResultMap" />
 	</resultMap>
 	
 	<resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO" id="shoesThumbResultMap">
@@ -63,7 +55,7 @@
 		<result property="eventEndYn" column="EVENT_END_YN"/>
 		
 		<association property="category" resultMap="shoesCategoryResultMap" />
-		<collection property="wish" resultMap="wishResultMap"/>
+		<collection property="wishList" resultMap="wishResultMap"/>
 		<collection property="thumbList" resultMap="shoesThumbResultMap"/>
 	</resultMap> 
 	
@@ -148,19 +140,21 @@
          WHERE A.MEMBER_ID = #{ id }
 	</update>
 	
-	<select id="selectAllWishList" resultMap="wishListResultMap">
+	<select id="selectAllWishList" resultMap="memberResultMap" parameterType="string">
 		SELECT /* com.theshoes.jsp.member.model.dao.MemberDAO#selectAllWishList() */
 			   B.WISH_NO
+             , B.WISH_ID
 			 , D.SHOES_CATEGORY_NAME
 			 , C.SHOES_MODEL
 			 , C.SHOES_PRICE
 			 , E.SAVED_NAME
+			 , A.MEMBER_ID
   		  FROM MEMBER A
   		  LEFT JOIN WISHLIST B ON (A.MEMBER_ID = B.WISH_ID)
   		  LEFT JOIN SHOES_INFO C ON (B.WISH_NO = C.SHOES_NO)
   		  LEFT JOIN SHOES_CATEGORY D ON(C.INFO_CATEGORY_NO = D.SHOES_CATEGORY_NO)
   		  LEFT JOIN SHOES_THUMB E ON (C.SHOES_NO = E.ST_NO)
- 		 WHERE A.MEMBER_ID = #{ id }
-   		   AND E.FILE_TYPE = 'TITLE'
+  		 WHERE MEMBER_ID = #{ id }
+  		 AND E.FILE_TYPE = 'TITLE'
 	</select>
 </mapper>

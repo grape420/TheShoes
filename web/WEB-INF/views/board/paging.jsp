@@ -60,7 +60,7 @@
 						<c:if test="${ requestScope.selectCriteria.pageNo < requestScope.selectCriteria.maxPage }">
 							<a href="#" class="btn_arr next" id="nextPage">
 								<i class="fa fa-chevron-right" aria-hidden="true"></i>
-								<span class="hide">이전페이지</span>
+								<span class="hide">다음페이지</span>
 							</a> 
 						</c:if>
 						
@@ -83,7 +83,7 @@
 
 	
 	 <script>
-		 const link = "${ pageContext.servletContext.contextPath }/board/list";
+		 const link = "${ pageContext.servletContext.contextPath }/${ pagingPath }";
 		
 		if(document.getElementById("startPage")) {
 			const $startPage = document.getElementById("startPage");

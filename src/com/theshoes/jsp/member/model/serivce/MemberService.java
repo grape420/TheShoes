@@ -9,7 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.theshoes.jsp.member.model.dao.MemberDAO;
 import com.theshoes.jsp.member.model.dto.MemberDTO;
-import com.theshoes.jsp.member.model.dto.WishListDTO;
+import com.theshoes.jsp.member.model.dto.WishDTO;
 
 public class MemberService {
 	
@@ -105,14 +105,14 @@ public class MemberService {
 		return result;
 	}
 
-	public List<WishListDTO> selectAllWishList(String id) {
+	public MemberDTO selectAllWishList(String id) {
 		SqlSession session = getSqlSession();
 		
-		List<WishListDTO> wishList = memberDAO.selectAllWishList(session, id);
+		MemberDTO member = memberDAO.selectAllWishList(session, id);
 		
 		session.close();
 		
-		return wishList;
+		return member;
 	}
 
 }

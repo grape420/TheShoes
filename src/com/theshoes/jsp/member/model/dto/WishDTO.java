@@ -10,13 +10,15 @@ public class WishDTO implements Serializable{
 	
 	private int wishNo;
 	private String wishId;
+	private ShoesDTO shoes;
 	
 	public WishDTO() {
 	}
 
-	public WishDTO(int wishNo, String wishId) {
+	public WishDTO(int wishNo, String wishId, ShoesDTO shoes) {
 		this.wishNo = wishNo;
 		this.wishId = wishId;
+		this.shoes = shoes;
 	}
 
 	public int getWishNo() {
@@ -35,13 +37,17 @@ public class WishDTO implements Serializable{
 		this.wishId = wishId;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public ShoesDTO getShoes() {
+		return shoes;
+	}
+
+	public void setShoes(ShoesDTO shoes) {
+		this.shoes = shoes;
 	}
 
 	@Override
 	public String toString() {
-		return "WishDTO [wishNo=" + wishNo + ", wishId=" + wishId + "]";
+		return "WishDTO [wishNo=" + wishNo + ", wishId=" + wishId + ", shoes=" + shoes + "]";
 	}
-
+	
 }
