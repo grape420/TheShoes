@@ -22,11 +22,11 @@ public class WishListServlet extends HttpServlet {
 		MemberService memberService = new MemberService();
 		
 		HttpSession session = request.getSession();
-		List<WishListDTO> wishList = memberService.selectAllWishList(((MemberDTO)session.getAttribute("entryMember")).getId());
+		List<MemberDTO> wishList = memberService.selectAllWishList(((MemberDTO)session.getAttribute("entryMember")).getId());
 		
 		System.out.println(wishList);
 		
-		for(WishListDTO wish : wishList) {
+		for(MemberDTO wish : wishList) {
 			System.out.println(wish);
 		}
 		

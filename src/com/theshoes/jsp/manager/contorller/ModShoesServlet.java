@@ -224,7 +224,9 @@ public class ModShoesServlet extends HttpServlet {
 					list.add(tempFileInfo);
 				}
 				
-				System.out.println("thumbnail board : " + shoes);
+				for (ShoesThumbDTO shoesThumb : list) {
+					System.out.println("shoesThumb : " + shoesThumb);
+				}
 				
 				ShoesService regShoesService = new ShoesService();
 				int result = regShoesService.updateShoes(shoes);

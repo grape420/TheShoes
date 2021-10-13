@@ -105,10 +105,10 @@ public class MemberService {
 		return result;
 	}
 
-	public List<WishListDTO> selectAllWishList(String id) {
+	public List<MemberDTO> selectAllWishList(String id) {
 		SqlSession session = getSqlSession();
 		
-		List<WishListDTO> wishList = memberDAO.selectAllWishList(session, id);
+		List<MemberDTO> wishList = memberDAO.selectAllWishList(session, id);
 		
 		session.close();
 		

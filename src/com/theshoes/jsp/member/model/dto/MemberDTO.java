@@ -1,7 +1,8 @@
 package com.theshoes.jsp.member.model.dto;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
+import java.util.List;
 
 public class MemberDTO implements Serializable{
 	
@@ -18,12 +19,14 @@ public class MemberDTO implements Serializable{
 	private String withDrawYn;
 	private String birth;
 	private String role;
+	private List<WishDTO> wishList;
 	
 	public MemberDTO() {
 	}
 
-	public MemberDTO(String id, String name, String pwd, String email, String phone, java.util.Date enrollDate,
-			String blackReason, String blackListYn, String withDrawYn, String birth, String role) {
+	public MemberDTO(String id, String name, String pwd, String email, String phone, Date enrollDate,
+			String blackReason, String blackListYn, String withDrawYn, String birth, String role,
+			List<WishDTO> wishList) {
 		this.id = id;
 		this.name = name;
 		this.pwd = pwd;
@@ -35,6 +38,7 @@ public class MemberDTO implements Serializable{
 		this.withDrawYn = withDrawYn;
 		this.birth = birth;
 		this.role = role;
+		this.wishList = wishList;
 	}
 
 	public String getId() {
@@ -125,15 +129,19 @@ public class MemberDTO implements Serializable{
 		this.role = role;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public List<WishDTO> getWishList() {
+		return wishList;
+	}
+
+	public void setWishList(List<WishDTO> wishList) {
+		this.wishList = wishList;
 	}
 
 	@Override
 	public String toString() {
 		return "MemberDTO [id=" + id + ", name=" + name + ", pwd=" + pwd + ", email=" + email + ", phone=" + phone
 				+ ", enrollDate=" + enrollDate + ", blackReason=" + blackReason + ", blackListYn=" + blackListYn
-				+ ", withDrawYn=" + withDrawYn + ", birth=" + birth + ", role=" + role + "]";
+				+ ", withDrawYn=" + withDrawYn + ", birth=" + birth + ", role=" + role + ", wishList=" + wishList + "]";
 	}
 	
 }

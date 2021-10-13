@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,7 +111,7 @@
 														<td style="text-align: center;"><label><c:out value="${ delivery.id }"/></label></td>
 														<td style="text-align: center;"><c:out value="${ delivery.name }"/></td>
 														<td style="text-align: center;"><c:out value="${ delivery.event[0].shoes.shoesModel }"/> </td>
-														<td style="text-align: center;"><c:out value="${ delivery.event[0].shoes.shoesPrice }"/></td>
+														<td style="text-align: center;"><fmt:formatNumber value="${ delivery.event[0].shoes.shoesPrice }" pattern="###,###,###"/>원</td>
 														<td style="text-align: center;"><c:out value="${ delivery.address[0].addressZip }"/></td>
 														<td style="text-align: center;"><c:out value="${ delivery.event[0].eventStatus }"/></td> 
 													</tr>

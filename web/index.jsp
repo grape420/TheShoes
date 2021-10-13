@@ -11,6 +11,10 @@
 	<!-- 메인페이지로 포워드 -->
 	<script>
 		location.replace("${ pageContext.servletContext.contextPath }/common/mainPage");
-	</script>
+	</script> 
+	
+	<!-- <script>
+		location.replace("${ pageContext.servletContext.contextPath }/manager/manager");
+	</script> -->
 </body>
 </html>

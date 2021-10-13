@@ -49,6 +49,7 @@ public class DeliveryListServlet extends HttpServlet {
 		
 		List<DeliveryDTO> deliveryList = deliveryService.selectAllDeliveryList(selectCriteria);
 		
+		/* DeliveryDTO 안에 있는 EventDTO 안에 있는 getEventStatus를 가져오는 과정 */
 		for (DeliveryDTO delivery : deliveryList) {
 			for (EventDTO event : delivery.getEvent()) {
 				if ("1".equals(event.getEventStatus())) {

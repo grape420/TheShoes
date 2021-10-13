@@ -100,18 +100,21 @@
 												<th style="width: 150px; text-align : center;">E-MAIL</th>
 												<th style="width: 150px; text-align : center;">휴대폰번호</th>
 												<th style="width: 150px; text-align : center;">내용</th>
-												<th style="width: 150px; text-align : center;">게시글 삭제 여부</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>user01</td>
-												<td>홍길동</td>
-												<td>hong@naver.com</td>
-												<td>010-1234-5678</td>
-												<td>안녕하세요. 홍길동입니다.하하핳하하하하하하핳하하하하핳</td>
-												<td style="text-align : center;"><input type="checkbox"></td>
-											</tr>
+												<c:forEach var="boardList" items="${ requestScope.boardList }">										
+													<tr style="cursor: pointer;">
+														<td style="text-align: center;"><label><c:out value="${ boardList.id }"/></label></td>
+														<td style="text-align: center;"><c:out value="${ boardList.name }"/></td>
+														<td style="text-align: center;"><c:out value="${ boardList.email }"/> </td>
+														<td style="text-align: center;"><c:out value="${ boardList.phone }"/></td>
+														<c:set var="i" value="6"/>
+														<c:if test="${ i gt '6' }" >
+														<td style="text-align: center;"><c:out value="${ boardList.managerboardList[0].boardContent }"/></td>
+														</c:if>
+													</tr>
+												</c:forEach>	
 										</tbody>
 									</table>
 								</div>
@@ -123,20 +126,8 @@
 						<button type="submit" id="deleteYn">게시글 삭제</button>
 					</div>
 					<!-- /.container-fluid -->
-					<div class="paging">
-						<a href="#" class="btn_arr first"><i
-							class="fa fa-chevron-left" aria-hidden="true"></i><span
-							class="hide">처음페이지</span></a> <a href="#" class="btn_arr prev"><i
-							class="fa fa-chevron-left" aria-hidden="true"></i><span
-							class="hide">이전페이지</span></a> <a href="#" class="on">1</a>
-						<!-- D : 활성화페이지일 경우 : on 처리 -->
-						<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-						<a href="#" class="btn_arr next"><i
-							class="fa fa-chevron-right" aria-hidden="true"></i><span
-							class="hide">다음페이지</span></a> <a href="#" class="btn_arr last"><i
-							class="fa fa-chevron-right" aria-hidden="true"></i><span
-							class="hide">마지막페이지</span></a>
-					</div>
+					<jsp:include page="paging.jsp" />
+					
 				</div>
 				<!-- End of Main Content -->
 			</div>
@@ -145,6 +136,14 @@
 		</div>
 		<!-- End of Page Wrapper -->
 	</section>
+	
+	<script type="text/javascript">
+		$("tr").click(function() {
+			let memberId = $(this).find("label").text();
+			console.log(memberId);
+			location.href = "${ pageContext.servletContext.contextPath }/manager/delivery?memberId=" + memberId; 
+		});
+	</script>
 
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />

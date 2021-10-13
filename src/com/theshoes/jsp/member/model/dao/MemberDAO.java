@@ -29,8 +29,8 @@ public class MemberDAO {
 		return session.update("MemberDAO.withDraw", member);
 	}
 
-	public List<WishListDTO> selectAllWishList(SqlSession session, String id) {
-		return session.selectList("MemberDAO.selectAllWishList", id);
+	public List<MemberDTO> selectAllWishList(SqlSession session, String id) {
+		return session.selectOne("MemberDAO.selectAllWishList", id);
 	}
 
 

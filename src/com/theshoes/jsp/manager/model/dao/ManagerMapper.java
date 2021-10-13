@@ -37,9 +37,9 @@ public class ManagerMapper {
 		return session.update("ManagerMapper.updateShoesThumb", shoesThumb);
 	}
 
-	public List<ShoesDTO> selectAllNoticeList(SqlSession session, SelectCriteria selectCriteria) {
+	public List<ShoesDTO> selectAllShoesList(SqlSession session, SelectCriteria selectCriteria) {
 		System.out.println("여기는 DAO : " + selectCriteria);
-		return session.selectList("ManagerMapper.selectAllNoticeList", selectCriteria);
+		return session.selectList("ManagerMapper.selectAllShoesList", selectCriteria);
 	}
 
 	public int selectShoesTotalCount(SqlSession session) {
@@ -71,6 +71,15 @@ public class ManagerMapper {
 	public List<DeliveryDTO> selectAllDeliveryList(SqlSession session, SelectCriteria selectCriteria) {
 		System.out.println("여기는 DAO : " + selectCriteria);
 		return session.selectList("ManagerMapper.selectAllDeliveryList", selectCriteria);
+	}
+
+	public int selectBoardTotalCount(SqlSession session) {
+		return session.selectOne("ManagerMapper.selectBoardTotalCount");
+	}
+
+	public List<MemberDTO> selectAllBoardList(SqlSession session, SelectCriteria selectCriteria) {
+		System.out.println("여기는 DAO : " + selectCriteria);
+		return session.selectList("ManagerMapper.selectAllBoardList", selectCriteria);
 	}
 
 	

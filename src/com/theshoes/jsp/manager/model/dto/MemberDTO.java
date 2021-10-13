@@ -1,11 +1,12 @@
 package com.theshoes.jsp.manager.model.dto;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
+import com.theshoes.jsp.board.model.dto.BoardDTO;
 
-public class DeliveryDTO implements Serializable{
+public class MemberDTO implements Serializable{
 	
 	private static final long serialVersionUID = -2000033327191946319L;
 	
@@ -20,15 +21,12 @@ public class DeliveryDTO implements Serializable{
 	private String withDrawYn;
 	private String birth;
 	private String role;
-	private List<EventDTO> event;					// collection 관계
-	private List<WinnerDTO> winner;					// collection 관계
-	private List<AddressDTO> address;				// collection 관계
-	private List<WishListDTO> wishList;
-	public DeliveryDTO() {
+	private List<BoardDTO> managerboardList;
+	public MemberDTO() {
 	}
-	public DeliveryDTO(String id, String name, String pwd, String email, String phone, java.util.Date enrollDate,
-			String blackReason, String blackListYn, String withDrawYn, String birth, String role, List<EventDTO> event,
-			List<WinnerDTO> winner, List<AddressDTO> address, List<WishListDTO> wishList) {
+	public MemberDTO(String id, String name, String pwd, String email, String phone, Date enrollDate,
+			String blackReason, String blackListYn, String withDrawYn, String birth, String role,
+			List<BoardDTO> managerboardList) {
 		this.id = id;
 		this.name = name;
 		this.pwd = pwd;
@@ -40,10 +38,7 @@ public class DeliveryDTO implements Serializable{
 		this.withDrawYn = withDrawYn;
 		this.birth = birth;
 		this.role = role;
-		this.event = event;
-		this.winner = winner;
-		this.address = address;
-		this.wishList = wishList;
+		this.managerboardList = managerboardList;
 	}
 	public String getId() {
 		return id;
@@ -111,41 +106,22 @@ public class DeliveryDTO implements Serializable{
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public List<EventDTO> getEvent() {
-		return event;
+	public List<BoardDTO> getManagerboardList() {
+		return managerboardList;
 	}
-	public void setEvent(List<EventDTO> event) {
-		this.event = event;
-	}
-	public List<WinnerDTO> getWinner() {
-		return winner;
-	}
-	public void setWinner(List<WinnerDTO> winner) {
-		this.winner = winner;
-	}
-	public List<AddressDTO> getAddress() {
-		return address;
-	}
-	public void setAddress(List<AddressDTO> address) {
-		this.address = address;
-	}
-	public List<WishListDTO> getWishList() {
-		return wishList;
-	}
-	public void setWishList(List<WishListDTO> wishList) {
-		this.wishList = wishList;
+	public void setManagerboardList(List<BoardDTO> managerboardList) {
+		this.managerboardList = managerboardList;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 	@Override
 	public String toString() {
-		return "DeliveryDTO [id=" + id + ", name=" + name + ", pwd=" + pwd + ", email=" + email + ", phone=" + phone
+		return "MemberDTO [id=" + id + ", name=" + name + ", pwd=" + pwd + ", email=" + email + ", phone=" + phone
 				+ ", enrollDate=" + enrollDate + ", blackReason=" + blackReason + ", blackListYn=" + blackListYn
-				+ ", withDrawYn=" + withDrawYn + ", birth=" + birth + ", role=" + role + ", event=" + event
-				+ ", winner=" + winner + ", address=" + address + ", wishList=" + wishList + "]";
+				+ ", withDrawYn=" + withDrawYn + ", birth=" + birth + ", role=" + role + ", managerboardList="
+				+ managerboardList + "]";
 	}
-	
 	
 	
 	

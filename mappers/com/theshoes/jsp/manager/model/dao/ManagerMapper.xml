@@ -44,7 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<!-- 멤버 -->
-	<resultMap type="com.theshoes.jsp.member.model.dto.MemberDTO" id="memberResultMap">
+	<resultMap type="com.theshoes.jsp.manager.model.dto.MemberDTO" id="memberResultMap">
 		<id property="id" column="MEMBER_ID"/>
 		<result property="name" column="NAME"/>
 		<result property="email" column="EMAIL"/>
@@ -55,6 +55,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="withDrawYn" column="WITHDRAW_YN"/>
 		<result property="birth" column="BIRTH"/>
 		<result property="role" column="ROLE"/>
+		
+		<collection property="managerboardList" resultMap="noticeResultMap" />
+	</resultMap>
+	
+	<!-- 보드 -->
+	<resultMap type="com.theshoes.jsp.board.model.dto.BoardDTO" id="noticeResultMap">
+		<id property="boardNo" column="BOARD_NO"/>
+		<result property="boardId" column="BOARD_ID"/>
+		<result property="boardCategoryNo" column="BOARD_CATEGORY_NO"/>
+		<result property="boardTitle" column="BOARD_TITLE"/>
+		<result property="boardContent" column="BOARD_CONTENT"/>
+		<result property="boardRegDate" column="BOARD_REGDATE"/>
+		<result property="boardHit" column="BOARD_HIT"/>
+		<result property="categoryOrder" column="CATEGORY_ORDER"/>
 	</resultMap>
 	
 	<!-- 조인을 위한 멤버 테이블 -->
@@ -103,7 +117,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="addressDetail" column="ADDRESS_DETAIL"/>
 		<result property="addressName" column="ADDRESS_NAME"/>
 	</resultMap>
-	
 	
 	<insert id="insertShoes" parameterType="com.theshoes.jsp.shoes.model.dto.ShoesDTO">
 	   INSERT
@@ -199,7 +212,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		     , A.SAVE_PATH = #{ savePath }
 		     , A.FILE_TYPE = #{ fileType }
 		     , A.THUMBNAIL_PATH = #{ thumbnailPath }
-		 WHERE A.SHOES_NO = #{ shoesNo }
+		 WHERE A.ST_NO = 23
 	</update>
 	
 	<select id="selectShoesList" resultMap="shoesResultMap">			<!-- 이거 필요없음 -->
@@ -265,8 +278,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   AND A.ROLE = 'MEMBER'
 	</select>
 	
-	<select id="selectAllNoticeList" resultMap="shoesResultMap">
-       	  SELECT /* com.theshoes.jsp.board.model.dao.BoardDAO#selectAllNoticeList() */
+	<select id="selectAllShoesList" resultMap="shoesResultMap">
+       	  SELECT 
 		          A.RNUM
 		        , A.SHOES_NO
 		        , A.INFO_CATEGORY_NO
@@ -275,6 +288,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		        , A.SHOES_PRICE
 		        , A.SALES_YN
 		        , A.SALES_AMOUNT
+		        , A.REAMANING_AMOUNT
 		        , A.START_DATE
 		        , A.END_DATE
 		        , A.WINNER_DATE
@@ -286,6 +300,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	         			, B.SHOES_PRICE
 	         			, B.SALES_YN
 	         			, B.SALES_AMOUNT
+	         			, B.REAMANING_AMOUNT
 	         			, B.START_DATE
 	         			, B.END_DATE
 	         			, B.WINNER_DATE
@@ -296,6 +311,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	         			       , C.SHOES_PRICE
 	         			       , C.SALES_YN
 	         			       , C.SALES_AMOUNT
+	         			       , C.REAMANING_AMOUNT
 	         			       , C.START_DATE
 	         			       , C.END_DATE
 	         			       , C.WINNER_DATE
@@ -306,6 +322,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	         	    WHERE ROWNUM <= #{ endRow,jdbcType=VARCHAR } ]]> ) A
 	                LEFT JOIN SHOES_CATEGORY D ON (A.INFO_CATEGORY_NO = D.SHOES_CATEGORY_NO)
 	         	  WHERE A.RNUM >= #{ startRow, jdbcType=VARCHAR }
+	         	  ORDER BY A.SHOES_NO DESC
 	</select>
 	
 	<select id="selectShoesTotalCount" resultType="_int">
@@ -328,6 +345,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  LEFT JOIN SHOES_INFO C ON (B.EVENT_SHOES_ID = C.SHOES_NO)
 		  LEFT JOIN WINNER D ON (A.MEMBER_ID = D.WINNER_ID)
 		  LEFT JOIN ADDRESS E ON (A.MEMBER_ID = E.ADDRESS_ID)
+	</select>
+	
+	<select id="selectBoardTotalCount" resultType="_int">
+		SELECT
+		       COUNT(*)
+		  FROM MEMBER A
+		  LEFT JOIN BOARD B ON (A.MEMBER_ID = B.BOARD_ID)
 	</select>
 	
 	<select id="selectAllMemberList" resultMap="memberResultMap">
@@ -389,6 +413,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE A.ROLE = 'MEMBER'
 		   AND A.BLACKLIST_YN = 'N'
 		   AND A.WITHDRAW_YN = 'N'
+	</select>
+	
+	<select id="selectAllBoardList" resultMap="memberResultMap">
+		SELECT
+		       A.MEMBER_ID
+		     , A.NAME
+		     , A.EMAIL
+		     , A.PHONE_NO
+		     , B.BOARD_CONTENT
+		  FROM MEMBER A
+		  LEFT JOIN BOARD B ON (A.MEMBER_ID = B.BOARD_ID)
+		 WHERE A.ROLE = 'MEMBER'
 	</select>
 	
 </mapper>

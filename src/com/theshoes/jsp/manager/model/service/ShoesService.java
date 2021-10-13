@@ -120,8 +120,8 @@ public class ShoesService {
 	public List<ShoesDTO> selectAllShoesList(SelectCriteria selectCriteria) {
 		SqlSession session = getSqlSession();
 		
-		List<ShoesDTO> shoesList = mapper.selectAllNoticeList(session, selectCriteria);
-		System.out.println("shoesList : " + shoesList);
+		List<ShoesDTO> shoesList = mapper.selectAllShoesList(session, selectCriteria);
+		
 		session.close();
 		
 		return shoesList;
@@ -137,7 +137,4 @@ public class ShoesService {
 		return totalCount;
 	}
 		
-		
-		
-
 }

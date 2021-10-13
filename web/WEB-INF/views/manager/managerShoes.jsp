@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,14 +114,14 @@
 														<td style="text-align: center;"><label><c:out value="${ shoes.shoesNo }"/></label></td>
 														<td style="text-align: center;"><c:out value="${ shoes.category.shoesCategoryName }"/></td>
 														<td style="text-align: center;"><c:out value="${ shoes.shoesModel }"/> </td>
-														<td style="text-align: center;"><c:out value="${ shoes.shoesPrice }"/></td>
-														<td style="text-align: center;"><c:out value="${ shoes.salesAmount }"/></td>
-														<td style="text-align: center;"><c:out value="${ shoes.reamaningAmount }"/></td>
+														<td style="text-align: center;"><fmt:formatNumber value="${ shoes.shoesPrice }" pattern="###,###,###"/>원</td>
+														<td style="text-align: center;"><fmt:formatNumber value="${ shoes.salesAmount }" pattern="###,###,###"/></td>
+														<td style="text-align: center;"><fmt:formatNumber value="${ shoes.reamaningAmount }" pattern="###,###,###"/></td>
 														<td style="text-align: center;"><c:out value="${ shoes.salesYn }"/></td>
 														<td style="text-align: center;"><c:out value="${ shoes.eventEndYn }"/></td>
-														<td style="text-align: center;"><c:out value="${ shoes.startDate }"/></td>
-														<td style="text-align: center;"><c:out value="${ shoes.endDate }"/></td>
-														<td style="text-align: center;"><c:out value="${ shoes.winnerDate }"/></td>
+														<td style="text-align: center;"><fmt:formatDate value="${ shoes.startDate }" type="date" pattern="yyyy/MM/dd (E) HH:mm"/></td>
+														<td style="text-align: center;"><fmt:formatDate value="${ shoes.endDate }" type="date" pattern="yyyy/MM/dd (E) HH:mm"/></td>
+														<td style="text-align: center;"><fmt:formatDate value="${ shoes.winnerDate }" type="date" pattern="yyyy/MM/dd (E) HH:mm"/></td>
 													</tr>
 												</c:forEach>	
 										</tbody>
