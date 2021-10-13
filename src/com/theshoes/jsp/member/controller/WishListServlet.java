@@ -42,10 +42,10 @@ public class WishListServlet extends HttpServlet {
 		SelectCriteria sc = null;
 		
 		if(member != null) {
-			sc = Pagenation.getSelectCriteria(nowPage, member.getWishList().size(), 2, 5);
+			sc = Pagenation.getSelectCriteria(nowPage, member.getWishList().size(), 5, 5);
 			request.setAttribute("wishList", member.getWishList());
 		} else {
-			sc = Pagenation.getSelectCriteria(nowPage, 0, 2, 5);
+			sc = Pagenation.getSelectCriteria(nowPage, 0, 5, 5);
 		}
 		
 		
