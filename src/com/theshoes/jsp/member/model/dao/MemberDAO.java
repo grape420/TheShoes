@@ -1,8 +1,11 @@
 package com.theshoes.jsp.member.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.theshoes.jsp.member.model.dto.MemberDTO;
+import com.theshoes.jsp.member.model.dto.WishListDTO;
 
 public class MemberDAO {
 
@@ -20,6 +23,14 @@ public class MemberDAO {
 
 	public int passwordChange(SqlSession session, MemberDTO member) {
 		return session.update("MemberDAO.passwordChange", member);
+	}
+
+	public int withDraw(SqlSession session, MemberDTO member) {
+		return session.update("MemberDAO.withDraw", member);
+	}
+
+	public List<WishListDTO> selectAllWishList(SqlSession session, String id) {
+		return session.selectList("MemberDAO.selectAllWishList", id);
 	}
 
 
