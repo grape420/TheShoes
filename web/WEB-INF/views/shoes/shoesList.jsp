@@ -34,7 +34,7 @@
 		<hr>
 		<!-- album -->
 		<div class="album-main row mt-5">
-			<c:forEach var="list" items="${requestScope.list}" varStatus="status">
+			<c:forEach var="list" items="${requestScope.list}" begin="${ selectCriteria.startRow - 1 }" end="${ selectCriteria.endRow - 1 }">
 					<div class="col-md-4 border-0">
 						<div class="card mb-4 border-0">
 							<div class="launch-time ta-sm-l d-sm-h d-md-b z10 mod-bg-grey pt6-sm pl6-sm">
@@ -56,7 +56,7 @@
 										<a href="javascript:void(0)">THE DRAW <b>추첨예정</b></a>
 									</p>
 								</div>
-								<a class="stretched-link" href="#"></a>
+								<a class="stretched-link" href="/TheShoes/shoes/shoesDetail.jsp?no=${list.shoesNo }" ></a>
 							</div>
 						</div>
 					</div>

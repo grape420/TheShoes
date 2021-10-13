@@ -20,7 +20,8 @@ public class ShoesDetailServlet extends HttpServlet {
 		
 		int no = Integer.valueOf(request.getParameter("shoesNo"));
 		
-		System.out.println(no);
+		
+		
 	}
 	
 	@Override

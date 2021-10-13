@@ -38,5 +38,16 @@ public class ShoesService {
 		
 		return cnt;
 	}
+	
+	public ShoesDTO selectShoesDetail(int no) {
+		SqlSession session = getSqlSession();
+		
+		ShoesDTO shoesDetail = shoesDAO.selectShoesDetail(session, no);
+		
+		session.close();
+		
+		return shoesDetail;
+		
+	}
 
 }

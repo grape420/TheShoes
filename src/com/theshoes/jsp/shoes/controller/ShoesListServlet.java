@@ -24,7 +24,7 @@ public class ShoesListServlet extends HttpServlet {
 		
 		/* 페이징처리 */
 		int pageNo = 1;						// 기본 시작 페이지번호
-		int onePost = 10;					// 한 페이지에 노출시킬 게시글의 수
+		int onePost = ９;					// 한 페이지에 노출시킬 게시글의 수
 		int onePage = 5;					// 한번에 보여줄 페이지 버튼의 갯수
 		
 		String currentPage = request.getParameter("currentPage");

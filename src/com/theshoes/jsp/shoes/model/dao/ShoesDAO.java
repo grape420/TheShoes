@@ -16,5 +16,9 @@ public class ShoesDAO {
 	public int selectShoesListCnt(SqlSession session) {
 		return session.selectOne("ShoesDAO.selectShoesListCnt");
 	}
+
+	public ShoesDTO selectShoesDetail(SqlSession session, int no) {
+		return session.selectOne("ShoesDAO.selectShoesDetail", no);
+	}
 	
 }

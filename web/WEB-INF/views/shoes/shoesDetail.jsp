@@ -50,7 +50,7 @@
 						과장된 멀티컬러 오버레이가 돋보이는 갑피와 화이트 스택 중창이 디자인의 가장 큰 특징이며, 쥬얼 스우시 자수를 클래식한
 						가죽 스우시 위로 과감하게 레이어링하였습니다. 밝은 파스텔과 페일 코럴, 퓨어 바이올렛, 레몬 트위스트 등의 컬러가
 						어우러져 여름철 스타일에 딱 맞는 감성을 표현합니다.</p>
-					<div class="select">
+					<!--  <div class="select">
 						<div class="select-size">
 							사이즈 선택 <i class="fa fa-angle-down" aria-hidden="true"></i>
 						</div>
@@ -73,6 +73,7 @@
 							<li class="list">290</li>
 						</ul>
 					</div>
+					 -->
 					<a class="btn" href="javascript:void(0)">응모가능</a>
 					<!-- <div class="delivery">
             <p class="sameday">
