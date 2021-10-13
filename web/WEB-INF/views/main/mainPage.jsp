@@ -24,57 +24,76 @@
 				<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
 			</ol>
 			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<a href="#"> <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/sample/first.png" class="d-block w-100 carouselImg" alt="...">
-					</a>
-					<div class="carousel-caption d-none d-md-block">
-						<h5 class="text-black">First slide label</h5>
-						<p class="text-black"></p>
+				<div style="width: 70%; margin: 0 auto;">
+					<div class="carousel-item active">
+						<c:forEach var="thumb" items="${ shoesList[0].thumbList }">
+							<c:if test="${ thumb.fileType eq 'TITLE' }">
+								<a href="#"> <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ thumb.savedName }" class="d-block w-100 carouselImg" alt="...">
+								</a>
+								<div class="carousel-caption d-none d-md-block">
+									<h2 class="text-black">${ shoesList[0].shoesModel }</h2>
+									<p class="text-black"></p>
+								</div>
+							</c:if>
+						</c:forEach>
 					</div>
-				</div>
-				<div class="carousel-item">
-					<a href="#"> <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/sample/third.png" class="d-block w-100 carouselImg" alt="...">
-					</a>
-					<div class="carousel-caption d-none d-md-block">
-						<h5 class="text-black">Second slide label</h5>
-						<p class="text-black"></p>
+					<div class="carousel-item">
+						<c:forEach var="thumb" items="${ shoesList[1].thumbList }">
+							<c:if test="${ thumb.fileType eq 'TITLE' }">
+								<a href="#"> <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ thumb.savedName }" class="d-block w-100 carouselImg" alt="...">
+								</a>
+								<div class="carousel-caption d-none d-md-block">
+									<h2 class="text-black">${ shoesList[1].shoesModel }</h2>
+									<p class="text-black"></p>
+								</div>
+							</c:if>
+						</c:forEach>
 					</div>
-				</div>
-				<div class="carousel-item">
-					<a href="#"> <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/sample/first.png" class="d-block w-100 carouselImg" alt="...">
-					</a>
-					<div class="carousel-caption d-none d-md-block">
-						<h5 class="text-black">Third slide label</h5>
-						<p class="text-black">Some representative placeholder content for the third slide.</p>
+					<div class="carousel-item">
+						<c:forEach var="thumb" items="${ shoesList[2].thumbList }">
+							<c:if test="${ thumb.fileType eq 'TITLE' }">
+								<a href="#"> <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ thumb.savedName }" class="d-block w-100 carouselImg" alt="...">
+								</a>
+								<div class="carousel-caption d-none d-md-block">
+									<h2 class="text-black">${ shoesList[2].shoesModel }</h2>
+									<p class="text-black"></p>
+								</div>
+							</c:if>
+						</c:forEach>
 					</div>
 				</div>
 			</div>
 			<a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev"> 
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span> 
 			<span class="sr-only">Previous</span>
-			</a> <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next"> 
-			<span class="carousel-control-next-icon" aria-hidden="true"></span> 
+			</a> 
+			<a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next"> 
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
 			<span class="sr-only">Next</span>
 			</a>
 		</div>
 
 		<!-- album -->
 		<div class="row mt-5">
-			<c:forEach var="i" begin="1" end="12">
+			<c:forEach var="shoes" items="${ shoesList }" end="12">
 				<div class="col-md-4">
 					<div class="card mb-4 border-0">
-						<img src="${ pageContext.servletContext.contextPath }/resources/upload/image/sample/search01.jpg">
-						<div class="card-body ">
-							<div class="card-text">
-								<p class="none-hover">
-									<span class="tit">에어포스 1 미드</span> <span class="color">NYC Cool Grey</span>
-								</p>
-								<p class="hover">
-									<a href="javascript:void(0)">Buy</a>
-								</p>
-							</div>
-							<a class="stretched-link" href="${ pageContext.servletContext.contextPath }/shoes/detail?shoesCode=i"></a>
-						</div>
+						<c:forEach var="thumb" items="${ shoes.thumbList }">
+							<c:if test="${ thumb.fileType eq 'TITLE' }">
+								<img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ thumb.savedName }">
+								<div class="card-body ">
+									<div class="card-text">
+										<p class="none-hover">
+											<span class="tit">${ shoes.category.shoesCategoryName }</span> <span class="color">${ shoes.shoesModel }</span>
+										</p>
+										<p class="hover">
+											<a href="${ pageContext.servletContext.contextPath }/shoes/detail?shoesCode=${ shoes.shoesNo }">Buy</a>
+										</p>
+									</div>
+									<a class="stretched-link" href="${ pageContext.servletContext.contextPath }/shoes/detail?shoesCode=${ shoes.shoesNo }"></a>
+								</div>
+							</c:if>
+						</c:forEach>
 					</div>
 				</div>
 			</c:forEach>

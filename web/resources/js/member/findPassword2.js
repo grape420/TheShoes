@@ -1,3 +1,4 @@
+/* count down 함수 */
 function paddedFormat(num) {
 	return num < 10 ? "0" + num : num;
 }
@@ -5,10 +6,10 @@ function paddedFormat(num) {
 function startCountDown(duration, element) {
 
 	let secondsRemaining = duration;
-	let min = 0;
-	let sec = 0;
+	min = 0;
+	sec = 0;
 
-	let countInterval = setInterval(function() {
+	countInterval = setInterval(function() {
 
 		min = parseInt(secondsRemaining / 60);
 		sec = parseInt(secondsRemaining % 60);
@@ -21,7 +22,7 @@ function startCountDown(duration, element) {
 	}, 1000);
 }
 
-$("#code-send-btn").click(function() {
+function countStart() {
 	let time_minutes = 3; // Value in minutes
 	let time_seconds = 0; // Value in seconds
 
@@ -31,4 +32,34 @@ $("#code-send-btn").click(function() {
 	element.textContent = `${paddedFormat(time_minutes)}:${paddedFormat(time_seconds)}`;
 
 	startCountDown(--duration, element);
-});
+};
+
+$("#name").change(function() {
+	nameFlag = false;
+})
+
+$("#email").change(function() {
+	emailTextFlag = false;
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

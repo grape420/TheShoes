@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="AddressDAO">
+
+	<resultMap type="com.theshoes.jsp.member.model.dto.AddressDTO" id="addressResultMap">
+		<id property="no" column="ADDRESS_NO"/>
+		<result property="id" column="ADDRESS_ID"/>
+		<result property="zip" column="ADDRESS_ZIP"/>
+		<result property="detail" column="ADDRESS_DETAIL"/>
+		<result property="name" column="ADDRESS_NAME"/>
+
+	</resultMap>
+	
+
+	<insert id="insertAddress" parameterType="com.theshoes.jsp.member.model.dto.AddressDTO">
+        INSERT /* com.theshoes.jsp.member.model.dao.AddressDAO#insertAddress() */
+          INTO ADDRESS A
+        (
+          A.ADDRESS_NO
+        , A.ADDRESS_ID
+        , A.ADDRESS_ZIP
+        , A.ADDRESS_DETAIL
+        , A.ADDRESS_NAME
+        )
+        VALUES
+        (
+          SEQ_ADDRESS_CODE.NEXTVAL 
+        , #{ addressNo } 
+        , #{ nameMM }
+        , #{ address1MM }
+        , #{ address2MM }
+        , #{ addressName }
+        )
+	</insert>
+	
+	<select id="selectAllAddressList" resultMap="addressResultMap">
+		SELECT 
+       		 A.ADDRESS_NO
+     	   , A.ADDRESS_ID
+     	   , A.ADDRESS_ZIP 
+      	   , A.ADDRESS_DETAIL
+    	   , A.ADDRESS_NAME
+      	  FROM ADDRESS A
+	</select>
+	
+</mapper>

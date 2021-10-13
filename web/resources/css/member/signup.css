@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.agree-textarea {
+	height: 200px;
+}
+
 section {
 	padding-top: 120px;
 	padding-bottom: 70px;
@@ -22,10 +26,27 @@ section {
 	height: auto !important;
 }
 
-.id-result, .password-result, .name-result, .phone-result, .email-result
-	{
+.id-result, .password-result, .name-result, .phone-result, .email-result,
+	.birth-result {
 	margin-top: 2px;
 	font-size: 11px;
+}
+
+.double-check-btn, .code-send-btn {
+	height: 38px !important;
+	font-size: 15px !important;
+}
+
+.count-down {
+	color: red;
+	height: 38px;
+	text-align: center;
+	font-size: 15px;
+	padding-top: 7px;
+}
+
+.privacy policy {
+	height: 10em;
 }
 
 .signup-form>textarea {

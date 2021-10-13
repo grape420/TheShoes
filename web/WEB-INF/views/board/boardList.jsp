@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,84 +82,37 @@
 					<br>
 					<h1 class="h3 mb-2 text-gray-800">공지사항</h1>
 					<p class="mb-4"></p>
-					<table class="table table-hover">
+					
+					<table class="table table-hover" id="noticeTable">
 						<tbody>
-							<tr>
-								<td colspan="3"><a href="notice_detail.html" id="a1">[이벤트
-										발표] LUCKY DRAW - 나이키 x 오프화이트 덩크로우 로트 50 & 샤넬 클래식 파우치</a></td>
-								<td></td>
-								<td></td>
+							<tr style="background-color:black; color:white;">
+								<th colspan="1" class="text-center">번호</th>
+								<th colspan="5" class="text-center">제목</th>
+								<th colspan="1" class="text-center">작성자</th>
+								<th colspan="1" class="text-center">조회수</th>
+								<th colspan="1" class="text-center">작성일</th>
 							</tr>
-							<tr>
-								<td colspan="3">[이벤트 발표] LUCKY DRAW - 나이키 x 오프화이트 덩크로우 로트
-									46 & 베어브릭 x 카카오 라이언 400%</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="3">[이벤트 발표] LUCKY DRAW - 나이키 x 오프화이트 덩크로우 로트
-									18 & 프라다 에어팟프로 케이스</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="3">[공지] 추석 연휴 판매자 정산 일정 안내</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="3">[공지] 추석 연휴 쇼룸 및 오프라인 접수 운영 안내</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="3">[공지] 추석 연휴 고객센터 운영 안내</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="3">[공지] 추석 연휴 택배사 휴무에 따른 거래 일정 안내</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="3">[공지] 보관판매 판매자 심사 오류 안내</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="3">[공지] 개인정보처리방침 변경 안내</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="3">[이벤트 발표] LUCKY DRAW - 루이비통 포쉐트클레 & 나이키 x
-									오프화이트 덩크로우 로트 1</td>
-								<td></td>
-								<td></td>
-							</tr>
+							<c:forEach var="noticeList" items="${ requestScope.noticeList }" >
+								<tr>							
+									<td class="text-center"><c:out value="${ noticeList.categoryOrder }"/></td>
+									<td colspan="5"><c:out value="${ noticeList.boardTitle }"/></td>
+									<td class="text-center"><c:out value="${ noticeList.boardId }"/></td>
+									<td class="text-center"><c:out value="${ noticeList.boardHit }"/></td>
+									<td class="text-center"><c:out value="${ noticeList.boardRegDate }"/></td>
+								</tr>
+							</c:forEach> 
 						</tbody>
 					</table>
 
-					<div class="paging">
-						<a href="#" class="btn_arr first"><i
-							class="fa fa-chevron-left" aria-hidden="true"></i><span
-							class="hide">처음페이지</span></a> <a href="#" class="btn_arr prev"><i
-							class="fa fa-chevron-left" aria-hidden="true"></i><span
-							class="hide">이전페이지</span></a> <a href="#" class="on">1</a>
-						<!-- D : 활성화페이지일 경우 : on 처리 -->
-						<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-						<a href="#" class="btn_arr next"><i
-							class="fa fa-chevron-right" aria-hidden="true"></i><span
-							class="hide">다음페이지</span></a> <a href="#" class="btn_arr last"><i
-							class="fa fa-chevron-right" aria-hidden="true"></i><span
-							class="hide">마지막페이지</span></a>
-					</div>
+					<!-- 페이징처리 넣기 -->
+					<jsp:include page="paging.jsp"/>
 
-					<div style="text-align: center; margin-top: 20px;">
-						<a class="namoon" href="notice_input.html">등록하기</a>
-					</div>
-
+					<!-- 관리자 확인 -->
+					<%-- <c:if test="${ sessionScope.entryMember.role eq 'Y'}"> --%>
+						<div style="text-align: center; margin-top: 20px;">
+							<a href="#" class="namoon" onclick="location.href='${ pageContext.servletContext.contextPath }/board/reg';">등록하기</a>
+						</div>
+					<%-- </c:if> --%>
 				</div>
 			</div>
 		</div>
@@ -168,5 +121,20 @@
 
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
+
+	<!-- 클릭 시 디테일 페이지로 이동 -->
+	<script>
+	$(function() {
+		$("#noticeTable td").hover(function() {
+			$(this).parent().css({"cursor":"pointer"});
+		}).click(function() {
+			let categoryOrder = $(this).parent().children(":eq(0)").text();
+			console.log(categoryOrder);
+			location.href = "${ pageContext.servletContext.contextPath }/board/detail?categoryOrder=" + categoryOrder;
+		});
+	});
+	</script>
+	
+
 </body>
 </html>

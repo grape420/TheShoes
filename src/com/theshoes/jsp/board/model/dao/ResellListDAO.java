@@ -27,20 +27,19 @@ public class ResellListDAO {
 		return session.selectList("ResellListDAO.selectResellList");
 	}
 
-	public static int incrementBoardCount(SqlSession session, int no) {
-		return session.update("ResellListDAO.incrementBoardCount", no);	
-	}
-
-	public ResellListDTO selectOneResell(SqlSession session, int no) {
-		return session.selectOne("resellListDAO.selectOneResell", no);
-	}
-
 	public static int insertResellShoes(SqlSession session, ResellDetailDTO resellShoes) {
 		return session.insert("resellListDAO.insertResellShoes", resellShoes);
 	}
 
-	public static int insertShoesThumb(SqlSession session, ResellThumbDTO file) {
-		return session.insert("resellListDAO.insertShoesThumb", file);
+	public static int insertResellThumb(SqlSession session, ResellThumbDTO file) {
+		return session.insert("resellListDAO.insertResellThumb", file);
+	}
+	
+	public static int incrementBoardCount(SqlSession session, int no) {
+		return session.update("ResellListDAO.incrementBoardCount", no);	
+	}
+	public ResellListDTO selectOneResellList(SqlSession session, int no) {
+		return session.selectOne("resellListDAO.selectOneResellList", no);
 	}
 
 }

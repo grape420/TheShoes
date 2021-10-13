@@ -79,7 +79,7 @@
         	</selectKey>
 	</insert>
 	
-	<insert id="insertShoesThumb" parameterType="com.theshoes.jsp.board.model.dto.ResellThumbDTO">
+	<insert id="insertResellThumb" parameterType="com.theshoes.jsp.board.model.dto.ResellThumbDTO">
 		INSERT 
 			  INTO RESELL_THUMB A
 			(

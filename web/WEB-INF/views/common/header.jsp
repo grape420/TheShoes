@@ -29,16 +29,29 @@
       <nav class="navbar navbar-expand-sm navbar-light bg-light" style="padding: 0;">
         <div class="collapse navbar-collapse justify-content-end">
           <ul class="navbar-nav mr-3">
+            <li class="nav-item mr-2 ml-2">
+              <a href="${ pageContext.servletContext.contextPath }/board/list">고객센터</a>
+            </li>
           	<c:if test="${ empty sessionScope.entryMember }">
-	            <li class="nav-item mr-2 ml-2">
-	              <a href="#">고객센터</a>
-	            </li>
 	            <li class="nav-item mr-2 ml-2">
 	              <a href="${ pageContext.servletContext.contextPath }/member/login">로그인</a>
 	            </li>
 	            <li class="nav-item mr-2 ml-2">
 	              <a href="${ pageContext.servletContext.contextPath }/member/signup">회원가입</a>
 	            </li>
+	         </c:if>
+	         <c:if test="${ !empty sessionScope.entryMember }">
+	            <li class="nav-item mr-2 ml-2">
+	              <a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</a>
+	            </li>
+	            <li class="nav-item mr-2 ml-2">
+	              <a href="${ pageContext.servletContext.contextPath }/myPage/address">마이페이지</a>
+	            </li>
+		         <c:if test="${ sessionScope.entryMember.role eq 'MANAGER'}">
+		            <li class="nav-item mr-2 ml-2">
+		              <a href="${ pageContext.servletContext.contextPath }/manager/shoes">관리자 페이지</a>
+		            </li>
+		         </c:if>
 	         </c:if>
           </ul>
         </div>
@@ -51,16 +64,17 @@
         <div class="collapse navbar-collapse justify-content-end">
           <ul class="navbar-nav mr-3">
             <li class="nav-item mr-1">
-              <a class="nav-link font-weight-bold" href="#">THE DRAW</a>
+              <a class="nav-link font-weight-bold" href="${ pageContext.servletContext.contextPath }/shoes/list">THE DRAW</a>
             </li>
             <li class="nav-item mr-1">
-              <a class="nav-link font-weight-bold" href="#">RESELL</a>
+              <a class="nav-link font-weight-bold" href="${ pageContext.servletContext.contextPath }/resell/resellList">RESELL</a>
             </li>
           </ul>
-          <form>
-            <input class="form-control" type="text" placeholder="Search">
-          </form>
-          <a href="#"><span class="heart"><i class="fa fa-heart-o" aria-hidden="true"></i></span></a>
+          <c:set var="test" value="" />
+          <form action="${ pageContext.servletContext.contextPath }/shoes/list?search=${ test }" method="GET">
+            <input id="search" name="search" class="form-control" type="text" placeholder="Search">
+          </form >
+          <a href="${ pageContext.servletContext.contextPath }/myPage/wishList"><span class="heart"><i class="fa fa-heart-o" aria-hidden="true"></i></span></a>
         </div>
       </nav>
       <hr class="m-0">
@@ -74,6 +88,14 @@
 	<script src="${ pageContext.servletContext.contextPath }/resources/uses/js/demo/datatables-demo.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/js/common/jquery.mousewheel.min.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/js/common/main.js"></script>
+    
+    <script>
+    	var test = "${ test }";
+    	
+    	$('#search').change(function() {
+    		test = $("#search").val();
+    	});
+    </script>
     
 </body>
 </html>

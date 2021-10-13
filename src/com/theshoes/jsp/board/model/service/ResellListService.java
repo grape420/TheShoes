@@ -52,7 +52,8 @@ public class ResellListService {
 		
 		return resellList;
 	}
-
+	
+	/* 리셀 디테일 */
 	public ResellListDTO selectOneResellList(int no) {
 		
 		SqlSession session = getSqlSession();
@@ -62,7 +63,7 @@ public class ResellListService {
 		int result = ResellListDAO.incrementBoardCount(session, no);
 		
 		if(result > 0) {
-			resell = resellListDAO.selectOneResell(session, no);
+			resell = resellListDAO.selectOneResellList(session, no);
 			
 			if(resell != null) {
 				session.commit();
@@ -95,7 +96,7 @@ public class ResellListService {
 		
 		int resellShoesThumbResult = 0;
 		for(int i = 0; i < fileList.size(); i++) {
-			resellShoesThumbResult += ResellListDAO.insertShoesThumb(session, fileList.get(i));
+			resellShoesThumbResult += ResellListDAO.insertResellThumb(session, fileList.get(i));
 		}
 		
 		if(resellResult > 0 && resellShoesThumbResult == fileList.size()) {
