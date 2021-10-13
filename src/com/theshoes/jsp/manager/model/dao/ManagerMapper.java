@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.theshoes.jsp.board.model.dto.BoardDTO;
 import com.theshoes.jsp.common.paging.SelectCriteria;
 import com.theshoes.jsp.manager.model.dto.DeliveryDTO;
 import com.theshoes.jsp.member.model.dto.MemberDTO;
@@ -77,7 +78,7 @@ public class ManagerMapper {
 		return session.selectOne("ManagerMapper.selectBoardTotalCount");
 	}
 
-	public List<MemberDTO> selectAllBoardList(SqlSession session, SelectCriteria selectCriteria) {
+	public List<BoardDTO> selectAllBoardList(SqlSession session, SelectCriteria selectCriteria) {
 		System.out.println("여기는 DAO : " + selectCriteria);
 		return session.selectList("ManagerMapper.selectAllBoardList", selectCriteria);
 	}

@@ -44,7 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<!-- 멤버 -->
-	<resultMap type="com.theshoes.jsp.manager.model.dto.MemberDTO" id="memberResultMap">
+	<resultMap type="com.theshoes.jsp.member.model.dto.MemberDTO" id="memberResultMap">
 		<id property="id" column="MEMBER_ID"/>
 		<result property="name" column="NAME"/>
 		<result property="email" column="EMAIL"/>
@@ -55,8 +55,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="withDrawYn" column="WITHDRAW_YN"/>
 		<result property="birth" column="BIRTH"/>
 		<result property="role" column="ROLE"/>
-		
-		<collection property="managerboardList" resultMap="noticeResultMap" />
 	</resultMap>
 	
 	<!-- 보드 -->
@@ -350,8 +348,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectBoardTotalCount" resultType="_int">
 		SELECT
 		       COUNT(*)
-		  FROM MEMBER A
-		  LEFT JOIN BOARD B ON (A.MEMBER_ID = B.BOARD_ID)
+		  FROM BOARD A
+		 WHERE A.BOARD_CATEGORY_NO = 3
 	</select>
 	
 	<select id="selectAllMemberList" resultMap="memberResultMap">
@@ -415,16 +413,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   AND A.WITHDRAW_YN = 'N'
 	</select>
 	
-	<select id="selectAllBoardList" resultMap="memberResultMap">
+	<select id="selectAllBoardList" resultMap="noticeResultMap">
 		SELECT
-		       A.MEMBER_ID
-		     , A.NAME
-		     , A.EMAIL
-		     , A.PHONE_NO
-		     , B.BOARD_CONTENT
-		  FROM MEMBER A
-		  LEFT JOIN BOARD B ON (A.MEMBER_ID = B.BOARD_ID)
-		 WHERE A.ROLE = 'MEMBER'
+		       A.BOARD_NO
+		     , A.BOARD_ID
+		     , A.BOARD_TITLE
+		     , A.BOARD_CONTENT
+		     , A.BOARD_REGDATE
+		     , A.BOARD_HIT
+		  FROM BOARD A
+		 WHERE A.BOARD_CATEGORY_NO = 3
+		ORDER BY 1 DESC
 	</select>
 	
 </mapper>

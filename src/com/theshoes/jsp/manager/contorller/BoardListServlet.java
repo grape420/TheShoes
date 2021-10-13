@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.theshoes.jsp.board.model.dto.BoardDTO;
 import com.theshoes.jsp.common.paging.Pagenation;
 import com.theshoes.jsp.common.paging.SelectCriteria;
 import com.theshoes.jsp.manager.model.service.ManagerBoardService;
-import com.theshoes.jsp.member.model.dto.MemberDTO;
 
 @WebServlet("/manager/board")
 public class BoardListServlet extends HttpServlet {
@@ -44,20 +44,19 @@ public class BoardListServlet extends HttpServlet {
 		
 		System.out.println(selectCriteria);
 		
-		List<MemberDTO> boardList = managerBoardService.selectAllBoardList(selectCriteria);
+		List<BoardDTO> boardList = managerBoardService.selectAllBoardList(selectCriteria);
 		
 		String path = "";
 		if (boardList != null) {
 			path = "/WEB-INF/views/manager/managerBoard.jsp";
-			request.setAttribute("pagingPath", "boardList");
-			request.setAttribute("boardList", boardList);
+			request.setAttribute("pagingPath", "board");
+			request.setAttribute("board", boardList);
 			request.setAttribute("selectCriteria", selectCriteria);
 		} else {
 			path = "/WEB-INF/views/common/errorPage.jsp";
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);
-		
 		
 	}
 

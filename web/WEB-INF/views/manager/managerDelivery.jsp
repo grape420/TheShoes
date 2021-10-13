@@ -65,12 +65,6 @@
 				<!-- Divider -->
 				<hr class="sidebar-divider">
 
-				<!-- Heading -->
-
-				<!-- Sidebar Toggler (Sidebar) -->
-				<div class="text-center d-none d-md-inline">
-					<button class="rounded-circle border-0" id="sidebarToggle"></button>
-				</div>
 
 			</ul>
 
@@ -106,7 +100,7 @@
 											</tr>
 										</thead>
 										<tbody>
-												<c:forEach var="delivery" items="${ requestScope.deliveryList }">										
+												<c:forEach var="delivery" items="${ requestScope.deliveryList }" begin="${ selectCriteria.startRow - 1 }" end="${ selectCriteria.endRow - 1 }">										
 													<tr style="cursor: pointer;">
 														<td style="text-align: center;"><label><c:out value="${ delivery.id }"/></label></td>
 														<td style="text-align: center;"><c:out value="${ delivery.name }"/></td>
@@ -136,13 +130,13 @@
 
 	</section>
 	
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		$("tr").click(function() {
 			let memberId = $(this).find("label").text();
 			console.log(memberId);
 			location.href = "${ pageContext.servletContext.contextPath }/manager/delivery?memberId=" + memberId; 
 		});
-	</script>
+	</script> -->
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 	

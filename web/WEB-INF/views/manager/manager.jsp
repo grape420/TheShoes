@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,10 +65,7 @@
 
 				<!-- Heading -->
 
-				<!-- Sidebar Toggler (Sidebar) -->
-				<div class="text-center d-none d-md-inline">
-					<button class="rounded-circle border-0" id="sidebarToggle"></button>
-				</div>
+				
 
 			</ul>
 
@@ -113,7 +111,7 @@
 														<td style="text-align: center;"><c:out value="${ member.name }"/></td>
 														<td style="text-align: center;"><c:out value="${ member.email }"/> </td>
 														<td style="text-align: center;"><c:out value="${ member.phone }"/></td>
-														<td style="text-align: center;"><c:out value="${ member.enrollDate }"/></td>
+														<td style="text-align: center;"><fmt:formatDate value="${ member.enrollDate }" type="date" pattern="yyyy/MM/dd"/></td>
 														<td style="text-align: center;"><c:out value="${ member.birth }"/></td>
 														<td style="text-align: center;"><c:out value="${ member.role }"/></td>
 														<td style="text-align: center;"><c:out value="${ member.withDrawYn }"/></td>

@@ -63,12 +63,6 @@
 				<!-- Divider -->
 				<hr class="sidebar-divider">
 
-				<!-- Heading -->
-
-				<!-- Sidebar Toggler (Sidebar) -->
-				<div class="text-center d-none d-md-inline">
-					<button class="rounded-circle border-0" id="sidebarToggle"></button>
-				</div>
 
 			</ul>
 
@@ -95,24 +89,23 @@
 										cellspacing="0">
 										<thead>
 											<tr style="background-color : black; color : white;">
-												<th style="width: 150px; text-align : center;">회원아이디</th>
-												<th style="width: 150px; text-align : center;">회원이름</th>
-												<th style="width: 150px; text-align : center;">E-MAIL</th>
-												<th style="width: 150px; text-align : center;">휴대폰번호</th>
+												<th style="width: 150px; text-align : center;">게시글번호</th>
+												<th style="width: 150px; text-align : center;">아이디</th>
+												<th style="width: 150px; text-align : center;">제목</th>
 												<th style="width: 150px; text-align : center;">내용</th>
+												<th style="width: 150px; text-align : center;">작성일자</th>
+												<th style="width: 150px; text-align : center;">조회수</th>
 											</tr>
 										</thead>
 										<tbody>
-												<c:forEach var="boardList" items="${ requestScope.boardList }">										
+												<c:forEach var="board" items="${ requestScope.board }" begin="${ selectCriteria.startRow - 1 }" end="${ selectCriteria.endRow - 1 }">	
 													<tr style="cursor: pointer;">
-														<td style="text-align: center;"><label><c:out value="${ boardList.id }"/></label></td>
-														<td style="text-align: center;"><c:out value="${ boardList.name }"/></td>
-														<td style="text-align: center;"><c:out value="${ boardList.email }"/> </td>
-														<td style="text-align: center;"><c:out value="${ boardList.phone }"/></td>
-														<c:set var="i" value="6"/>
-														<c:if test="${ i gt '6' }" >
-														<td style="text-align: center;"><c:out value="${ boardList.managerboardList[0].boardContent }"/></td>
-														</c:if>
+														<td style="text-align: center;"><label><c:out value="${ board.boardNo }"/></label></td>
+														<td style="text-align: center;"><c:out value="${ board.boardId }"/></td>
+														<td style="text-align: center;"><c:out value="${ board.boardTitle }"/> </td>
+														<td style="text-align: center;"><c:out value="${ board.boardContent }"/></td>
+														<td style="text-align: center;"><c:out value="${ board.boardRegDate }"/></td>
+														<td style="text-align: center;"><c:out value="${ board.boardHit }"/></td>
 													</tr>
 												</c:forEach>	
 										</tbody>
@@ -122,9 +115,7 @@
 						</div>
 
 					</div>
-					<div style="text-align: center;">
-						<button type="submit" id="deleteYn">게시글 삭제</button>
-					</div>
+					
 					<!-- /.container-fluid -->
 					<jsp:include page="paging.jsp" />
 					
@@ -139,9 +130,8 @@
 	
 	<script type="text/javascript">
 		$("tr").click(function() {
-			let memberId = $(this).find("label").text();
-			console.log(memberId);
-			location.href = "${ pageContext.servletContext.contextPath }/manager/delivery?memberId=" + memberId; 
+			let categoryOrder = $(this).find("label").text();
+			location.href = "${ pageContext.servletContext.contextPath }/board/detail?categoryOrder=" + categoryOrder; 
 		});
 	</script>
 

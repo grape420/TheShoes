@@ -6,10 +6,9 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.theshoes.jsp.board.model.dto.BoardDTO;
 import com.theshoes.jsp.common.paging.SelectCriteria;
 import com.theshoes.jsp.manager.model.dao.ManagerMapper;
-import com.theshoes.jsp.manager.model.dto.DeliveryDTO;
-import com.theshoes.jsp.member.model.dto.MemberDTO;
 
 public class ManagerBoardService {
 	
@@ -29,10 +28,10 @@ private final ManagerMapper mapper;
 		return totalCount;
 	}
 
-	public List<MemberDTO> selectAllBoardList(SelectCriteria selectCriteria) {
+	public List<BoardDTO> selectAllBoardList(SelectCriteria selectCriteria) {
 		SqlSession session = getSqlSession();
 		
-		List<MemberDTO> boardList = mapper.selectAllBoardList(session, selectCriteria);
+		List<BoardDTO> boardList = mapper.selectAllBoardList(session, selectCriteria);
 		System.out.println("boardList : " + boardList);
 		
 		session.close();
