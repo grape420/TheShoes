@@ -32,7 +32,7 @@
 				<!-- Sidebar - Brand -->
 				<a
 					class="sidebar-brand d-flex align-items-center justify-content-center"
-					href="index.html">
+					href="${ pageContext.servletContext.contextPath }/manager/shoes">
 					<div class="sidebar-brand-icon rotate-n-15">
 					</div>
 					<div class="sidebar-brand-text mx-3">MANAGER</div>

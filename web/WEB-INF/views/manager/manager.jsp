@@ -30,7 +30,7 @@
 				id="accordionSidebar">
 
 				<!-- Sidebar - Brand -->
-				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="${ pageContext.servletContext.contextPath }/manager/shoes">
 					<div class="sidebar-brand-icon rotate-n-15">
 					</div>
 					<div class="sidebar-brand-text mx-3">MANAGER</div>
@@ -130,9 +130,7 @@
 						</div>
 
 					</div>
-					<div class="registBtn">
-						<button type="submit" id="registBL">블랙리스트 등록</button>
-					</div>
+
 					<!-- /.container-fluid -->
 					
 					<jsp:include page="paging.jsp" />
