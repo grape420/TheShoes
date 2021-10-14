@@ -100,12 +100,27 @@ public class ModShoesServlet extends HttpServlet {
 					System.out.println("item : " + item);
 				}
 				
+				for(int i = 0; i < fileItems.size(); i++) {
+					FileItem item = fileItems.get(i);
+					
+					if(item.isFormField()) {
+						/* 폼 데이터인 경우 */
+						/* 전송된 폼의 name은 getFiledName()으로 받아오고, 해당 필드의 value는 getString()으로 받아온다. 
+						 * 하지만 인코딩 설정을 하더라도 전송되는 파라미터는 ISO-8859-1로 처리된다.
+						 * 별도로 ISO-8859-1로 해석된 한글을 UTF-8로 변경해주어야 한다.
+						 * */
+//						parameter.put(item.getFieldName(), item.getString());
+						parameter.put(item.getFieldName(), new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
+					}
+				}
+				
 				/* 위에서 출력해본 모든 item들을 다 처리할 것이다. */
 				for(int i = 0; i < fileItems.size(); i++) {
 					FileItem item = fileItems.get(i);
 					
-					if(!item.isFormField()) {
+					if(item.isFormField()) {
 						
+					} else {
 						/* 파일 데이터인 경우 */
 						if(item.getSize() > 0) {
 							
@@ -138,12 +153,23 @@ public class ModShoesServlet extends HttpServlet {
 							int height = 0;
 							if("thumbnailImg1".equals(filedName)) {
 								fileMap.put("fileType", "TITLE");
-								
+								fileMap.put("shoesThumbNo", parameter.get("shoesThumbNo1"));
 								/* 썸네일로 변환 할 사이즈를 지정한다. */
 								width = 350;
 								height = 200;
 							} else {
 								fileMap.put("fileType", "BODY");
+								if("thumbnailImg2".equals(filedName)) {
+									fileMap.put("shoesThumbNo", parameter.get("shoesThumbNo2"));
+								} else if("thumbnailImg3".equals(filedName)) {
+									fileMap.put("shoesThumbNo", parameter.get("shoesThumbNo3"));
+								} else if("thumbnailImg4".equals(filedName)) {
+									fileMap.put("shoesThumbNo", parameter.get("shoesThumbNo4"));
+								} else if("thumbnailImg5".equals(filedName)) {
+									fileMap.put("shoesThumbNo", parameter.get("shoesThumbNo5"));
+								} else if("thumbnailImg6".equals(filedName)) {
+									fileMap.put("shoesThumbNo", parameter.get("shoesThumbNo6"));
+								}
 								
 								width = 120;
 								height = 100;
@@ -158,17 +184,7 @@ public class ModShoesServlet extends HttpServlet {
 							fileMap.put("thumbnailPath", "/resources/upload/thumb/thumbnail_" + randomFileName);
 							
 							fileList.add(fileMap);
-							
 						}
-						
-					} else {
-						/* 폼 데이터인 경우 */
-						/* 전송된 폼의 name은 getFiledName()으로 받아오고, 해당 필드의 value는 getString()으로 받아온다. 
-						 * 하지만 인코딩 설정을 하더라도 전송되는 파라미터는 ISO-8859-1로 처리된다.
-						 * 별도로 ISO-8859-1로 해석된 한글을 UTF-8로 변경해주어야 한다.
-						 * */
-//						parameter.put(item.getFieldName(), item.getString());
-						parameter.put(item.getFieldName(), new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
 					}
 				}
 				
@@ -220,10 +236,7 @@ public class ModShoesServlet extends HttpServlet {
 					Map<String, String> file = fileList.get(i);
 					
 					ShoesThumbDTO tempFileInfo = new ShoesThumbDTO();
-					String str = "shoesThumbNo" + (i + 1);
-					System.out.println("str : " + str);
-					System.out.println("str : " + parameter.get(str));
-					tempFileInfo.setShoesThumbNo(Integer.valueOf(parameter.get(str)));
+					tempFileInfo.setShoesThumbNo(Integer.valueOf(file.get("shoesThumbNo")));
 					tempFileInfo.setOriginalName(file.get("originFileName"));
 					tempFileInfo.setSavedName(file.get("savedFileName"));
 					tempFileInfo.setSavePath(file.get("savePath"));
