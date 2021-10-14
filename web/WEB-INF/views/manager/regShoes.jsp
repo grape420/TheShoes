@@ -191,12 +191,12 @@
 										</div>
 
 										<div class="thumbnail-file-area">
-			                              <input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)">
-			                              <input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this,2)">
-			                              <input type="file" id="thumbnailImg3" name="thumbnailImg3" onchange="loadImg(this,3)">
-			                              <input type="file" id="thumbnailImg4" name="thumbnailImg4" onchange="loadImg(this,4)">
-			                              <input type="file" id="thumbnailImg5" name="thumbnailImg5" onchange="loadImg(this,5)">
-			                              <input type="file" id="thumbnailImg6" name="thumbnailImg6" onchange="loadImg(this,6)">
+			                              <input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)" required>
+			                              <input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this,2)" required>
+			                              <input type="file" id="thumbnailImg3" name="thumbnailImg3" onchange="loadImg(this,3)" required>
+			                              <input type="file" id="thumbnailImg4" name="thumbnailImg4" onchange="loadImg(this,4)" required>
+			                              <input type="file" id="thumbnailImg5" name="thumbnailImg5" onchange="loadImg(this,5)" required>
+			                              <input type="file" id="thumbnailImg6" name="thumbnailImg6" onchange="loadImg(this,6)" required>
 			                            </div>
 
 									<div class="col-md-12 mb-3">

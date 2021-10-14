@@ -214,13 +214,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		     , A.ATTACHMENT_STATUS = 'Y'
 		 WHERE A.ST_NO = #{ stNo }
 		   AND A.SHOES_THUMB_NO = #{ shoesThumbNo }
+		 
 	</update>
 	
-	<select id="selectShoesThumbNo" resultMap="shoesThumbResultMap">
+	<select id="selectShoesThumbNo" resultMap="shoesThumbResultMap" >
 		SELECT 
 		       A.SHOES_THUMB_NO 
+		     , A.ST_NO
 		  FROM SHOES_THUMB A
-		 WHERE ST_NO = { stNo }
+		 WHERE ST_NO = #{ shoesNo }
 	</select>
 	
 	<select id="selectShoesList" resultMap="shoesResultMap">			<!-- 이거 필요없음 -->
@@ -269,6 +271,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  LEFT JOIN SHOES_CATEGORY B ON (A.INFO_CATEGORY_NO = B.SHOES_CATEGORY_NO)
 		  LEFT JOIN SHOES_THUMB C ON (A.SHOES_NO = C.ST_NO)
 		 WHERE A.SHOES_NO = #{ shoesNo }
+		 ORDER BY C.SHOES_THUMB_NO 
 	</select>
 	
 	<select id="selectMemberDetail" resultMap="memberResultMap">

@@ -102,18 +102,19 @@ public class ShoesService {
 			System.out.println("여기는 서비스 : " + file);
 		}
 		
-		/* fileList에 boardNo값을 넣는다. */
+		/* fileList에 shoesNo값을 넣는다. */
 		for (int i = 0; i < fileList.size(); i++) {
 			fileList.get(i).setStNo(shoes.getShoesNo());
-//			fileList.get(i).setShoesThumbNo();
 		}
-		fileList = mapper.selectShoesThumbNo(session, shoes.getShoesNo());
+		
+//		List<ShoesThumbDTO> tmpList = mapper.selectShoesThumbNo(session, shoes.getShoesNo());
 		
 		/* 신발 썸네일 테이블에 list size만큼 update 한다. */
 		int shoesThumbResult = 0;
 		for (int i = 0; i < fileList.size(); i++) {
+//			fileList.get(i).setStNo(tmpList.get(i).getStNo());
+//			fileList.get(i).setShoesThumbNo(tmpList.get(i).getShoesThumbNo());
 			shoesThumbResult += mapper.updateShoesThumb(session, fileList.get(i));
-//			shoesThumbResult += mapper.selectShoesThumbNo(session, fileList.get(i));
 		}
 		
 		if (shoesResult > 0 && shoesThumbResult == fileList.size()) {

@@ -51,6 +51,8 @@ public class ModShoesServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		System.out.println("여기는 서블릿");
+		
 		if (ServletFileUpload.isMultipartContent(request)) {
 			
 			String rootLocation = getServletContext().getRealPath("/");
@@ -218,6 +220,10 @@ public class ModShoesServlet extends HttpServlet {
 					Map<String, String> file = fileList.get(i);
 					
 					ShoesThumbDTO tempFileInfo = new ShoesThumbDTO();
+					String str = "shoesThumbNo" + (i + 1);
+					System.out.println("str : " + str);
+					System.out.println("str : " + parameter.get(str));
+					tempFileInfo.setShoesThumbNo(Integer.valueOf(parameter.get(str)));
 					tempFileInfo.setOriginalName(file.get("originFileName"));
 					tempFileInfo.setSavedName(file.get("savedFileName"));
 					tempFileInfo.setSavePath(file.get("savePath"));
