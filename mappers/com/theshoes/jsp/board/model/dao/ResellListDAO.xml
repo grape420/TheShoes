@@ -1,57 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="ResellListDAO.xml">
+<mapper namespace="ResellListDAO">
 
-	<resultMap type="com.theshoes.jsp.board.model.dto.ResellListDTO" id="ResellListResultMap">
+	<resultMap type="com.theshoes.jsp.board.model.dto.BoardDTO" id="boardResultMap">
 		<id property="boardNo" column="BOARD_NO"/>
-		<result property="boardCategoryNo" column="BOARD_CATEGORY_NO"/>
-		<result property="boardTitle" column="BOARD_TITLE"/>
-		<result property="boardContent" column="BOARD_CONTENT"/>
-		<result property="categoryOrder" column="CATEGORY_ORDER"/>
-	</resultMap>
-	
-	<resultMap type="com.theshoes.jsp.board.model.dto.BoardCategoryDTO" id="BoardCategoryResultMap">
-		<id property="boardCategoryNo" column="BOARD_CATEGORY_NO"/>
-		<result property="boardCategoryName" column="BOARD_CATEGORY_NAME"/>
-	</resultMap>
-	
-	<resultMap type="com.theshoes.jsp.board.model.dto.ResellDetailDTO" id="ResellDetailResultMap">
-		<id property="resellNo" column="RESELL_NO"/>
-		<result property="boardNo" column="BOARD_NO"/>
 		<result property="boardId" column="BOARD_ID"/>
 		<result property="boardCategoryNo" column="BOARD_CATEGORY_NO"/>
 		<result property="boardTitle" column="BOARD_TITLE"/>
 		<result property="boardContent" column="BOARD_CONTENT"/>
+		<result property="boardRegDate" column="BOARD_REGDATE"/>
+		<result property="boardHit" column="BOARD_HIT"/>
 		<result property="categoryOrder" column="CATEGORY_ORDER"/>
-		
-		<association property="category" resultMap="BoardCategoryResultMap"/>
-		<collection property="resellThumb" resultMap="ResellThumbResultMap"/>
 	</resultMap>
 	
-	<resultMap type="com.theshoes.jsp.board.model.dto.ResellThumbDTO" id="ResellThumbResultMap">
-		<id property="rtNo" column="RT_NO"/>
-		<result property="originalName" column="ORIGINAL_NAME"/>
-		<result property="savedName" column="SAVED_NAME"/>
-		<result property="savePath" column="SAVE_PATH"/>
-		<result property="fileType" column="FILE_TYPE"/>
-		<result property="thumbnailPath" column="THUMBNAIL_PATH"/>
-		<result property="status" column="ATTACHMENT_STATUS"/>
-	</resultMap>
-	
-	<select id="selectOneResell" resultMap="ResellListResultMap">
-		SELECT
-			   A.BOARD_NO
-			 , A.BOARD_ID
-			 , A.BOARD_CATEGORY_NO
-			 , A.BOARD_TITLE
-			 , A.BOARD_CONTENT
-			 , A.CATEGORY_ORDER
-			 , B.RT_FILE
+	<select id="selectResellList" resultMap="boardResultMap">
+		  SELECT
+		       A.BOARD_NO
+		     , A.BOARD_ID
+		     , A.BOARD_TITLE
+		     , A.BOARD_CONTENT
+		     , A.BOARD_REGDATE
+		     , A.BOARD_HIT
+		     , A.CATEGORY_ORDER
 		  FROM BOARD A
-		  JOIN RESELL_THUMB B ON(B.RT_NO = A.BOARD_NO)
 		 WHERE A.BOARD_CATEGORY_NO = 3
+		ORDER BY A.CATEGORY_ORDER DESC
 	</select>
 	
 	<insert id="insertResellShoes" parameterType="com.theshoes.jsp.board.model.dto.ResellDetailDTO">
@@ -79,7 +54,7 @@
         	</selectKey>
 	</insert>
 	
-	<insert id="insertShoesThumb" parameterType="com.theshoes.jsp.board.model.dto.ResellThumbDTO">
+	<insert id="insertResellThumb" parameterType="com.theshoes.jsp.board.model.dto.ResellThumbDTO">
 		INSERT 
 			  INTO RESELL_THUMB A
 			(

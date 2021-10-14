@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import static com.theshoes.jsp.common.mybatis.Template.getSqlSession;
 
+import com.theshoes.jsp.board.model.dto.BoardDTO;
 import com.theshoes.jsp.board.model.dto.ResellDetailDTO;
 import com.theshoes.jsp.board.model.dto.ResellListDTO;
 import com.theshoes.jsp.board.model.dto.ResellThumbDTO;
@@ -20,39 +21,19 @@ public class ResellListService {
 	public ResellListService() {
 		resellListDAO = new ResellListDAO();
 	}
+
+	public List<BoardDTO> selectResellList() {
+		
+		SqlSession session = getSqlSession();
+		
+		List<BoardDTO> resellList = resellListDAO.selectResellList(session);
 	
-//	/* 게시물 조회 */
-//	public List<ResellListDTO> selectResellList(SelectCriteria selectCriteria) {
-//		
-//		SqlSession session = getSqlSession();
-//		
-//		List<ResellListDTO> resellList = resellListDAO.selectResellList(session, selectCriteria);
-//		return null;
-//	}
-
-	/* 페이징 처리 */
-	public int selectTotalCount(Map<String, String> searchMap) {
-		
-		SqlSession session = getSqlSession();
-		
-		int totalCount = resellListDAO.selectTotalCount(session, searchMap);
-		
-		session.close();
-		
-		return totalCount;
-	}
-
-	public List<ResellListDTO> selectResellList() {
-		
-		SqlSession session = getSqlSession();
-		
-		List<ResellListDTO> resellList = resellListDAO.selectResellList(session);
-		
 		session.close();
 		
 		return resellList;
 	}
-
+	
+	/* 리셀 디테일 */
 	public ResellListDTO selectOneResellList(int no) {
 		
 		SqlSession session = getSqlSession();
@@ -62,7 +43,7 @@ public class ResellListService {
 		int result = ResellListDAO.incrementBoardCount(session, no);
 		
 		if(result > 0) {
-			resell = resellListDAO.selectOneResell(session, no);
+			resell = resellListDAO.selectOneResellList(session, no);
 			
 			if(resell != null) {
 				session.commit();
@@ -95,7 +76,7 @@ public class ResellListService {
 		
 		int resellShoesThumbResult = 0;
 		for(int i = 0; i < fileList.size(); i++) {
-			resellShoesThumbResult += ResellListDAO.insertShoesThumb(session, fileList.get(i));
+			resellShoesThumbResult += ResellListDAO.insertResellThumb(session, fileList.get(i));
 		}
 		
 		if(resellResult > 0 && resellShoesThumbResult == fileList.size()) {
@@ -109,5 +90,8 @@ public class ResellListService {
 		
 		return result;
 	}
+
+
+
 
 }
