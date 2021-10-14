@@ -156,13 +156,13 @@
 											<div class="info_bind">
 												<div class="address_info">
 													<div class="name_box">
-														<span class="name"> <c:out value="${ addressA.addressName }"/> </span> <br>
-														<span class="zipcode"> <c:out value="${ addressA.address1MM }"/> </span> 
-														<span class="address"> <c:out value="${ addressA.address2MM }"/> </span>
+														<span class="name" id ="name"> <c:out value="${ addressA.addressName }"/> </span> <br>
+														<span class="zipcode" id ="zipcode"> <c:out value="${ addressA.address1MM }"/> </span> 
+														<span class="address" id ="address"> <c:out value="${ addressA.address2MM }"/> </span>
 														<div class="right_btm">
-														<a href="#" type="button" class="btn outlinegrey small"	data-toggle="modal" data-target="#exampleModa"
+														<a id="btnM"  type="button" class="btn outlinegrey small modi" data-toggle="modal" data-target="#exampleModa"
 														   data-whatever="@getbootstrap"> 수정 </a> 
-														<a href="#" type="button" class="btn outlinegrey small"> 삭제 </a>
+														<a id="" type="button" class="btn outlinegrey small"> 삭제 </a>
 														</div>
 													</div>
 												</div>
@@ -236,22 +236,37 @@
 		}
 	</script>
 	<!-- 주소록 수정 -->
-		<script>
-				const $searchZipCodeMM = document.getElementById("searchZipCodeMM");
-				const $changeBtn = document.getElementById("changeBtn");
-				$searchZipCodeMM.onclick = function()  {  
+	<script>
+		const $searchZipCodeMM = document.getElementById("searchZipCodeMM");
+		const $changeBtn = document.getElementById("changeBtn");
+			  
+		$searchZipCodeMM.onclick = function()  {  
 			//다음 우편번호 검색 창을 오픈하면서 동작할 콜백 메소드를 포함한 객체를 매개변수로 전달한다.
 			new daum.Postcode({
 				oncomplete: function(data){
 					//팝업에서 검색결과 항목을 클릭했을 시 실행할 코드를 작성하는 부분
-					document.getElementById("address1").value = data.zonecode;
-					document.getElementById("address2").value = data.address;
+				document.getElementById("address1").value = data.zonecode;
+				document.getElementById("address2").value = data.address;
 				}
 			}).open();
 		}
-		$sizeBtn.onclick = function() {
-			location.href = "${ pageContext.servletContext.contextPath }";
+	    $sizeBtn.onclick = function() {
+		 location.href = "${ pageContext.servletContext.contextPath }";
 		}
+	    
+	    $(".modi").click(function(){ 
+	    	$("#address2").val($(this).parent().prev().text());
+	    	$("#address1").val($(this).parent().prev().prev().text());
+	    	$("#addressName2").val($(this).parent().prev().prev().prev().prev().text());
+	    })
+	    
+	   /*  name
+	    zipcode
+	    address
+	    
+	    addressName2
+	    address1
+	    address2 */
 	</script>
 	
 
