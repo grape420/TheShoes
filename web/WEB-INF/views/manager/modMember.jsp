@@ -155,8 +155,6 @@
 	<script type="text/javascript">
 	
 	      $("#delMemoWrite").keyup(function() {
-	        console.log($(this).val());
-
 	        var inputLength = $(this).val().length;
 
 	        $("#counter").text(inputLength);
@@ -197,7 +195,6 @@
 		/* 3번 봐라 좋은 말로 할때 */
 		$("#delMemoWrite").change(function() {
 			$(this).val($(this).text);
-			console.log($("#selfInput").val());
 		})
 		
 		$("#delMemo").change(function () {

@@ -148,7 +148,6 @@
 	<script type="text/javascript">
 		$("tr").click(function() {
 			let memberId = $(this).find("label").text();
-			console.log(memberId);
 			location.href = "${ pageContext.servletContext.contextPath }/manager/modMember?memberId=" + memberId; 
 		});
 	</script>
