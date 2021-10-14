@@ -23,10 +23,13 @@ public class ShoesDetailServlet extends HttpServlet {
 		
 		int no = Integer.valueOf(request.getParameter("no"));
 		
-		shoesService.selectShoesDetail(no);
+		ShoesDTO shoesDetail = shoesService.selectShoesDetail(no);
 		
+		System.out.println(shoesDetail.toString());
 		String path = "/WEB-INF/views/shoes/shoesDetail.jsp?no=" + no;
 		
+		request.setAttribute("shoesDetail", shoesDetail);
+
 		request.getRequestDispatcher(path).forward(request, response);
 		
 	}

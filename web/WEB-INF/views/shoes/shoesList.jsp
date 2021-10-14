@@ -39,7 +39,7 @@
 						<div class="card mb-4 border-0">
 							<div class="launch-time ta-sm-l d-sm-h d-md-b z10 mod-bg-grey pt6-sm pl6-sm">
 								<div class="launch-caption ta-sm-c">
-									<p class="headline-4" data-qa="draw-startDate"><fmt:formatDate value="${ list.startDate }" pattern="MM"/></p>
+									<p class="headline-4" data-qa="draw-startDate"><fmt:formatDate value="${ list.startDate }" pattern="MM"/>월</p>
 									<p class="headline-1" data-qa="draw-day"><fmt:formatDate value="${ list.startDate }" pattern="dd"/></p>
 								</div>
 							</div>
@@ -56,7 +56,7 @@
 										<a href="javascript:void(0)">THE DRAW <b>추첨예정</b></a>
 									</p>
 								</div>
-								<a class="stretched-link" href="/TheShoes/shoes/shoesDetail.jsp?no=${list.shoesNo }" ></a>
+								<a class="stretched-link" href="/TheShoes/shoes/detail?no=${list.shoesNo }" ></a>
 							</div>
 						</div>
 					</div>
