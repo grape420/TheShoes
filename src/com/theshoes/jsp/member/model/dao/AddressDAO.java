@@ -25,6 +25,11 @@ public class AddressDAO {
 	}
 
 	/* 주소록 수정 메소드 */ 
+	public int updateAddress(SqlSession session, AddressDTO address) {
+		return session.update("AddressDAO.updateAddress", address);
+
+	
+	}
 
 
 }

@@ -16,7 +16,6 @@ public class AddressService {
 	
 	public AddressService() {
 		addressDAO = new AddressDAO();
-		System.out.println("나는야 서비스 ");
 	}
 
 		/* 주소록 추가 메소드 */
@@ -38,9 +37,27 @@ public class AddressService {
 		public List<AddressDTO> selectAllAddressList() {
 			SqlSession session = getSqlSession();
 			List<AddressDTO> addressList = AddressDAO.selectAllAddressList(session);
+			
 			session.close();
 			
 			return addressList;
+		}
+		
+		/* 주소록 수정 메소드 */ 
+		public int updateAddress(AddressDTO address) {
+			System.out.println("나는야 서비스 ");
+			SqlSession session = getSqlSession();
+			
+			int result = addressDAO.updateAddress(session, address);
+			
+			if(result > 0) {
+				session.commit();
+			} else {
+				session.rollback();
+			}
+			session.close();
+			
+			return result;
 		}
 
 

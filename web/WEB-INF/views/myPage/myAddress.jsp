@@ -175,7 +175,6 @@
 					</div>
 				</div>
 			</div>
-
 			<!-- 주소록수정  modal-->
 		<div class="modal fade" id="exampleModa" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -189,25 +188,24 @@
 					</div>
 					<div class="contents">
 						<div class="address-form">
-							<form class="manage-account" novalidate action="${ pageContext.servletContext.contextPath }/myPage/modifyAddress" method="post">
+							<form class="manage-account"  id="modify" novalidate action="${ pageContext.servletContext.contextPath }/myPage/modifyAddress" method="post">
 								
 								<h2 class="tit">배송지 이름</h2>
-								<input type="text" name="addressName2" id="addressName2" class="form-control" value="${ requestScope.address.addressName }" required >
+								<input type="text" name="addressName2" id="addressName2" class="form-control" value="${ requestScope.addressList[0].addressName }" required >
 								<label class="addressName-result2" id="addressName-result" ></label>
 
 								<h2 class="tit">배송지 검색</h2>
-								<input type="text" name="address1" id="address1" class="form-control address-search" value ="${ reqiestScope.address.address1MM }" required>
-								 <input type="button" class="btn_search" value="검색">
+								<input type="text" name="address1" id="address1" class="form-control address-search" value ="${ reqiestScope.addressList[0].address1MM }" required>
+								 <input type="button" class="btn_search" id="searchZipCodeMM" value="검색">
 
 								<h2 class="tit">상세주소</h2>
-								<input type="text" name="address2" id="address2" class="form-control" value ="${ reqiestScope.address.address2MM }" required>
+								<input type="text" name="address2" id="address2" class="form-control" value ="${ reqiestScope.addressList[0].address2MM }" required>
         
 								<div class="btn-wrap">
-									
-									<button type="submit" class="abtn-link width-large"	id="changeBtn" data-dismiss="modal">배송지 수정</button>
 									<!-- 전체 데이터를 불러와서 수정을 해야하는데 수정불가하지만 필요한 값 -->
-									<input type="hidden" name="addressNo" value="${ requestScope.address.nameMM }">							
-									<input type="hidden" name="nameMM" value="${ requestScope.address.addressNo }">
+									<input type="hidden" name="addressNo" value="${ requestScope.addressList[0].addressNo }">							
+									<input type="hidden" name="nameMM" value="${ requestScope.addressList[0].nameMM }">
+									<button type="submit" class="abtn-link width-large"	id="changeBtn" data-dismiss="modal">배송지 수정</button>
 								</div>
 							</form>
 						</div>
@@ -219,27 +217,44 @@
 
 	<!-- 다음 우편번호 api -->
 	<!-- 참고 링크 : http://postcode.map.daum.net/guide -->
+	<!--  주소록 추가 -->
 	<script>
 				const $searchZipCode = document.getElementById("searchZipCode");
 				const $sizeBtn = document.getElementById("sizeBtn");
-		
 				$searchZipCode.onclick = function()  {  
-		
 			//다음 우편번호 검색 창을 오픈하면서 동작할 콜백 메소드를 포함한 객체를 매개변수로 전달한다.
 			new daum.Postcode({
 				oncomplete: function(data){
 					//팝업에서 검색결과 항목을 클릭했을 시 실행할 코드를 작성하는 부분
 					document.getElementById("address1MM").value = data.zonecode;
 					document.getElementById("address2MM").value = data.address;
-				
 				}
 			}).open();
 		}
 		$sizeBtn.onclick = function() {
 			location.href = "${ pageContext.servletContext.contextPath }";
 		}
-		
 	</script>
+	<!-- 주소록 수정 -->
+		<script>
+				const $searchZipCodeMM = document.getElementById("searchZipCodeMM");
+				const $changeBtn = document.getElementById("changeBtn");
+				$searchZipCodeMM.onclick = function()  {  
+			//다음 우편번호 검색 창을 오픈하면서 동작할 콜백 메소드를 포함한 객체를 매개변수로 전달한다.
+			new daum.Postcode({
+				oncomplete: function(data){
+					//팝업에서 검색결과 항목을 클릭했을 시 실행할 코드를 작성하는 부분
+					document.getElementById("address1").value = data.zonecode;
+					document.getElementById("address2").value = data.address;
+				}
+			}).open();
+		}
+		$sizeBtn.onclick = function() {
+			location.href = "${ pageContext.servletContext.contextPath }";
+		}
+	</script>
+	
+
 
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
@@ -252,6 +267,12 @@
 	<script>
       $("#sizeBtn").click(function() {
          $("#test").submit();
+      });
+   </script>
+   
+   <script>
+      $("#changeBtn").click(function() {
+         $("#modify").submit();
       });
    </script>
 	
