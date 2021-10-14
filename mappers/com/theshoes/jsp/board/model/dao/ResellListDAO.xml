@@ -4,11 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ResellListDAO.xml">
 
-	<resultMap type="com.theshoes.jsp.board.model.dto.ResellListDTO" id="ResellListResultMap">
+	<resultMap type="com.theshoes.jsp.board.model.dto.BoardDTO" id="ResellListResultMap">
 		<id property="boardNo" column="BOARD_NO"/>
+		<result property="boardId" column="BOARD_ID"/>
 		<result property="boardCategoryNo" column="BOARD_CATEGORY_NO"/>
 		<result property="boardTitle" column="BOARD_TITLE"/>
 		<result property="boardContent" column="BOARD_CONTENT"/>
+		<result property="boardRegDate" column="BOARD_REGDATE"/>
+		<result property="boardHit" column="BOARD_HIT"/>
 		<result property="categoryOrder" column="CATEGORY_ORDER"/>
 	</resultMap>
 	
@@ -40,18 +43,24 @@
 		<result property="status" column="ATTACHMENT_STATUS"/>
 	</resultMap>
 	
-	<select id="selectOneResell" resultMap="ResellListResultMap">
-		SELECT
-			   A.BOARD_NO
-			 , A.BOARD_ID
-			 , A.BOARD_CATEGORY_NO
-			 , A.BOARD_TITLE
-			 , A.BOARD_CONTENT
-			 , A.CATEGORY_ORDER
-			 , B.RT_FILE
+	<select id="selectResellList" resultMap="ResellListResultMap">
+		  SELECT
+		       A.BOARD_NO
+		     , A.BOARD_ID
+		     , A.BOARD_TITLE
+		     , A.BOARD_CONTENT
+		     , A.BOARD_REGDATE
+		     , A.BOARD_HIT
 		  FROM BOARD A
-		  JOIN RESELL_THUMB B ON(B.RT_NO = A.BOARD_NO)
 		 WHERE A.BOARD_CATEGORY_NO = 3
+		ORDER BY 1 DESC
+	</select>
+	
+	<select id="selectTotalCount" resultType="_int">
+        SELECT /* com.theshoes.jsp.board.model.dao.ResellListDAO#selectTotalCount() */
+	          COUNT(*)
+         FROM BOARD A
+        WHERE A.BOARD_CATEGORY_NO = 3
 	</select>
 	
 	<insert id="insertResellShoes" parameterType="com.theshoes.jsp.board.model.dto.ResellDetailDTO">

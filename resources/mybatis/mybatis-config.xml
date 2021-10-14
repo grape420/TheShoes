@@ -23,7 +23,6 @@
 		<mapper resource="com/theshoes/jsp/board/model/dao/BoardDAO.xml"/>
 		<mapper resource="com/theshoes/jsp/shoes/model/dao/ShoesDAO.xml"/>
 		<mapper resource="com/theshoes/jsp/manager/model/dao/ManagerMapper.xml"/>
-		<mapper resource="com/theshoes/jsp/member/model/dao/AddressDAO.xml"/>
 		<mapper resource="com/theshoes/jsp/board/model/dao/ResellListDAO.xml"/>	
 	</mappers>
 </configuration>

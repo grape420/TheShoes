@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import static com.theshoes.jsp.common.mybatis.Template.getSqlSession;
 
+import com.theshoes.jsp.board.model.dto.BoardDTO;
 import com.theshoes.jsp.board.model.dto.ResellDetailDTO;
 import com.theshoes.jsp.board.model.dto.ResellListDTO;
 import com.theshoes.jsp.board.model.dto.ResellThumbDTO;
@@ -31,23 +32,24 @@ public class ResellListService {
 //	}
 
 	/* 페이징 처리 */
-	public int selectTotalCount(Map<String, String> searchMap) {
+	public int selectTotalCount() {
 		
 		SqlSession session = getSqlSession();
 		
-		int totalCount = resellListDAO.selectTotalCount(session, searchMap);
+		int totalCount = resellListDAO.selectTotalCount(session);
 		
 		session.close();
 		
 		return totalCount;
 	}
 
-	public List<ResellListDTO> selectResellList() {
+	public List<BoardDTO> selectResellList(SelectCriteria selectCriteria) {
 		
 		SqlSession session = getSqlSession();
 		
-		List<ResellListDTO> resellList = resellListDAO.selectResellList(session);
-		
+		List<BoardDTO> resellList = resellListDAO.selectResellList(session, selectCriteria);
+		System.out.println("resellList" + resellList);
+	
 		session.close();
 		
 		return resellList;
@@ -110,5 +112,8 @@ public class ResellListService {
 		
 		return result;
 	}
+
+
+
 
 }

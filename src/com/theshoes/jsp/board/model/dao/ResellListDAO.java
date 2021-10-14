@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.theshoes.jsp.board.model.dto.BoardDTO;
 import com.theshoes.jsp.board.model.dto.ResellDetailDTO;
 import com.theshoes.jsp.board.model.dto.ResellListDTO;
 import com.theshoes.jsp.board.model.dto.ResellThumbDTO;
@@ -12,21 +13,19 @@ import com.theshoes.jsp.common.paging.SelectCriteria;
 
 public class ResellListDAO {
 
-	public int selectTotalCount(SqlSession session, Map<String, String> searchMap) {
+	public int selectTotalCount(SqlSession session) {
 		
-		return session.selectOne("ResellListDAO.selectTotalCount", searchMap);
+		return session.selectOne("ResellListDAO.selectTotalCount");
 	}
 
-//	public List<ResellListDTO> selectResellList(SqlSession session, SelectCriteria selectCriteria) {
-//
-//		return session.selectList("ResellListDAO.selectResellList", selectCriteria);
-//	}
-
-	public List<ResellListDTO> selectResellList(SqlSession session) {
+	public List<BoardDTO> selectResellList(SqlSession session, SelectCriteria selectCriteria) {
+		System.out.println(selectCriteria);
 		
-		return session.selectList("ResellListDAO.selectResellList");
+		return session.selectList("ResellListDAO.selectResellList", selectCriteria);
 	}
-
+	public ResellListDTO selectOneResellList(SqlSession session, int no) {
+			return session.selectOne("resellListDAO.selectOneResellList", no);
+	}
 	public static int insertResellShoes(SqlSession session, ResellDetailDTO resellShoes) {
 		return session.insert("resellListDAO.insertResellShoes", resellShoes);
 	}
@@ -35,11 +34,9 @@ public class ResellListDAO {
 		return session.insert("resellListDAO.insertResellThumb", file);
 	}
 	
-	public static int incrementBoardCount(SqlSession session, int no) {
-		return session.update("ResellListDAO.incrementBoardCount", no);	
+	public static int incrementBoardCount(SqlSession session, int categoryOrder) {
+		return session.update("ResellListDAO.incrementBoardCount", categoryOrder);	
 	}
-	public ResellListDTO selectOneResellList(SqlSession session, int no) {
-		return session.selectOne("resellListDAO.selectOneResellList", no);
-	}
-
+	
+	
 }

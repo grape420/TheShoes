@@ -15,6 +15,7 @@ public class ResellDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/views/resell/resellDetail.jsp").forward(request, response);
 		
 		int no = Integer.parseInt(request.getParameter("no"));
 		

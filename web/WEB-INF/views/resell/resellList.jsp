@@ -43,16 +43,16 @@
 				</div>
 			</div>
 		</div>
-		<div class="row mt-5">
-			<c:forEach var="i" begin="1" end="12">
+		<div class="row mt-5" id="resellTable">
+			<c:forEach var="resellList" items="${ requestScope.resellList }" begin="${ selectCriteria.startRow }" end="${ selectCriteria.endRow }">
 				<div class="col-md-4">
-					<div class="card mb-4 border-0">
-						<img src="${ pageContext.servletContext.contextPath }/resources/upload/image/sample/search01.jpg">
+					<div class="card mb-4 border-0" id="resellArea">
+						<img id="rsImg" src="${ pageContext.servletContext.contextPath }/resources/upload/image/sample/search01.jpg">
 						<div class="card-body ">
 							<div class="card-text">
 								<p class="none-hover">
-									<span class="tit">빈티지 운동화(컨버스,반스,나이키,뉴발란스,아디다스)</span> 
-									<span class="color">0 원</span>
+									<span class="tit">나이키 신발<c:out value="${ resellList.boardTitle }"/></span> 
+									<span class="color">0 원<c:out value="${ resellList.boardContent }"/></span>
 								</p>
 								<p class="hover">
 									<a href="javascript:void(0)">Resell</a>
@@ -64,7 +64,8 @@
 				</div>
 			</c:forEach>
 		</div>
-		<div class="paging">
+		<jsp:include page="paging.jsp"/>
+		<%-- <div class="paging">
 
 			<a href="#" class="btn_arr first"><i class="fa fa-chevron-left"
 				aria-hidden="true"></i><span class="hide">처음페이지</span></a> <a href="#"
@@ -78,8 +79,21 @@
 				class="btn_arr last"><i class="fa fa-chevron-right"
 				aria-hidden="true"></i><span class="hide">마지막페이지</span></a>
 		</div>
+		<div class="regArea" style="text-align: center; margin: 20px;">
+			<a href="#" style="margin: 20px auto;text-decoration: none !important;color: black !important;border: 1px solid gray;padding: 10px 20px;border-radius: 20px;" id="regButton" onclick="location.href='${ pageContext.servletContext.contextPath }/resell/regResell';">게시글 등록</a>
+		</div> --%>
 	</section>
-
+	<script type="text/javascript">
+	$(function() {
+		$("#resellTable a").hover(function() {
+			$(this).parent().css({"cursor":"pointer"});
+		}).click(function() {
+			let categoryOrder = $(this).parent().children(":eq(0)").text();
+			console.log(categoryOrder);
+			location.href = "${ pageContext.servletContext.contextPath }/resell/detail?categoryOrder=" + categoryOrder;
+		});
+	});
+	</script>
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 </body>
