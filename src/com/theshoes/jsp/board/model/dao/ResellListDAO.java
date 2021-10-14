@@ -35,12 +35,12 @@ public class ResellListDAO {
 		return session.selectOne("resellListDAO.selectOneResell", no);
 	}
 
-	public static int insertShoes(SqlSession session, ResellDetailDTO resellShoes) {
-		return session.insert("resellListDAO.insertShoes", resellShoes);
+	public static int insertResellShoes(SqlSession session, ResellDetailDTO resellShoes) {
+		return session.insert("resellListDAO.insertResellShoes", resellShoes);
 	}
 
-	public static int insertShoesThumb(SqlSession session, ResellThumbDTO resellThumbDTO) {
-		return session.insert("resellListDAO.insertShoesThumb", resellThumbDTO);
+	public static int insertShoesThumb(SqlSession session, ResellThumbDTO file) {
+		return session.insert("resellListDAO.insertShoesThumb", file);
 	}
 
 }

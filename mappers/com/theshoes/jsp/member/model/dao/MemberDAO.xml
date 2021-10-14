@@ -164,4 +164,16 @@
 		  FROM WISHLIST A
 		 WHERE A.WISH_NO = #{ wishNo }
 	</delete>
+	
+	<update id="phoneChange" parameterType="com.theshoes.jsp.member.model.dto.MemberDTO">
+		UPDATE MEMBER A /* com.theshoes.jsp.member.model.dao.MemberDAO#phoneChange() */
+           SET A.PHONE_NO = #{ phone }
+         WHERE A.MEMBER_ID = #{ id }
+	</update>
+	
+	<update id="birthChange" parameterType="com.theshoes.jsp.member.model.dto.MemberDTO">
+		UPDATE MEMBER A /* com.theshoes.jsp.member.model.dao.MemberDAO#birthChange() */
+           SET A.BIRTH = #{ birth }
+         WHERE A.MEMBER_ID = #{ id }
+	</update>
 </mapper>

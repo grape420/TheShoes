@@ -131,4 +131,36 @@ public class MemberService {
 		return result;
 	}
 
+	public int phoneChange(MemberDTO member) {
+		SqlSession session = getSqlSession();
+		
+		int result = memberDAO.phoneChange(session, member);
+		
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
+	public int birthChange(MemberDTO member) {
+		SqlSession session = getSqlSession();
+		
+		int result = memberDAO.birthChange(session, member);
+		
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
 }

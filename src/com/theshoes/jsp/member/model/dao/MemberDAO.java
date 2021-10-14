@@ -37,5 +37,12 @@ public class MemberDAO {
 		return session.delete("MemberDAO.deleteWish", wishNo);
 	}
 
+	public int phoneChange(SqlSession session, MemberDTO member) {
+		return session.update("MemberDAO.phoneChange", member);
+	}
+
+	public int birthChange(SqlSession session, MemberDTO member) {
+		return session.update("MemberDAO.birthChange", member);
+	}
 
 }

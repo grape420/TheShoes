@@ -125,13 +125,16 @@
 		
 	<script>
 		$("#withDrawbtn").click(function() {
-			if($("#reason_check").prop("checked") && ($("#reason_2").val() != ""))
+			if($("#reason_check").prop("checked") && ($("#reason_2").val() != "")) {
 				console.log("Test");
 				 if (confirm("정말로 탈퇴 하시겠습니까?")) {
 					location.replace("${ pageContext.servletContext.contextPath }/myPage/withDraw");
 			    } else {
 			    	location.replace("${ pageContext.servletContext.contextPath }/common/mainPage");
 			    }
+			} else {
+				alert("회원 탈퇴 동의에 체크해 주세요.")
+			}
 		});
 		
 	</script>

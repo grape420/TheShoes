@@ -9,7 +9,8 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/resell/regResell.css">
 <link rel="shortcut icon"
 	href="${ pageContext.servletContext.contextPath }/resources/uses/the-shoes-favicon.png">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <title>THE SHOES</title>
 </head>
 <body>
@@ -28,12 +29,22 @@
 				<li>
 					<div class="left">
 						<p class="text pill_text">상품이미지</p>
-						<span class="count">(0/12)</span>
+						<span class="count" id="img_count">(0/4)</span>
 					</div>
 					<div class="right">
 						<ul class="img_list">
-							<li class="input_img">이미지 등록<input type="file"
-								accept="image/jpg, image/jpeg, image/png" multiple=""></li>
+							<li class="input_img" id="img_body1">
+								<img id="img_file1">이미지 등록1<input type="file" accept="image/jpg, image/jpeg, image/png" id="resell_img1" onchange="loadImg(this, 1)">
+							</li>
+							<li class="input_img" id="img_body2">
+								<img id="img_file2">이미지 등록2<input type="file" accept="image/jpg, image/jpeg, image/png" id="resell_img2" onchange="loadImg(this, 2)">
+							</li>
+							<li class="input_img" id="img_body3">
+								<img id="img_file3">이미지 등록3<input type="file" accept="image/jpg, image/jpeg, image/png" id="resell_img3" onchange="loadImg(this, 3)">
+							</li>
+							<li class="input_img" id="img_body4">
+								<img id="img_file4">이미지 등록4<input type="file" accept="image/jpg, image/jpeg, image/png" id="resell_img4" onchange="loadImg(this, 4)">
+							</li>
 							<!--이미지 등록했을때 화면 필요 없을시 아래의 내용 삭제-->
 							<!--<li>
                   <div class="title_img">대표이미지</div>
@@ -59,7 +70,7 @@
 					</div>
 					<div class="right">
 						<input type="text" id="productName" class="textlength" placeholder="상품 제목을 입력해 주세요."
-							style="width: 91%;" /> 
+							style="width: 92%;" name="boardTitle" /> 
 							<span class="count black" id="title_count">0/40</span>
 						<!--제목 input 클릭시 나옴 필요 없을시 아래의 내용 삭제-->
 
@@ -75,7 +86,7 @@
 						<p class="text pill_text">설명</p>
 					</div>
 					<div class="right">
-						<textarea placeholder="상품 설명을 입력해 주세요." id="content_body"></textarea>
+						<textarea placeholder="상품 설명을 입력해 주세요." id="content_body" name="boardContent"></textarea>
 						<span class="count black right_p" id="content_count">0/2000</span>
 					</div>
 				</li>
@@ -92,7 +103,7 @@
 
 			<div class="btnArea">
 				<div class="wrap bg-black">
-					<a href="#n" class="black_btn">등록하기</a>
+					<button type="submit" class="black_btn">등록하기</button>
 				</div>
 			</div>
 			</form>
@@ -102,6 +113,6 @@
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 	
-	<script src="${ pageContext.servletContext.contextPath }/resources/js/resell/regResell.js"></script>
+	<script src="${ pageContext.servletContext.contextPath }/resources/js/resell/regResell.js" type="text/javascript"></script>
 </body>
 </html>

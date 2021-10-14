@@ -2,23 +2,22 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="ResellListDAO">
+<mapper namespace="ResellListDAO.xml">
 
-	<resultMap type="com.greedy.jsp.board.model.dto.ResellListDTO" id="generalResellListResultMap">
-		<id property="no" column="BOARD_NO"/>
-		<result property="boardId" column="BOARD_ID"/>
+	<resultMap type="com.theshoes.jsp.board.model.dto.ResellListDTO" id="ResellListResultMap">
+		<id property="boardNo" column="BOARD_NO"/>
 		<result property="boardCategoryNo" column="BOARD_CATEGORY_NO"/>
 		<result property="boardTitle" column="BOARD_TITLE"/>
 		<result property="boardContent" column="BOARD_CONTENT"/>
 		<result property="categoryOrder" column="CATEGORY_ORDER"/>
-		<result property="rtNo" column="RT_NO"/>
-		<result property="rtFile" column="RT_FILE"/>
-		
-	<!-- 	<association property="writer" resultMap="memberResultMap"/>
-		<association property="category" resultMap="categoryResultMap"/> -->
 	</resultMap>
 	
-	<resultMap type="com.greedy.jsp.board.model.dto.ResellDetailDTO" id="ResellDetailResultMap">
+	<resultMap type="com.theshoes.jsp.board.model.dto.BoardCategoryDTO" id="BoardCategoryResultMap">
+		<id property="boardCategoryNo" column="BOARD_CATEGORY_NO"/>
+		<result property="boardCategoryName" column="BOARD_CATEGORY_NAME"/>
+	</resultMap>
+	
+	<resultMap type="com.theshoes.jsp.board.model.dto.ResellDetailDTO" id="ResellDetailResultMap">
 		<id property="resellNo" column="RESELL_NO"/>
 		<result property="boardNo" column="BOARD_NO"/>
 		<result property="boardId" column="BOARD_ID"/>
@@ -26,20 +25,22 @@
 		<result property="boardTitle" column="BOARD_TITLE"/>
 		<result property="boardContent" column="BOARD_CONTENT"/>
 		<result property="categoryOrder" column="CATEGORY_ORDER"/>
+		
+		<association property="category" resultMap="BoardCategoryResultMap"/>
+		<collection property="resellThumb" resultMap="ResellThumbResultMap"/>
 	</resultMap>
 	
 	<resultMap type="com.theshoes.jsp.board.model.dto.ResellThumbDTO" id="ResellThumbResultMap">
 		<id property="rtNo" column="RT_NO"/>
-		<result property="rtFile" column="ST_NO"/>
-		<result property="resellNo" column="RESELL_NO"/>
-		<result property="resellFileName" column="RESELL_FILE_NAME"/>
+		<result property="originalName" column="ORIGINAL_NAME"/>
+		<result property="savedName" column="SAVED_NAME"/>
 		<result property="savePath" column="SAVE_PATH"/>
 		<result property="fileType" column="FILE_TYPE"/>
 		<result property="thumbnailPath" column="THUMBNAIL_PATH"/>
 		<result property="status" column="ATTACHMENT_STATUS"/>
 	</resultMap>
 	
-	<select id="selectOneResell" resultMap="generalResellListResultMap">
+	<select id="selectOneResell" resultMap="ResellListResultMap">
 		SELECT
 			   A.BOARD_NO
 			 , A.BOARD_ID
@@ -53,26 +54,53 @@
 		 WHERE A.BOARD_CATEGORY_NO = 3
 	</select>
 	
-	<insert id="insertShoes" parameterType="com.theshoes.jsp.board.model.dto.reselldetailDTO">
-	 	INSERT 
-	 	  INTO BOARD A
-		(
-		  A.BOARD_NO
-		, A.BOARD_ID
-		, A.BOARD_CATEGORY_NO
-		, A.BOARD_TITLE
-		, A.BOARD_CONTENT
-		, A.CATEGORY_ORDER
-		)
-		VALUES
-		(
-		  SEQ_BOARD_CODE
-		, #{ boardId }
-		, #{ boardCategoryNo }
-		, #{ boardTitle }
-		, #{ boardContent }
-		, #{ CategoryOrder }
-		) 
+	<insert id="insertResellShoes" parameterType="com.theshoes.jsp.board.model.dto.ResellDetailDTO">
+		INSERT 
+			  A.BOARD_NO
+	        , A.BOARD_CATEGORY_NO
+	        , A.BOARD_TITLE
+	        , A.BOARD_CONTENT
+	        , A.BOARD_HIT
+	        , A.CATEGORY_ORDER
+	        )
+	        VALUES
+	        (
+	          SEQ_BOARD_CODE.NEXTVAL
+	        , 3
+	        , #{ boardTitle }
+	        , #{ boardContent }
+	        , 1
+	        , SEQ_CATEGORY_RESELL_CODE.NEXTVAL
+	        )
+	        <selectKey keyProperty="boardNo" resultType="Integer" order="AFTER">
+        	SELECT
+        	       SEQ_BOARD_CODE.CURRVAL
+        	  FROM DUAL
+        	</selectKey>
+	</insert>
+	
+	<insert id="insertShoesThumb" parameterType="com.theshoes.jsp.board.model.dto.ResellThumbDTO">
+		INSERT 
+			  INTO RESELL_THUMB A
+			(
+			, A.RT_NO
+			, A.ORIGINAL_NAME
+			, A.SAVED_NAME
+			, A.SAVE_PATH
+			, A.FILE_TYPE
+			, A.THUMBNAIL_PATH
+			, A.ATTACHMENT_STATUS
+			)
+			VALUES
+			(
+			, SEQ_RT_CODE.NEXTRVAL
+			, #{ originalName }
+			, #{ savedName }
+			, #{ savePath }
+			, #{ fileType }
+			, #{ thumbnailPath }
+			, 'Y'
+			)
 	</insert>
 	
 	
