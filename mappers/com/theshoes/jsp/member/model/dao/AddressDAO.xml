@@ -41,7 +41,7 @@
     	   , A.ADDRESS_NAME 
       	  FROM ADDRESS A  
       	  JOIN MEMBER B ON(B.MEMBER_ID = A.ADDRESS_ID)
-	
+		WHERE B.MEMBER_ID = # {id}
 	</select>
 
 	<update id="updateAddress"  parameterType="com.theshoes.jsp.member.model.dto.AddressDTO" >

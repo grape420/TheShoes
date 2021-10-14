@@ -254,10 +254,11 @@
 		 location.href = "${ pageContext.servletContext.contextPath }";
 		}
 	    
+	    /* 3번 보기 */ 
 	    $(".modi").click(function(){ 
-	    	$("#address2").val($(this).parent().prev().text());
-	    	$("#address1").val($(this).parent().prev().prev().text());
-	    	$("#addressName2").val($(this).parent().prev().prev().prev().prev().text());
+	    $("#address2").val($(this).parent().prev().text());
+	    $("#address1").val($(this).parent().prev().prev().text());
+	    $("#addressName2").val($(this).parent().prev().prev().prev().prev().text());
 	    })
 	    
 	   /*  name
