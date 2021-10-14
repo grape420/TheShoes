@@ -131,7 +131,7 @@
 	<script type="text/javascript">
 		$("tr").click(function() {
 			let categoryOrder = $(this).find("label").text();
-			location.href = "${ pageContext.servletContext.contextPath }/board/detail?categoryOrder=" + categoryOrder; 
+			location.href = "${ pageContext.servletContext.contextPath }/resell/detail?categoryOrder=" + categoryOrder; 
 		});
 	</script>
 

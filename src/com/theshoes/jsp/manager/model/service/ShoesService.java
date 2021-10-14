@@ -90,19 +90,30 @@ public class ShoesService {
 		/* 최종적으로 반환할 result 선언 */
 		int result = 0;
 		
+		/* 먼저 shoes 테이블부터 신발 정보를 insert 한다. */
 		int shoesResult = mapper.updateShoes(session, shoes);
 		
 		System.out.println("shoesResult : " + shoesResult);
 		
+		/* 신발 썸네일 리스트를 불러온다. */
 		List<ShoesThumbDTO> fileList = shoes.getThumbList();
 		
-		for (int i = 0; i < fileList.size(); i++) {
-			fileList.get(i).setStNo(shoes.getShoesNo());
+		for (ShoesThumbDTO file : fileList) {
+			System.out.println("여기는 서비스 : " + file);
 		}
 		
+		/* fileList에 boardNo값을 넣는다. */
+		for (int i = 0; i < fileList.size(); i++) {
+			fileList.get(i).setStNo(shoes.getShoesNo());
+//			fileList.get(i).setShoesThumbNo();
+		}
+		fileList = mapper.selectShoesThumbNo(session, shoes.getShoesNo());
+		
+		/* 신발 썸네일 테이블에 list size만큼 update 한다. */
 		int shoesThumbResult = 0;
 		for (int i = 0; i < fileList.size(); i++) {
 			shoesThumbResult += mapper.updateShoesThumb(session, fileList.get(i));
+//			shoesThumbResult += mapper.selectShoesThumbNo(session, fileList.get(i));
 		}
 		
 		if (shoesResult > 0 && shoesThumbResult == fileList.size()) {
@@ -111,6 +122,10 @@ public class ShoesService {
 		} else {
 			session.rollback();
 		}
+		for (ShoesThumbDTO file : fileList) {
+			System.out.println("여기는 서비스 아래 file : " + file);
+		}
+		System.out.println("여기는 서비스 아래 result : " + result);
 		
 		session.close();
 		
@@ -136,5 +151,5 @@ public class ShoesService {
 		
 		return totalCount;
 	}
-		
+
 }

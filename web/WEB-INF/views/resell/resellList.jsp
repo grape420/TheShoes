@@ -44,21 +44,22 @@
 			</div>
 		</div>
 		<div class="row mt-5">
-			<c:forEach var="i" begin="1" end="12">
+			<c:forEach var="i" begin="1" end="12" >
 				<div class="col-md-4">
 					<div class="card mb-4 border-0">
 						<img src="${ pageContext.servletContext.contextPath }/resources/upload/image/sample/search01.jpg">
 						<div class="card-body ">
-							<div class="card-text">
+							<div class="card-text" id="detailBtn">
 								<p class="none-hover">
 									<span class="tit">빈티지 운동화(컨버스,반스,나이키,뉴발란스,아디다스)</span> 
 									<span class="color">0 원</span>
+									<label><input type="hidden" value="10" name="shoesNo"></label>
 								</p>
-								<p class="hover">
-									<a href="javascript:void(0)">Resell</a>
+								<p class="hover" >
+									<a href="${ pageContext.servletContext.contextPath }/resell/detail">Resell</a>
 								</p>
 							</div>
-							<a class="stretched-link" href="#"></a>
+							<a class="stretched-link" href="${ pageContext.servletContext.contextPath }/resell/detail"></a>
 						</div>
 					</div>
 				</div>
@@ -79,6 +80,14 @@
 				aria-hidden="true"></i><span class="hide">마지막페이지</span></a>
 		</div>
 	</section>
+	
+	<script type="text/javascript">
+		$("#detailBtn").click(function() {
+			let shoesNo = $(this).find("input").val();
+			console.log(shoesNo);
+			location.href = "${ pageContext.servletContext.contextPath }/resell/detail?shoesNo=" + shoesNo; 
+		});
+	</script>
 
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />

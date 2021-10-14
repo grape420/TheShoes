@@ -49,7 +49,7 @@ public class RegShoesServlet extends HttpServlet {
 			System.out.println("최대 업로드 파일 용량 : " + maxFileSize);
 			System.out.println("인코딩 방식 : " + encodingType);
 			
-			String fileUploadDirectory = rootLocation + "/resources/upload/image/shoes/";
+			String fileUploadDirectory = rootLocation + "resources/upload/image/shoes/";
 			String thumbnailDirectory = rootLocation + "/resources/upload/thumb/";
 			
 			File directory = new File(fileUploadDirectory);
@@ -181,6 +181,7 @@ public class RegShoesServlet extends HttpServlet {
 				shoes.setThumbList(new ArrayList<ShoesThumbDTO>());
 				List<ShoesThumbDTO> list = shoes.getThumbList();
 				for (int i = 0; i < fileList.size(); i++) {
+					
 					Map<String, String> file = fileList.get(i);
 					
 					ShoesThumbDTO tempFileInfo = new ShoesThumbDTO();
@@ -193,10 +194,18 @@ public class RegShoesServlet extends HttpServlet {
 					list.add(tempFileInfo);
 				}
 				
+				for (ShoesThumbDTO shoes1 : list) {
+					System.out.println("여기는 서블릿 : " + shoes1);
+				}
+				
 				System.out.println("thumbnail board : " + shoes);
 				
 				ShoesService regShoesService = new ShoesService();
 				int result = regShoesService.insertShoes(shoes);
+				
+				for (ShoesThumbDTO shoes1 : list) {
+					System.out.println("여기는 서블릿 아래 : " + shoes1);
+				}
 				
 				/* 성공 실패 페이지를 구분하여 연결한다. */
 				String path = "";

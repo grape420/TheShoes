@@ -19,20 +19,20 @@
 		<div class="info-section">
 			<ul class="images">
 				<li><figure>
-						<img src="${ pageContext.servletContext.contextPath }/resources/uses/shoes1.png" alt="">
+						<img src="${ pageContext.servletContext.contextPath }${ shoes.thumbList[0].thumbnailPath }" alt="대표사진">
 					</figure></li>
 				<li><figure>
-						<img src="${ pageContext.servletContext.contextPath }/resources/uses/main02.jpg" alt="">
+						<img src="${ pageContext.servletContext.contextPath }${ shoes.thumbList[1].thumbnailPath }" alt="사진1">
 					</figure></li>
 			</ul>
 			<div class="info">
+		
 				<h1>
-					우먼스 덩크 하이 레벨
+					${ shoes.shoesModel }
 					</h3>
-					<h2>Pastels</h2>
-					<h5>138,000 원</h5>
-					<p class="txt">이번 덩크 하이는 단순한 신제품이 아닌 유쾌한 반항 정신을 가미하여 출시된 제품입니다.
-					</p>
+					<h2>${ shoes.category.shoesCategoryName }</h2>
+					<h5>${ shoes.shoesPrice } 원</h5>
+					
 			</div>
 		</div>
 		<div class="comments">

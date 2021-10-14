@@ -61,7 +61,7 @@ public class ModShoesServlet extends HttpServlet {
 			System.out.println("최대 업로드 파일 용량 : " + maxFileSize);
 			System.out.println("인코딩 방식 : " + encodingType);
 			
-			String fileUploadDirectory = rootLocation + "/resources/upload/image/shoes/";
+			String fileUploadDirectory = rootLocation + "resources/upload/image/shoes/";
 			String thumbnailDirectory = rootLocation + "/resources/upload/thumb/";
 			
 			File directory = new File(fileUploadDirectory);
@@ -173,6 +173,8 @@ public class ModShoesServlet extends HttpServlet {
 				System.out.println("parameter : " + parameter);
 				System.out.println("fileList : " + fileList);
 				
+				ShoesService regShoesService = new ShoesService();
+				
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
 				
 				java.util.Date winner = sdf.parse(parameter.get("winnerDate"));
@@ -211,6 +213,7 @@ public class ModShoesServlet extends HttpServlet {
 				
 				shoes.setThumbList(new ArrayList<ShoesThumbDTO>());
 				List<ShoesThumbDTO> list = shoes.getThumbList();
+				
 				for (int i = 0; i < fileList.size(); i++) {
 					Map<String, String> file = fileList.get(i);
 					
@@ -228,7 +231,7 @@ public class ModShoesServlet extends HttpServlet {
 					System.out.println("shoesThumb : " + shoesThumb);
 				}
 				
-				ShoesService regShoesService = new ShoesService();
+				
 				int result = regShoesService.updateShoes(shoes);
 				
 				/* 성공 실패 페이지를 구분하여 연결한다. */

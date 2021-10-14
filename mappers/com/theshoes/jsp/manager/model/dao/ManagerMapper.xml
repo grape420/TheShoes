@@ -205,13 +205,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateShoesThumb" parameterType="com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO">
 		UPDATE
 		       SHOES_THUMB A
-		   SET A.ORIGINAL_NAME = #{ originalName }
+		   SET 
+		   	   A.ORIGINAL_NAME = #{ originalName }
 		     , A.SAVED_NAME = #{ savedName }
 		     , A.SAVE_PATH = #{ savePath }
 		     , A.FILE_TYPE = #{ fileType }
 		     , A.THUMBNAIL_PATH = #{ thumbnailPath }
-		 WHERE A.ST_NO = 23
+		     , A.ATTACHMENT_STATUS = 'Y'
+		 WHERE A.ST_NO = #{ stNo }
+		   AND A.SHOES_THUMB_NO = #{ shoesThumbNo }
 	</update>
+	
+	<select id="selectShoesThumbNo" resultMap="shoesThumbResultMap">
+		SELECT 
+		       A.SHOES_THUMB_NO 
+		  FROM SHOES_THUMB A
+		 WHERE ST_NO = { stNo }
+	</select>
 	
 	<select id="selectShoesList" resultMap="shoesResultMap">			<!-- 이거 필요없음 -->
 	<!-- 여기서 조인해주고 resultMap에서 association도 해줘야 함 -->
@@ -232,6 +242,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  LEFT JOIN SHOES_CATEGORY B ON (A.INFO_CATEGORY_NO = B.SHOES_CATEGORY_NO)
 		 ORDER BY A.SHOES_NO DESC
 	</select>
+	
+
 	
 	<select id="selectShoesDetail" resultMap="shoesResultMap">
 		SELECT

@@ -35,6 +35,7 @@ public class ManagerMapper {
 	}
 
 	public int updateShoesThumb(SqlSession session, ShoesThumbDTO shoesThumb) {
+			System.out.println("여기는 DAO : " + shoesThumb);
 		return session.update("ManagerMapper.updateShoesThumb", shoesThumb);
 	}
 
@@ -82,6 +83,13 @@ public class ManagerMapper {
 		System.out.println("여기는 DAO : " + selectCriteria);
 		return session.selectList("ManagerMapper.selectAllBoardList", selectCriteria);
 	}
+
+	public List<ShoesThumbDTO> selectShoesThumbNo(SqlSession session, int shoesNo) {
+		return session.selectList("ManagerMapper.selectShoesThumbNo", shoesNo);
+	}
+
+
+
 
 	
 
