@@ -254,20 +254,14 @@
 		 location.href = "${ pageContext.servletContext.contextPath }";
 		}
 	    
-	    /* 3번 보기 */ 
+	    /* 주소록 수정 클릭시 보달창에 값 뿌려주기 3번 보기 */ 
 	    $(".modi").click(function(){ 
 	    $("#address2").val($(this).parent().prev().text());
 	    $("#address1").val($(this).parent().prev().prev().text());
 	    $("#addressName2").val($(this).parent().prev().prev().prev().prev().text());
 	    })
 	    
-	   /*  name
-	    zipcode
-	    address
-	    
-	    addressName2
-	    address1
-	    address2 */
+
 	</script>
 	
 

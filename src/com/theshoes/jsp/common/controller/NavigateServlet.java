@@ -16,6 +16,7 @@ public class NavigateServlet extends HttpServlet {
 		switch (no) {
 		case 0: request.getRequestDispatcher("/WEB-INF/views/common/individual.jsp").forward(request, response); break;
 		case 1: request.getRequestDispatcher("/WEB-INF/views/common/termsOfUse.jsp").forward(request, response); break;
+		case 2: request.getRequestDispatcher("/WEB-INF/views/myPage/withDraw.jsp").forward(request, response); break;
 		default: request.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(request, response); break;
 		}
 	}

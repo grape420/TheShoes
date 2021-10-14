@@ -39,6 +39,17 @@
 	
 	<script>
 		$("#login-btn").click(function() {
+			login();
+		});
+		
+		$('#password').keydown(function (key){
+		    if(key.keyCode == "13") {
+		    	login();
+		    } 
+		});
+		
+		
+		function login() {
 			const id = $("#id").val();
 			const password = $("#password").val();
 			
@@ -62,7 +73,7 @@
 						+ "error:" + error);
 				}
 			});
-		});
+		}
 	</script>
 	
 </body>

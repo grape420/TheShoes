@@ -32,7 +32,7 @@
         )
 	</insert>
 	
-	<select id="selectAllAddressList" resultMap="addressResultMap">
+	<select id="selectAllAddressList" resultMap="addressResultMap" parameterType="string">
 		SELECT   /* com.theshoes.jsp.member.model.dao.AddressDAO#selectAllAddressList() */
        		 A.ADDRESS_NO 
      	   , A.ADDRESS_ID 
@@ -41,18 +41,18 @@
     	   , A.ADDRESS_NAME 
       	  FROM ADDRESS A  
       	  JOIN MEMBER B ON(B.MEMBER_ID = A.ADDRESS_ID)
-		WHERE B.MEMBER_ID = # {id}
+      	 WHERE B.MEMBER_ID = #{ id }
+	
 	</select>
 
 	<update id="updateAddress"  parameterType="com.theshoes.jsp.member.model.dto.AddressDTO" >
         UPDATE /* com.theshoes.jsp.board.model.dao.BoardDAO#updateAddress */
-               ADDRESS A
-		   SET 
-		   	 , A.ADDRESS_ID = #{ nameMM }
-		     , A.ADDRESS_ZIP = #{ address1MM }
-		     , A.ADDRESS_DETAIL = #{ address2MM }
-    	     , A.ADDRESS_NAME = #{ addressName }
-    	 WHERE A.ADDRESS_NO = #{ addressNo }
+                  ADDRESS A
+	        SET A.ADDRESS_ID = #{ nameMM }
+		      , A.ADDRESS_ZIP = #{ address1MM }
+		      , A.ADDRESS_DETAIL = #{ address2MM }
+    	      , A.ADDRESS_NAME = #{ addressName }
+    	  WHERE A.ADDRESS_NO = #{ addressNo }
     	     
 		     
 	</update>

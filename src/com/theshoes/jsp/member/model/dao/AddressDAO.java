@@ -18,14 +18,13 @@ public class AddressDAO {
 	}
 
 	/* 주소록 목록 전체 조회 메소드 */
-	public static List<AddressDTO> selectAllAddressList(SqlSession session) {
-		System.out.println("나는야 DAO DAO DAO ");
-		
-		return session.selectList("AddressDAO.selectAllAddressList");
+	public static List<AddressDTO> selectAllAddressList(SqlSession session, String id) {
+		return session.selectList("AddressDAO.selectAllAddressList", id);
 	}
 
 	/* 주소록 수정 메소드 */ 
 	public int updateAddress(SqlSession session, AddressDTO address) {
+		System.out.println("나는 addressDAO");
 		return session.update("AddressDAO.updateAddress", address);
 
 	

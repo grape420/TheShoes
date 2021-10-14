@@ -26,11 +26,9 @@ public class ModifyAddressServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 	
-//	HttpSession session = request.getSession();
+	HttpSession session = request.getSession();
 		
-		System.out.println("modifyAddress서블릿이랑께");
-//	int myModify = Integer.parseInt(request.getParameter("myModify")); 
-	
+	System.out.println("modifyAddress서블릿이랑께");
 	
 	/* 사용자가 입력한 정보 받아오기 */ 	
 	String nameMM =  request.getParameter("nameMM");
@@ -63,7 +61,7 @@ public class ModifyAddressServlet extends HttpServlet {
 	
 	/* address 수정 후 주소록 메인페이지로 이동  */
 	if(result > 0) {
-		path = "/WEB-INF/views/common/success.jsp";
+		path = "/WEB-INF/views/myPage/myAddress.jsp";
 		request.setAttribute("myAddressCode", "insertAddress");
 	} else {
 		path = "/WEB-INF/views/common/errorPage.jsp";

@@ -21,9 +21,10 @@ public class AddressServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		
+		HttpSession session = request.getSession();
+		String id =  ((MemberDTO)session.getAttribute("entryMember")).getId();
 		/* 전체 주소록 조회 */ 
-		List<AddressDTO> addressList = new AddressService().selectAllAddressList();
+		List<AddressDTO> addressList = new AddressService().selectAllAddressList(id);
 		
 		System.out.println("addressList : " + addressList);
 		

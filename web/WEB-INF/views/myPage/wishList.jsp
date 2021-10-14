@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,9 +27,7 @@
 				class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 				id="accordionSidebar">
 				<!-- Sidebar - Brand -->
-				<a
-					class="sidebar-brand d-flex align-items-center justify-content-center"
-					href="index.html">
+				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
 					<div class="sidebar-brand-icon rotate-n-15">
 					</div>
 					<div class="sidebar-brand-text mx-3">MY PAGE</div>
@@ -97,101 +95,34 @@
 						<br />
 						<!-- 관심상품 리스트 -->
 						<div class="cart-list" data-order="">
-							<div class="item-info">
-								<div class="img-wrap">
-									<a
-										href="/kr/launch/t/men/fw/nike-sportswear/DD1391-003/iljl65/nike-dunk-low-retro">
-										<img
-										src="https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/DD1391-003/5e494167-4f6c-4fad-8b0c-04570fc86bf7_primary.jpg?browse" />
-									</a>
-								</div>
-								<div class="info-wrap">
-									<span class="tit"><a class="text-black"
-										href="/kr/launch/t/men/fw/nike-sportswear/DD1391-003/iljl65/nike-dunk-low-retro">나이키
-											덩크 로우 레트로</a></span> <span class="opt">DD1391-003 / 260</span>
-									<div class="right_btm">
-										<a href="#n" class="price"><em>구매</em><span
-											class="price_num">119,000 원</span></a>
-										<button type="button" class="delete">삭제</button>
+							<c:if test="${ !empty wishList }">
+							<c:forEach var="wish" items="${ wishList }" begin="${ selectCriteria.startRow - 1 }" end="${ selectCriteria.endRow - 1 }">
+								<div class="item-info">
+									<div class="img-wrap">
+										<a href="/kr/launch/t/men/fw/nike-sportswear/DD1391-003/iljl65/nike-dunk-low-retro">
+											<img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ wish.shoes.thumbList[0].savedName }" />
+										</a>
+									</div>
+									<div class="info-wrap">
+										<span class="tit">
+										<a class="text-black" href="/kr/launch/t/men/fw/nike-sportswear/DD1391-003/iljl65/nike-dunk-low-retro">${ wish.shoes.shoesModel }</a>
+										</span> 
+										<span class="opt">${ wish.shoes.category.shoesCategoryName }</span>
+										<div class="right_btm">
+											<a href="#n" class="price">
+												<em>구매</em>
+												<span class="price_num"><fmt:formatNumber value="${ wish.shoes.shoesPrice }" pattern="#,###,###"></fmt:formatNumber> 원</span>
+											</a>
+											<a href="${ pageContext.servletContext.contextPath }/myPage/wishList?currentPage=${ selectCriteria.pageNo }&delete=${ wish.wishNo }"><button id="deleteBtn" type="button" class="delete">삭제</button></a>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="item-info">
-								<div class="img-wrap">
-									<a
-										href="/kr/launch/t/men/fw/basketball/DM7866-140/cuwc56/air-jordan-1-low-og-sp">
-										<img
-										src="https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/DM7866-140/12d6c862-ec81-46b8-adaa-f6edf708a603_primary.jpg?browse">
-									</a>
-								</div>
-								<div class="info-wrap">
-									<span class="tit"><a class="text-black"
-										href="/kr/launch/t/men/fw/basketball/DM7866-140/cuwc56/air-jordan-1-low-og-sp">에어
-											조던 1 로우 OG SP</a></span> <span class="opt">DM7866-140 / 260</span>
-									<div class="right_btm">
-										<a href="#n" class="price"><em>구매</em><span
-											class="price_num">189,000 원</span></a>
-										<button type="button" class="delete">삭제</button>
-									</div>
-								</div>
-							</div>
-							<div class="item-info">
-								<div class="img-wrap">
-									<a
-										href="/kr/launch/t/men/fw/nike-sportswear/DH0601-001/nxtg34/nike-dunk-low-retro-prm">
-										<img
-										src="https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/DH0601-001/8891d25b-4b4b-453c-9159-099b224aae42_primary.jpg?browse" />
-									</a>
-								</div>
-								<div class="info-wrap">
-									<span class="tit"><a class="text-black"
-										href="/kr/launch/t/men/fw/nike-sportswear/DH0601-001/nxtg34/nike-dunk-low-retro-prm">나이키
-											덩크 로우 레트로 프리미엄</a></span> <span class="opt">DH0601-001 / 260</span>
-									<div class="right_btm">
-										<a href="#n" class="price"><em>구매</em><span
-											class="price_num">129,000 원</span></a>
-										<button type="button" class="delete">삭제</button>
-									</div>
-								</div>
-							</div>
-							<div class="item-info">
-								<div class="img-wrap">
-									<a
-										href="/kr/launch/t/men/fw/nike-sportswear/DH2684-400/ivoa29/nike-ldwaffle-sf">
-										<img
-										src="https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/DH2684-400/19e847a7-8a65-4907-8903-3bab1be6e5f1_primary.jpg?browse" />
-									</a>
-								</div>
-								<div class="info-wrap">
-									<span class="tit"><a class="text-black"
-										href="/kr/launch/t/men/fw/nike-sportswear/DH2684-400/ivoa29/nike-ldwaffle-sf">나이키
-											LD와플 x sacai x Fragment</a></span> <span class="opt">DH2684-400 /
-										260</span>
-									<div class="right_btm">
-										<a href="#n" class="price"><em>구매</em><span
-											class="price_num">209,000 원</span></a>
-										<button type="button" class="delete">삭제</button>
-									</div>
-								</div>
-							</div>
+							</c:forEach>
+							</c:if>
 						</div>
 						<!-- //관심상품 리스트 -->
 						<!-- paging -->
-						<div class="paging">
-
-							<a href="#" class="btn_arr first"><i
-								class="fa fa-chevron-left" aria-hidden="true"></i><span
-								class="hide">처음페이지</span></a> <a href="#" class="btn_arr prev"><i
-								class="fa fa-chevron-left" aria-hidden="true"></i><span
-								class="hide">이전페이지</span></a> <a href="#" class="on">1</a>
-							<!-- D : 활성화페이지일 경우 : on 처리 -->
-							<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-							<a href="#" class="btn_arr next"><i
-								class="fa fa-chevron-right" aria-hidden="true"></i><span
-								class="hide">다음페이지</span></a> <a href="#" class="btn_arr last"><i
-								class="fa fa-chevron-right" aria-hidden="true"></i><span
-								class="hide">마지막페이지</span></a>
-						</div>
+						<jsp:include page="../board/paging.jsp"/>
 
 						<!-- //paging -->
 					</div>
@@ -203,8 +134,14 @@
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 
-	<script
-		src="${ pageContext.servletContext.contextPath }/resources/js/myPage/myProfile.js"></script>
-
+	<script src="${ pageContext.servletContext.contextPath }/resources/js/myPage/myProfile.js"></script>
+	
+	<script>
+	let flag = "${ requestScope.deleteRequest }";
+	
+		if(flag == "0") {
+			alert("관심 품목이 정삭적으로 삭제되었습니다.");
+		}
+	</script>
 </body>
 </html>

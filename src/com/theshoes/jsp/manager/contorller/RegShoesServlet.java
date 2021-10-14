@@ -141,7 +141,7 @@ public class RegShoesServlet extends HttpServlet {
 									.toFile(thumbnailDirectory + "thumbnail_" + randomFileName);
 							
 							/* 나중에 웹서버에서 접근 가능한 경로 형태로 썸네일의 저장 경로도 함께 저장한다. */
-							fileMap.put("thumbnailPath", "/resources/upload/thumbnail/thumbnail_" + randomFileName);
+							fileMap.put("thumbnailPath", "/resources/upload/thumb/thumbnail_" + randomFileName);
 							
 							fileList.add(fileMap);
 							
@@ -160,15 +160,6 @@ public class RegShoesServlet extends HttpServlet {
 				
 				System.out.println("parameter : " + parameter);
 				System.out.println("fileList : " + fileList);
-				
-//				int infoCategoryNo = Integer.valueOf(request.getParameter("infoCategoryNo"));
-//				String shoesModel = request.getParameter("shoesModel");
-//				int shoesPrice = Integer.valueOf(request.getParameter("shoesPrice"));
-//				String winnerDate = request.getParameter("winnerDate");
-//				String salesYn = request.getParameter("salesYn");
-//				int salesAmount = Integer.valueOf(request.getParameter("salesAmount"));
-//				String startDate = request.getParameter("startDate");
-//				String endDate = request.getParameter("endDate");
 				
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
 				

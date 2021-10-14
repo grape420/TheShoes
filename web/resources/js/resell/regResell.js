@@ -32,36 +32,63 @@ $(document).ready(function() {
 });
 
 
-function onKeyUp() {
-	//var re2 = /^.{1,20}$/ 정규화 적용시 굳이 할필요없어서 2글자이상만조건으로 했습니다.
-
-	if (!(document.getElementById('productName').value.length >= 2)) {
-		document.getElementById('twoName').innerHTML = '<p class="input_show" >상품명을 2자 이상 입력해주세요.</p>';
-		$('#productName').css('border', '2px solid #dc5b5b');
-	} else {
-		document.getElementById('twoName').innerHTML = '';
-		$('#productName').css('border', '2px solid rgb(195, 194, 204)');
-	}
-}
-
-/*$(document).ready(function() {
-            $('#content_body').on('keyup', function() {
-                $('#content_count').html("(" + $(this).val().lenth + " / 2000)");
-                
-                if($(this).val().lenth > 2000) {
-                    $(this).val($(this).val().substring(0, 2000));
-                    $('#content_count').html("(2000 / 2000)");
-                }
-            });
-        });*/
-
-$('#content_body').keyup(function (e){
+$('#productName').keydown(function (){
     var content = $(this).val();
-    $('#content_count').html("("+content.length+" / 2000)");    //글자수 실시간 카운팅
+    $('#title_count').html(+content.length+" / 40");    // 제목 글자수 실시간 카운팅
 
-    if (content.length > 200){
+    if (content.length > 40){
+        alert("최대 40자까지 입력 가능합니다.");
+        $(this).val(content.substring(0, 40));
+        $('#title_count').html("(40 / 40)");
+    }
+});
+
+$('#content_body').keydown(function (){
+    var content = $(this).val();
+    $('#content_count').html(+content.length+" / 2000");    // 설명 글자수 실시간 카운팅
+	
+    if (content.length > 2000){
         alert("최대 2000자까지 입력 가능합니다.");
         $(this).val(content.substring(0, 2000));
         $('#content_count').html("(2000 / 2000)");
     }
 });
+
+/* 사진 등록 */
+
+const $img_body1 = document.getElementById("img_file1");
+const $img_body2 = document.getElementById("img_file2");
+const $img_body3 = document.getElementById("img_file3");
+const $img_body4 = document.getElementById("img_file4");
+
+$img_body1.onclick = function() {
+			document.getElementById("resell_img1").click();
+		}	
+$img_body2.onclick = function() {
+			document.getElementById("resell_img2").click();
+		}	
+$img_body3.onclick = function() {
+			document.getElementById("resell_img3").click();
+		}	
+$img_body4.onclick = function() {
+			document.getElementById("resell_img4").click();
+		}	
+		
+function loadImg(value, num) {
+    if (value.files && value.files[0]) {
+      const reader = new FileReader();
+
+      reader.readAsDataURL(value.files[0]);
+
+      reader.onload = function(e) {
+        switch(num) {
+          case 1 : document.getElementById("img_file1").src = e.target.result; break;
+          case 2 : document.getElementById("img_file2").src = e.target.result; break;
+          case 3 : document.getElementById("img_file3").src = e.target.result; break;
+          case 4 : document.getElementById("img_file4").src = e.target.result; break;
+
+        }
+      }
+    }
+  }
+

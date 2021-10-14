@@ -34,9 +34,9 @@ public class AddressService {
 		
 
 		/* 주소록 전체 조회용 메소드 */
-		public List<AddressDTO> selectAllAddressList() {
+		public List<AddressDTO> selectAllAddressList(String id) {
 			SqlSession session = getSqlSession();
-			List<AddressDTO> addressList = AddressDAO.selectAllAddressList(session);
+			List<AddressDTO> addressList = AddressDAO.selectAllAddressList(session, id);
 			
 			session.close();
 			
@@ -45,10 +45,11 @@ public class AddressService {
 		
 		/* 주소록 수정 메소드 */ 
 		public int updateAddress(AddressDTO address) {
-			System.out.println("나는야 서비스 ");
 			SqlSession session = getSqlSession();
 			
+			
 			int result = addressDAO.updateAddress(session, address);
+			System.out.println("나는야 서비스 ");
 			
 			if(result > 0) {
 				session.commit();
