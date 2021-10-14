@@ -44,18 +44,16 @@ public class ResellListServlet extends HttpServlet {
 		
 		/* 전체 게시물 수 */
 		ResellListService resellListService = new ResellListService();
-		int totalCount = resellListService.selectTotalCount();
-		
-		System.out.println("resellList.size : " + totalCount);
+
+		List<BoardDTO> resellList = resellListService.selectResellList();
 		
 		
 		
 		SelectCriteria selectCriteria = null;
 		
-		selectCriteria = Pagenation.getSelectCriteria(pageNo, totalCount, limit, buttonAmount);
+		selectCriteria = Pagenation.getSelectCriteria(pageNo, resellList.size(), limit, buttonAmount);
 		
 		/* 게시판 정보 조회 */
-		List<BoardDTO> resellList = resellListService.selectResellList(selectCriteria);
 		System.out.println(selectCriteria);
 		
 		String path = "";

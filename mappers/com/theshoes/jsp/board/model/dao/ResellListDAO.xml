@@ -56,13 +56,6 @@
 		ORDER BY 1 DESC
 	</select>
 	
-	<select id="selectTotalCount" resultType="_int">
-        SELECT /* com.theshoes.jsp.board.model.dao.ResellListDAO#selectTotalCount() */
-	          COUNT(*)
-         FROM BOARD A
-        WHERE A.BOARD_CATEGORY_NO = 3
-	</select>
-	
 	<insert id="insertResellShoes" parameterType="com.theshoes.jsp.board.model.dto.ResellDetailDTO">
 		INSERT 
 			  A.BOARD_NO

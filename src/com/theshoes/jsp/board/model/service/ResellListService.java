@@ -31,23 +31,12 @@ public class ResellListService {
 //		return null;
 //	}
 
-	/* 페이징 처리 */
-	public int selectTotalCount() {
-		
-		SqlSession session = getSqlSession();
-		
-		int totalCount = resellListDAO.selectTotalCount(session);
-		
-		session.close();
-		
-		return totalCount;
-	}
 
-	public List<BoardDTO> selectResellList(SelectCriteria selectCriteria) {
+	public List<BoardDTO> selectResellList() {
 		
 		SqlSession session = getSqlSession();
 		
-		List<BoardDTO> resellList = resellListDAO.selectResellList(session, selectCriteria);
+		List<BoardDTO> resellList = resellListDAO.selectResellList(session);
 		System.out.println("resellList" + resellList);
 	
 		session.close();
