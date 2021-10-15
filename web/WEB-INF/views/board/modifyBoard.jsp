@@ -31,7 +31,7 @@
 				<!-- Sidebar - Brand -->
 				<a
 					class="sidebar-brand d-flex align-items-center justify-content-center"
-					href="index.html">
+					>
 					<div class="sidebar-brand-icon rotate-n-15">
 					</div>
 					<div class="sidebar-brand-text mx-3">NOTICE</div>
@@ -52,9 +52,9 @@
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 						data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="notice.html">공지사항</a> <a
-								class="collapse-item" href="FAQ2.html">FAQ</a> <a
-								class="collapse-item" href="1dae1_list.html">1:1 문의</a>
+             			  <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/board/list" >공지사항</a>
+						  <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/faq/list">FAQ</a> 
+			              <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/cs/list">1:1 문의</a>
 						</div>
 					</div></li>
 

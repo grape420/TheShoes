@@ -24,7 +24,7 @@
 			<h3 class="titleA">
 				기본정보 <span class="pill">*필수항목</span>
 			</h3>
-			<form class="resellReg" method="post" action="${ pageContext.servletContext.contextPath }/resell/regResell"enctype="multipart/form-data">
+			<form class="resellReg" method="post" action="${ pageContext.servletContext.contextPath }/resell/regResell" enctype="multipart/form-data">
 			<ul class="sell_table">
 				<li>
 					<div class="left">
@@ -60,7 +60,7 @@
 					</div>
 					<div class="right">
 						<input type="text" id="productName" class="textlength" placeholder="상품 제목을 입력해 주세요."
-							style="width: 92%;" onkeyup="onKeyUp()" /> 
+							style="width: 92%;" /> 
 							<span class="count black" id="title_count">0/40</span>
 						<!--제목 input 클릭시 나옴 필요 없을시 아래의 내용 삭제-->
 
@@ -104,16 +104,5 @@
 	<jsp:include page="../common/footer.jsp" />
 	
 	<script src="${ pageContext.servletContext.contextPath }/resources/js/resell/regResell.js" type="text/javascript"></script>
-	<script type="text/javascript" src="/scripts/amcharts/amcharts.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/amcharts/serial.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-util.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-selectbox.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-link-selectbox.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-table.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-search.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-layerpopup.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-widget.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/stats-searchpopup.js?v=<%=System.currentTimeMillis() %>"></script>
-	<script type="text/javascript" src="/scripts/contents/searchbox-autocomplete.js?v=<%=System.currentTimeMillis() %>"></script>
 </body>
 </html>

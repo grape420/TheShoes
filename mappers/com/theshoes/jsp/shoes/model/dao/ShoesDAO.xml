@@ -66,11 +66,165 @@
 		 ORDER BY A.SHOES_NO DESC
 	</select>
 	
+	<select id="selectShoesList2" resultMap="shoesResultMap">
+		SELECT
+		       A.SHOES_NO
+		     , A.INFO_CATEGORY_NO
+		     , B.SHOES_CATEGORY_NAME
+		     , A.SHOES_MODEL
+		     , A.SHOES_PRICE
+		     , A.SALES_YN
+		     , A.SALES_AMOUNT
+		     , A.REAMANING_AMOUNT
+		     , A.START_DATE
+		     , A.END_DATE
+		     , A.WINNER_DATE
+		     , A.EVENT_END_YN
+		     , C.SHOES_THUMB_NO
+		     , C.ORIGINAL_NAME
+		     , C.SAVED_NAME
+		     , C.SAVE_PATH
+		     , C.FILE_TYPE
+		     , C.THUMBNAIL_PATH
+		  FROM SHOES_INFO A
+		  LEFT JOIN SHOES_CATEGORY B ON (A.INFO_CATEGORY_NO = B.SHOES_CATEGORY_NO)
+		  LEFT JOIN SHOES_THUMB C ON (A.SHOES_NO = C.ST_NO)
+		 WHERE A.SALES_YN = 'Y'
+		 ORDER BY A.SHOES_NO DESC
+	</select>
+	
+	<select id="selectShoesListCnt" resultType="_int">
+		SELECT COUNT(*) 
+		FROM SHOES_INFO
+	</select>
+	<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ShoesDAO">
+	
+ 	<resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesCategoryDTO" id="shoesCategoryResultMap">
+		<id property="shoesCategoryNo" column="SHOES_CATEGORY_NO"/>
+		<result property="shoesCategoryName" column="SHOES_CATEGORY_NAME"/>
+	</resultMap>
+
+	 <resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesDTO" id="shoesResultMap">
+		<id property="shoesNo" column="SHOES_NO"/>
+		<result property="infoCategoryNo" column="INFO_CATEGORY_NO"/>
+		<result property="shoesModel" column="SHOES_MODEL"/>
+		<result property="shoesPrice" column="SHOES_PRICE"/>
+		<result property="salesYn" column="SALES_YN"/>
+		<result property="salesAmount" column="SALES_AMOUNT"/>
+		<result property="reamaningAmount" column="REAMANING_AMOUNT"/>
+		<result property="startDate" column="START_DATE"/>
+		<result property="endDate" column="END_DATE"/>
+		<result property="winnerDate" column="WINNER_DATE"/>
+		<result property="eventEndYn" column="EVENT_END_YN"/>
+		
+		<!-- 이거 해야만 조인 됨 -->
+		<association property="category" resultMap="shoesCategoryResultMap" />
+		
+		<collection property="thumbList" resultMap="shoesThumbResultMap"></collection>
+	</resultMap> 
+	
+	<resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO" id="shoesThumbResultMap">
+		<id property="shoesThumbNo" column="SHOES_THUMB_NO"/>
+		<result property="stNo" column="ST_NO"/>
+		<result property="originalName" column="ORIGINAL_NAME"/>
+		<result property="savedName" column="SAVED_NAME"/>
+		<result property="savePath" column="SAVE_PATH"/>
+		<result property="fileType" column="FILE_TYPE"/>
+		<result property="thumbnailPath" column="THUMBNAIL_PATH"/>
+		<result property="status" column="ATTACHMENT_STATUS"/>
+	</resultMap>
+	
+	<select id="selectShoesList" resultMap="shoesResultMap">
+		SELECT
+		       A.SHOES_NO
+		     , A.INFO_CATEGORY_NO
+		     , B.SHOES_CATEGORY_NAME
+		     , A.SHOES_MODEL
+		     , A.SHOES_PRICE
+		     , A.SALES_YN
+		     , A.SALES_AMOUNT
+		     , A.REAMANING_AMOUNT
+		     , A.START_DATE
+		     , A.END_DATE
+		     , A.WINNER_DATE
+		     , A.EVENT_END_YN
+		     , C.SHOES_THUMB_NO
+		     , C.ORIGINAL_NAME
+		     , C.SAVED_NAME
+		     , C.SAVE_PATH
+		     , C.FILE_TYPE
+		     , C.THUMBNAIL_PATH
+		  FROM SHOES_INFO A
+		  LEFT JOIN SHOES_CATEGORY B ON (A.INFO_CATEGORY_NO = B.SHOES_CATEGORY_NO)
+		  LEFT JOIN SHOES_THUMB C ON (A.SHOES_NO = C.ST_NO) AND C.FILE_TYPE = 'TITLE'
+		 WHERE A.SALES_YN = 'Y'
+		 ORDER BY A.SHOES_NO DESC
+	</select>
+	
+	<select id="selectShoesList2" resultMap="shoesResultMap">
+		SELECT
+		       A.SHOES_NO
+		     , A.INFO_CATEGORY_NO
+		     , B.SHOES_CATEGORY_NAME
+		     , A.SHOES_MODEL
+		     , A.SHOES_PRICE
+		     , A.SALES_YN
+		     , A.SALES_AMOUNT
+		     , A.REAMANING_AMOUNT
+		     , A.START_DATE
+		     , A.END_DATE
+		     , A.WINNER_DATE
+		     , A.EVENT_END_YN
+		     , C.SHOES_THUMB_NO
+		     , C.ORIGINAL_NAME
+		     , C.SAVED_NAME
+		     , C.SAVE_PATH
+		     , C.FILE_TYPE
+		     , C.THUMBNAIL_PATH
+		  FROM SHOES_INFO A
+		  LEFT JOIN SHOES_CATEGORY B ON (A.INFO_CATEGORY_NO = B.SHOES_CATEGORY_NO)
+		  LEFT JOIN SHOES_THUMB C ON (A.SHOES_NO = C.ST_NO)
+		 WHERE A.SALES_YN = 'Y'
+		 ORDER BY A.SHOES_NO DESC
+	</select>
+	
 	<select id="selectShoesListCnt" resultType="_int">
 		SELECT COUNT(*) 
 		FROM SHOES_INFO
 	</select>
 	
+	
+	<select id="selectShoesDetail" resultMap="shoesResultMap">
+		SELECT
+		       A.SHOES_NO
+		     , A.INFO_CATEGORY_NO
+		     , B.SHOES_CATEGORY_NAME
+		     , A.SHOES_MODEL
+		     , A.SHOES_PRICE
+		     , A.SALES_YN
+		     , A.SALES_AMOUNT
+		     , A.REAMANING_AMOUNT
+		     , A.START_DATE
+		     , A.END_DATE
+		     , A.WINNER_DATE
+		     , A.EVENT_END_YN
+		     , C.SHOES_THUMB_NO
+		     , C.ORIGINAL_NAME
+		     , C.SAVED_NAME
+		     , C.SAVE_PATH
+		     , C.FILE_TYPE  
+		     , C.THUMBNAIL_PATH
+		  FROM SHOES_INFO A
+		  LEFT JOIN SHOES_CATEGORY B ON (A.INFO_CATEGORY_NO = B.SHOES_CATEGORY_NO)
+		  LEFT JOIN SHOES_THUMB C ON (A.SHOES_NO = C.ST_NO)
+		 WHERE A.SHOES_NO = #{ shoesNo }
+	</select>
+			
+</mapper>
 	
 	<select id="selectShoesDetail" resultMap="shoesResultMap">
 		SELECT

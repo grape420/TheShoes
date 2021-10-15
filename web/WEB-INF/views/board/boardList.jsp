@@ -31,7 +31,7 @@
 				<!-- Sidebar - Brand -->
 				<a
 					class="sidebar-brand d-flex align-items-center justify-content-center"
-					href="index.html">
+					>
 					<div class="sidebar-brand-icon rotate-n-15">
 					</div>
 					<div class="sidebar-brand-text mx-3">NOTICE</div>
@@ -52,9 +52,9 @@
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 						data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="notice.html">공지사항</a> <a
-								class="collapse-item" href="FAQ2.html">FAQ</a> <a
-								class="collapse-item" href="1dae1_list.html">1:1 문의</a>
+							<a class="collapse-item" style="text-decoration=none;">공지사항</a> 
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/faq/list">FAQ</a> 
+						    <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/cs/list">1:1 문의</a>
 						</div>
 					</div></li>
 
@@ -85,13 +85,14 @@
 					
 					<table class="table table-hover" id="noticeTable">
 						<tbody>
-							<tr style="background-color:black; color:white;">
-								<th colspan="1" class="text-center">번호</th>
-								<th colspan="5" class="text-center">제목</th>
-								<th colspan="1" class="text-center">작성자</th>
-								<th colspan="1" class="text-center">조회수</th>
-								<th colspan="1" class="text-center">작성일</th>
+							<tr style="background-color:black; color:white;" class="align-items-center">
+								<th colspan="1" class="text-center col-sm-1">번호</th>
+								<th colspan="5" class="text-center col-sm-5">제목</th>
+								<th colspan="1" class="text-center col-sm-2">작성자</th>
+								<th colspan="1" class="text-center col-sm-1">조회수</th>
+								<th colspan="1" class="text-center col-sm-2">작성일</th>
 							</tr>
+
 							<c:forEach var="noticeList" items="${ requestScope.noticeList }" >
 								<tr>							
 									<td class="text-center"><c:out value="${ noticeList.categoryOrder }"/></td>
@@ -108,11 +109,11 @@
 					<jsp:include page="paging.jsp"/>
 
 					<!-- 관리자 확인 -->
-					<%-- <c:if test="${ sessionScope.entryMember.role eq 'Y'}"> --%>
+					 <c:if test="${ sessionScope.entryMember.role eq 'MANAGER'}"> 
 						<div style="text-align: center; margin-top: 20px;">
 							<a href="#" class="namoon" onclick="location.href='${ pageContext.servletContext.contextPath }/board/reg';">등록하기</a>
 						</div>
-					<%-- </c:if> --%>
+					 </c:if> 
 				</div>
 			</div>
 		</div>

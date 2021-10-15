@@ -52,10 +52,12 @@ public class RegBoardServlet extends HttpServlet {
 
 		int result = boardService.registNotice(notice);
 				
+		String path = "";
+		
 		if (result > 0) {
-//			List<BoardDTO> noticeList = boardService.selectAllNoticeList();
-//			request.setAttribute("noticeList", noticeList);
-			request.getRequestDispatcher("/WEB-INF/views/board/boardList.jsp").forward(request, response);
+			path = "/WEB-INF/views/common/success.jsp";
+			request.setAttribute("successCode", "insertNotice");
+			request.getRequestDispatcher(path).forward(request, response);
 		} 
 		
 	}

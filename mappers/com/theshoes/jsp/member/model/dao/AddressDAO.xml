@@ -3,11 +3,11 @@
 <mapper namespace="AddressDAO">
 
 	<resultMap type="com.theshoes.jsp.member.model.dto.AddressDTO" id="addressResultMap">
-		<id property="no" column="ADDRESS_NO"/>
-		<result property="id" column="ADDRESS_ID"/>
-		<result property="zip" column="ADDRESS_ZIP"/>
-		<result property="detail" column="ADDRESS_DETAIL"/>
-		<result property="name" column="ADDRESS_NAME"/>
+		<id property="addressNo" column="ADDRESS_NO"/>
+		<result property="nameMM" column="ADDRESS_ID"/>
+		<result property="address1MM" column="ADDRESS_ZIP"/>
+		<result property="address2MM" column="ADDRESS_DETAIL"/>
+		<result property="addressName" column="ADDRESS_NAME"/>
 
 	</resultMap>
 	
@@ -25,7 +25,6 @@
         VALUES
         (
           SEQ_ADDRESS_CODE.NEXTVAL 
-        , #{ addressNo } 
         , #{ nameMM }
         , #{ address1MM }
         , #{ address2MM }
@@ -33,14 +32,36 @@
         )
 	</insert>
 	
-	<select id="selectAllAddressList" resultMap="addressResultMap">
-		SELECT 
-       		 A.ADDRESS_NO
-     	   , A.ADDRESS_ID
+	<select id="selectAllAddressList" resultMap="addressResultMap" parameterType="string">
+		SELECT   /* com.theshoes.jsp.member.model.dao.AddressDAO#selectAllAddressList() */
+       		 A.ADDRESS_NO 
+     	   , A.ADDRESS_ID 
      	   , A.ADDRESS_ZIP 
-      	   , A.ADDRESS_DETAIL
-    	   , A.ADDRESS_NAME
-      	  FROM ADDRESS A
+      	   , A.ADDRESS_DETAIL 
+    	   , A.ADDRESS_NAME 
+      	  FROM ADDRESS A  
+      	  JOIN MEMBER B ON(B.MEMBER_ID = A.ADDRESS_ID)
+      	 WHERE B.MEMBER_ID = #{ id }
+	
 	</select>
+
+	<update id="updateAddress"  parameterType="com.theshoes.jsp.member.model.dto.AddressDTO" >
+        UPDATE /* com.theshoes.jsp.board.model.dao.BoardDAO#updateAddress */
+                  ADDRESS A
+	        SET A.ADDRESS_ID = #{ nameMM }
+		      , A.ADDRESS_ZIP = #{ address1MM }
+		      , A.ADDRESS_DETAIL = #{ address2MM }
+    	      , A.ADDRESS_NAME = #{ addressName }
+    	  WHERE A.ADDRESS_NO = #{ addressNo }
+    	     
+		     
+	</update>
+	
+	<delete id="deleteAddress">
+		DELETE
+		  FROM ADDRESS A
+		 WHERE A.ADDRESS_NO = #{ addressNo }
+	</delete>
+	
 	
 </mapper>

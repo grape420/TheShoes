@@ -17,12 +17,13 @@ public class ModifyBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/* 기존 값 불러와서 수정 화면에 띄우기 */
+	/* selectNoticeDetail 은 조회 수가 올라감 -> 새로운 메소드 이용 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int categoryOrder = Integer.parseInt(request.getParameter("categoryOrder")); 
 		
 		BoardService boardService = new BoardService();
-		BoardDTO notice= boardService.selectNoticeDetail(categoryOrder);
+		BoardDTO notice= boardService.selectModNoticeDetail(categoryOrder);
 		
 		String path = "";
 		
@@ -73,8 +74,8 @@ public class ModifyBoardServlet extends HttpServlet {
 		String path = "";
 		
 		if(result > 0) {
-			/* 수정 필요 */
-			path = "/WEB-INF/views/board/boardList.jsp";
+			path = "/WEB-INF/views/common/success.jsp";
+			request.setAttribute("successCode", "updateNotice");
 		} else {
 			path = "/WEB-INF/views/common/errorPage.jsp";
 		}

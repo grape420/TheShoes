@@ -14,6 +14,7 @@ public class BoardDTO implements Serializable{
 	private int boardHit;				// 조회수
 	private int categoryOrder;			// 카테고리별 게시글 순서
 	
+	
 	public BoardDTO() {
 	}
 
