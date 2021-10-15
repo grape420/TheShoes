@@ -54,7 +54,7 @@
 						<fmt:formatDate value="${requestScope.shoesDetail.endDate}" pattern="yyyyMMddHHmm" var="closeDate"/> 
 			          <c:choose> 
 							<c:when test="${closeDate > nowDate}">
-					          <a class="btn" href="javascript:void(0)">응모가능</a>
+					          <a class="btn" href="${ pageContext.servletContext.contextPath }/shoes/event?shoesNo=${ shoesDetail.shoesNo }">응모가능</a>
 							</c:when> 
 							<c:otherwise>
 							  <a class="btn" href="javascript:void(0)">응모 불가능</a>

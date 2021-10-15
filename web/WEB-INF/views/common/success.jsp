@@ -46,6 +46,10 @@
 				case "updateShoes" :
 					movePath = "${ pageContext.servletContext.contextPath }/manager/shoes";
 					break;
+				case "insertEvent" : 
+					movePath = "${ pageContext.servletContext.contextPath }/shoes/detail?no=${ no }";
+					alert("응모 되셨습니다.");
+					break;
 			}
 			location.replace(movePath);
 		})();

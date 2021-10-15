@@ -28,7 +28,7 @@
 					<div class="carousel-item active">
 						<c:forEach var="thumb" items="${ shoesList[0].thumbList }">
 							<c:if test="${ thumb.fileType eq 'TITLE' }">
-								<a href="#"> <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ thumb.savedName }" class="d-block w-100 carouselImg" alt="...">
+								<a href="${ pageContext.servletContext.contextPath }/shoes/detail?no=${ shoesList[0].shoesNo }"> <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ thumb.savedName }" class="d-block w-100 carouselImg" alt="...">
 								</a>
 								<div class="carousel-caption d-none d-md-block">
 									<h2 class="text-black">${ shoesList[0].shoesModel }</h2>
@@ -40,7 +40,7 @@
 					<div class="carousel-item">
 						<c:forEach var="thumb" items="${ shoesList[1].thumbList }">
 							<c:if test="${ thumb.fileType eq 'TITLE' }">
-								<a href="#"> <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ thumb.savedName }" class="d-block w-100 carouselImg" alt="...">
+								<a href="${ pageContext.servletContext.contextPath }/shoes/detail?no=${ shoesList[1].shoesNo }"> <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ thumb.savedName }" class="d-block w-100 carouselImg" alt="...">
 								</a>
 								<div class="carousel-caption d-none d-md-block">
 									<h2 class="text-black">${ shoesList[1].shoesModel }</h2>
@@ -52,7 +52,7 @@
 					<div class="carousel-item">
 						<c:forEach var="thumb" items="${ shoesList[2].thumbList }">
 							<c:if test="${ thumb.fileType eq 'TITLE' }">
-								<a href="#"> <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ thumb.savedName }" class="d-block w-100 carouselImg" alt="...">
+								<a href="${ pageContext.servletContext.contextPath }/shoes/detail?no=${ shoesList[2].shoesNo }"> <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ thumb.savedName }" class="d-block w-100 carouselImg" alt="...">
 								</a>
 								<div class="carousel-caption d-none d-md-block">
 									<h2 class="text-black">${ shoesList[2].shoesModel }</h2>
@@ -87,10 +87,10 @@
 											<span class="tit">${ shoes.category.shoesCategoryName }</span> <span class="color">${ shoes.shoesModel }</span>
 										</p>
 										<p class="hover">
-											<a href="${ pageContext.servletContext.contextPath }/shoes/detail?shoesCode=${ shoes.shoesNo }">Buy</a>
+											<a href="${ pageContext.servletContext.contextPath }/shoes/detail?no=${ shoes.shoesNo }">Buy</a>
 										</p>
 									</div>
-									<a class="stretched-link" href="${ pageContext.servletContext.contextPath }/shoes/detail?shoesCode=${ shoes.shoesNo }"></a>
+									<a class="stretched-link" href="${ pageContext.servletContext.contextPath }/shoes/detail?no=${ shoes.shoesNo }"></a>
 								</div>
 							</c:if>
 						</c:forEach>

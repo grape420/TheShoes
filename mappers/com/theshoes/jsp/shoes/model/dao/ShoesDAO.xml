@@ -39,6 +39,17 @@
 		<result property="status" column="ATTACHMENT_STATUS"/>
 	</resultMap>
 	
+	<resultMap type="com.theshoes.jsp.manager.model.dto.EventDTO" id="eventResultMap">
+		<id property="eventNo" column="EVENT_NO"/>
+		<result property="eventId" column="EVENT_ID"/>
+		<result property="eventShoesId" column="EVENT_SHOES_ID"/>
+		<result property="eventDate" column="EVENT_DATE"/>
+		<result property="randomNo" column="RANDOM_NO"/>
+		<result property="eventStatus" column="EVENT_STATUS"/>
+		
+		<association property="shoes" resultMap="shoesResultMap" />
+	</resultMap>
+	
 	<select id="selectShoesList" resultMap="shoesResultMap">
 		SELECT
 		       A.SHOES_NO
@@ -122,6 +133,34 @@
 		  LEFT JOIN SHOES_CATEGORY B ON (A.INFO_CATEGORY_NO = B.SHOES_CATEGORY_NO)
 		  LEFT JOIN SHOES_THUMB C ON (A.SHOES_NO = C.ST_NO)
 		 WHERE A.SHOES_NO = #{ shoesNo }
+	</select>
+	
+	<insert id="entryEvent" parameterType="com.theshoes.jsp.manager.model.dto.EventDTO">
+		INSERT 
+			  INTO EVENT A
+			(
+			  A.EVENT_NO
+			, A.EVENT_ID
+			, A.EVENT_SHOES_ID
+			, A.EVENT_DATE
+			, A.RANDOM_NO
+			, A.EVENT_STATUS
+			)
+			VALUES
+			(
+			  SEQ_EVENT_CODE.NEXTVAL
+			, #{ eventId }
+			, #{ eventShoesId }
+			, SYSDATE
+			, #{ randomNo }
+			, '1'
+			)
+	</insert>
+	
+	<select id="selectEventByRandomNo" resultType="string" parameterType="_int">
+		SELECT A.EVENT_ID
+		  FROM EVENT A
+		 WHERE A.RANDOM_NO = #{ randomNo }
 	</select>
 			
 </mapper>
