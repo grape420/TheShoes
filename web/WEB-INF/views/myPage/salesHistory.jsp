@@ -11,21 +11,11 @@
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 <link href="${ pageContext.servletContext.contextPath }/resources/uses/css/sb-admin-2.min.css" rel="stylesheet">
 <link href="${ pageContext.servletContext.contextPath }/resources/uses/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
 <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-
-
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/myPage/resellHistory.css" >
-<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/uses/css/draw.css" >
-
-
-
-
 <title>THE SHOES</title>
 </head>
-
 
 <body>
 	<!-- header -->
@@ -40,22 +30,20 @@
 			<!-- Sidebar -->
 			<ul	class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-				<!-- Sidebar - Brand -->
+				<!-- Sidebar  -->
 				<a  class="sidebar-brand d-flex align-items-center justify-content-center"	href="index.html">
 					<div class="sidebar-brand-icon rotate-n-15"> </div>
 					<div class="sidebar-brand-text mx-3">MY PAGE</div>
 				</a>
-
 				<!-- Divider -->
 				<hr class="sidebar-divider my-0">
-
 				<!-- Divider -->
 				<hr class="sidebar-divider">
-
 				<!-- Nav Item - Pages Collapse Menu -->
-				<li class="nav-item"><a class="nav-link collapsed" href="#"	data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> 
-					<i class="fas fa-fw fa-cog"></i> 
-					<span>쇼핑정보</span>
+				<li class="nav-item">
+				<a class="nav-link collapsed" href="#"	data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> 
+				<i class="fas fa-fw fa-cog"></i> 
+				<span>쇼핑정보</span>
 				</a>
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"	data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
