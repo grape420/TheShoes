@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import static com.theshoes.jsp.common.mybatis.Template.getSqlSession;
 
+import com.theshoes.jsp.board.model.dto.BoardDTO;
 import com.theshoes.jsp.board.model.dto.ResellDetailDTO;
 import com.theshoes.jsp.board.model.dto.ResellListDTO;
 import com.theshoes.jsp.board.model.dto.ResellThumbDTO;
@@ -30,39 +31,30 @@ public class ResellListService {
 //		return null;
 //	}
 
-	/* 페이징 처리 */
-	public int selectTotalCount(Map<String, String> searchMap) {
-		
-		SqlSession session = getSqlSession();
-		
-		int totalCount = resellListDAO.selectTotalCount(session, searchMap);
-		
-		session.close();
-		
-		return totalCount;
-	}
 
-	public List<ResellListDTO> selectResellList() {
+	public List<BoardDTO> selectResellList() {
 		
 		SqlSession session = getSqlSession();
 		
-		List<ResellListDTO> resellList = resellListDAO.selectResellList(session);
-		
+		List<BoardDTO> resellList = resellListDAO.selectResellList(session);
+		System.out.println("resellList" + resellList);
+	
 		session.close();
 		
 		return resellList;
 	}
-
+	
+	/* 리셀 디테일 */
 	public ResellListDTO selectOneResellList(int no) {
 		
 		SqlSession session = getSqlSession();
 		
 		ResellListDTO resell = null;
 		
-		int result = resellListDAO.incrementBoardCount(session, no);
+		int result = ResellListDAO.incrementBoardCount(session, no);
 		
 		if(result > 0) {
-			resell = resellListDAO.selectOneResell(session, no);
+			resell = resellListDAO.selectOneResellList(session, no);
 			
 			if(resell != null) {
 				session.commit();
@@ -77,6 +69,7 @@ public class ResellListService {
 		
 		return resell;
 	}
+	
 
 	public int insertshoes(ResellDetailDTO resellShoes) {
 		
@@ -84,7 +77,7 @@ public class ResellListService {
 		
 		int result = 0;
 		
-		int resellResult = ResellListDAO.insertShoes(session, resellShoes);
+		int resellResult = ResellListDAO.insertResellShoes(session, resellShoes);
 		
 		List<ResellThumbDTO> fileList = resellShoes.getResellThumb();
 		
@@ -94,7 +87,7 @@ public class ResellListService {
 		
 		int resellShoesThumbResult = 0;
 		for(int i = 0; i < fileList.size(); i++) {
-			resellShoesThumbResult += ResellListDAO.insertShoesThumb(session, fileList.get(i));
+			resellShoesThumbResult += ResellListDAO.insertResellThumb(session, fileList.get(i));
 		}
 		
 		if(resellResult > 0 && resellShoesThumbResult == fileList.size()) {
@@ -108,5 +101,8 @@ public class ResellListService {
 		
 		return result;
 	}
+
+
+
 
 }

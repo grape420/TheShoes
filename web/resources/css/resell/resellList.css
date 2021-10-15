@@ -312,6 +312,24 @@ section {
 	transition: opacity 0.3s ease 0.3s;
 }
 
+.regArea {
+	text-align: center; 
+	margin: 20px;
+}
+.regArea #regButton {
+    margin: 20px auto;
+    text-decoration: none !important;
+    color: black !important;
+    border: 1px solid gray;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+#a1 {
+	text-decoration: none;
+	color: black;
+}
+
 /* paging */
 .paging {
 	display: flex;
