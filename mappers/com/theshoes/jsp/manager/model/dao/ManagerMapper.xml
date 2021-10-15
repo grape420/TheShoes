@@ -214,7 +214,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		     , A.ATTACHMENT_STATUS = 'Y'
 		 WHERE A.ST_NO = #{ stNo }
 		   AND A.SHOES_THUMB_NO = #{ shoesThumbNo }
-		 
 	</update>
 	
 	<select id="selectShoesThumbNo" resultMap="shoesThumbResultMap" >
@@ -438,5 +437,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE A.BOARD_CATEGORY_NO = 3
 		ORDER BY 1 DESC
 	</select>
+	
+	<delete id="deleteShoesThumb" parameterType="com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO">
+		DELETE
+		  FROM SHOES_THUMB A
+		 WHERE A.ST_NO = #{ stNo }
+	</delete>
 	
 </mapper>

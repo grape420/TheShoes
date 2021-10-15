@@ -88,16 +88,8 @@ public class ManagerMapper {
 		return session.selectList("ManagerMapper.selectShoesThumbNo", shoesNo);
 	}
 
-
-
-
-	
-
-	
-
-	
-
-	
-	
+	public int deleteShoesThumb(SqlSession session, int shoesNo) {
+		return session.delete("ManagerMapper.deleteShoesThumb", shoesNo);
+	}
 
 }
