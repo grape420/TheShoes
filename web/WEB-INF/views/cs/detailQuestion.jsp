@@ -89,25 +89,27 @@
 						
 							<!-- 1:1 제목 -->
 							<span style="font-weight:bold;" id="title">${ requestScope.csQuestion.csTitle }</span>
-							${ requestScope.requestCount }
+
 							<!-- 작성일 -->
 							<p><span id="questionTime">${ requestScope.csQuestion.csRegDate }</span></p>
 	
 							<!-- 첨부파일 -->
+							<c:if test="${ not empty requestScope.csQuestion.qtList }">
 							<div id="titleImgArea">
-								<img id="titleImg" class="title-img-area" width="300"
+								<img id="titleImg" class="title-img-area" width="300" 
 									height="300" src="${ pageContext.servletContext.contextPath }/resources/upload/image/cs/${ requestScope.csQuestion.qtList[0].savedName }"/>
 							</div>
+							</c:if>
 							<br>
 							
 							<!-- 질문 내용 -->
 							<div class="realBonmun">${ requestScope.csQuestion.csContent }</div>
-							<hr class="mb-4 mt-4">
 							
 							<!-- 등록된 답변 확인 창 -->
 							<!-- 답변 table에 하나 이상의 데이터가 있을 경우 보이게 -->
-							<c:if test="${ requestScope.requestCount gt 0 }">
+							<c:if test="${ not empty requestScope.csRequest }">
 								<div class="bonmun">
+								<hr class="mb-4 mt-4">
             
 						          <!-- 답변 작성자 -->
 						          <span style="font-weight:bold;"><c:out value="${ requestScope.csRequest.managerId }"/></span>
@@ -119,14 +121,19 @@
 						            <div class="realBonmun">
 						            <c:out value="${ requestScope.csRequest.requestContent}"></c:out>
 						            </div>
+									
+									<c:if test="${ sessionScope.entryMember.role eq 'MANAGER' }">
+						            	<button type="button" class="btn btn-outline-secondary"
+										id="listBtn" onclick="location.href='${ pageContext.servletContext.contextPath }/cs/list'">목록보기</button>
+						            </c:if>
 						          </div>
-									<hr class="mb-4 mt-4">
 							  </c:if>
 							
 								<!-- 관리자) 답변 입력 창 -->
 								<!-- request 테이블의 데이터가 0개인 경우 보이게 -->
 								<c:if test="${ sessionScope.entryMember.role eq 'MANAGER' }">
-									<c:if test="${ requestScope.requestCount eq 0 }"> 
+									<c:if test="${ empty requestScope.csRequest }">
+										<hr class="mb-4 mt-4">
 										<form class="needs-validation" novalidate action="${ pageContext.servletContext.contextPath }/cs/detail" method="post">
 											<div class="row">
 												<div class="col-md-12">
@@ -162,13 +169,11 @@
 								</c:if>
 							
 							<!-- 목록으로 돌아가는 버튼 -->
-							<c:if test="${ requestScope.requestCount ne 0 }"> 
+						    <c:if test="${ sessionScope.entryMember.role ne 'MANAGER'}"> 
 								<button type="button" class="btn btn-outline-secondary"
 									id="listBtn" onclick="location.href='${ pageContext.servletContext.contextPath }/cs/list'">목록보기</button>
 							</c:if>
 						</div>
-						
-					
 					</div>
 				</div>
 			</div>

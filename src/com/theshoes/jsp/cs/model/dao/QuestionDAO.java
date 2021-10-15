@@ -34,10 +34,18 @@ public class QuestionDAO {
 		return session.selectList("QuestionDAO.selectAllCsList", selectCriteria);	
 	}
 	
-	/* 문의글 상세보기 */
+	/* 사진 있는 문의글 상세보기 */
 	public QuestionDTO selectCsDetail(SqlSession session, int csNo) {
 		System.out.println("~ DAO 문의글 상세보기 : " + csNo);
-		return session.selectOne("QuestionDAO.selectCsDetail", csNo);
+		QuestionDTO test = session.selectOne("QuestionDAO.selectCsDetail", csNo);
+		System.out.println("test : " + test);
+		return test;
+	}
+
+	/* 사진 없는 문의글 상세보기 */
+	public QuestionDTO selectCsDetailNoPhoto(SqlSession session, int csNo) {
+		System.out.println("사진 없는 문의글 상세보기 dao");
+		return session.selectOne("QuestionDAO.selectCsDetailNoPhoto", csNo);
 	}
 
 	/* 답변글 등록하기 */
@@ -57,6 +65,7 @@ public class QuestionDAO {
 		System.out.println("랄랄라 dao 답변글 상세보기 : " + csNo);
 		return session.selectOne("QuestionDAO.selectRequestDetail", csNo);
 	}
+
 	
 
 }
