@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ShoesDAO">
 	
- 	<resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesCategoryDTO" id="shoesCategoryResultMap">
+	<resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesCategoryDTO" id="shoesCategoryResultMap">
 		<id property="shoesCategoryNo" column="SHOES_CATEGORY_NO"/>
 		<result property="shoesCategoryName" column="SHOES_CATEGORY_NAME"/>
 	</resultMap>
@@ -97,7 +97,6 @@
 		SELECT COUNT(*) 
 		FROM SHOES_INFO
 	</select>
-	
 	
 	<select id="selectShoesDetail" resultMap="shoesResultMap">
 		SELECT
