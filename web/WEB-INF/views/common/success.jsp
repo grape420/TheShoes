@@ -47,10 +47,6 @@
 					movePath = "${ pageContext.servletContext.contextPath }/manager/shoes";
 					break;
 			}
-			
-		
-	}
-			
 			location.replace(movePath);
 		})();
 	</script>
