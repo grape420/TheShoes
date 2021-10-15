@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.theshoes.jsp.board.model.dto.BoardDTO;
 import com.theshoes.jsp.board.model.service.BoardService;
 
-@WebServlet("/board/modify")
-public class ModifyBoardServlet extends HttpServlet {
+@WebServlet("/faq/modify")
+public class ModifyFaqServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/* 기존 값 불러와서 수정 화면에 띄우기 */
@@ -23,13 +23,13 @@ public class ModifyBoardServlet extends HttpServlet {
 		int categoryOrder = Integer.parseInt(request.getParameter("categoryOrder")); 
 		
 		BoardService boardService = new BoardService();
-		BoardDTO notice= boardService.selectModNoticeDetail(categoryOrder);
+		BoardDTO faq= boardService.selectModFaqDetail(categoryOrder);
 		
 		String path = "";
 		
-		if(notice != null) {
-			path = "/WEB-INF/views/board/modifyBoard.jsp";
-			request.setAttribute("notice", notice);
+		if(faq != null) {
+			path = "/WEB-INF/views/faq/modifyFaq.jsp";
+			request.setAttribute("faq", faq);
 		} else {
 			path = "/WEB-INF/views/common/errorPage.jsp";
 		}
@@ -45,37 +45,37 @@ public class ModifyBoardServlet extends HttpServlet {
 		System.out.println("int categoryOrder : " + categoryOrder);
 		
 		/* 사용자가 입력한 정보 받아오기 */
-		String noticeTitle = request.getParameter("noticeTitle");	  		// 공지사항 제목
-		String noticeWriterId = request.getParameter("noticeWriterId");		// 공지사항 작성자 id
-		String noticeContent = request.getParameter("noticeContent");		// 공지사항 세부내용
-		String noticeRegDateString = request.getParameter("noticeRegDate"); 
+		String faqTitle = request.getParameter("faqTitle");	  		// 공지사항 제목
+		String faqWriterId = request.getParameter("faqWriterId");		// 공지사항 작성자 id
+		String faqContent = request.getParameter("faqContent");		// 공지사항 세부내용
+		String faqRegDateString = request.getParameter("faqRegDate"); 
 		
-		System.out.println("noticeTitle : " + noticeTitle);
-		System.out.println("noticeWriterId : " + noticeWriterId);
-		System.out.println("noticeContent : " + noticeContent);
-		System.out.println("noticeRegDateString : " + noticeRegDateString);
+		System.out.println("faqTitle : " + faqTitle);
+		System.out.println("faqWriterId : " + faqWriterId);
+		System.out.println("faqContent : " + faqContent);
+		System.out.println("faqRegDateString : " + faqRegDateString);
 		
 		/* String -> Date 형변환 */
-		Date noticeRegDate = Date.valueOf(noticeRegDateString);
+		Date faqRegDate = Date.valueOf(faqRegDateString);
 		
 		/* DTO에 값 넣고 전달하기 */
-		BoardDTO notice = new BoardDTO();			
-		notice.setBoardId(noticeWriterId);	
-		notice.setBoardTitle(noticeTitle);				
-		notice.setBoardContent(noticeContent);			
-		notice.setCategoryOrder(categoryOrder);
-		notice.setBoardRegDate(noticeRegDate);
+		BoardDTO faq = new BoardDTO();			
+		faq.setBoardId(faqWriterId);	
+		faq.setBoardTitle(faqTitle);				
+		faq.setBoardContent(faqContent);			
+		faq.setCategoryOrder(categoryOrder);
+		faq.setBoardRegDate(faqRegDate);
 		
-		System.out.println(notice);
+		System.out.println(faq);
 		
 		BoardService boardService = new BoardService();
-		int result= boardService.updateNoticeDetail(notice);
+		int result= boardService.updateFaqDetail(faq);
 
 		String path = "";
 		
 		if(result > 0) {
 			path = "/WEB-INF/views/common/success.jsp";
-			request.setAttribute("successCode", "updateNotice");
+			request.setAttribute("successCode", "updateFaq");
 		} else {
 			path = "/WEB-INF/views/common/errorPage.jsp";
 		}

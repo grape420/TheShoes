@@ -15,8 +15,8 @@ import com.theshoes.jsp.board.model.service.BoardService;
 import com.theshoes.jsp.common.paging.Pagenation;
 import com.theshoes.jsp.common.paging.SelectCriteria;
 
-@WebServlet("/board/list")
-public class BoardListServlet extends HttpServlet {
+@WebServlet("/faq/list")
+public class FaqListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
@@ -35,27 +35,27 @@ public class BoardListServlet extends HttpServlet {
 
 		
 		/* 전체 게시물 수 조회 */
-		int totalNoticeCount = boardService.selectNoticeTotalCount();
-		System.out.println("noticeList.size : " + totalNoticeCount);
+		int totalFaqCount = boardService.selectFaqTotalCount();
+		System.out.println("faqList.size : " + totalFaqCount);
 
 		/* 전체 공지사항 목록 조회 */
 		SelectCriteria selectCriteria = null;
 
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
-		selectCriteria = Pagenation.getSelectCriteria(pageNo, totalNoticeCount, onePost, onePage);
+		selectCriteria = Pagenation.getSelectCriteria(pageNo, totalFaqCount, onePost, onePage);
 		
 		System.out.println(selectCriteria);
 
-		List<BoardDTO> noticeList = boardService.selectAllNoticeList(selectCriteria);
-		System.out.println(noticeList);
+		List<BoardDTO> faqList = boardService.selectAllFaqList(selectCriteria);
+		System.out.println(faqList);
 		
 		String path = "";
 		
-		if(noticeList != null) {
+		if(faqList != null) {
 			
-			path = "/WEB-INF/views/board/boardList.jsp";
-			request.setAttribute("pagingPath", "board/list");
-			request.setAttribute("noticeList", noticeList);
+			path = "/WEB-INF/views/faq/faqList.jsp";
+			request.setAttribute("pagingPath", "faq/list");			
+			request.setAttribute("faqList", faqList);
 			request.setAttribute("selectCriteria", selectCriteria);
 
 		} else {
