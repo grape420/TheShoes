@@ -37,7 +37,7 @@
 					${requestScope.shoesDetail.shoesModel}
 					</h3>
 					
-					<h5><fmt:formatNumber value="${requestScope.shoesDetail.shoesPrice}" pattern="#,###"/> 원</h5>
+					<h5><fmt:formatNumber value="${requestScope.shoesDetail.shoesPrice}" pattern="#,###"/>원</h5>
 					<!--211014 수정-->
 					<div class="box">
 			            <p class="bold">* THE DRAW 응모 이후 사이즈 수정은 불가합니다.</p>
