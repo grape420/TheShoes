@@ -11,7 +11,6 @@
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 <link href="${ pageContext.servletContext.contextPath }/resources/uses/css/sb-admin-2.min.css" rel="stylesheet">
 <link href="${ pageContext.servletContext.contextPath }/resources/uses/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-<link href="${ pageContext.servletContext.contextPath }/resources/uses/css/draw.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <title>THE SHOES</title>
 </head>
@@ -46,36 +45,35 @@
 				<hr class="sidebar-divider">
 
 				<!-- Nav Item - Pages Collapse Menu -->
-				<li class="nav-item"><a class="nav-link collapsed" href="#"	data-toggle="collapse" data-target="#collapseTwo"
-					aria-expanded="true" aria-controls="collapseTwo"> 
-					<i class="fas fa-fw fa-cog"></i> 
-					<span>쇼핑정보</span>
+				<li class="nav-item"><a class="nav-link collapsed" href="#"
+					data-toggle="collapse" data-target="#collapseTwo"
+					aria-expanded="true" aria-controls="collapseTwo"> <i
+						class="fas fa-fw fa-folder"></i> <span>쇼핑정보</span>
 				</a>
-					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"	data-parent="#accordionSidebar">
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+						data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/drawHistory">응모 내역</a> 
-							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/salesHistory">구매 내역</a> 
-							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/resellHistory">판매 내역</a> 
-							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/wishList">관심 상품</a>
+							<a class="collapse-item" href="#">응모 내역</a> <a
+								class="collapse-item" href="#">구매 내역</a> <a
+								class="collapse-item" href="#">판매 내역</a> <a
+								class="collapse-item" href="#">관심 상품</a>
 						</div>
-					</div>
-					</li>
+					</div></li>
+
 				<!-- Nav Item - Utilities Collapse Menu -->
-				<li class="nav-item"><a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-					aria-expanded="true" aria-controls="collapseUtilities"> 
-				<i class="fas fa-fw fa-wrench"></i> 
-					<span>나의정보</span>
+				<li class="nav-item"><a class="nav-link collapsed" href="#"
+					data-toggle="collapse" data-target="#collapseUtilities"
+					aria-expanded="true" aria-controls="collapseUtilities"> <i
+						class="fas fa-fw fa-folder"></i> <span>나의정보</span>
 				</a>
 					<div id="collapseUtilities" class="collapse"
 						aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/common/nav?no=3">프로필 정보</a> 
-							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/address">주소록</a> 
-							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/common/nav?no=2">회원 탈퇴</a>
+							<a class="collapse-item" href="#">프로필 정보</a> <a
+								class="collapse-item" href="#">주소록</a> <a class="collapse-item"
+								href="#">결제 정보</a> <a class="collapse-item" href="#">회원 탈퇴</a>
 						</div>
-					</div>
-				</li>
-				
+					</div></li>
 
 				<!-- Divider -->
 				<hr class="sidebar-divider">
@@ -99,8 +97,8 @@
 
 					<!-- Page Heading -->
 					<br>
-					<h1 class="h3 mb-2 text-gray-800">THE SHOES 구매내역</h1>
-					<p class="mb-4">최근 2년 이내 THE SHOES 구매내역 조회 가능합니다.</p>
+					<h1 class="h3 mb-2 text-gray-800">THE SHOES 판매내역</h1>
+					<p class="mb-4">최근 2년 이내 THE SHOES 판매내역 조회 가능합니다.</p>
 
 					<!-- DataTales Example -->
 					<div class="order-filter" data-module-date-filter-thedraw="">
@@ -156,7 +154,7 @@
 
 							<div class="order-list" data-order="">
 								<div class="header">
-									<span class="order-code">구매일시 2021.08.13 10:14:16</span>
+									<span class="order-code">판매일시 2021.08.13 10:14:16</span>
 								</div>
 								<div class="order-item-wrap thedraw-item">
 									<div class="item-info">
@@ -188,7 +186,7 @@
 
 							<div class="order-list" data-order="">
 								<div class="header">
-									<span class="order-code">구매일시 2021.09.02 10:00:24</span>
+									<span class="order-code">판매일시 2021.09.02 10:00:24</span>
 								</div>
 								<div class="order-item-wrap thedraw-item">
 									<div class="item-info">
@@ -220,7 +218,7 @@
 
 							<div class="order-list" data-order="">
 								<div class="header">
-									<span class="order-code">구매일시 2021.9.24 10:13:12</span>
+									<span class="order-code">판매일시 2021.9.24 10:13:12</span>
 								</div>
 								<div class="order-item-wrap thedraw-item">
 									<div class="item-info">

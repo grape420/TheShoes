@@ -241,7 +241,6 @@
 		}
 	
 	<!-- 주소록 수정 -->
-	
 		const $searchZipCodeMM = document.getElementById("searchZipCodeMM");
 		const $changeBtn = document.getElementById("changeBtn");
 			  
