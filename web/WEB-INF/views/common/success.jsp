@@ -17,6 +17,9 @@
 				case "insertShoes" :
 					movePath = "${ pageContext.servletContext.contextPath }/manager/shoes";
 					break;
+				case "updateMember" :
+					movePath = "${ pageContext.servletContext.contextPath }/manager/memberList";
+					break;
 					
 				case "myAddressCode" : 
 					movePath = "${ pageContext.servletContext.contextPath }/myPage/myAddress";
@@ -47,10 +50,6 @@
 					movePath = "${ pageContext.servletContext.contextPath }/manager/shoes";
 					break;
 			}
-			
-		
-	}
-			
 			location.replace(movePath);
 		})();
 	</script>

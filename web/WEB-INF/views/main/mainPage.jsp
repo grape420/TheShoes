@@ -87,10 +87,10 @@
 											<span class="tit">${ shoes.category.shoesCategoryName }</span> <span class="color">${ shoes.shoesModel }</span>
 										</p>
 										<p class="hover">
-											<a href="${ pageContext.servletContext.contextPath }/shoes/detail?shoesCode=${ shoes.shoesNo }">Buy</a>
+											<a href="${ pageContext.servletContext.contextPath }/shoes/detail?no=${ shoes.shoesNo }">Buy</a>
 										</p>
 									</div>
-									<a class="stretched-link" href="${ pageContext.servletContext.contextPath }/shoes/detail?shoesCode=${ shoes.shoesNo }"></a>
+									<a class="stretched-link" href="${ pageContext.servletContext.contextPath }/shoes/detail?no=${ shoes.shoesNo }"></a>
 								</div>
 							</c:if>
 						</c:forEach>
