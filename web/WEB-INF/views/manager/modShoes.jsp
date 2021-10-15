@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,9 +29,8 @@
 				id="accordionSidebar">
 
 				<!-- Sidebar - Brand -->
-				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="${ pageContext.servletContext.contextPath }/manager/shoes">
 					<div class="sidebar-brand-icon rotate-n-15">
-						<i class="fas fa-laugh-wink"></i>
 					</div>
 					<div class="sidebar-brand-text mx-3">MANAGER</div>
 				</a>
@@ -61,12 +61,6 @@
 				<!-- Divider -->
 				<hr class="sidebar-divider">
 
-				<!-- Heading -->
-
-				<!-- Sidebar Toggler (Sidebar) -->
-				<div class="text-center d-none d-md-inline">
-					<button class="rounded-circle border-0" id="sidebarToggle"></button>
-				</div>
 			</ul>
 
 			<!-- Content Wrapper -->
@@ -86,7 +80,7 @@
 							<form class="needs-validation" method="post" action="${ pageContext.servletContext.contextPath }/manager/modShoes"
 							enctype="multipart/form-data">
 								<div class="row">
-									<div class="col-md-4 mb-3">
+								  <div class="col-md-4 mb-3">
 										<label for="country">카테고리</label> 
 										<select class="custom-select d-block w-100" id="infoCategoryNo" name="infoCategoryNo">
 											<option hidden><c:out value="${ shoes.category.shoesCategoryName }" /></option>
@@ -96,18 +90,21 @@
 											<option value="4">사카이</option>
 											<option value="5">Dunk</option>
 										</select>
-									</div>
+										<input type="hidden" value="${ shoes.shoesNo }" name="shoesNo">
+										
+									</div> 
 									<div class="col-md-4 mb-3">
 										<label for="lastName">모델명</label> 
 										<input type="text" class="form-control" id="shoesModel" placeholder="" name="shoesModel" value="${ shoes.shoesModel }">
 									</div>
-									<div class="col-md-4 mb-3">
+									 <div class="col-md-4 mb-3">
 										<label for="lastName">발매가</label> 
 										<input type="number" class="form-control" id="shoesPrice" placeholder="" name="shoesPrice" value="${ shoes.shoesPrice }">
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="firstName">당첨자 발표일</label> 
-										<input type="datetime-local" class="form-control" id="winnerDate" placeholder="" name="winnerDate" value="${ shoes.winnerDate }">
+										<input type="datetime-local" class="form-control" id="winnerDate" placeholder="" name="winnerDate" 
+										value="<fmt:formatDate value="${ shoes.winnerDate }" pattern="yyyy-MM-dd'T'HH:mm"/>">
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="country">판매여부</label> 
@@ -124,11 +121,13 @@
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="firstName">응모 시작일</label> 
-										<input type="datetime-local" class="form-control" id="startDate" placeholder="" name="startDate" value="${ shoes.startDate }">
+										<input type="datetime-local" class="form-control" id="startDate" placeholder="" name="startDate" 
+										value="<fmt:formatDate value="${ shoes.startDate }" pattern="yyyy-MM-dd'T'HH:mm"/>">
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="firstName">응모 종료일</label> 
-										<input type="datetime-local" class="form-control" id="endDate" placeholder="" name="endDate" value="${ shoes.endDate }">
+										<input type="datetime-local" class="form-control" id="endDate" placeholder="" name="endDate" 
+										value="<fmt:formatDate value="${ shoes.endDate }" pattern="yyyy-MM-dd'T'HH:mm"/>">
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="firstName">추첨 종료 상태</label>
@@ -143,8 +142,9 @@
 											<div class="text-center">
 												<label style="margin: 10px;">대표 사진</label>
 												<div id="titleImgArea">
-													<img id="titleImg" class="title-img-area" width="300"
-														height="300">
+													<img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ shoes.thumbList[0].savedName }"
+													id="titleImg" class="title-img-area" width="300" height="300">
+													
 												</div>
 											</div>
 										</div>
@@ -153,7 +153,8 @@
 			                              <div class="text-center">
 			                                <label>사진1</label>
 			                                <div id="contentImgArea1">
-			                                <img id="contentImg1" class="content-img-area1" width="250" height="250">
+			                                <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ shoes.thumbList[1].savedName }"
+			                                id="contentImg1" class="content-img-area1" width="250" height="250">
 			                              </div>
 			                            </div>
 
@@ -161,7 +162,8 @@
 				                              <label>사진2</label>
 				                              <div style="margin: 0 25px;">
 				                              <div id="contentImgArea2">
-				                                <img id="contentImg2" class="content-img-area2" width="250" height="250">
+				                                <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ shoes.thumbList[2].savedName }"
+				                                id="contentImg2" class="content-img-area2" width="250" height="250">
 				                              </div>
 				                            </div>
 				                             </div>
@@ -169,7 +171,8 @@
 											<div class="text-center">
 				                            <label>사진3</label>
 				                              <div id="contentImgArea3">
-				                                <img id="contentImg3" class="content-img-area3" width="250" height="250">
+				                                <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ shoes.thumbList[3].savedName }"
+				                                id="contentImg3" class="content-img-area3" width="250" height="250">
 				                              </div>
 				                            </div>
 
@@ -177,7 +180,8 @@
 				                              <label>사진4</label>
 				                              <div style="margin: 0 25px;">
 				                                <div id="contentImgArea4">
-				                                  <img id="contentImg4" class="content-img-area4" width="250" height="250">
+				                                  <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ shoes.thumbList[4].savedName }"
+				                                  id="contentImg4" class="content-img-area4" width="250" height="250">
 				                                </div>
 				                              </div>
 				                              </div>
@@ -185,19 +189,26 @@
 											<div class="text-center">
 			                                <label>사진5</label>
 			                                  <div id="contentImgArea5">
-			                                    <img id="contentImg5" class="content-img-area5" width="250" height="250">
+			                                    <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ shoes.thumbList[5].savedName }"
+			                                    id="contentImg5" class="content-img-area5" width="250" height="250">
 			                                  </div>
 			                                </div>
 
 										</div>
 
 										<div class="thumbnail-file-area">
-			                              <input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)">
-			                              <input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this,2)">
-			                              <input type="file" id="thumbnailImg3" name="thumbnailImg3" onchange="loadImg(this,3)">
-			                              <input type="file" id="thumbnailImg4" name="thumbnailImg4" onchange="loadImg(this,4)">
-			                              <input type="file" id="thumbnailImg5" name="thumbnailImg5" onchange="loadImg(this,5)">
-			                              <input type="file" id="thumbnailImg6" name="thumbnailImg6" onchange="loadImg(this,6)">
+			                              <input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)" value="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ shoes.thumbList[0].savedName }">
+			                              <input hidden name="shoesThumbNo1" value="${ shoes.thumbList[0].shoesThumbNo }"></label>
+			                              <input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this,2)" value="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ shoes.thumbList[1].savedName }">
+			                              <input hidden name="shoesThumbNo2" value="${ shoes.thumbList[1].shoesThumbNo }"></label>
+			                              <input type="file" id="thumbnailImg3" name="thumbnailImg3" onchange="loadImg(this,3)" value="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ shoes.thumbList[2].savedName }">
+			                              <input hidden name="shoesThumbNo3" value="${ shoes.thumbList[2].shoesThumbNo }"></label>
+			                              <input type="file" id="thumbnailImg4" name="thumbnailImg4" onchange="loadImg(this,4)" value="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ shoes.thumbList[3].savedName }">
+			                              <input hidden name="shoesThumbNo4" value="${ shoes.thumbList[3].shoesThumbNo }"></label>
+			                              <input type="file" id="thumbnailImg5" name="thumbnailImg5" onchange="loadImg(this,5)" value="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ shoes.thumbList[4].savedName }">
+			                              <input hidden name="shoesThumbNo5" value="${ shoes.thumbList[4].shoesThumbNo }"></label>
+			                              <input type="file" id="thumbnailImg6" name="thumbnailImg6" onchange="loadImg(this,6)" value="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ shoes.thumbList[5].savedName }">
+			                              <input hidden name="shoesThumbNo6" value="${ shoes.thumbList[5].shoesThumbNo }"></label>
 			                            </div>
 
 									<div class="col-md-12 mb-3">
@@ -217,7 +228,7 @@
 
 	<%-- <script src="${ pageContext.servletContext.contextPath }/resources/js/manager/regShoes.js"></script> --%>
 	
-	 <script type="text/javascript">
+	 <script>
 	 const $titleImgArea = document.getElementById("titleImg");
      const $contentImgArea1 = document.getElementById("contentImg1");
      const $contentImgArea2 = document.getElementById("contentImg2");
@@ -227,22 +238,22 @@
 
      $titleImgArea.onclick = function() {
        document.getElementById("thumbnailImg1").click();
-     }
+     };
      $contentImgArea1.onclick = function() {
 				document.getElementById("thumbnailImg2").click();
-			}
+			};
      $contentImgArea2.onclick = function() {
 				document.getElementById("thumbnailImg3").click();
-			}
+			};
      $contentImgArea3.onclick = function() {
 				document.getElementById("thumbnailImg4").click();
-			}
+			};
      $contentImgArea4.onclick = function() {
 				document.getElementById("thumbnailImg5").click();
-			}
+			};
      $contentImgArea5.onclick = function() {
 				document.getElementById("thumbnailImg6").click();
-			}
+			};
 
      function loadImg(value, num) {
        if (value.files && value.files[0]) {
@@ -261,7 +272,7 @@
            }
          }
        }
-     }
+     };
 	 </script>
 
 </body>

@@ -45,10 +45,11 @@ public class ManagerShoesListServlet extends HttpServlet {
 		System.out.println(selectCriteria);
 		
 		List<ShoesDTO> shoesList = shoesService.selectAllShoesList(selectCriteria);
-		
+				
 		String path = "";
 		if (shoesList != null) {
 			path = "/WEB-INF/views/manager/managerShoes.jsp";
+			request.setAttribute("pagingPath", "shoes");
 			request.setAttribute("shoesList", shoesList);
 			request.setAttribute("selectCriteria", selectCriteria);
 		} else {

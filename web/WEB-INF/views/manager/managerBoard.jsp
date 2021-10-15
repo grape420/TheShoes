@@ -32,7 +32,7 @@
 				<!-- Sidebar - Brand -->
 				<a
 					class="sidebar-brand d-flex align-items-center justify-content-center"
-					href="index.html">
+					href="${ pageContext.servletContext.contextPath }/manager/shoes">
 					<div class="sidebar-brand-icon rotate-n-15">
 					</div>
 					<div class="sidebar-brand-text mx-3">MANAGER</div>
@@ -63,12 +63,6 @@
 				<!-- Divider -->
 				<hr class="sidebar-divider">
 
-				<!-- Heading -->
-
-				<!-- Sidebar Toggler (Sidebar) -->
-				<div class="text-center d-none d-md-inline">
-					<button class="rounded-circle border-0" id="sidebarToggle"></button>
-				</div>
 
 			</ul>
 
@@ -95,23 +89,25 @@
 										cellspacing="0">
 										<thead>
 											<tr style="background-color : black; color : white;">
-												<th style="width: 150px; text-align : center;">회원아이디</th>
-												<th style="width: 150px; text-align : center;">회원이름</th>
-												<th style="width: 150px; text-align : center;">E-MAIL</th>
-												<th style="width: 150px; text-align : center;">휴대폰번호</th>
+												<th style="width: 150px; text-align : center;">게시글번호</th>
+												<th style="width: 150px; text-align : center;">아이디</th>
+												<th style="width: 150px; text-align : center;">제목</th>
 												<th style="width: 150px; text-align : center;">내용</th>
-												<th style="width: 150px; text-align : center;">게시글 삭제 여부</th>
+												<th style="width: 150px; text-align : center;">작성일자</th>
+												<th style="width: 150px; text-align : center;">조회수</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>user01</td>
-												<td>홍길동</td>
-												<td>hong@naver.com</td>
-												<td>010-1234-5678</td>
-												<td>안녕하세요. 홍길동입니다.하하핳하하하하하하핳하하하하핳</td>
-												<td style="text-align : center;"><input type="checkbox"></td>
-											</tr>
+												<c:forEach var="board" items="${ requestScope.board }" begin="${ selectCriteria.startRow - 1 }" end="${ selectCriteria.endRow - 1 }">	
+													<tr style="cursor: pointer;">
+														<td style="text-align: center;"><label><c:out value="${ board.boardNo }"/></label></td>
+														<td style="text-align: center;"><c:out value="${ board.boardId }"/></td>
+														<td style="text-align: center;"><c:out value="${ board.boardTitle }"/> </td>
+														<td style="text-align: center;"><c:out value="${ board.boardContent }"/></td>
+														<td style="text-align: center;"><c:out value="${ board.boardRegDate }"/></td>
+														<td style="text-align: center;"><c:out value="${ board.boardHit }"/></td>
+													</tr>
+												</c:forEach>	
 										</tbody>
 									</table>
 								</div>
@@ -119,24 +115,10 @@
 						</div>
 
 					</div>
-					<div style="text-align: center;">
-						<button type="submit" id="deleteYn">게시글 삭제</button>
-					</div>
+					
 					<!-- /.container-fluid -->
-					<div class="paging">
-						<a href="#" class="btn_arr first"><i
-							class="fa fa-chevron-left" aria-hidden="true"></i><span
-							class="hide">처음페이지</span></a> <a href="#" class="btn_arr prev"><i
-							class="fa fa-chevron-left" aria-hidden="true"></i><span
-							class="hide">이전페이지</span></a> <a href="#" class="on">1</a>
-						<!-- D : 활성화페이지일 경우 : on 처리 -->
-						<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-						<a href="#" class="btn_arr next"><i
-							class="fa fa-chevron-right" aria-hidden="true"></i><span
-							class="hide">다음페이지</span></a> <a href="#" class="btn_arr last"><i
-							class="fa fa-chevron-right" aria-hidden="true"></i><span
-							class="hide">마지막페이지</span></a>
-					</div>
+					<jsp:include page="paging.jsp" />
+					
 				</div>
 				<!-- End of Main Content -->
 			</div>
@@ -145,6 +127,13 @@
 		</div>
 		<!-- End of Page Wrapper -->
 	</section>
+	
+	<script type="text/javascript">
+		$("tr").click(function() {
+			let categoryOrder = $(this).find("label").text();
+			location.href = "${ pageContext.servletContext.contextPath }/resell/detail?categoryOrder=" + categoryOrder; 
+		});
+	</script>
 
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />

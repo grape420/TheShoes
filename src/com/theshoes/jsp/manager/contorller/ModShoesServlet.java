@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.ibatis.reflection.SystemMetaObject;
 
 import com.theshoes.jsp.manager.model.service.ShoesService;
 import com.theshoes.jsp.shoes.model.dto.ShoesDTO;
@@ -50,7 +51,10 @@ public class ModShoesServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-if (ServletFileUpload.isMultipartContent(request)) {
+
+		System.out.println("여기는 서블릿");
+		
+		if (ServletFileUpload.isMultipartContent(request)) {
 			
 			String rootLocation = getServletContext().getRealPath("/");
 			int maxFileSize = 1024 * 1024 * 10;
@@ -60,7 +64,7 @@ if (ServletFileUpload.isMultipartContent(request)) {
 			System.out.println("최대 업로드 파일 용량 : " + maxFileSize);
 			System.out.println("인코딩 방식 : " + encodingType);
 			
-			String fileUploadDirectory = rootLocation + "/resources/upload/image/shoes/";
+			String fileUploadDirectory = rootLocation + "resources/upload/image/shoes/";
 			String thumbnailDirectory = rootLocation + "/resources/upload/thumb/";
 			
 			File directory = new File(fileUploadDirectory);
@@ -97,12 +101,27 @@ if (ServletFileUpload.isMultipartContent(request)) {
 					System.out.println("item : " + item);
 				}
 				
+				for(int i = 0; i < fileItems.size(); i++) {
+					FileItem item = fileItems.get(i);
+					
+					if(item.isFormField()) {
+						/* 폼 데이터인 경우 */
+						/* 전송된 폼의 name은 getFiledName()으로 받아오고, 해당 필드의 value는 getString()으로 받아온다. 
+						 * 하지만 인코딩 설정을 하더라도 전송되는 파라미터는 ISO-8859-1로 처리된다.
+						 * 별도로 ISO-8859-1로 해석된 한글을 UTF-8로 변경해주어야 한다.
+						 * */
+//						parameter.put(item.getFieldName(), item.getString());
+						parameter.put(item.getFieldName(), new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
+					}
+				}
+				
 				/* 위에서 출력해본 모든 item들을 다 처리할 것이다. */
 				for(int i = 0; i < fileItems.size(); i++) {
 					FileItem item = fileItems.get(i);
 					
-					if(!item.isFormField()) {
+					if(item.isFormField()) {
 						
+					} else {
 						/* 파일 데이터인 경우 */
 						if(item.getSize() > 0) {
 							
@@ -135,12 +154,23 @@ if (ServletFileUpload.isMultipartContent(request)) {
 							int height = 0;
 							if("thumbnailImg1".equals(filedName)) {
 								fileMap.put("fileType", "TITLE");
-								
+								fileMap.put("shoesThumbNo", parameter.get("shoesThumbNo1"));
 								/* 썸네일로 변환 할 사이즈를 지정한다. */
 								width = 350;
 								height = 200;
 							} else {
 								fileMap.put("fileType", "BODY");
+								if("thumbnailImg2".equals(filedName)) {
+									fileMap.put("shoesThumbNo", parameter.get("shoesThumbNo2"));
+								} else if("thumbnailImg3".equals(filedName)) {
+									fileMap.put("shoesThumbNo", parameter.get("shoesThumbNo3"));
+								} else if("thumbnailImg4".equals(filedName)) {
+									fileMap.put("shoesThumbNo", parameter.get("shoesThumbNo4"));
+								} else if("thumbnailImg5".equals(filedName)) {
+									fileMap.put("shoesThumbNo", parameter.get("shoesThumbNo5"));
+								} else if("thumbnailImg6".equals(filedName)) {
+									fileMap.put("shoesThumbNo", parameter.get("shoesThumbNo6"));
+								}
 								
 								width = 120;
 								height = 100;
@@ -155,22 +185,14 @@ if (ServletFileUpload.isMultipartContent(request)) {
 							fileMap.put("thumbnailPath", "/resources/upload/thumb/thumbnail_" + randomFileName);
 							
 							fileList.add(fileMap);
-							
 						}
-						
-					} else {
-						/* 폼 데이터인 경우 */
-						/* 전송된 폼의 name은 getFiledName()으로 받아오고, 해당 필드의 value는 getString()으로 받아온다. 
-						 * 하지만 인코딩 설정을 하더라도 전송되는 파라미터는 ISO-8859-1로 처리된다.
-						 * 별도로 ISO-8859-1로 해석된 한글을 UTF-8로 변경해주어야 한다.
-						 * */
-//						parameter.put(item.getFieldName(), item.getString());
-						parameter.put(item.getFieldName(), new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
 					}
 				}
 				
 				System.out.println("parameter : " + parameter);
 				System.out.println("fileList : " + fileList);
+				
+				ShoesService regShoesService = new ShoesService();
 				
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
 				
@@ -210,10 +232,12 @@ if (ServletFileUpload.isMultipartContent(request)) {
 				
 				shoes.setThumbList(new ArrayList<ShoesThumbDTO>());
 				List<ShoesThumbDTO> list = shoes.getThumbList();
+				
 				for (int i = 0; i < fileList.size(); i++) {
 					Map<String, String> file = fileList.get(i);
 					
 					ShoesThumbDTO tempFileInfo = new ShoesThumbDTO();
+					tempFileInfo.setShoesThumbNo(Integer.valueOf(file.get("shoesThumbNo")));
 					tempFileInfo.setOriginalName(file.get("originFileName"));
 					tempFileInfo.setSavedName(file.get("savedFileName"));
 					tempFileInfo.setSavePath(file.get("savePath"));
@@ -223,9 +247,11 @@ if (ServletFileUpload.isMultipartContent(request)) {
 					list.add(tempFileInfo);
 				}
 				
-				System.out.println("thumbnail board : " + shoes);
+				for (ShoesThumbDTO shoesThumb : list) {
+					System.out.println("shoesThumb : " + shoesThumb);
+				}
 				
-				ShoesService regShoesService = new ShoesService();
+				
 				int result = regShoesService.updateShoes(shoes);
 				
 				/* 성공 실패 페이지를 구분하여 연결한다. */

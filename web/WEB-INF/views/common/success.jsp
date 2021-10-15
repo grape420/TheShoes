@@ -10,8 +10,7 @@
 	<script>
 		(function () {
 			const successCode = "${ requestScope.successCode }";
-			
-			let successMessage = "";
+						
 			let movePath = "";
 			
 			switch(successCode) {
@@ -25,26 +24,28 @@
 					
 				case "updateAddress" : 
 					movePath = "${ pageContext.servletContext.contextPath }/myPage/myAddress";
-					break;	
+
+					break;
 					
 				case "insertNotice" :
-					movePath = "${ pageContext.servletContext.contextPath }/board/list";
-					break;
-				
 				case "updateNotice" :
 					movePath = "${ pageContext.servletContext.contextPath }/board/list";
 					break;
 					
 				case "insertFaq" :
+				case "updateFaq" :
 					movePath = "${ pageContext.servletContext.contextPath }/faq/list";
 					break;	
 					
-				case "updateFaq" :
-					movePath = "${ pageContext.servletContext.contextPath }/faq/list";
-					break;
-					
 				case "insertQuestion" :
+				case "registRequest" :
 					movePath = "${ pageContext.servletContext.contextPath }/cs/list";
+					break;
+				case "mainPage" :
+					movePath = "${ pageContext.servletContext.contextPath }/common/mainPage";
+					break;
+				case "updateShoes" :
+					movePath = "${ pageContext.servletContext.contextPath }/manager/shoes";
 					break;
 			}
 			

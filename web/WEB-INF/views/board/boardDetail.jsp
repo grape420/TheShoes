@@ -21,14 +21,14 @@
 	<!-- section -->
 	<section>
 
-		<!-- Page Wrapper -->
+	<!-- Page Wrapper -->
     <div id="wrapper">
 
       <!-- Sidebar -->
       <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center">
           <div class="sidebar-brand-icon rotate-n-15">
           </div>
           <div class="sidebar-brand-text mx-3">NOTICE</div>
@@ -49,9 +49,9 @@
           </a>
           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="notice.html">공지사항</a>
-              <a class="collapse-item" href="FAQ2.html">FAQ</a>
-              <a class="collapse-item" href="1dae1_list.html">1:1 문의</a>
+              <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/board/list" >공지사항</a>
+			  <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/faq/list">FAQ</a> 
+			  <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/cs/list">1:1 문의</a>
             </div>
           </div>
         </li>
@@ -98,10 +98,10 @@
                 onclick="location.href='${ pageContext.servletContext.contextPath }/board/list'">목록보기</button>
              
              <!-- 관리자 확인 --> 
-		<%-- <c:if test="${ sessionScope.entryMember.role eq 'Y'}"> --%>
+	    	 <c:if test="${ sessionScope.entryMember.role eq 'MANAGER'}"> 
               <button type="button" class="btn btn-outline-secondary" id="modifyBtn"
                 onclick="location.href='${ pageContext.servletContext.contextPath }/board/modify?categoryOrder=${ requestScope.notice.categoryOrder }'">수정</button>
-        <%-- </c:if> --%>
+             </c:if> 
         
             </div>
           </div>
