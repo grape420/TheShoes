@@ -18,7 +18,38 @@
 				case "insertShoes" :
 					movePath = "${ pageContext.servletContext.contextPath }/manager/shoes";
 					break;
+					
+				case "myAddressCode" : 
+					movePath = "${ pageContext.servletContext.contextPath }/myPage/myAddress";
+					break;
+					
+				case "updateAddress" : 
+					movePath = "${ pageContext.servletContext.contextPath }/myPage/myAddress";
+					break;	
+					
+				case "insertNotice" :
+					movePath = "${ pageContext.servletContext.contextPath }/board/list";
+					break;
+				
+				case "updateNotice" :
+					movePath = "${ pageContext.servletContext.contextPath }/board/list";
+					break;
+					
+				case "insertFaq" :
+					movePath = "${ pageContext.servletContext.contextPath }/faq/list";
+					break;	
+					
+				case "updateFaq" :
+					movePath = "${ pageContext.servletContext.contextPath }/faq/list";
+					break;
+					
+				case "insertQuestion" :
+					movePath = "${ pageContext.servletContext.contextPath }/cs/list";
+					break;
 			}
+			
+		
+	}
 			
 			location.replace(movePath);
 		})();
