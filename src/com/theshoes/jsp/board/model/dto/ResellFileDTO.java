@@ -2,27 +2,23 @@ package com.theshoes.jsp.board.model.dto;
 
 import java.io.Serializable;
 
-public class ResellThumbDTO implements Serializable{
+public class ResellFileDTO implements Serializable{
 
-	private static final long serialVersionUID = 4292895152934337466L;
-	
-	private int rtNo;
-	private int resellThumbNo;
+	private static final long serialVersionUID = -2991037237132258071L;
+
+	private String rtFileName;
+	private int ResellNo;
 	private String originalName;
 	private String savedName;
 	private String savePath;
 	private String fileType;
 	private String thumbnailPath;
 	private String status;
-
-	public ResellThumbDTO() {
-		
-	}
-
-	public ResellThumbDTO(int rtNo, int resellThumbNo, String originalName, String savedName, String savePath,
+	
+	public ResellFileDTO(String rtFileName, int resellNo, String originalName, String savedName, String savePath,
 			String fileType, String thumbnailPath, String status) {
-		this.rtNo = rtNo;
-		this.resellThumbNo = resellThumbNo;
+		this.rtFileName = rtFileName;
+		ResellNo = resellNo;
 		this.originalName = originalName;
 		this.savedName = savedName;
 		this.savePath = savePath;
@@ -31,20 +27,20 @@ public class ResellThumbDTO implements Serializable{
 		this.status = status;
 	}
 
-	public int getRtNo() {
-		return rtNo;
+	public String getRtFileName() {
+		return rtFileName;
 	}
 
-	public void setRtNo(int rtNo) {
-		this.rtNo = rtNo;
+	public void setRtFileName(String rtFileName) {
+		this.rtFileName = rtFileName;
 	}
 
-	public int getResellThumbNo() {
-		return resellThumbNo;
+	public int getResellNo() {
+		return ResellNo;
 	}
 
-	public void setResellThumbNo(int resellThumbNo) {
-		this.resellThumbNo = resellThumbNo;
+	public void setResellNo(int resellNo) {
+		ResellNo = resellNo;
 	}
 
 	public String getOriginalName() {
@@ -101,11 +97,11 @@ public class ResellThumbDTO implements Serializable{
 
 	@Override
 	public String toString() {
-		return "ResellThumbDTO [rtNo=" + rtNo + ", resellThumbNo=" + resellThumbNo + ", originalName=" + originalName
+		return "ResellFileDTO [rtFileName=" + rtFileName + ", ResellNo=" + ResellNo + ", originalName=" + originalName
 				+ ", savedName=" + savedName + ", savePath=" + savePath + ", fileType=" + fileType + ", thumbnailPath="
 				+ thumbnailPath + ", status=" + status + "]";
 	}
-
+	
 	
 	
 }
