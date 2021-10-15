@@ -54,6 +54,7 @@ public class BoardListServlet extends HttpServlet {
 		if(noticeList != null) {
 			
 			path = "/WEB-INF/views/board/boardList.jsp";
+			request.setAttribute("pagingPath", "board/list");
 			request.setAttribute("noticeList", noticeList);
 			request.setAttribute("selectCriteria", selectCriteria);
 

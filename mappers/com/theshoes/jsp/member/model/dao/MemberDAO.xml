@@ -9,11 +9,6 @@
 		<result property="shoesCategoryName" column="SHOES_CATEGORY_NAME"/>
 	</resultMap>
 	
-	<resultMap type="com.theshoes.jsp.member.model.dto.WishDTO" id="wishResultMap">
-		<id property="wishNo" column="WISH_NO"/>
-		<result property="wishId" column="WISH_ID"/>
-	</resultMap>
-	
 	<resultMap type="com.theshoes.jsp.member.model.dto.MemberDTO" id="memberResultMap">
 		<id property="id" column="MEMBER_ID"/>
 		<result property="name" column="NAME"/>
@@ -26,8 +21,13 @@
 		<result property="withDrawYn" column="WITHDRAW_YN"/>
 		<result property="birth" column="BIRTH"/>
 		<result property="role" column="ROLE"/>
-		
 		<collection property="wishList" resultMap="wishResultMap"/>
+	</resultMap>
+	
+	<resultMap type="com.theshoes.jsp.member.model.dto.WishDTO" id="wishResultMap">
+		<id property="wishNo" column="WISH_NO"/>
+		<id property="wishId" column="WISH_ID"/>
+		<association property="shoes" resultMap="shoesResultMap" />
 	</resultMap>
 	
 	<resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO" id="shoesThumbResultMap">
@@ -54,11 +54,10 @@
 		<result property="winnerDate" column="WINNER_DATE"/>
 		<result property="eventEndYn" column="EVENT_END_YN"/>
 		
-		<!-- 이거 해야만 조인 됨 -->
 		<association property="category" resultMap="shoesCategoryResultMap" />
-		
-		<collection property="thumbList" resultMap="shoesThumbResultMap"></collection>
-	</resultMap>
+		<collection property="wishList" resultMap="wishResultMap"/>
+		<collection property="thumbList" resultMap="shoesThumbResultMap"/>
+	</resultMap> 
 	
 	<select id="selectMemberById" resultMap="memberResultMap">
 		SELECT /* com.theshoes.jsp.member.model.dao.MemberDAO#selectMemberById() */
@@ -141,19 +140,40 @@
          WHERE A.MEMBER_ID = #{ id }
 	</update>
 	
-	<select id="selectAllWishList" resultMap="memberResultMap">
+	<select id="selectAllWishList" resultMap="memberResultMap" parameterType="string">
 		SELECT /* com.theshoes.jsp.member.model.dao.MemberDAO#selectAllWishList() */
 			   B.WISH_NO
-			 <!-- , D.SHOES_CATEGORY_NAME
+             , B.WISH_ID
+			 , D.SHOES_CATEGORY_NAME
 			 , C.SHOES_MODEL
 			 , C.SHOES_PRICE
-			 , E.SAVED_NAME -->
+			 , E.SAVED_NAME
+			 , A.MEMBER_ID
   		  FROM MEMBER A
   		  LEFT JOIN WISHLIST B ON (A.MEMBER_ID = B.WISH_ID)
-<!--   		  LEFT JOIN SHOES_INFO C ON (B.WISH_NO = C.SHOES_NO)
+  		  LEFT JOIN SHOES_INFO C ON (B.WISH_NO = C.SHOES_NO)
   		  LEFT JOIN SHOES_CATEGORY D ON(C.INFO_CATEGORY_NO = D.SHOES_CATEGORY_NO)
-  		  LEFT JOIN SHOES_THUMB E ON (C.SHOES_NO = E.ST_NO) -->
- 		 WHERE A.MEMBER_ID = #{ id }
-   		   <!-- AND E.FILE_TYPE = 'TITLE' -->
+  		  LEFT JOIN SHOES_THUMB E ON (C.SHOES_NO = E.ST_NO)
+  		 WHERE MEMBER_ID = #{ id }
+  		 AND E.FILE_TYPE = 'TITLE'
+  		 ORDER BY 1
 	</select>
+	
+	<delete id="deleteWish">
+		DELETE
+		  FROM WISHLIST A
+		 WHERE A.WISH_NO = #{ wishNo }
+	</delete>
+	
+	<update id="phoneChange" parameterType="com.theshoes.jsp.member.model.dto.MemberDTO">
+		UPDATE MEMBER A /* com.theshoes.jsp.member.model.dao.MemberDAO#phoneChange() */
+           SET A.PHONE_NO = #{ phone }
+         WHERE A.MEMBER_ID = #{ id }
+	</update>
+	
+	<update id="birthChange" parameterType="com.theshoes.jsp.member.model.dto.MemberDTO">
+		UPDATE MEMBER A /* com.theshoes.jsp.member.model.dao.MemberDAO#birthChange() */
+           SET A.BIRTH = #{ birth }
+         WHERE A.MEMBER_ID = #{ id }
+	</update>
 </mapper>

@@ -31,7 +31,7 @@ public class SignupServlet extends HttpServlet {
 		
 		System.out.println(pwd);
 		
-		MemberDTO member = new MemberDTO(id, name, pwd, email, phone, null, null, "N", "N", birth, "MEMBER");
+		MemberDTO member = new MemberDTO(id, name, pwd, email, phone, null, null, "N", "N", birth, "MEMBER", null);
 		
 		MemberService memberService = new MemberService();
 		

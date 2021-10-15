@@ -103,8 +103,7 @@
 
 						<!-- 주소록 추가 modal-->
 						<button type="button" class="Add-addressBTN" data-toggle="modal"
-							data-target="#exampleModal" data-whatever="@getbootstrap">+
-							배송지추가</button>
+							data-target="#exampleModal" data-whatever="@getbootstrap">	+ 배송지추가</button>
 
 						<div class="modal fade" id="exampleModal" tabindex="-1"
 							aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -116,7 +115,7 @@
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
-
+									
 									<div class="contents">
 										<div class="address-form"
 											data-module-shipping-address-write="{isModify:false}">
@@ -127,68 +126,57 @@
 												<input required type="text" name="addressNameMM"
 													id="addressName" class="form-control" placeholder="배송지 이름">
 												<label class="addressName-result" id="addressName-result"></label>
-												<h2 class="tit">이름</h2>
-												<input required type="text" name="name" id="nameMM"
-													class="form-control" placeholder="이름"> <label
-													class="name-result" id="name-result"></label>
-
-												<h2 class="tit">전화번호</h2>
-												<input required type="text" name="phone" id="phoneMM"
-													class="form-control" placeholder="전화번호"> <label
-													class="phone-result" id="phone-result"></label>
-
+									
 												<h2 class="tit">배송지 검색</h2>
 												<input required type="text" name="address1" id="address1MM"
 													class="form-control" value="" placeholder="예) 사랑시 고백구 행복동">
-												<input type="hidden" id="address3MM"
-													name="address.addressLine3" value=""> <input
-													type="hidden" id="addr_save_fild"> <input
-													type="button" id="searchZipCode" class="btn_search"
+												<input type="button" id="searchZipCode" class="btn_search"
 													value="검색">
+
 												<h2 class="tit">상세주소</h2>
 												<input required type="text" name="address2" id="address2MM"
-													class="form-control" value="" placeholder="상세주소">
-												<button type="button" class="abtn-link width-large"
-													id="sizeBtn">배송지 추가</button>
+													class="form-control" placeholder="상세주소">
+
+												<button type="submit" class="abtn-link width-large"
+													id="sizeBtn" data-dismiss="modal">배송지 추가</button>
 											</form>
 										</div>
 									</div>
+									
 								</div>
 							</div>
 						</div>
-						<!-- 주소록 리스트 -->
-						<div class="cart-list" data-order="">
-							<div class="item-info">
-								<div class="basic" data-order="">
-									<div class="my_item is_active" default-mark="기본 배송지">
-										<div class="info_bind">
-											<div class="address_info">
-												<div class="name_box">
-													<span class="name" id="name">최호진</span> <span class="markT"
-														id="markT">기본 배송지</span> <br> <span class="phone"
-														id="phone">010-7769-3476</span> <br> <span
-														class="zipcode" id="zipcode">(07909)</span> <span
-														class="address" id="address">서울 양천구 남부순환로30길 10-1 </span>
 
-													<div class="right_btm">
-														<a href="#" type="button" class="btn outlinegrey small"
-															data-toggle="modal" data-target="#exampleModa"
-															data-whatever="@getbootstrap"> 수정 </a> <a href="#"
-															type="button" class="btn outlinegrey small"> 삭제 </a>
+						<!-- 주소록 리스트 -->
+						<div class="cart-list">
+							<c:forEach var="addressA" items="${ addressList }">
+								<div class="item-info">
+									<div class="basic">
+										<div class="my_item is_active" >
+											<div class="info_bind">
+												<div class="address_info">
+													<div class="name_box">
+														<span class="name" id ="name"> <c:out value="${ addressA.addressName }"/> </span> <br>
+														<span class="zipcode" id ="zipcode"> <c:out value="${ addressA.address1MM }"/> </span> 
+														<span class="address" id ="address"> <c:out value="${ addressA.address2MM }"/> </span>
+														<div class="right_btm">
+														<a id="btnM"  type="button" class="btn outlinegrey small modi" data-toggle="modal" data-target="#exampleModa"
+														   data-whatever="@getbootstrap"> 수정 </a> 
+														<a href="${ pageContext.servletContext.contextPath }/myPage/address?currentPage=${ selectCriteria.pageNo }&delete=${ address.addressNo }" 
+														id="btnD" type="button" class="btn outlinegrey small"> 삭제 </a>
+														</div>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-
-		<!-- 주소록수정  modal-->
+			<!-- 주소록수정  modal-->
 		<div class="modal fade" id="exampleModa" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -201,40 +189,26 @@
 					</div>
 					<div class="contents">
 						<div class="address-form">
-							<form class="manage-account" method="POST" action=""
-								novalidate="">
-
+							<form class="manage-account"  id="modify" novalidate action="${ pageContext.servletContext.contextPath }/myPage/modifyAddress" method="post">
+								
 								<h2 class="tit">배송지 이름</h2>
-								<input required type="text" name="addressName2"
-									id="addressName2" class="form-control" placeholder="배송지 이름">
-								<label class="addressName-result2" id="addressName-result"></label>
-
-								<h2 class="tit">이름</h2>
-								<input required type="text" name="name2" id="name2"
-									class="form-control" placeholder="이름"> <label
-									class="name-result2" id="name-result"></label>
-
-								<h2 class="tit">전화번호</h2>
-								<input required type="text" name="phone2" id="phone2"
-									class="form-control" placeholder="전화번호"> <label
-									class="phone-result2" id="phone-result"></label>
+								<input type="text" name="addressName2" id="addressName2" class="form-control" value="${ requestScope.addressList[0].addressName }" required >
+								<label class="addressName-result2" id="addressName-result" ></label>
 
 								<h2 class="tit">배송지 검색</h2>
-								<input required type="text" name="address1" id="address1"
-									class="form-control address-search"
-									placeholder="예) 사랑시 고백구 행복동"> <input type="hidden"
-									id="address3" name="address.addressLine3" value=""> <input
-									type="hidden" id="addr_save_fild"> <input type="button"
-									onclick="" class="btn_search" value="검색">
+								<input type="text" name="address1" id="address1" class="form-control address-search" value ="${ reqiestScope.addressList[0].address1MM }" required>
+								 <input type="button" class="btn_search" id="searchZipCodeMM" value="검색">
 
 								<h2 class="tit">상세주소</h2>
-								<input required type="text" name="address2" id="address2"
-									class="form-control" placeholder="상세주소">
-
+								<input type="text" name="address2" id="address2" class="form-control" value ="${ reqiestScope.addressList[0].address2MM }" required>
+        
 								<div class="btn-wrap">
-									<button type="submit" class="abtn-link width-large"
-										id="changeBtn" data-dismiss="modal">배송지 수정</button>
+									<!-- 전체 데이터를 불러와서 수정을 해야하는데 수정불가하지만 필요한 값 -->
+									<input type="hidden" name="addressNo" value="${ requestScope.addressList[0].addressNo }">							
+									<input type="hidden" name="nameMM" value="${ requestScope.addressList[0].nameMM }">
+									<button type="submit" class="abtn-link width-large"	id="changeBtn" data-dismiss="modal" >배송지 수정</button>
 								</div>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -244,42 +218,71 @@
 
 	<!-- 다음 우편번호 api -->
 	<!-- 참고 링크 : http://postcode.map.daum.net/guide -->
+	<!--  주소록 추가 -->
 	<script>
-		const $searchZipCode = document.getElementById("searchZipCode");
-		const $sizeBtn = document.getElementById("sizeBtn");
-
-		$searchZipCode.onclick = function() {
-
+		 const $searchZipCode = document.getElementById("searchZipCode");
+		 const $sizeBtn = document.getElementById("sizeBtn");
+				
+		 $searchZipCode.onclick = function()  {  
 			//다음 우편번호 검색 창을 오픈하면서 동작할 콜백 메소드를 포함한 객체를 매개변수로 전달한다.
-			new daum.Postcode(
-					{
-						oncomplete : function(data) {
-							//팝업에서 검색결과 항목을 클릭했을 시 실행할 코드를 작성하는 부분
-							document.getElementById("address1MM").value = data.zonecode;
-							document.getElementById("address2MM").value = data.address;
-
-						}
-					}).open();
+			new daum.Postcode({
+				oncomplete: function(data){
+					//팝업에서 검색결과 항목을 클릭했을 시 실행할 코드를 작성하는 부분
+				document.getElementById("address1MM").value = data.zonecode;
+				document.getElementById("address2MM").value = data.address;
+				}
+			}).open();
 		}
 		$sizeBtn.onclick = function() {
-			location.href = "${ pageContext.servletContext.contextPath }";
+		 location.href = "${ pageContext.servletContext.contextPath }";
 		}
+	
+	<!-- 주소록 수정 -->
+	
+		const $searchZipCodeMM = document.getElementById("searchZipCodeMM");
+		const $changeBtn = document.getElementById("changeBtn");
+			  
+		$searchZipCodeMM.onclick = function()  {  
+			//다음 우편번호 검색 창을 오픈하면서 동작할 콜백 메소드를 포함한 객체를 매개변수로 전달한다.
+			new daum.Postcode({
+				oncomplete: function(data){
+					//팝업에서 검색결과 항목을 클릭했을 시 실행할 코드를 작성하는 부분
+				document.getElementById("address1").value = data.zonecode;
+				document.getElementById("address2").value = data.address;
+				}
+			}).open();
+		}
+	    $sizeBtn.onclick = function() {
+		 location.href = "${ pageContext.servletContext.contextPath }";
+		}
+	    
+	    /* 주소록 수정 클릭시 보달창에 값 뿌려주기 3번 보기 */ 
+	    $(".modi").click(function(){ 
+	    $("#address2").val($(this).parent().prev().text());
+	    $("#address1").val($(this).parent().prev().prev().text());
+	    $("#addressName2").val($(this).parent().prev().prev().prev().prev().text());
+	    })
+	    
+      $("#sizeBtn").click(function() {
+         $("#test").submit();
+      })
+
+      $("#changeBtn").click(function() {
+         $("#modify").submit();
+      })
+
 	</script>
+	
+
 
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 
 	<script src="${ pageContext.servletContext.contextPath }/resources/js/myPage/myProfile.js">
-		
 	</script>
-
+	
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
-	<script>
-		$("#sizeBtn").click(function() {
-			$("#test").submit();
-		});
-	</script>
-
+	
+	
 </body>
 </html>

@@ -80,10 +80,8 @@
 					</div>
 					
 	<!-- 페이징처리 -->
-
-	
 	 <script>
-		 const link = "${ pageContext.servletContext.contextPath }/board/list";
+		const link = "${ pageContext.servletContext.contextPath }/${ requestScope.pagingPath }";
 		
 		if(document.getElementById("startPage")) {
 			const $startPage = document.getElementById("startPage");

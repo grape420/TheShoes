@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.theshoes.jsp.member.model.dto.MemberDTO;
-import com.theshoes.jsp.member.model.dto.WishListDTO;
+import com.theshoes.jsp.member.model.dto.WishDTO;
 
 public class MemberDAO {
 
@@ -29,9 +29,20 @@ public class MemberDAO {
 		return session.update("MemberDAO.withDraw", member);
 	}
 
-	public List<MemberDTO> selectAllWishList(SqlSession session, String id) {
+	public MemberDTO selectAllWishList(SqlSession session, String id) {
 		return session.selectOne("MemberDAO.selectAllWishList", id);
 	}
 
+	public int deleteWish(SqlSession session, String wishNo) {
+		return session.delete("MemberDAO.deleteWish", wishNo);
+	}
+
+	public int phoneChange(SqlSession session, MemberDTO member) {
+		return session.update("MemberDAO.phoneChange", member);
+	}
+
+	public int birthChange(SqlSession session, MemberDTO member) {
+		return session.update("MemberDAO.birthChange", member);
+	}
 
 }
