@@ -21,4 +21,8 @@ public class ShoesDAO {
 		return session.selectOne("ShoesDAO.selectShoesDetail", no);
 	}
 	
+	public List<ShoesDTO> selectShoesList(SqlSession session) {
+		return session.selectList("ShoesDAO.selectShoesList2");
+	}
+	
 }

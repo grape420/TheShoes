@@ -11,7 +11,7 @@ import com.theshoes.jsp.member.model.dto.MemberDTO;
 import com.theshoes.jsp.shoes.model.dto.ShoesDTO;
 import com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO;
 
-public class ManagerMapper {
+public class ManagerDAO {
 
 	public int insertShoes(SqlSession session, ShoesDTO shoes) {
 		return session.insert("ManagerMapper.insertShoes", shoes);

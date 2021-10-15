@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="ManagerMapper">
+<mapper namespace="ManagerDAO">
 
 	<!-- 신발 카테고리 -->
 	<resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesCategoryDTO" id="shoesCategoryResultMap">

@@ -28,6 +28,17 @@ public class ShoesService {
 		return shoesList;
 		
 	}
+	
+	public List<ShoesDTO> selectShoesList() {
+		SqlSession session = getSqlSession();
+		
+		List<ShoesDTO> shoesList = shoesDAO.selectShoesList(session);
+		
+		session.close();
+		
+		return shoesList;
+		
+	}
 
 	public int selectShoesListCnt() {
 		SqlSession session = getSqlSession();

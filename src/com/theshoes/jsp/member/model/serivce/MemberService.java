@@ -2,11 +2,14 @@ package com.theshoes.jsp.member.model.serivce;
 
 import static com.theshoes.jsp.common.mybatis.Template.getSqlSession;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.theshoes.jsp.member.model.dao.MemberDAO;
 import com.theshoes.jsp.member.model.dto.MemberDTO;
+import com.theshoes.jsp.member.model.dto.WishDTO;
 
 public class MemberService {
 	
@@ -74,6 +77,80 @@ public class MemberService {
 		SqlSession session = getSqlSession();
 		
 		int result = memberDAO.passwordChange(session, member);
+		
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
+	public int withDraw(MemberDTO member) {
+		SqlSession session = getSqlSession();
+		
+		int result = memberDAO.withDraw(session, member);
+		
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
+	public MemberDTO selectAllWishList(String id) {
+		SqlSession session = getSqlSession();
+		
+		MemberDTO member = memberDAO.selectAllWishList(session, id);
+		
+		session.close();
+		
+		return member;
+	}
+
+	public int deleteWish(String wishNo) {
+		SqlSession session = getSqlSession();
+		
+		int result = memberDAO.deleteWish(session, wishNo);
+		
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
+	public int phoneChange(MemberDTO member) {
+		SqlSession session = getSqlSession();
+		
+		int result = memberDAO.phoneChange(session, member);
+		
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
+	public int birthChange(MemberDTO member) {
+		SqlSession session = getSqlSession();
+		
+		int result = memberDAO.birthChange(session, member);
 		
 		if (result > 0) {
 			session.commit();

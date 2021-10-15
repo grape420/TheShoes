@@ -14,7 +14,7 @@
 			<div class="footer-info-div col-8">
 				<strong><a href="${ pageContext.servletContext.contextPath }/common/nav?no=1">이용약관</a></strong> 
 				<strong><a href="${ pageContext.servletContext.contextPath }/board/list">공지사항</a></strong>
-				<strong><a href="${ pageContext.servletContext.contextPath }/faq/list">FAQ</a></strong> 
+				<strong><a href="${ pageContext.servletContext.contextPath }/board/list">FAQ</a></strong> 
 				<strong><a href="${ pageContext.servletContext.contextPath }/common/nav?no=0">개인정보 처리방침</a></strong>
 			</div>
 			<div class="footer-contact-div col-4">
