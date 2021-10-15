@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/myPage/drawHistory.css">
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/myPage/resellHistory.css">
 <link rel="shortcut icon" href="${ pageContext.servletContext.contextPath }/resources/uses/the-shoes-favicon.png">
 <link href="${ pageContext.servletContext.contextPath }/resources/uses/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -17,30 +17,34 @@
 </head>
 <body>
 	<!-- header -->
-	<jsp:include page="../common/header.jsp"/>
-	<section>
+	<jsp:include page="../common/header.jsp" />
+
 	<!-- section -->
+	<section>
+
+		<!-- Page Wrapper -->
 		<div id="wrapper">
-	
+
 			<!-- Sidebar -->
 			<ul
 				class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 				id="accordionSidebar">
-	
+
 				<!-- Sidebar - Brand -->
 				<a
-					class="text-white sidebar-brand d-flex align-items-center justify-content-center"
+					class="sidebar-brand d-flex align-items-center justify-content-center"
 					href="index.html">
 					<div class="sidebar-brand-icon rotate-n-15">
 					</div>
 					<div class="sidebar-brand-text mx-3">MY PAGE</div>
 				</a>
+
 				<!-- Divider -->
 				<hr class="sidebar-divider my-0">
-	
+
 				<!-- Divider -->
 				<hr class="sidebar-divider">
-	
+
 				<!-- Nav Item - Pages Collapse Menu -->
 				<li class="nav-item"><a class="nav-link collapsed" href="#"	data-toggle="collapse" data-target="#collapseTwo"
 					aria-expanded="true" aria-controls="collapseTwo"> 
@@ -72,36 +76,44 @@
 					</div>
 				</li>
 				
+
 				<!-- Divider -->
 				<hr class="sidebar-divider">
-	
+
+				<!-- Heading -->
+
 				<!-- Sidebar Toggler (Sidebar) -->
 				<div class="text-center d-none d-md-inline">
 					<button class="rounded-circle border-0" id="sidebarToggle"></button>
 				</div>
+
 			</ul>
 			<!-- End of Sidebar -->
-	
+
+			<!-- 자자 해보자 -->
 			<!-- Content Wrapper -->
 			<div id="content-wrapper" class="d-flex flex-column">
-	
+
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
-	
+
 					<!-- Page Heading -->
 					<br>
-					<h1 class="h3 mb-2 text-gray-800">THE SHOES 응모내역</h1>
-					<p class="mb-4">최근 2년 이내 THE SHOES 응모내역 조회 가능합니다.</p>
-	
+					<h1 class="h3 mb-2 text-gray-800">THE SHOES 판매내역</h1>
+					<p class="mb-4">최근 2년 이내 THE SHOES 판매내역 조회 가능합니다.</p>
+
 					<!-- DataTales Example -->
 					<div class="order-filter" data-module-date-filter-thedraw="">
 						<div class="uk-grid">
 							<div class="sort-tabs" data-type-list="">
 								<a class="sort-item active" href="javascript:void(0)"
 									data-type="type0">전체(<span>4</span>)
-								</a> <a class="sort-item" href="javascript:void(0)" data-type="type1">진행중(<span>0</span>)
-								</a> <a class="sort-item" href="javascript:void(0)" data-type="type2">당첨(<span>1</span>)
-								</a> <a class="sort-item" href="javascript:void(0)" data-type="type3">미당첨(<span>3</span>)
+								</a> <a class="sort-item" href="javascript:void(0)"
+									data-type="type1">진행중(<span>0</span>)
+								</a> <a class="sort-item" href="javascript:void(0)"
+									data-type="type2">당첨(<span>1</span>)
+								</a> <a class="sort-item" href="javascript:void(0)"
+									data-type="type3">미당첨(<span>3</span>)
 								</a>
 							</div>
 						</div>
@@ -109,8 +121,7 @@
 							<br>
 							<div class="order-list" data-order="">
 								<div class="header">
-									<span class="order-code">응모일시 2021.08.02 10:00:46</span> <span
-										class="btn-order-detail thedraw"> 미당첨 </span>
+									<span class="order-code">판매일시 2021.08.02 10:00:46</span>
 								</div>
 								<div class="order-item-wrap thedraw-item">
 									<div class="item-info">
@@ -130,19 +141,22 @@
 													원</span>
 											</span>
 										</div>
+
+										<div class="btnDiv">
+											<button type="button" class="btn btn-outline-dark">후기
+												작성</button>
+											<button type="button" class="btn btn-outline-dark">후기
+												게시글</button>
+										</div>
 									</div>
-									<div class="item-status date-type"></div>
 								</div>
-								<div class="btn-wrap">
-									<span class="btn-link line-thin border-top large width-max">THE
-										DRAW 종료</span>
-								</div>
+								<br clear="both">
+
 							</div>
-	
+
 							<div class="order-list" data-order="">
 								<div class="header">
-									<span class="order-code">응모일시 2021.08.13 10:14:16</span> <span
-										class="btn-order-detail thedraw"> 당첨 </span>
+									<span class="order-code">판매일시 2021.08.13 10:14:16</span>
 								</div>
 								<div class="order-item-wrap thedraw-item">
 									<div class="item-info">
@@ -162,32 +176,19 @@
 													원</span>
 											</span>
 										</div>
+										<div class="btnDiv">
+											<button type="button" class="btn btn-outline-dark">후기
+												작성</button>
+											<button type="button" class="btn btn-outline-dark">후기
+												게시글</button>
+										</div>
 									</div>
-	
-									<div class="item-status date-type">
-	
-										<span class="status"> <span class="lable">응모 기간</span> <span
-											class="date" style="display: inline-block; width: 100%">2021.08.13
-												10:00 ~ 2021.08.13 10:30</span>
-										</span> <span class="status"> <span class="lable">당첨 발표일</span>
-											<span class="date" style="display: inline-block; width: 100%">2021.08.13
-												12:00</span>
-										</span> <span class="status"> <span class="lable">구매 기간</span>
-											<span class="date" style="display: inline-block; width: 100%">2021.08.13
-												12:00 ~ 2021.08.13 14:00</span>
-										</span>
-									</div>
-								</div>
-								<div class="btn-wrap">
-									<span class="status"> <span
-										class="btn-link line-thin border-top large width-max">구매완료</span>
-									</span>
 								</div>
 							</div>
+
 							<div class="order-list" data-order="">
 								<div class="header">
-									<span class="order-code">응모일시 2021.09.02 10:00:24</span> <span
-										class="btn-order-detail thedraw"> 미당첨 </span>
+									<span class="order-code">판매일시 2021.09.02 10:00:24</span>
 								</div>
 								<div class="order-item-wrap thedraw-item">
 									<div class="item-info">
@@ -207,18 +208,19 @@
 													원</span>
 											</span>
 										</div>
+										<div class="btnDiv">
+											<button type="button" class="btn btn-outline-dark">후기
+												작성</button>
+											<button type="button" class="btn btn-outline-dark">후기
+												게시글</button>
+										</div>
 									</div>
-									<div class="item-status date-type"></div>
-								</div>
-								<div class="btn-wrap">
-									<span class="btn-link line-thin border-top large width-max">THE
-										DRAW 종료</span>
 								</div>
 							</div>
+
 							<div class="order-list" data-order="">
 								<div class="header">
-									<span class="order-code">응모일시 2021.9.24 10:13:12</span> <span
-										class="btn-order-detail thedraw"> 미당첨 </span>
+									<span class="order-code">판매일시 2021.9.24 10:13:12</span>
 								</div>
 								<div class="order-item-wrap thedraw-item">
 									<div class="item-info">
@@ -228,7 +230,9 @@
 												<img
 												src="https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/DH2684-400/19e847a7-8a65-4907-8903-3bab1be6e5f1_primary.jpg?browse" />
 											</a>
+
 										</div>
+
 										<div class="info-wrap">
 											<span class="tit"> <a
 												href="/kr/launch/t/men/fw/nike-sportswear/DH2684-400/ivoa29/nike-ldwaffle-sf">나이키
@@ -238,16 +242,18 @@
 													원</span>
 											</span>
 										</div>
+										<div class="btnDiv">
+											<button type="button" class="btn btn-outline-dark">후기
+												작성</button>
+											<button type="button" class="btn btn-outline-dark">후기
+												게시글</button>
+										</div>
 									</div>
-									<div class="item-status date-type"></div>
 								</div>
-								<div class="btn-wrap">
-									<span class="btn-link line-thin border-top large width-max">THE
-										DRAW 종료</span>
-								</div>
+
 							</div>
-	
 							<!-- paging -->
+
 							<div class="paging">
 								<a href="#" class="btn_arr first"><i
 									class="fa fa-chevron-left" aria-hidden="true"></i><span
@@ -255,23 +261,24 @@
 									class="fa fa-chevron-left" aria-hidden="true"></i><span
 									class="hide">이전페이지</span></a> <a href="#" class="on">1</a>
 								<!-- D : 활성화페이지일 경우 : on 처리 -->
-								<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-								<a href="#" class="btn_arr next"><i
+								<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a
+									href="#">5</a> <a href="#" class="btn_arr next"><i
 									class="fa fa-chevron-right" aria-hidden="true"></i><span
 									class="hide">다음페이지</span></a> <a href="#" class="btn_arr last"><i
 									class="fa fa-chevron-right" aria-hidden="true"></i><span
 									class="hide">마지막페이지</span></a>
 							</div>
-	
+
 							<!-- //paging -->
 						</div>
-	
 					</div>
-	
 				</div>
 			</div>
 		</div>
+		<!-- 자자 해보자 -->
+
 	</section>
+
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 

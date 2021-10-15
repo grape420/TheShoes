@@ -31,8 +31,8 @@ public class AddressDAO {
 	}
 	/* 주소록 삭제 */
 	public int deleteAddress(SqlSession session, String addressNo) {
+		System.out.println("나는 address 삭제 dao");
 		return session.delete("AddressDAO.deleteAddress", addressNo);
 	}
-
 
 }

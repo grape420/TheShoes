@@ -22,30 +22,10 @@ public class ModifyAddressServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		HttpSession session = request.getSession();
-		String id =  ((MemberDTO)session.getAttribute("entryMember")).getId();
-		/* 전체 주소록 조회 */ 
-		List<AddressDTO> addressList = new AddressService().selectAllAddressList(id);
-		
-		System.out.println("addressList : " + addressList);
-		
-		SelectCriteria selectCriteria = null;
-		
-		String path = "";
-		if(addressList != null) {
-			path = "/WEB-INF/views/myPage/myAddress.jsp";
-			request.setAttribute("addressList", addressList);
-		} else {
-			path = "/WEB-INF/views/common/errorPage.jsp";
-		}
-		request.getRequestDispatcher(path).forward(request, response);
 		
 	}
 	
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 	
 	HttpSession session = request.getSession();
 		
@@ -64,12 +44,11 @@ public class ModifyAddressServlet extends HttpServlet {
 	System.out.println("address1 : " + address1MM);
 	System.out.println("address2 : " + address2MM);
 	
-	
 	/* DTO에 값 넣고 전달하기 */
-	AddressDTO address = new AddressDTO();			
-	address.setNameMM(nameMM);	
-	address.setAddressNo(addressNo);				
-	address.setAddressName(addressName);			
+	AddressDTO address = new AddressDTO();
+	address.setNameMM(nameMM);
+	address.setAddressNo(addressNo);
+	address.setAddressName(addressName);
 	address.setAddress1MM(address1MM);
 	address.setAddress2MM(address2MM);
 	
@@ -79,17 +58,11 @@ public class ModifyAddressServlet extends HttpServlet {
 	
 	int result = addressService.updateAddress(address);
 	
-	String path = "";
-	
-	/* address 수정 후 주소록 메인페이지로 이동  */
-	if(result > 0) {
-		path = "/WEB-INF/views/common/success.jsp";
+	if (result > 0) { 
 		request.setAttribute("successCode", "updateAddress");
-	} else {
-		path = "/WEB-INF/views/common/errorPage.jsp";
+		request.getRequestDispatcher("/WEB-INF/views/common/success.jsp").forward(request, response);
+	} else { 
+		request.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(request, response);
+		}
 	}
-	request.getRequestDispatcher(path).forward(request, response);
-	
-	}
-
 }

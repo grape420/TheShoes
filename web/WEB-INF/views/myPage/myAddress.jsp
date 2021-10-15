@@ -36,13 +36,9 @@
 		<!-- Page Wrapper -->
 		<div id="wrapper">
 			<!-- Sidebar -->
-			<ul
-				class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-				id="accordionSidebar">
+			<ul	class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 				<!-- Sidebar - Brand -->
-				<a
-					class="sidebar-brand d-flex align-items-center justify-content-center"
-					href="index.html">
+				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
 					<div class="sidebar-brand-icon rotate-n-15"></div>
 					<div class="sidebar-brand-text mx-3">MY PAGE</div>
 				</a>
@@ -50,35 +46,38 @@
 				<hr class="sidebar-divider my-0">
 				<!-- Divider -->
 				<hr class="sidebar-divider">
+				
 				<!-- Nav Item - Pages Collapse Menu -->
-				<li class="nav-item"><a class="nav-link collapsed" href="#"
-					data-toggle="collapse" data-target="#collapseTwo"
-					aria-expanded="true" aria-controls="collapseTwo"> <i
-						class="fas fa-fw fa-cog"></i> <span>쇼핑정보</span>
+				<li class="nav-item"><a class="nav-link collapsed" href="#"	data-toggle="collapse" data-target="#collapseTwo"
+					aria-expanded="true" aria-controls="collapseTwo"> 
+					<i class="fas fa-fw fa-cog"></i> 
+					<span>쇼핑정보</span>
 				</a>
-					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-						data-parent="#accordionSidebar">
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"	data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="#">응모 내역</a> <a
-								class="collapse-item" href="#">구매 내역</a> <a
-								class="collapse-item" href="#">판매 내역</a> <a
-								class="collapse-item" href="#">관심 상품</a>
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/drawHistory">응모 내역</a> 
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/salesHistory">구매 내역</a> 
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/resellHistory">판매 내역</a> 
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/wishList">관심 상품</a>
 						</div>
-					</div></li>
+					</div>
+					</li>
 				<!-- Nav Item - Utilities Collapse Menu -->
-				<li class="nav-item"><a class="nav-link collapsed" href="#"
-					data-toggle="collapse" data-target="#collapseUtilities"
-					aria-expanded="true" aria-controls="collapseUtilities"> <i
-						class="fas fa-fw fa-wrench"></i> <span>나의정보</span>
+				<li class="nav-item"><a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+					aria-expanded="true" aria-controls="collapseUtilities"> 
+				<i class="fas fa-fw fa-wrench"></i> 
+					<span>나의정보</span>
 				</a>
 					<div id="collapseUtilities" class="collapse"
 						aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="#">프로필 정보</a> <a
-								class="collapse-item" href="#">주소록</a> <a class="collapse-item"
-								href="#">결제 정보</a> <a class="collapse-item" href="#">회원 탈퇴</a>
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/common/nav?no=3">프로필 정보</a> 
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/address">주소록</a> 
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/common/nav?no=2">회원 탈퇴</a>
 						</div>
-					</div></li>
+					</div>
+				</li>
+				
 				<!-- Divider -->
 				<hr class="sidebar-divider">
 				<!-- Sidebar Toggler (Sidebar) -->
@@ -102,9 +101,13 @@
 						<h1 class="h3 mb-2 text-gray-800">주소록</h1>
 
 						<!-- 주소록 추가 modal-->
+						
+						<!-- 이건 3번 되야대 -->
+						<c:if test="${ addressCT le 2 }">
 						<button type="button" class="Add-addressBTN" data-toggle="modal"
 							data-target="#exampleModal" data-whatever="@getbootstrap">	+ 배송지추가</button>
-
+						</c:if>
+						
 						<div class="modal fade" id="exampleModal" tabindex="-1"
 							aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog">
@@ -162,8 +165,8 @@
 														<div class="right_btm">
 														<a id="btnM"  type="button" class="btn outlinegrey small modi" data-toggle="modal" data-target="#exampleModa"
 														   data-whatever="@getbootstrap"> 수정 </a> 
-														<a href="${ pageContext.servletContext.contextPath }/myPage/address?currentPage=${ selectCriteria.pageNo }&delete=${ address.addressNo }" 
-														id="btnD" type="button" class="btn outlinegrey small"> 삭제 </a>
+														<a href="${ pageContext.servletContext.contextPath }/myPage/address?delete=${ addressA.addressNo }" 
+														id="" type="button" class="btn outlinegrey small"> 삭제 </a>
 														</div>
 													</div>
 												</div>
@@ -263,13 +266,13 @@
 	    $("#addressName2").val($(this).parent().prev().prev().prev().prev().text());
 	    })
 	    
-      $("#sizeBtn").click(function() {
-         $("#test").submit();
-      })
+   		$("#sizeBtn").click(function() {
+        $("#test").submit();
+     	})
 
-      $("#changeBtn").click(function() {
-         $("#modify").submit();
-      })
+     	$("#changeBtn").click(function() {
+        $("#modify").submit();
+      	})
 
 	</script>
 	

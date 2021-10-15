@@ -2,6 +2,7 @@ package com.theshoes.jsp.member.model.dto;
 
 public class AddressDTO implements java.io.Serializable{
 	
+	
 	private String nameMM; 
 	private String addressNo;
 	private String addressName;
@@ -52,11 +53,6 @@ public class AddressDTO implements java.io.Serializable{
 				+ ", address1MM=" + address1MM + ", address2MM=" + address2MM + "]";
 		
 	}
-
-	
-	
-
-	
 }
 
 
