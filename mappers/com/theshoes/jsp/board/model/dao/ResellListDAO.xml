@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="ResellListDAO.xml">
+<mapper namespace="ResellListDAO">
 
 	<resultMap type="com.theshoes.jsp.board.model.dto.BoardDTO" id="ResellListResultMap">
 		<id property="boardNo" column="BOARD_NO"/>
@@ -51,6 +51,7 @@
 		     , A.BOARD_CONTENT
 		     , A.BOARD_REGDATE
 		     , A.BOARD_HIT
+		     , A.CATEGORY_ORDER
 		  FROM BOARD A
 		 WHERE A.BOARD_CATEGORY_NO = 3
 		ORDER BY 1 DESC

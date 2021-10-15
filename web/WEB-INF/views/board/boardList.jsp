@@ -110,7 +110,7 @@
 					<!-- 관리자 확인 -->
 					<%-- <c:if test="${ sessionScope.entryMember.role eq 'Y'}"> --%>
 						<div style="text-align: center; margin-top: 20px;">
-							<a href="#" class="namoon" onclick="location.href='${ pageContext.servletContext.contextPath }/board/reg';">등록하기</a>
+							<a href="#" class="namoon" style="margin: 20px auto; text-decoration: none !important; color: black !important; border: 1px solid gray; padding: 10px 20px; border-radius: 20px;"onclick="location.href='${ pageContext.servletContext.contextPath }/board/reg';">등록하기</a>
 						</div>
 					<%-- </c:if> --%>
 				</div>

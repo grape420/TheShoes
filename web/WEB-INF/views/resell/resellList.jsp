@@ -44,15 +44,15 @@
 			</div>
 		</div>
 		<div class="row mt-5" id="resellTable">
-			<c:forEach var="resellList" items="${ requestScope.resellList }" begin="${ selectCriteria.startRow }" end="${ selectCriteria.endRow }">
+			<c:forEach var="resellList" items="${ requestScope.board }" begin="${ selectCriteria.startRow -1}" end="${ selectCriteria.endRow -1}">
 				<div class="col-md-4">
 					<div class="card mb-4 border-0" id="resellArea">
 						<img id="rsImg" src="${ pageContext.servletContext.contextPath }/resources/upload/image/sample/search01.jpg">
 						<div class="card-body ">
 							<div class="card-text">
 								<p class="none-hover">
-									<span class="tit">나이키 신발<c:out value="${ resellList.boardTitle }"/></span> 
-									<span class="color">0 원<c:out value="${ resellList.boardContent }"/></span>
+									<span class="tit"><c:out value="${ resellList.boardTitle }"/></span> 
+									<span class="color"><c:out value="${ resellList.boardContent }"/></span>
 								</p>
 								<p class="hover">
 									<a href="javascript:void(0)">Resell</a>
@@ -82,6 +82,9 @@
 		<div class="regArea" style="text-align: center; margin: 20px;">
 			<a href="#" style="margin: 20px auto;text-decoration: none !important;color: black !important;border: 1px solid gray;padding: 10px 20px;border-radius: 20px;" id="regButton" onclick="location.href='${ pageContext.servletContext.contextPath }/resell/regResell';">게시글 등록</a>
 		</div> --%>
+		<div style="text-align: center; margin: 20px;">
+			<a href="#" class="namoon" onclick="location.href='${ pageContext.servletContext.contextPath }/resell/regResell';">등록하기</a>
+		</div>
 	</section>
 	<script type="text/javascript">
 	$(function() {
