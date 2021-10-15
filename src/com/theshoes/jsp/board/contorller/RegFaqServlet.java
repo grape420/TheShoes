@@ -31,9 +31,9 @@ public class RegFaqServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		/* 사용자가 입력한 정보 받아오기 */
-		String faqTitle = request.getParameter("faqTitle");	  		// 공지사항 제목
+		String faqTitle = request.getParameter("faqTitle");	  			// 공지사항 제목
 		String faqWriterId = request.getParameter("faqWriterId");		// 공지사항 작성자 id
-		String faqContent = request.getParameter("faqContent");		// 공지사항 세부내용
+		String faqContent = request.getParameter("faqContent");			// 공지사항 세부내용
 		
 		/* 작성일 - 오늘 날짜 객체 생성 */
 		Calendar cal = new GregorianCalendar();
