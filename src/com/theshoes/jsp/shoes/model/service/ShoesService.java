@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.theshoes.jsp.common.paging.SelectCriteria;
+import com.theshoes.jsp.manager.model.dto.EventDTO;
 import com.theshoes.jsp.shoes.model.dao.ShoesDAO;
 import com.theshoes.jsp.shoes.model.dto.ShoesDTO;
 
@@ -59,6 +60,32 @@ public class ShoesService {
 		
 		return shoesDetail;
 		
+	}
+
+	public int entryEvent(EventDTO shoesEvent) {
+		SqlSession session = getSqlSession();
+		
+		int result = shoesDAO.entryEvent(session, shoesEvent);
+		
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
+	public String selectEventByRandomNo(int randomNo) {
+		SqlSession session = getSqlSession();
+		
+		String userName = shoesDAO.selectEventByRandomNo(session, randomNo);
+		
+		session.close();
+		
+		return userName;
 	}
 
 }
