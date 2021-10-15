@@ -21,12 +21,23 @@ public class ResellListService {
 	public ResellListService() {
 		resellListDAO = new ResellListDAO();
 	}
+	
+//	/* 게시물 조회 */
+//	public List<ResellListDTO> selectResellList(SelectCriteria selectCriteria) {
+//		
+//		SqlSession session = getSqlSession();
+//		
+//		List<ResellListDTO> resellList = resellListDAO.selectResellList(session, selectCriteria);
+//		return null;
+//	}
+
 
 	public List<BoardDTO> selectResellList() {
 		
 		SqlSession session = getSqlSession();
 		
 		List<BoardDTO> resellList = resellListDAO.selectResellList(session);
+		System.out.println("resellList" + resellList);
 	
 		session.close();
 		

@@ -1,7 +1,6 @@
 package com.theshoes.jsp.shoes.model.dto;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.List;
 
 import com.theshoes.jsp.member.model.dto.WishDTO;

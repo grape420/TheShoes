@@ -10,13 +10,35 @@
 	<script>
 		(function () {
 			const successCode = "${ requestScope.successCode }";
-			
-			let successMessage = "";
+						
 			let movePath = "";
 			
 			switch(successCode) {
 				case "insertShoes" :
 					movePath = "${ pageContext.servletContext.contextPath }/manager/shoes";
+					break;
+					
+				case "myAddressCode" : 
+					movePath = "${ pageContext.servletContext.contextPath }/myPage/myAddress";
+					break;
+					
+				case "updateAddress" : 
+					movePath = "${ pageContext.servletContext.contextPath }/myPage/myAddress";
+					break;
+					
+				case "insertNotice" :
+				case "updateNotice" :
+					movePath = "${ pageContext.servletContext.contextPath }/board/list";
+					break;
+					
+				case "insertFaq" :
+				case "updateFaq" :
+					movePath = "${ pageContext.servletContext.contextPath }/faq/list";
+					break;	
+					
+				case "insertQuestion" :
+				case "registRequest" :
+					movePath = "${ pageContext.servletContext.contextPath }/cs/list";
 					break;
 				case "mainPage" :
 					movePath = "${ pageContext.servletContext.contextPath }/common/mainPage";
@@ -25,6 +47,9 @@
 					movePath = "${ pageContext.servletContext.contextPath }/manager/shoes";
 					break;
 			}
+			
+		
+	}
 			
 			location.replace(movePath);
 		})();

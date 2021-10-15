@@ -14,6 +14,7 @@ import com.theshoes.jsp.common.paging.SelectCriteria;
 public class ResellListDAO {
 
 	public List<BoardDTO> selectResellList(SqlSession session) {
+		
 		return session.selectList("ResellListDAO.selectResellList");
 	}
 	public ResellListDTO selectOneResellList(SqlSession session, int no) {

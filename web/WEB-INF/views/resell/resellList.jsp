@@ -44,7 +44,7 @@
 			</div>
 		</div>
 		<div class="row mt-5" id="resellTable">
-			<c:forEach var="resellList" items="${ requestScope.board }" begin="1" end="5">
+			<c:forEach var="resellList" items="${ requestScope.resellList }" begin="${ selectCriteria.startRow }" end="${ selectCriteria.endRow }">
 				<div class="col-md-4">
 					<div class="card mb-4 border-0" id="resellArea">
 						<img id="rsImg" src="${ pageContext.servletContext.contextPath }/resources/upload/image/sample/search01.jpg">

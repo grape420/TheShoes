@@ -140,7 +140,7 @@
 
 										<div class="col-md-12 mb-3">
 											<div class="text-center">
-												<label style="margin: 10px;">${ shoes.thumbList[0].shoesThumbNo }</label>
+												<label style="margin: 10px;">대표 사진</label>
 												<div id="titleImgArea">
 													<img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ shoes.thumbList[0].savedName }"
 													id="titleImg" class="title-img-area" width="300" height="300">
@@ -151,7 +151,7 @@
 
 										<div style="display: flex; margin: 10px auto;">
 			                              <div class="text-center">
-			                                <label>${ shoes.thumbList[1].shoesThumbNo }</label>
+			                                <label>사진1</label>
 			                                <div id="contentImgArea1">
 			                                <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ shoes.thumbList[1].savedName }"
 			                                id="contentImg1" class="content-img-area1" width="250" height="250">
@@ -159,7 +159,7 @@
 			                            </div>
 
 											<div class="text-center">
-				                              <label>${ shoes.thumbList[2].shoesThumbNo }</label>
+				                              <label>사진2</label>
 				                              <div style="margin: 0 25px;">
 				                              <div id="contentImgArea2">
 				                                <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ shoes.thumbList[2].savedName }"
@@ -169,7 +169,7 @@
 				                             </div>
 
 											<div class="text-center">
-				                            <label>${ shoes.thumbList[3].shoesThumbNo }</label>
+				                            <label>사진3</label>
 				                              <div id="contentImgArea3">
 				                                <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ shoes.thumbList[3].savedName }"
 				                                id="contentImg3" class="content-img-area3" width="250" height="250">
@@ -177,7 +177,7 @@
 				                            </div>
 
 											<div class="text-center">
-				                              <label>${ shoes.thumbList[4].shoesThumbNo }</label>
+				                              <label>사진4</label>
 				                              <div style="margin: 0 25px;">
 				                                <div id="contentImgArea4">
 				                                  <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ shoes.thumbList[4].savedName }"
@@ -187,7 +187,7 @@
 				                              </div>
 
 											<div class="text-center">
-			                                <label>${ shoes.thumbList[5].shoesThumbNo }</label>
+			                                <label>사진5</label>
 			                                  <div id="contentImgArea5">
 			                                    <img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ shoes.thumbList[5].savedName }"
 			                                    id="contentImg5" class="content-img-area5" width="250" height="250">
@@ -228,7 +228,7 @@
 
 	<%-- <script src="${ pageContext.servletContext.contextPath }/resources/js/manager/regShoes.js"></script> --%>
 	
-	 <script type="text/javascript">
+	 <script>
 	 const $titleImgArea = document.getElementById("titleImg");
      const $contentImgArea1 = document.getElementById("contentImg1");
      const $contentImgArea2 = document.getElementById("contentImg2");

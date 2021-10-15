@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/cs/regQuestion.css">
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/board/boardList.css">
 <link rel="shortcut icon" href="${ pageContext.servletContext.contextPath }/resources/uses/the-shoes-favicon.png">
 <link href="${ pageContext.servletContext.contextPath }/resources/uses/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -17,6 +17,7 @@
 <body>
 	<!-- header -->
 	<jsp:include page="../common/header.jsp" />
+
 	<!-- section -->
 	<section>
 		<!-- Page Wrapper -->
@@ -33,7 +34,7 @@
 					>
 					<div class="sidebar-brand-icon rotate-n-15">
 					</div>
-					<div class="sidebar-brand-text mx-3">1:1문의</div>
+					<div class="sidebar-brand-text mx-3">FAQ</div>
 				</a>
 
 				<!-- Divider -->
@@ -51,9 +52,9 @@
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 						data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
-             			  	  <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/board/list" >공지사항</a>
-							  <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/faq/list">FAQ</a> 
-			                  <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/cs/list">1:1 문의</a>
+							<a class="collapse-item"href="${ pageContext.servletContext.contextPath }/board/list">공지사항</a> 
+							<a class="collapse-item" style="text-decoration=none;">FAQ</a> 
+						    <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/cs/list">1:1 문의</a>
 						</div>
 					</div></li>
 
@@ -79,51 +80,60 @@
 
 					<!-- Page Heading -->
 					<br>
-					<div class="container">
-						<h1 class="h3 mb-2 text-gray-800">1:1 문의</h1>
-						<p class="mb-4"></p>
-						<form
-							action="${ pageContext.servletContext.contextPath }/cs/reg"
-							method="post" encType="multipart/form-data">
-							<div class="row">
-								
-								<div class="col-md-6 mb-3">
-									<label>제목</label> <input type="text" class="form-control" id="title" placeholder="" name="csTitle" required>
-								</div>
-								<div class="col-md-6 mb-3">
-									<label for="lastName">작성자</label> <input type="text" class="form-control" id="lastName" placeholder="" value="" required name="csId">
-									<div class="invalid-feedback"></div>
-								</div>
-								<div class="col-md-12">
-									<label>내용</label>
-									<textarea class="form-control" id="exampleFormControlTextarea1" rows="20" name="csContent"></textarea>
-								</div>
-	
-								<div class="col-md-6 mb-3">
-									<label style="margin: 10px 0;">사진 첨부</label>
-									<div id="titleImgArea">
-										<img id="titleImg" class="title-img-area" width="300" height="300" name="csImage">
-									</div>
-								</div>
-								<div class="col-md-6 mb-3"></div>
-							</div>
-	
-							<div class="thumbnail-file-area">
-								<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)">
-							</div>
-						<div class="col-md-12 mb-3">
-							<button type="submit" id="registBtn" class="btn btn-outline-secondary">등록</button>
+					<h1 class="h3 mb-2 text-gray-800">FAQ</h1>
+					<p class="mb-4"></p>
+					
+					<table class="table table-hover" id="faqTable">
+						<tbody>
+							<tr style="background-color:black; color:white;" class="align-items-center">
+								<th colspan="1" class="text-center col-sm-1">번호</th>
+								<th colspan="5" class="text-center col-sm-5">제목</th>
+								<th colspan="1" class="text-center col-sm-2">작성자</th>
+								<th colspan="1" class="text-center col-sm-1">조회수</th>
+								<th colspan="1" class="text-center col-sm-2">작성일</th>
+							</tr>
+							<c:forEach var="faq" items="${ requestScope.faqList }" >
+								<tr>							
+									<td class="text-center"><c:out value="${ faq.categoryOrder }"/></td>
+									<td colspan="5"><c:out value="${ faq.boardTitle }"/></td>
+									<td class="text-center"><c:out value="${ faq.boardId }"/></td>
+									<td class="text-center"><c:out value="${ faq.boardHit }"/></td>
+									<td class="text-center"><c:out value="${ faq.boardRegDate }"/></td>
+								</tr>
+							</c:forEach> 
+						</tbody>
+					</table>
+
+					<!-- 페이징처리 넣기 -->
+					<jsp:include page="../board/paging.jsp"/>
+
+					<!-- 관리자 확인 -->
+					 <c:if test="${ sessionScope.entryMember.role eq 'MANAGER'}"> 
+						<div style="text-align: center; margin-top: 20px;">
+							<a href="#" class="namoon" onclick="location.href='${ pageContext.servletContext.contextPath }/faq/reg';">등록하기</a>
 						</div>
-						</form>
-					</div>
+					 </c:if> 
 				</div>
 			</div>
 		</div>
 	</section>
+
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
+
+	<!-- 클릭 시 디테일 페이지로 이동 -->
+	<script>
+	$(function() {
+		$("#faqTable td").hover(function() {
+			$(this).parent().css({"cursor":"pointer"});
+		}).click(function() {
+			let categoryOrder = $(this).parent().children(":eq(0)").text();
+			console.log(categoryOrder);
+			location.href = "${ pageContext.servletContext.contextPath }/faq/detail?categoryOrder=" + categoryOrder;
+		});
+	});
+	</script>
 	
-	<script src="${ pageContext.servletContext.contextPath }/resources/js/cs/regQuestion.js"></script>
 
 </body>
 </html>

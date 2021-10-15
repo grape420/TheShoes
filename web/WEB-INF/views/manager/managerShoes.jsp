@@ -147,7 +147,6 @@
 	<script type="text/javascript">
 		$("tr").click(function() {
 			let shoesNo = $(this).find("label").text();
-			console.log(shoesNo);
 			location.href = "${ pageContext.servletContext.contextPath }/manager/modShoes?shoesNo=" + shoesNo; 
 		});
 	</script>

@@ -16,11 +16,13 @@ public class ResellDetailServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/views/resell/resellDetail.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int no = Integer.parseInt(request.getParameter("no"));
 		
 		ResellListDTO resell = new ResellListService().selectOneResellList(no);
-		System.out.println(resell);
 		
 		String path = "";
 		if(resell != null) {
@@ -31,10 +33,6 @@ public class ResellDetailServlet extends HttpServlet {
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 	}
 	
 }

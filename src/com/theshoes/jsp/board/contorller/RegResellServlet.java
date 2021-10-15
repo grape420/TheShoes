@@ -52,8 +52,6 @@ public class RegResellServlet extends HttpServlet {
 			/* 파일 저장경로가 존재하지 않는 경우 디렉토리를 생성한다. */
 			if(!directory.exists() || !directory2.exists()) {
 				
-				System.out.println("폴더 생성 1" + directory.mkdirs());
-				System.out.println("폴더 생성 2" + directory2.mkdirs());
 			}
 			
 			Map<String, String> parameter = new HashMap<>();
@@ -107,13 +105,13 @@ public class RegResellServlet extends HttpServlet {
 							int width = 0;
 							int height = 0;
 							if("thumbnailImg1".equals(filedName)) {
-								fileMap.put("fileType", "boardTitle");
+								fileMap.put("fileType", "TITLE");
 								
 								/* 썸네일로 변환 할 사이즈를 지정한다. */
 								width = 350;
 								height = 200;
 							} else {
-								fileMap.put("fileType", "boardContent");
+								fileMap.put("fileType", "BODY");
 								
 								width = 120;
 								height = 100;
@@ -122,10 +120,10 @@ public class RegResellServlet extends HttpServlet {
 							/* 썸네일로 변환 후 저장한다. */
 							Thumbnails.of(fileUploadDirectory + randomFileName)
 									.size(width, height)
-									.toFile(thumbnailDirectory + "thumb" + randomFileName);
+									.toFile(thumbnailDirectory + "thumbnail_" + randomFileName);
 							
 							/* 나중에 웹서버에서 접근 가능한 경로 형태로 썸네일의 저장 경로도 함께 저장한다. */
-							fileMap.put("thumbnailPath", "/resources/upload/thumb/thumb_" + randomFileName);
+							fileMap.put("thumbnailPath", "/resources/upload/thumbnail/thumbnail_" + randomFileName);
 							
 							fileList.add(fileMap);
 							
@@ -145,10 +143,20 @@ public class RegResellServlet extends HttpServlet {
 				System.out.println("parameter : " + parameter);
 				System.out.println("fileList : " + fileList);
 				
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+				
+				java.util.Date winner = sdf.parse(parameter.get("winnerDate"));
+				java.util.Date start = sdf.parse(parameter.get("startDate"));
+				java.util.Date end = sdf.parse(parameter.get("endDate"));
+				
 				ResellDetailDTO resellShoes = new ResellDetailDTO(); 
 				
+				resellShoes.setBoardNo(Integer.valueOf(parameter.get("boardNo")));
+				resellShoes.setBoardId(parameter.get("boardId"));
+				resellShoes.setBoardCategoryNo(Integer.valueOf("boardCategoryNo"));
 				resellShoes.setBoardTitle(parameter.get("boardTitle"));
 				resellShoes.setBoardContent(parameter.get("boardContent"));
+				resellShoes.setCategoryOrder(Integer.valueOf("categoryOrder"));
 			
 				resellShoes.setResellThumb(new ArrayList<ResellThumbDTO>());
 				List<ResellThumbDTO> list = resellShoes.getResellThumb();
@@ -157,9 +165,9 @@ public class RegResellServlet extends HttpServlet {
 					Map<String, String> file = fileList.get(i);
 					
 					ResellThumbDTO tempFileInfo = new ResellThumbDTO();
-					tempFileInfo.setOriginalName(file.get("originFileName"));
-					tempFileInfo.setSavedName(file.get("savedFileName"));
-					tempFileInfo.setSavePath(file.get("savePath"));
+					tempFileInfo.setRtFile(file.get("rtFile"));
+					tempFileInfo.setResellFileName(file.get("resellFileName"));
+					tempFileInfo.setSavaPath(file.get("savePath"));
 					tempFileInfo.setFileType(file.get("fileType"));
 					tempFileInfo.setThumbnailPath(file.get("thumbnailPath"));
 					
@@ -167,7 +175,7 @@ public class RegResellServlet extends HttpServlet {
 					
 				}
 				
-				System.out.println("resell board : " + resellShoes);
+				System.out.println("resell board" + resellShoes);
 				
 				ResellListService regResellService = new ResellListService();
 				int result = regResellService.insertshoes(resellShoes);

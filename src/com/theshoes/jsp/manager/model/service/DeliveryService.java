@@ -7,16 +7,15 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.theshoes.jsp.common.paging.SelectCriteria;
-import com.theshoes.jsp.manager.model.dao.ManagerMapper;
+import com.theshoes.jsp.manager.model.dao.ManagerDAO;
 import com.theshoes.jsp.manager.model.dto.DeliveryDTO;
-import com.theshoes.jsp.member.model.dto.MemberDTO;
 
 public class DeliveryService {
 
-	private final ManagerMapper mapper;
+	private final ManagerDAO mapper;
 	
 	public DeliveryService() {
-		mapper = new ManagerMapper();
+		mapper = new ManagerDAO();
 	}
 
 	public int selectdeliveryTotalCount() {

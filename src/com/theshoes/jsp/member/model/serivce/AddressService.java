@@ -45,8 +45,8 @@ public class AddressService {
 		
 		/* 주소록 수정 메소드 */ 
 		public int updateAddress(AddressDTO address) {
-			System.out.println("나는야 서비스 ");
 			SqlSession session = getSqlSession();
+			
 			
 			int result = addressDAO.updateAddress(session, address);
 			
@@ -55,6 +55,24 @@ public class AddressService {
 			} else {
 				session.rollback();
 			}
+			session.close();
+			
+			return result;
+		}
+
+		/* 주소록 삭제 메소드 */ 
+		public int deletAddress(String addressNo) {
+			SqlSession session = getSqlSession();
+			
+			int result = addressDAO.deleteAddress(session, addressNo);
+			System.out.println("나는야 서비스 ");
+			
+			if (result > 0) {
+				session.commit();
+			} else {
+				session.rollback();
+			}
+			
 			session.close();
 			
 			return result;

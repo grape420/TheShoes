@@ -6,18 +6,17 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.theshoes.jsp.board.model.dto.BoardDTO;
 import com.theshoes.jsp.common.paging.SelectCriteria;
-import com.theshoes.jsp.manager.model.dao.ManagerMapper;
+import com.theshoes.jsp.manager.model.dao.ManagerDAO;
 import com.theshoes.jsp.shoes.model.dto.ShoesDTO;
 import com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO;
 
 public class ShoesService {
 	
-	private final ManagerMapper mapper;
+	private final ManagerDAO mapper;
 	
 	public ShoesService() {
-		mapper = new ManagerMapper();
+		mapper = new ManagerDAO();
 	}
 
 	public int insertShoes(ShoesDTO shoes) {

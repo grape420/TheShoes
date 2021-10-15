@@ -21,14 +21,14 @@
 	<!-- section -->
 	<section>
 
-	<!-- Page Wrapper -->
+		<!-- Page Wrapper -->
     <div id="wrapper">
 
       <!-- Sidebar -->
       <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
           <div class="sidebar-brand-icon rotate-n-15">
           </div>
           <div class="sidebar-brand-text mx-3">NOTICE</div>
@@ -49,9 +49,9 @@
           </a>
           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/board/list" >공지사항</a>
-			  <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/faq/list">FAQ</a> 
-			  <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/cs/list">1:1 문의</a>
+				<a class="collapse-item"href="${ pageContext.servletContext.contextPath }/board/list">공지사항</a> 
+			    <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/faq/list">FAQ</a> 
+			    <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/cs/list">1:1 문의</a>
             </div>
           </div>
         </li>
@@ -78,29 +78,29 @@
 
           <!-- Page Heading -->
           <br>
-          <h1 class="h3 mb-2 text-gray-800" >공지사항</h1>
+          <h1 class="h3 mb-2 text-gray-800" >FAQ</h1>
           <!-- <p class="mb-4"></p> -->
 			<hr>
           <div class="bonmun">
             
-          <!-- 공지사항 제목 -->
-          <span style="font-weight:bold;"><c:out value="${ requestScope.notice.boardTitle }"/></span>
+          <!-- FAQ 제목 -->
+          <span style="font-weight:bold;"><c:out value="${ requestScope.faq.boardTitle }"/></span>
 
           <!--  작성일  -->
-            <p class="mb-2" ><c:out value="${ requestScope.notice.boardRegDate }"/></p>
+            <p class="mb-2" ><c:out value="${ requestScope.faq.boardRegDate }"/></p>
             
-            <!-- 공지사항 내용 -->
+            <!-- FAQ 내용 -->
             <div class="realBonmun">
-            <c:out value="${ requestScope.notice.boardContent}"></c:out>
+            <c:out value="${ requestScope.faq.boardContent}"></c:out>
             </div>
             <div style="text-align: center; margin: 30px;">
               <button type="button" class="btn btn-outline-secondary" id="listBtn"
-                onclick="location.href='${ pageContext.servletContext.contextPath }/board/list'">목록보기</button>
+                onclick="location.href='${ pageContext.servletContext.contextPath }/faq/list'">목록보기</button>
              
              <!-- 관리자 확인 --> 
 	    	 <c:if test="${ sessionScope.entryMember.role eq 'MANAGER'}"> 
               <button type="button" class="btn btn-outline-secondary" id="modifyBtn"
-                onclick="location.href='${ pageContext.servletContext.contextPath }/board/modify?categoryOrder=${ requestScope.notice.categoryOrder }'">수정</button>
+                onclick="location.href='${ pageContext.servletContext.contextPath }/faq/modify?categoryOrder=${ requestScope.faq.categoryOrder }'">수정</button>
              </c:if> 
         
             </div>

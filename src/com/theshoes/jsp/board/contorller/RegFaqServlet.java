@@ -15,14 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.theshoes.jsp.board.model.dto.BoardDTO;
 import com.theshoes.jsp.board.model.service.BoardService;
 
-@WebServlet("/board/reg")
-public class RegBoardServlet extends HttpServlet {
+@WebServlet("/faq/reg")
+public class RegFaqServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/* '등록하기' 버튼 클릭 시 get 요청 -> 게시글 작성하는 페이지로 이동 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String path = "/WEB-INF/views/board/regBoard.jsp";
+		String path = "/WEB-INF/views/faq/regFaq.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
@@ -31,34 +31,35 @@ public class RegBoardServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		/* 사용자가 입력한 정보 받아오기 */
-		String noticeTitle = request.getParameter("noticeTitle");	  		// 공지사항 제목
-		String noticeWriterId = request.getParameter("noticeWriterId");		// 공지사항 작성자 id
-		String noticeContent = request.getParameter("noticeContent");		// 공지사항 세부내용
+		String faqTitle = request.getParameter("faqTitle");	  		// 공지사항 제목
+		String faqWriterId = request.getParameter("faqWriterId");		// 공지사항 작성자 id
+		String faqContent = request.getParameter("faqContent");		// 공지사항 세부내용
 		
 		/* 작성일 - 오늘 날짜 객체 생성 */
 		Calendar cal = new GregorianCalendar();
 		
 		/* 작성일 - java.sql.Date 형으로 변환 */
-		Date noticeRegDate = new Date(cal.getTimeInMillis());
+		Date faqRegDate = new Date(cal.getTimeInMillis());
 		
 		/* BoardDTO에 값 넣기 */
-		BoardDTO notice = new BoardDTO();			
-		notice.setBoardId(noticeWriterId);	
-		notice.setBoardTitle(noticeTitle);				
-		notice.setBoardContent(noticeContent);			
-		notice.setBoardRegDate(noticeRegDate);		
+		BoardDTO faq = new BoardDTO();			
+		faq.setBoardId(faqWriterId);	
+		faq.setBoardTitle(faqTitle);				
+		faq.setBoardContent(faqContent);			
+		faq.setBoardRegDate(faqRegDate);		
+		
+		System.out.println("ser : " + faq);
 		
 		BoardService boardService = new BoardService();
 
-		int result = boardService.registNotice(notice);
+		int result = boardService.registFaq(faq);
 				
 		String path = "";
 		
 		if (result > 0) {
 			path = "/WEB-INF/views/common/success.jsp";
-			request.setAttribute("successCode", "insertNotice");
+			request.setAttribute("successCode", "insertFaq");
 			request.getRequestDispatcher(path).forward(request, response);
 		} 
-		
 	}
 }
