@@ -44,9 +44,9 @@
 			            <p class="bold">* 당첨결과는 마이페이지에서 확인하실 수 있습니다.</p>
 			            <div class="detail">
 			              <!-- <p><span>응모시간 : </span><span>10/15(금) 10:00 ~ 10:30 (30분)</span></p>-->
-			              <p><span>응모시간 : </span><span><fmt:formatDate value="${requestScope.shoesDetail.startDate}" pattern="MM/dd(E) mm:ss"/>
-															~ <fmt:formatDate value="${requestScope.shoesDetail.endDate}" pattern="mm:ss"/></span></p>
-			              <p><span>당첨자발표 : </span><span><fmt:formatDate value="${requestScope.shoesDetail.winnerDate}" pattern="MM/dd(E) mm:ss"/></span></p>
+			              <p><span>응모시간 : </span><span><fmt:formatDate value="${requestScope.shoesDetail.startDate}" pattern="MM/dd(E) HH:mm"/>
+															~ <fmt:formatDate value="${requestScope.shoesDetail.endDate}" pattern="MM/dd(E) HH:mm"/></span></p>
+			              <p><span>당첨자발표 : </span><span><fmt:formatDate value="${requestScope.shoesDetail.winnerDate}" pattern="MM/dd(E) HH:mm"/></span></p>
 			            </div>
 			          </div>
 			          <!--//211014 수정-->
