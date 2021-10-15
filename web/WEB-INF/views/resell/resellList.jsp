@@ -82,8 +82,8 @@
 		<div class="regArea" style="text-align: center; margin: 20px;">
 			<a href="#" style="margin: 20px auto;text-decoration: none !important;color: black !important;border: 1px solid gray;padding: 10px 20px;border-radius: 20px;" id="regButton" onclick="location.href='${ pageContext.servletContext.contextPath }/resell/regResell';">게시글 등록</a>
 		</div> --%>
-		<div style="text-align: center; margin: 20px;">
-			<a href="#" class="namoon" onclick="location.href='${ pageContext.servletContext.contextPath }/resell/regResell';">등록하기</a>
+		<div class="regArea" style="text-align: center; margin: 20px;">
+			<a href="#" id="regButton" onclick="location.href='${ pageContext.servletContext.contextPath }/resell/regResell';">등록하기</a>
 		</div>
 	</section>
 	<script type="text/javascript">

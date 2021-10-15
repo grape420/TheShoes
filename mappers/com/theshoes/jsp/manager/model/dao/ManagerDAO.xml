@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="ManagerDAO">
+
+	<!-- 신발 카테고리 -->
+	<resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesCategoryDTO" id="shoesCategoryResultMap">
+		<id property="shoesCategoryNo" column="SHOES_CATEGORY_NO"/>
+		<result property="shoesCategoryName" column="SHOES_CATEGORY_NAME"/>
+	</resultMap>
+
+	<!-- 신발  -->
+	 <resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesDTO" id="shoesResultMap">
+		<id property="shoesNo" column="SHOES_NO"/>
+		<result property="infoCategoryNo" column="INFO_CATEGORY_NO"/>
+		<result property="shoesModel" column="SHOES_MODEL"/>
+		<result property="shoesPrice" column="SHOES_PRICE"/>
+		<result property="salesYn" column="SALES_YN"/>
+		<result property="salesAmount" column="SALES_AMOUNT"/>
+		<result property="reamaningAmount" column="REAMANING_AMOUNT"/>
+		<result property="startDate" column="START_DATE"/>
+		<result property="endDate" column="END_DATE"/>
+		<result property="winnerDate" column="WINNER_DATE"/>
+		<result property="eventEndYn" column="EVENT_END_YN"/>
+		
+		<!-- 이거 해야만 조인 됨 -->
+		<association property="category" resultMap="shoesCategoryResultMap" />
+		
+		<collection property="thumbList" resultMap="shoesThumbResultMap"></collection>
+	</resultMap> 
+	
+	<!-- 신발 썸네일 -->
+	<resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO" id="shoesThumbResultMap">
+		<id property="shoesThumbNo" column="SHOES_THUMB_NO"/>
+		<result property="stNo" column="ST_NO"/>
+		<result property="originalName" column="ORIGINAL_NAME"/>
+		<result property="savedName" column="SAVED_NAME"/>
+		<result property="savePath" column="SAVE_PATH"/>
+		<result property="fileType" column="FILE_TYPE"/>
+		<result property="thumbnailPath" column="THUMBNAIL_PATH"/>
+		<result property="status" column="ATTACHMENT_STATUS"/>
+	</resultMap>
+	
+	<!-- 멤버 -->
+	<resultMap type="com.theshoes.jsp.member.model.dto.MemberDTO" id="memberResultMap">
+		<id property="id" column="MEMBER_ID"/>
+		<result property="name" column="NAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="phone" column="PHONE_NO"/>
+		<result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="blackReason" column="BLACK_REASON"/>
+		<result property="blackListYn" column="BLACKLIST_YN"/>
+		<result property="withDrawYn" column="WITHDRAW_YN"/>
+		<result property="birth" column="BIRTH"/>
+		<result property="role" column="ROLE"/>
+	</resultMap>
+	
+	<!-- 보드 -->
+	<resultMap type="com.theshoes.jsp.board.model.dto.BoardDTO" id="noticeResultMap">
+		<id property="boardNo" column="BOARD_NO"/>
+		<result property="boardId" column="BOARD_ID"/>
+		<result property="boardCategoryNo" column="BOARD_CATEGORY_NO"/>
+		<result property="boardTitle" column="BOARD_TITLE"/>
+		<result property="boardContent" column="BOARD_CONTENT"/>
+		<result property="boardRegDate" column="BOARD_REGDATE"/>
+		<result property="boardHit" column="BOARD_HIT"/>
+		<result property="categoryOrder" column="CATEGORY_ORDER"/>
+	</resultMap>
+	
+	<!-- 조인을 위한 멤버 테이블 -->
+	<resultMap type="com.theshoes.jsp.manager.model.dto.DeliveryDTO" id="deliveryResultMap">
+		<id property="id" column="MEMBER_ID"/>
+		<result property="name" column="NAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="phone" column="PHONE_NO"/>
+		<result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="blackReason" column="BLACK_REASON"/>
+		<result property="blackListYn" column="BLACKLIST_YN"/>
+		<result property="withDrawYn" column="WITHDRAW_YN"/>
+		<result property="birth" column="BIRTH"/>
+		<result property="role" column="ROLE"/>
+		
+		<collection property="event" resultMap="eventResultMap" />
+		<collection property="winner" resultMap="winnerResultMap" />
+		<collection property="address" resultMap="addressResultMap" />
+	</resultMap>
+	
+	<!-- 응모 -->
+	<resultMap type="com.theshoes.jsp.manager.model.dto.EventDTO" id="eventResultMap">
+		<id property="eventNo" column="EVENT_NO"/>
+		<result property="eventId" column="EVENT_ID"/>
+		<result property="eventShoesId" column="EVENT_SHOES_ID"/>
+		<result property="eventDate" column="EVENT_DATE"/>
+		<result property="randomNo" column="RANDOM_NO"/>
+		<result property="eventStatus" column="EVENT_STATUS"/>
+		
+		<association property="shoes" resultMap="shoesResultMap" />
+	</resultMap>
+	
+	<!-- 당첨자 -->
+	<resultMap type="com.theshoes.jsp.manager.model.dto.WinnerDTO" id="winnerResultMap">
+		<id property="winnerId" column="WINNER_ID"/>
+		<result property="winnerNo" column="WINNER_NO"/>
+		<result property="winnerYn" column="WINNER_YN"/>
+		<result property="winnerDeadLine" column="WINNER_DEADLINE"/>
+	</resultMap>
+	
+	<!-- 주소 -->
+	<resultMap type="com.theshoes.jsp.manager.model.dto.AddressDTO" id="addressResultMap">
+		<id property="addressNo" column="ADDRESS_NO"/>
+		<result property="addressId" column="ADDRESS_ID"/>
+		<result property="addressZip" column="ADDRESS_ZIP"/>
+		<result property="addressDetail" column="ADDRESS_DETAIL"/>
+		<result property="addressName" column="ADDRESS_NAME"/>
+	</resultMap>
+	
+	<insert id="insertShoes" parameterType="com.theshoes.jsp.shoes.model.dto.ShoesDTO">
+	   INSERT
+			  INTO SHOES_INFO A
+			(
+			  A.SHOES_NO
+			, A.INFO_CATEGORY_NO
+			, A.SHOES_MODEL
+			, A.SHOES_PRICE
+			, A.SALES_YN
+			, A.SALES_AMOUNT
+			, A.REAMANING_AMOUNT
+			, A.START_DATE
+			, A.END_DATE
+			, A.WINNER_DATE
+			, A.EVENT_END_YN
+			)
+			VALUES
+			(
+			  SEQ_SHOES_CODE.NEXTVAL
+			, #{ infoCategoryNo }
+			, #{ shoesModel }
+			, #{ shoesPrice }
+			, #{ salesYn }
+			, #{ salesAmount }
+			, #{ salesAmount }
+			, #{ startDate }
+			, #{ endDate }
+			, #{ winnerDate }
+			, #{ eventEndYn }
+			) 
+			<selectKey keyProperty="shoesNo" resultType="Integer" order="AFTER">
+				SELECT
+					   SEQ_SHOES_CODE.CURRVAL
+				  FROM DUAL
+			</selectKey>
+	</insert>
+	
+	<update id="updateShoes" parameterType="com.theshoes.jsp.shoes.model.dto.ShoesDTO">
+		UPDATE
+		       SHOES_INFO A
+		   SET A.INFO_CATEGORY_NO = #{ infoCategoryNo }
+		     , A.SHOES_MODEL = #{ shoesModel }
+		     , A.SHOES_PRICE = #{ shoesPrice }
+		     , A.SALES_YN = #{ salesYn }
+		     , A.SALES_AMOUNT = #{ salesAmount }
+		     , A.START_DATE = #{ startDate }
+		     , A.END_DATE = #{ endDate }
+		     , A.WINNER_DATE = #{ winnerDate }
+		     , A.EVENT_END_YN = #{ eventEndYn }
+		 WHERE A.SHOES_NO = #{ shoesNo }
+	</update>
+	
+	<update id="modifyBlackList" parameterType="com.theshoes.jsp.member.model.dto.MemberDTO">
+		UPDATE
+		       MEMBER A
+		   SET A.BLACKLIST_YN = #{ blackListYn }
+		     , A.BLACK_REASON = #{ blackReason }
+		 WHERE A.MEMBER_ID = #{ id }
+	</update>
+	
+	<insert id="insertShoesThumb" parameterType="com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO">
+		INSERT 
+			  INTO SHOES_THUMB A
+			(
+			  A.SHOES_THUMB_NO
+			, A.ST_NO
+			, A.ORIGINAL_NAME
+			, A.SAVED_NAME
+			, A.SAVE_PATH
+			, A.FILE_TYPE
+			, A.THUMBNAIL_PATH
+			, A.ATTACHMENT_STATUS
+			)
+			VALUES
+			(
+			  SEQ_SHOES_THUMB_CODE.NEXTVAL
+			, SEQ_SHOES_CODE.CURRVAL
+			, #{ originalName }
+			, #{ savedName }
+			, #{ savePath }
+			, #{ fileType }
+			, #{ thumbnailPath }
+			, 'Y'
+			)
+	</insert>
+	
+	<update id="updateShoesThumb" parameterType="com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO">
+		UPDATE
+		       SHOES_THUMB A
+		   SET 
+		   	   A.ORIGINAL_NAME = #{ originalName }
+		     , A.SAVED_NAME = #{ savedName }
+		     , A.SAVE_PATH = #{ savePath }
+		     , A.FILE_TYPE = #{ fileType }
+		     , A.THUMBNAIL_PATH = #{ thumbnailPath }
+		     , A.ATTACHMENT_STATUS = 'Y'
+		 WHERE A.ST_NO = #{ stNo }
+		   AND A.SHOES_THUMB_NO = #{ shoesThumbNo }
+		 
+	</update>
+	
+	<select id="selectShoesThumbNo" resultMap="shoesThumbResultMap" >
+		SELECT 
+		       A.SHOES_THUMB_NO 
+		     , A.ST_NO
+		  FROM SHOES_THUMB A
+		 WHERE ST_NO = #{ shoesNo }
+	</select>
+	
+	<select id="selectShoesList" resultMap="shoesResultMap">			<!-- 이거 필요없음 -->
+	<!-- 여기서 조인해주고 resultMap에서 association도 해줘야 함 -->
+		SELECT
+		       A.SHOES_NO
+		     , A.INFO_CATEGORY_NO
+		     , B.SHOES_CATEGORY_NAME
+		     , A.SHOES_MODEL
+		     , A.SHOES_PRICE
+		     , A.SALES_YN
+		     , A.SALES_AMOUNT
+		     , A.REAMANING_AMOUNT
+		     , A.START_DATE
+		     , A.END_DATE
+		     , A.WINNER_DATE
+		     , A.EVENT_END_YN
+		  FROM SHOES_INFO A
+		  LEFT JOIN SHOES_CATEGORY B ON (A.INFO_CATEGORY_NO = B.SHOES_CATEGORY_NO)
+		 ORDER BY A.SHOES_NO DESC
+	</select>
+	
+	<select id="selectShoesDetail" resultMap="shoesResultMap">
+		SELECT
+		       A.SHOES_NO
+		     , A.INFO_CATEGORY_NO
+		     , B.SHOES_CATEGORY_NAME
+		     , A.SHOES_MODEL
+		     , A.SHOES_PRICE
+		     , A.SALES_YN
+		     , A.SALES_AMOUNT
+		     , A.REAMANING_AMOUNT
+		     , A.START_DATE
+		     , A.END_DATE
+		     , A.WINNER_DATE
+		     , A.EVENT_END_YN
+		     , C.SHOES_THUMB_NO
+		     , C.ORIGINAL_NAME
+		     , C.SAVED_NAME
+		     , C.SAVE_PATH
+		     , C.FILE_TYPE
+		     , C.THUMBNAIL_PATH
+		  FROM SHOES_INFO A
+		  LEFT JOIN SHOES_CATEGORY B ON (A.INFO_CATEGORY_NO = B.SHOES_CATEGORY_NO)
+		  LEFT JOIN SHOES_THUMB C ON (A.SHOES_NO = C.ST_NO)
+		 WHERE A.SHOES_NO = #{ shoesNo }
+		 ORDER BY C.SHOES_THUMB_NO 
+	</select>
+	
+	<select id="selectMemberDetail" resultMap="memberResultMap">
+		SELECT
+		       A.MEMBER_ID
+		     , A.NAME
+		     , A.EMAIL
+		     , A.PHONE_NO
+		     , A.ENROLL_DATE
+		     , A.BLACK_REASON
+		     , A.BLACKLIST_YN
+		     , A.WITHDRAW_YN
+		     , A.BIRTH
+		     , A.ROLE
+		  FROM MEMBER A
+		 WHERE A.MEMBER_ID = #{ memberId }
+		   AND A.ROLE = 'MEMBER'
+	</select>
+	
+	<select id="selectAllShoesList" resultMap="shoesResultMap">
+       	  SELECT 
+		          A.RNUM
+		        , A.SHOES_NO
+		        , A.INFO_CATEGORY_NO
+	            , D.SHOES_CATEGORY_NAME
+		        , A.SHOES_MODEL
+		        , A.SHOES_PRICE
+		        , A.SALES_YN
+		        , A.SALES_AMOUNT
+		        , A.REAMANING_AMOUNT
+		        , A.START_DATE
+		        , A.END_DATE
+		        , A.WINNER_DATE
+		        , A.EVENT_END_YN
+	         FROM (SELECT ROWNUM RNUM
+	         			, B.SHOES_NO
+	         			, B.INFO_CATEGORY_NO
+	         			, B.SHOES_MODEL
+	         			, B.SHOES_PRICE
+	         			, B.SALES_YN
+	         			, B.SALES_AMOUNT
+	         			, B.REAMANING_AMOUNT
+	         			, B.START_DATE
+	         			, B.END_DATE
+	         			, B.WINNER_DATE
+	         			, B.EVENT_END_YN
+	         		FROM (SELECT C.SHOES_NO
+	         				   , C.INFO_CATEGORY_NO
+	         		       	   , C.SHOES_MODEL
+	         			       , C.SHOES_PRICE
+	         			       , C.SALES_YN
+	         			       , C.SALES_AMOUNT
+	         			       , C.REAMANING_AMOUNT
+	         			       , C.START_DATE
+	         			       , C.END_DATE
+	         			       , C.WINNER_DATE
+	         			       , C.EVENT_END_YN
+	         			    FROM SHOES_INFO C
+	         			ORDER BY C.SHOES_NO DESC) B
+	         			<![CDATA[
+	         	    WHERE ROWNUM <= #{ endRow,jdbcType=VARCHAR } ]]> ) A
+	                LEFT JOIN SHOES_CATEGORY D ON (A.INFO_CATEGORY_NO = D.SHOES_CATEGORY_NO)
+	         	  WHERE A.RNUM >= #{ startRow, jdbcType=VARCHAR }
+	         	  ORDER BY A.SHOES_NO DESC
+	</select>
+	
+	<select id="selectShoesTotalCount" resultType="_int">
+		SELECT 
+	           COUNT(*)
+         FROM  SHOES_INFO A
+	</select>
+	
+	<select id="selectMemberTotalCount" resultType="_int">
+		SELECT 
+	           COUNT(*)
+         FROM  MEMBER A
+	</select>
+	
+	<select id="selectDeliveryTotalCount" resultType="_int">
+		SELECT
+		       COUNT(*)
+		  FROM MEMBER A
+		  LEFT JOIN EVENT B ON (A.MEMBER_ID = B.EVENT_ID)
+		  LEFT JOIN SHOES_INFO C ON (B.EVENT_SHOES_ID = C.SHOES_NO)
+		  LEFT JOIN WINNER D ON (A.MEMBER_ID = D.WINNER_ID)
+		  LEFT JOIN ADDRESS E ON (A.MEMBER_ID = E.ADDRESS_ID)
+	</select>
+	
+	<select id="selectBoardTotalCount" resultType="_int">
+		SELECT
+		       COUNT(*)
+		  FROM BOARD A
+		 WHERE A.BOARD_CATEGORY_NO = 3
+	</select>
+	
+	<select id="selectAllMemberList" resultMap="memberResultMap">
+       	  SELECT /* com.theshoes.jsp.board.model.dao.BoardDAO#selectAllNoticeList() */
+		          A.RNUM
+		        , A.MEMBER_ID
+		        , A.NAME
+		        , A.EMAIL
+		        , A.PHONE_NO
+		        , A.ENROLL_DATE
+		        , A.BLACK_REASON
+		        , A.BLACKLIST_YN
+		        , A.WITHDRAW_YN
+		        , A.BIRTH
+		        , A.ROLE
+	         FROM (SELECT ROWNUM RNUM
+	         			, B.MEMBER_ID
+				        , B.NAME
+				        , B.EMAIL
+				        , B.PHONE_NO
+				        , B.ENROLL_DATE
+				        , B.BLACK_REASON
+				        , B.BLACKLIST_YN
+				        , B.WITHDRAW_YN
+				        , B.BIRTH
+				        , B.ROLE
+	         		FROM (SELECT C.MEMBER_ID
+					           , C.NAME
+					           , C.EMAIL
+					           , C.PHONE_NO
+					           , C.ENROLL_DATE
+					           , C.BLACK_REASON
+					           , C.BLACKLIST_YN
+					           , C.WITHDRAW_YN
+					           , C.BIRTH
+					           , C.ROLE
+	         			    FROM MEMBER C
+	         			ORDER BY C.MEMBER_ID DESC) B
+	         			<![CDATA[
+	         	    WHERE ROWNUM <= #{ endRow,jdbcType=VARCHAR } ]]> ) A
+	         	  WHERE A.RNUM >= #{ startRow, jdbcType=VARCHAR }
+	         	    AND A.ROLE = 'MEMBER'
+	</select>
+	
+	<select id="selectAllDeliveryList" resultMap="deliveryResultMap">
+		 SELECT
+		       B.EVENT_NO
+		     , A.NAME
+		     , A.MEMBER_ID
+		     , C.SHOES_MODEL
+		     , C.SHOES_PRICE
+		     , E.ADDRESS_ZIP
+		     , B.EVENT_STATUS
+		  FROM MEMBER A
+		  LEFT JOIN EVENT B ON (A.MEMBER_ID = B.EVENT_ID)
+		  LEFT JOIN SHOES_INFO C ON (B.EVENT_SHOES_ID = C.SHOES_NO)
+		  LEFT JOIN WINNER D ON (A.MEMBER_ID = D.WINNER_ID)
+		  LEFT JOIN ADDRESS E ON (A.MEMBER_ID = E.ADDRESS_ID)
+		 WHERE A.ROLE = 'MEMBER'
+		   AND A.BLACKLIST_YN = 'N'
+		   AND A.WITHDRAW_YN = 'N'
+	</select>
+	
+	<select id="selectAllBoardList" resultMap="noticeResultMap">
+		SELECT
+		       A.BOARD_NO
+		     , A.BOARD_ID
+		     , A.BOARD_TITLE
+		     , A.BOARD_CONTENT
+		     , A.BOARD_REGDATE
+		     , A.BOARD_HIT
+		  FROM BOARD A
+		 WHERE A.BOARD_CATEGORY_NO = 3
+		ORDER BY 1 DESC
+	</select>
+	
+</mapper>
