@@ -120,9 +120,6 @@
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 
-	<script
-		src="${ pageContext.servletContext.contextPath }/resources/js/cs/regQuestion.js"></script>
-
 	<!-- 클릭 시 디테일 페이지로 이동 -->
 	<script>
 	$(function() {
