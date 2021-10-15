@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +30,7 @@
 				id="accordionSidebar">
 
 				<!-- Sidebar - Brand -->
-				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="${ pageContext.servletContext.contextPath }/manager/shoes">
 					<div class="sidebar-brand-icon rotate-n-15">
 					</div>
 					<div class="sidebar-brand-text mx-3">MANAGER</div>
@@ -64,10 +65,7 @@
 
 				<!-- Heading -->
 
-				<!-- Sidebar Toggler (Sidebar) -->
-				<div class="text-center d-none d-md-inline">
-					<button class="rounded-circle border-0" id="sidebarToggle"></button>
-				</div>
+				
 
 			</ul>
 
@@ -99,50 +97,43 @@
 												<th style="width: 150px; text-align : center;">E-MAIL</th>
 												<th style="width: 150px; text-align : center;">휴대폰번호</th>
 												<th style="width: 150px; text-align : center;">가입일자</th>
-												<th style="width: 150px; text-align : center;">주소</th>
-												<th style="width: 150px; text-align : center;">블랙리스트 체크</th>
+												<th style="width: 150px; text-align : center;">생년월일</th>
+												<th style="width: 150px; text-align : center;">권한</th>
+												<th style="width: 150px; text-align : center;">탈퇴 여부 </th>
 												<th style="width: 150px; text-align : center;">블랙리스트 여부</th>
-												<th style="width: 150px; text-align : center;">탈퇴 여부</th>
+												<th style="width: 150px; text-align : center;">블랙리스트 사유</th>
 											</tr>
 										</thead>
-										<c:forEach var="i" begin="1" end="10">
-											<tbody>
-												<td>user01</td>
-												<td>홍길동</td>
-												<td>hong@naver.com</td>
-												<td>010-1234-5678</td>
-												<td>2021/10/06</td>
-												<td>서울시 양천구</td>
-												<td style="text-align: center;"><input type="checkbox"></td>
-												<td>N</td>
-												<td>N</td>
-											</tbody>
-										</c:forEach>
+										<tbody>
+											<c:forEach var="member" items="${ requestScope.memberList }">										
+													<tr style="cursor: pointer;">
+														<td style="text-align: center;"><label><c:out value="${ member.id }"/></label></td>
+														<td style="text-align: center;"><c:out value="${ member.name }"/></td>
+														<td style="text-align: center;"><c:out value="${ member.email }"/> </td>
+														<td style="text-align: center;"><c:out value="${ member.phone }"/></td>
+														<td style="text-align: center;"><fmt:formatDate value="${ member.enrollDate }" type="date" pattern="yyyy/MM/dd"/></td>
+														<td style="text-align: center;"><c:out value="${ member.birth }"/></td>
+														<td style="text-align: center;"><c:out value="${ member.role }"/></td>
+														<td style="text-align: center;"><c:out value="${ member.withDrawYn }"/></td>
+														<td style="text-align: center;"><c:out value="${ member.blackListYn }"/></td>
+														<td style="text-align: center;">
+														<c:if test="${ member.blackListYn eq 'Y' }">
+														<c:out value="${ member.blackReason }"/>
+														</c:if>
+														</td>
+													</tr>
+												</c:forEach>
+										</tbody>
 									</table>
 								</div>
 							</div>
 						</div>
 
 					</div>
-					<div class="registBtn">
-						<button type="submit" id="registBL">블랙리스트 등록</button>
-					</div>
-					<!-- /.container-fluid -->
 
-					<div class="paging">
-						<a href="#" class="btn_arr first"><i
-							class="fa fa-chevron-left" aria-hidden="true"></i><span
-							class="hide">처음페이지</span></a> <a href="#" class="btn_arr prev"><i
-							class="fa fa-chevron-left" aria-hidden="true"></i><span
-							class="hide">이전페이지</span></a> <a href="#" class="on">1</a>
-						<!-- D : 활성화페이지일 경우 : on 처리 -->
-						<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-						<a href="#" class="btn_arr next"><i
-							class="fa fa-chevron-right" aria-hidden="true"></i><span
-							class="hide">다음페이지</span></a> <a href="#" class="btn_arr last"><i
-							class="fa fa-chevron-right" aria-hidden="true"></i><span
-							class="hide">마지막페이지</span></a>
-					</div>
+					<!-- /.container-fluid -->
+					
+					<jsp:include page="paging.jsp" />
 				</div>
 				<!-- End of Main Content -->
 
@@ -154,6 +145,12 @@
 
 	</section>
 
+	<script type="text/javascript">
+		$("tr").click(function() {
+			let memberId = $(this).find("label").text();
+			location.href = "${ pageContext.servletContext.contextPath }/manager/modMember?memberId=" + memberId; 
+		});
+	</script>
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 </body>

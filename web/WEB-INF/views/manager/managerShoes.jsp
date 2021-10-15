@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +32,7 @@
 				<!-- Sidebar - Brand -->
 				<a
 					class="sidebar-brand d-flex align-items-center justify-content-center"
-					href="index.html">
+					href="${ pageContext.servletContext.contextPath }/manager/shoes">
 					<div class="sidebar-brand-icon rotate-n-15">
 					</div>
 					<div class="sidebar-brand-text mx-3">MANAGER</div>
@@ -59,17 +60,9 @@
 						</div>
 					</div></li>
 
-
-
 				<!-- Divider -->
 				<hr class="sidebar-divider">
 
-				<!-- Heading -->
-
-				<!-- Sidebar Toggler (Sidebar) -->
-				<div class="text-center d-none d-md-inline">
-					<button class="rounded-circle border-0" id="sidebarToggle"></button>
-				</div>
 			</ul>
 
 			<!-- Content Wrapper -->
@@ -115,14 +108,14 @@
 														<td style="text-align: center;"><label><c:out value="${ shoes.shoesNo }"/></label></td>
 														<td style="text-align: center;"><c:out value="${ shoes.category.shoesCategoryName }"/></td>
 														<td style="text-align: center;"><c:out value="${ shoes.shoesModel }"/> </td>
-														<td style="text-align: center;"><c:out value="${ shoes.shoesPrice }"/></td>
-														<td style="text-align: center;"><c:out value="${ shoes.salesAmount }"/></td>
-														<td style="text-align: center;"><c:out value="${ shoes.reamaningAmount }"/></td>
+														<td style="text-align: center;"><fmt:formatNumber value="${ shoes.shoesPrice }" pattern="###,###,###"/>원</td>
+														<td style="text-align: center;"><fmt:formatNumber value="${ shoes.salesAmount }" pattern="###,###,###"/></td>
+														<td style="text-align: center;"><fmt:formatNumber value="${ shoes.reamaningAmount }" pattern="###,###,###"/></td>
 														<td style="text-align: center;"><c:out value="${ shoes.salesYn }"/></td>
 														<td style="text-align: center;"><c:out value="${ shoes.eventEndYn }"/></td>
-														<td style="text-align: center;"><c:out value="${ shoes.startDate }"/></td>
-														<td style="text-align: center;"><c:out value="${ shoes.endDate }"/></td>
-														<td style="text-align: center;"><c:out value="${ shoes.winnerDate }"/></td>
+														<td style="text-align: center;"><fmt:formatDate value="${ shoes.startDate }" type="date" pattern="yyyy/MM/dd (E) HH:mm"/></td>
+														<td style="text-align: center;"><fmt:formatDate value="${ shoes.endDate }" type="date" pattern="yyyy/MM/dd (E) HH:mm"/></td>
+														<td style="text-align: center;"><fmt:formatDate value="${ shoes.winnerDate }" type="date" pattern="yyyy/MM/dd (E) HH:mm"/></td>
 													</tr>
 												</c:forEach>	
 										</tbody>
@@ -135,21 +128,12 @@
 						<a href="${ pageContext.servletContext.contextPath }/manager/regShoes" id="registShoes">신발 등록</a>
 					</div>
 
-					<!-- /.container-fluid -->
-					<div class="paging">
-						<a href="#" class="btn_arr first"><i
-							class="fa fa-chevron-left" aria-hidden="true"></i><span
-							class="hide">처음페이지</span></a> <a href="#" class="btn_arr prev"><i
-							class="fa fa-chevron-left" aria-hidden="true"></i><span
-							class="hide">이전페이지</span></a> <a href="#" class="on">1</a>
-						<!-- D : 활성화페이지일 경우 : on 처리 -->
-						<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-						<a href="#" class="btn_arr next"><i class="fa fa-chevron-right" aria-hidden="true"></i>
-						<span class="hide">다음페이지</span></a> 
-						<a href="#" class="btn_arr last">
-						<i class="fa fa-chevron-right" aria-hidden="true"></i>
-						<span class="hide">마지막페이지</span></a>
-					</div>
+					<!-- 페이징처리 넣기 -->
+					<jsp:include page="paging.jsp" />
+					
+					
+					
+					
 				</div>
 				<!-- End of Main Content -->
 			</div>
@@ -163,7 +147,6 @@
 	<script type="text/javascript">
 		$("tr").click(function() {
 			let shoesNo = $(this).find("label").text();
-			console.log(shoesNo);
 			location.href = "${ pageContext.servletContext.contextPath }/manager/modShoes?shoesNo=" + shoesNo; 
 		});
 	</script>

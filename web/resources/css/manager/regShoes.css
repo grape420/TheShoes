@@ -23,15 +23,15 @@ tr:hover {
 	border: 1px black solid;
 }
 
-button {
+#registBtn {
 	border-radius: 10px !important;
 	display: block !important;
 	margin: 20px auto !important;
 }
 
-.thumbnail-file-area input[type=file] {
+ .thumbnail-file-area input[type=file] {
 	display: none !important;
-}
+} 
 
 .title-img-area:hover, .content-img-area1:hover, .content-img-area2:hover,
 	.content-img-area3:hover, .content-img-area4:hover, .content-img-area5:hover
