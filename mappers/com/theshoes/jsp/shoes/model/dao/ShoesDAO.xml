@@ -61,9 +61,41 @@
 		     , C.THUMBNAIL_PATH
 		  FROM SHOES_INFO A
 		  LEFT JOIN SHOES_CATEGORY B ON (A.INFO_CATEGORY_NO = B.SHOES_CATEGORY_NO)
-		  LEFT JOIN SHOES_THUMB C ON (A.SHOES_NO = C.ST_NO)
+		  LEFT JOIN SHOES_THUMB C ON (A.SHOES_NO = C.ST_NO) AND C.FILE_TYPE = 'TITLE'
 		 WHERE A.SALES_YN = 'Y'
 		 ORDER BY A.SHOES_NO DESC
+	</select>
+	
+	<select id="selectShoesListCnt" resultType="_int">
+		SELECT COUNT(*) 
+		FROM SHOES_INFO
+	</select>
+	
+	
+	<select id="selectShoesDetail" resultMap="shoesResultMap">
+		SELECT
+		       A.SHOES_NO
+		     , A.INFO_CATEGORY_NO
+		     , B.SHOES_CATEGORY_NAME
+		     , A.SHOES_MODEL
+		     , A.SHOES_PRICE
+		     , A.SALES_YN
+		     , A.SALES_AMOUNT
+		     , A.REAMANING_AMOUNT
+		     , A.START_DATE
+		     , A.END_DATE
+		     , A.WINNER_DATE
+		     , A.EVENT_END_YN
+		     , C.SHOES_THUMB_NO
+		     , C.ORIGINAL_NAME
+		     , C.SAVED_NAME
+		     , C.SAVE_PATH
+		     , C.FILE_TYPE  
+		     , C.THUMBNAIL_PATH
+		  FROM SHOES_INFO A
+		  LEFT JOIN SHOES_CATEGORY B ON (A.INFO_CATEGORY_NO = B.SHOES_CATEGORY_NO)
+		  LEFT JOIN SHOES_THUMB C ON (A.SHOES_NO = C.ST_NO)
+		 WHERE A.SHOES_NO = #{ shoesNo }
 	</select>
 			
 </mapper>

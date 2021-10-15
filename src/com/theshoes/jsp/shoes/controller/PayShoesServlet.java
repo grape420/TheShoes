@@ -12,6 +12,9 @@ public class PayShoesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String path = "/WEB-INF/views/shoes/pay.jsp";
+		
+		request.getRequestDispatcher(path).forward(request, response);
 		
 	}
 
