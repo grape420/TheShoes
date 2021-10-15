@@ -34,16 +34,16 @@
 					<div class="right">
 						<ul class="img_list">
 							<li class="input_img" id="img_body1">
-								<img id="img_file1">이미지 등록1<input type="file" accept="image/jpg, image/jpeg, image/png" id="resell_img1" onchange="loadImg(this, 1)">
+								<img id="img_file1">이미지 등록1<input type="file" name="resellFileName" accept="image/jpg, image/jpeg, image/png" id="resell_img1" onchange="loadImg(this, 1)">
 							</li>
 							<li class="input_img" id="img_body2">
-								<img id="img_file2">이미지 등록2<input type="file" accept="image/jpg, image/jpeg, image/png" id="resell_img2" onchange="loadImg(this, 2)">
+								<img id="img_file2">이미지 등록2<input type="file" name="resellFileName" accept="image/jpg, image/jpeg, image/png" id="resell_img2" onchange="loadImg(this, 2)">
 							</li>
 							<li class="input_img" id="img_body3">
-								<img id="img_file3">이미지 등록3<input type="file" accept="image/jpg, image/jpeg, image/png" id="resell_img3" onchange="loadImg(this, 3)">
+								<img id="img_file3">이미지 등록3<input type="file" name="resellFileName" accept="image/jpg, image/jpeg, image/png" id="resell_img3" onchange="loadImg(this, 3)">
 							</li>
 							<li class="input_img" id="img_body4">
-								<img id="img_file4">이미지 등록4<input type="file" accept="image/jpg, image/jpeg, image/png" id="resell_img4" onchange="loadImg(this, 4)">
+								<img id="img_file4">이미지 등록4<input type="file" name="resellFileName" accept="image/jpg, image/jpeg, image/png" id="resell_img4" onchange="loadImg(this, 4)">
 							</li>
 							<!--이미지 등록했을때 화면 필요 없을시 아래의 내용 삭제-->
 							<!--<li>
@@ -88,15 +88,6 @@
 					<div class="right">
 						<textarea placeholder="상품 설명을 입력해 주세요." id="content_body" name="boardContent"></textarea>
 						<span class="count black right_p" id="content_count">0/2000</span>
-					</div>
-				</li>
-				<li>
-					<div class="left">
-						<p class="text">수량</p>
-					</div>
-					<div class="right">
-						<input type="text" value="1" style="width: 240px;" /> <span
-							class="count black">개</span>
 					</div>
 				</li>
 			</ul>

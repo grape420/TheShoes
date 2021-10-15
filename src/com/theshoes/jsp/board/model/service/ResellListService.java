@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import static com.theshoes.jsp.common.mybatis.Template.getSqlSession;
 
 import com.theshoes.jsp.board.model.dto.BoardDTO;
+import com.theshoes.jsp.board.model.dto.ResellDTO;
 import com.theshoes.jsp.board.model.dto.ResellDetailDTO;
 import com.theshoes.jsp.board.model.dto.ResellListDTO;
 import com.theshoes.jsp.board.model.dto.ResellThumbDTO;
@@ -71,10 +72,10 @@ public class ResellListService {
 	}
 	
 
-	public int insertshoes(ResellDetailDTO resellShoes) {
+	public int insertResellShoes(ResellDTO resellShoes) {
 		
 		SqlSession session = getSqlSession();
-		
+		System.out.println("test");
 		int result = 0;
 		
 		int resellResult = ResellListDAO.insertResellShoes(session, resellShoes);
@@ -83,6 +84,7 @@ public class ResellListService {
 		
 		for(int i = 0; i < fileList.size(); i++) {
 			fileList.get(i).setRtNo(resellShoes.getResellNo());
+			System.out.println("test");
 		}
 		
 		int resellShoesThumbResult = 0;

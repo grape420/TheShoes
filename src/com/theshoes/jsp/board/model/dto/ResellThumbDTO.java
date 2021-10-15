@@ -7,7 +7,7 @@ public class ResellThumbDTO implements Serializable{
 	private static final long serialVersionUID = 4292895152934337466L;
 	
 	private int rtNo;
-	private String rtFile;
+	private int resellThumbNo;
 	private String originalName;
 	private String savedName;
 	private String savePath;
@@ -15,20 +15,20 @@ public class ResellThumbDTO implements Serializable{
 	private String thumbnailPath;
 	private String status;
 
-	public ResellThumbDTO(int rtNo, String rtFile, String originalName, String savedName, String savePath,
+	public ResellThumbDTO() {
+		
+	}
+
+	public ResellThumbDTO(int rtNo, int resellThumbNo, String originalName, String savedName, String savePath,
 			String fileType, String thumbnailPath, String status) {
 		this.rtNo = rtNo;
-		this.rtFile = rtFile;
+		this.resellThumbNo = resellThumbNo;
 		this.originalName = originalName;
 		this.savedName = savedName;
 		this.savePath = savePath;
 		this.fileType = fileType;
 		this.thumbnailPath = thumbnailPath;
 		this.status = status;
-	}
-
-	public ResellThumbDTO() {
-		
 	}
 
 	public int getRtNo() {
@@ -39,12 +39,12 @@ public class ResellThumbDTO implements Serializable{
 		this.rtNo = rtNo;
 	}
 
-	public String getRtFile() {
-		return rtFile;
+	public int getResellThumbNo() {
+		return resellThumbNo;
 	}
 
-	public void setRtFile(String rtFile) {
-		this.rtFile = rtFile;
+	public void setResellThumbNo(int resellThumbNo) {
+		this.resellThumbNo = resellThumbNo;
 	}
 
 	public String getOriginalName() {
@@ -101,10 +101,11 @@ public class ResellThumbDTO implements Serializable{
 
 	@Override
 	public String toString() {
-		return "ResellThumbDTO [rtNo=" + rtNo + ", rtFile=" + rtFile + ", originalName=" + originalName + ", savedName="
-				+ savedName + ", savePath=" + savePath + ", fileType=" + fileType + ", thumbnailPath=" + thumbnailPath
-				+ ", status=" + status + "]";
+		return "ResellThumbDTO [rtNo=" + rtNo + ", resellThumbNo=" + resellThumbNo + ", originalName=" + originalName
+				+ ", savedName=" + savedName + ", savePath=" + savePath + ", fileType=" + fileType + ", thumbnailPath="
+				+ thumbnailPath + ", status=" + status + "]";
 	}
 
+	
 	
 }

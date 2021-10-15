@@ -20,6 +20,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import com.theshoes.jsp.board.model.dto.ResellDTO;
 import com.theshoes.jsp.board.model.dto.ResellDetailDTO;
 import com.theshoes.jsp.board.model.dto.ResellThumbDTO;
 import com.theshoes.jsp.board.model.service.ResellListService;
@@ -145,10 +146,9 @@ public class RegResellServlet extends HttpServlet {
 				System.out.println("parameter : " + parameter);
 				System.out.println("fileList : " + fileList);
 				
-				ResellDetailDTO resellShoes = new ResellDetailDTO(); 
+				ResellDTO resellShoes = new ResellDTO(); 
 				
-				resellShoes.setBoardTitle(parameter.get("boardTitle"));
-				resellShoes.setBoardContent(parameter.get("boardContent"));
+				resellShoes.setResellFileName(parameter.get("resellFileName"));
 			
 				resellShoes.setResellThumb(new ArrayList<ResellThumbDTO>());
 				List<ResellThumbDTO> list = resellShoes.getResellThumb();
@@ -170,7 +170,7 @@ public class RegResellServlet extends HttpServlet {
 				System.out.println("resell board : " + resellShoes);
 				
 				ResellListService regResellService = new ResellListService();
-				int result = regResellService.insertshoes(resellShoes);
+				int result = regResellService.insertResellShoes(resellShoes);
 				
 				String path = "";
 				if(result > 0) {

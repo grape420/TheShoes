@@ -55,10 +55,10 @@
 									<span class="color"><c:out value="${ resellList.boardContent }"/></span>
 								</p>
 								<p class="hover">
-									<a href="javascript:void(0)">Resell</a>
+									<a href="${ pageContext.servletContext.contextPath }/resell/detail?boardNo=${ resellList.boardNo }">Resell</a>
 								</p>
 							</div>
-							<a class="stretched-link" href="#"></a>
+							<a class="stretched-link" href="${ pageContext.servletContext.contextPath }/resell/detail?boardNo=${ resellList.boardNo }"></a>
 						</div>
 					</div>
 				</div>
@@ -87,7 +87,7 @@
 		</div>
 	</section>
 	<script type="text/javascript">
-	$(function() {
+	/* $(function() {
 		$("#resellTable a").hover(function() {
 			$(this).parent().css({"cursor":"pointer"});
 		}).click(function() {
@@ -95,7 +95,7 @@
 			console.log(categoryOrder);
 			location.href = "${ pageContext.servletContext.contextPath }/resell/detail?categoryOrder=" + categoryOrder;
 		});
-	});
+	}); */
 	</script>
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
