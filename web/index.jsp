@@ -9,7 +9,7 @@
 <body>
 
 	<!-- 메인페이지로 포워드 -->
-	<jsp:forward page="/WEB-INF/views/myPage/myProfile.jsp"/>
+	<jsp:forward page="/WEB-INF/views/myPage/resellHistory.jsp"/>
 	<script>
 		/* location.replace("${ pageContext.servletContext.contextPath }/common/mainPage"); */
 	</script>
