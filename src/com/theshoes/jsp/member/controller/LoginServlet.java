@@ -34,6 +34,8 @@ public class LoginServlet extends HttpServlet {
 		
 		member = memberService.loginMember(member);
 		
+		System.out.println("로그인체크 : " + member.toString());
+		
 		if(member != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("entryMember", member);

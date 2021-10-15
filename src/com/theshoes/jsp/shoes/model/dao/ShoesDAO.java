@@ -24,5 +24,9 @@ public class ShoesDAO {
 	public List<ShoesDTO> selectShoesList(SqlSession session) {
 		return session.selectList("ShoesDAO.selectShoesList2");
 	}
+
+	public int isEntryUser(SqlSession session, String userId) {
+		return session.selectOne("ShoesDAO.isEntryUser", userId);
+	}
 	
 }

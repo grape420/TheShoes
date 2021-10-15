@@ -61,4 +61,15 @@ public class ShoesService {
 		
 	}
 
+	public int isEntryUser(String userId) {
+		
+		SqlSession session = getSqlSession();
+		
+		int isEntry = shoesDAO.isEntryUser(session, userId);
+		
+		session.close();
+		
+		return isEntry;
+	}
+
 }
