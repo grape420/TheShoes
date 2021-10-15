@@ -162,7 +162,8 @@
 														<div class="right_btm">
 														<a id="btnM"  type="button" class="btn outlinegrey small modi" data-toggle="modal" data-target="#exampleModa"
 														   data-whatever="@getbootstrap"> 수정 </a> 
-														<a id="" type="button" class="btn outlinegrey small"> 삭제 </a>
+														<a href="${ pageContext.servletContext.contextPath }/myPage/address?currentPage=${ selectCriteria.pageNo }&delete=${ address.addressNo }" 
+														id="btnD" type="button" class="btn outlinegrey small"> 삭제 </a>
 														</div>
 													</div>
 												</div>
@@ -205,7 +206,7 @@
 									<!-- 전체 데이터를 불러와서 수정을 해야하는데 수정불가하지만 필요한 값 -->
 									<input type="hidden" name="addressNo" value="${ requestScope.addressList[0].addressNo }">							
 									<input type="hidden" name="nameMM" value="${ requestScope.addressList[0].nameMM }">
-									<button type="submit" class="abtn-link width-large"	id="changeBtn" data-dismiss="modal">배송지 수정</button>
+									<button type="submit" class="abtn-link width-large"	id="changeBtn" data-dismiss="modal" >배송지 수정</button>
 								</div>
 							</form>
 						</div>
@@ -219,24 +220,25 @@
 	<!-- 참고 링크 : http://postcode.map.daum.net/guide -->
 	<!--  주소록 추가 -->
 	<script>
-				const $searchZipCode = document.getElementById("searchZipCode");
-				const $sizeBtn = document.getElementById("sizeBtn");
-				$searchZipCode.onclick = function()  {  
+		 const $searchZipCode = document.getElementById("searchZipCode");
+		 const $sizeBtn = document.getElementById("sizeBtn");
+				
+		 $searchZipCode.onclick = function()  {  
 			//다음 우편번호 검색 창을 오픈하면서 동작할 콜백 메소드를 포함한 객체를 매개변수로 전달한다.
 			new daum.Postcode({
 				oncomplete: function(data){
 					//팝업에서 검색결과 항목을 클릭했을 시 실행할 코드를 작성하는 부분
-					document.getElementById("address1MM").value = data.zonecode;
-					document.getElementById("address2MM").value = data.address;
+				document.getElementById("address1MM").value = data.zonecode;
+				document.getElementById("address2MM").value = data.address;
 				}
 			}).open();
 		}
 		$sizeBtn.onclick = function() {
-			location.href = "${ pageContext.servletContext.contextPath }";
+		 location.href = "${ pageContext.servletContext.contextPath }";
 		}
-	</script>
+	
 	<!-- 주소록 수정 -->
-	<script>
+	
 		const $searchZipCodeMM = document.getElementById("searchZipCodeMM");
 		const $changeBtn = document.getElementById("changeBtn");
 			  
@@ -261,6 +263,13 @@
 	    $("#addressName2").val($(this).parent().prev().prev().prev().prev().text());
 	    })
 	    
+      $("#sizeBtn").click(function() {
+         $("#test").submit();
+      })
+
+      $("#changeBtn").click(function() {
+         $("#modify").submit();
+      })
 
 	</script>
 	
@@ -274,17 +283,6 @@
 	
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	
-	<script>
-      $("#sizeBtn").click(function() {
-         $("#test").submit();
-      });
-   </script>
-   
-   <script>
-      $("#changeBtn").click(function() {
-         $("#modify").submit();
-      });
-   </script>
 	
 </body>
 </html>

@@ -57,5 +57,11 @@
 		     
 	</update>
 	
+	<delete id="deleteAddress">
+		DELETE
+		  FROM ADDRESS A
+		 WHERE A.ADDRESS_NO = #{ addressNo }
+	</delete>
+	
 	
 </mapper>

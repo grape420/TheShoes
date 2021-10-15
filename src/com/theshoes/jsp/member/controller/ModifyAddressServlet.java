@@ -2,6 +2,7 @@ package com.theshoes.jsp.member.controller;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.theshoes.jsp.common.paging.SelectCriteria;
 import com.theshoes.jsp.member.model.dto.AddressDTO;
 import com.theshoes.jsp.member.model.dto.MemberDTO;
 import com.theshoes.jsp.member.model.serivce.AddressService;
@@ -21,7 +23,26 @@ public class ModifyAddressServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		HttpSession session = request.getSession();
+		String id =  ((MemberDTO)session.getAttribute("entryMember")).getId();
+		/* 전체 주소록 조회 */ 
+		List<AddressDTO> addressList = new AddressService().selectAllAddressList(id);
+		
+		System.out.println("addressList : " + addressList);
+		
+		SelectCriteria selectCriteria = null;
+		
+		String path = "";
+		if(addressList != null) {
+			path = "/WEB-INF/views/myPage/myAddress.jsp";
+			request.setAttribute("addressList", addressList);
+		} else {
+			path = "/WEB-INF/views/common/errorPage.jsp";
+		}
+		request.getRequestDispatcher(path).forward(request, response);
+		
 	}
+	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
@@ -55,14 +76,15 @@ public class ModifyAddressServlet extends HttpServlet {
 	System.out.println("address" + address);
 	
 	AddressService addressService = new AddressService();
+	
 	int result = addressService.updateAddress(address);
 	
 	String path = "";
 	
 	/* address 수정 후 주소록 메인페이지로 이동  */
 	if(result > 0) {
-		path = "/WEB-INF/views/myPage/myAddress.jsp";
-		request.setAttribute("myAddressCode", "insertAddress");
+		path = "/WEB-INF/views/common/success.jsp";
+		request.setAttribute("successCode", "updateAddress");
 	} else {
 		path = "/WEB-INF/views/common/errorPage.jsp";
 	}

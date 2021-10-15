@@ -49,13 +49,30 @@ public class AddressService {
 			
 			
 			int result = addressDAO.updateAddress(session, address);
-			System.out.println("나는야 서비스 ");
 			
 			if(result > 0) {
 				session.commit();
 			} else {
 				session.rollback();
 			}
+			session.close();
+			
+			return result;
+		}
+
+		/* 주소록 삭제 메소드 */ 
+		public int deletAddress(String addressNo) {
+			SqlSession session = getSqlSession();
+			
+			int result = addressDAO.deleteAddress(session, addressNo);
+			System.out.println("나는야 서비스 ");
+			
+			if (result > 0) {
+				session.commit();
+			} else {
+				session.rollback();
+			}
+			
 			session.close();
 			
 			return result;

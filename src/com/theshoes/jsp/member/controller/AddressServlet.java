@@ -20,6 +20,19 @@ public class AddressServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		AddressService addressService = new AddressService();
+		
+		if(request.getParameter("delete") != null) {
+			int result = addressService.deletAddress(request.getParameter("delete"));
+			
+			if (result > 0) {
+				request.setAttribute("deleteRequest", "0");
+			} else {
+				request.setAttribute("deleteRequest", "1");
+			}
+		}
 	
 		HttpSession session = request.getSession();
 		String id =  ((MemberDTO)session.getAttribute("entryMember")).getId();

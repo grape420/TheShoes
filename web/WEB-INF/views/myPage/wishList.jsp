@@ -113,7 +113,8 @@
 												<em>구매</em>
 												<span class="price_num"><fmt:formatNumber value="${ wish.shoes.shoesPrice }" pattern="#,###,###"></fmt:formatNumber> 원</span>
 											</a>
-											<a href="${ pageContext.servletContext.contextPath }/myPage/wishList?currentPage=${ selectCriteria.pageNo }&delete=${ wish.wishNo }"><button id="deleteBtn" type="button" class="delete">삭제</button></a>
+											<a href="${ pageContext.servletContext.contextPath }/myPage/wishList?currentPage=${ selectCriteria.pageNo }&delete=${ wish.wishNo }">
+											<button id="deleteBtn" type="button" class="delete">삭제</button></a>
 										</div>
 									</div>
 								</div>
