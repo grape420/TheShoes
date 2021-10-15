@@ -83,7 +83,7 @@
 										<label for="country">카테고리</label> 
 										<select
 											class="custom-select d-block w-100" id="infoCategoryNo"
-											name="infoCategoryNo" required>
+											name="infoCategoryNo" >
 											<option value="1">나이키</option>
 											<option value="2">스캇</option>
 											<option value="3">Jordan</option>
@@ -94,7 +94,7 @@
 									<div class="col-md-4 mb-3">
 										<label for="lastName">모델명</label> <input type="text"
 											class="form-control" id="shoesModel" placeholder=""
-											name="shoesModel" >
+											name="shoesModel" required>
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="lastName">발매가</label> <input type="number"
@@ -109,7 +109,7 @@
 									<div class="col-md-4 mb-3">
 										<label for="country">판매여부</label> 
 										<select class="custom-select d-block w-100" id="salesYn"
-											name="salesYn" >
+											name="salesYn" required>
 											<option value="Y">Y</option>
 											<option value="N">N</option>
 										</select>
@@ -191,16 +191,16 @@
 										</div>
 
 										<div class="thumbnail-file-area">
-			                              <input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)" required>
-			                              <input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this,2)" required>
-			                              <input type="file" id="thumbnailImg3" name="thumbnailImg3" onchange="loadImg(this,3)" required>
-			                              <input type="file" id="thumbnailImg4" name="thumbnailImg4" onchange="loadImg(this,4)" required>
-			                              <input type="file" id="thumbnailImg5" name="thumbnailImg5" onchange="loadImg(this,5)" required>
-			                              <input type="file" id="thumbnailImg6" name="thumbnailImg6" onchange="loadImg(this,6)" required>
+			                              <input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)" >
+			                              <input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this,2)" >
+			                              <input type="file" id="thumbnailImg3" name="thumbnailImg3" onchange="loadImg(this,3)" >
+			                              <input type="file" id="thumbnailImg4" name="thumbnailImg4" onchange="loadImg(this,4)" >
+			                              <input type="file" id="thumbnailImg5" name="thumbnailImg5" onchange="loadImg(this,5)" >
+			                              <input type="file" id="thumbnailImg6" name="thumbnailImg6" onchange="loadImg(this,6)" >
 			                            </div>
 
 									<div class="col-md-12 mb-3">
-										<button type="submit" id="registBtn" class="btn btn-outline-secondary">등록</button>
+										<button type="button" id="registBtn" class="btn btn-outline-secondary">등록</button>
 									</div>
 								</div>
 							</form>
@@ -216,51 +216,71 @@
 
 	<%-- <script src="${ pageContext.servletContext.contextPath }/resources/js/manager/regShoes.js"></script> --%>
 	
-	 <script type="text/javascript">
-	 const $titleImgArea = document.getElementById("titleImg");
-     const $contentImgArea1 = document.getElementById("contentImg1");
-     const $contentImgArea2 = document.getElementById("contentImg2");
-     const $contentImgArea3 = document.getElementById("contentImg3");
-     const $contentImgArea4 = document.getElementById("contentImg4");
-     const $contentImgArea5 = document.getElementById("contentImg5");
-
-     $titleImgArea.onclick = function() {
-       document.getElementById("thumbnailImg1").click();
-     }
-     $contentImgArea1.onclick = function() {
-				document.getElementById("thumbnailImg2").click();
+	 <script>
+		 const $titleImgArea = document.getElementById("titleImg");
+	     const $contentImgArea1 = document.getElementById("contentImg1");
+	     const $contentImgArea2 = document.getElementById("contentImg2");
+	     const $contentImgArea3 = document.getElementById("contentImg3");
+	     const $contentImgArea4 = document.getElementById("contentImg4");
+	     const $contentImgArea5 = document.getElementById("contentImg5");
+	
+	     $titleImgArea.onclick = function() {
+	       	document.getElementById("thumbnailImg1").click();
+	     		};
+	     $contentImgArea1.onclick = function() {
+			document.getElementById("thumbnailImg2").click();
+				};
+	     $contentImgArea2.onclick = function() {
+			document.getElementById("thumbnailImg3").click();
+				};
+	     $contentImgArea3.onclick = function() {
+			document.getElementById("thumbnailImg4").click();
+				};
+	     $contentImgArea4.onclick = function() {
+			document.getElementById("thumbnailImg5").click();
+				};
+	     $contentImgArea5.onclick = function() {
+			document.getElementById("thumbnailImg6").click();
+				};
+	
+	     function loadImg(value, num) {
+	       if (value.files && value.files[0]) {
+	         const reader = new FileReader();
+	
+	         reader.readAsDataURL(value.files[0]);
+	
+	         reader.onload = function(e) {
+	           switch(num) {
+	             case 1 : document.getElementById("titleImg").src = e.target.result; break;
+	             case 2 : document.getElementById("contentImg1").src = e.target.result; break;
+	             case 3 : document.getElementById("contentImg2").src = e.target.result; break;
+	             case 4 : document.getElementById("contentImg3").src = e.target.result; break;
+	             case 5 : document.getElementById("contentImg4").src = e.target.result; break;
+	             case 6 : document.getElementById("contentImg5").src = e.target.result; break;
+	           }
+	         }
+	       }
+	     };
+	     
+	     $("#registBtn").on("click", function () {
+	    	 if ($(".title-img-area").prop("src") == false ||
+    			 $(".content-img-area1").prop("src") == false ||
+    			 $(".content-img-area2").prop("src") == false ||
+    			 $(".content-img-area3").prop("src") == false ||
+    			 $(".content-img-area4").prop("src") == false ||
+    			 $(".content-img-area5").prop("src") == false) {
+				alert("6장의 사진을 등록하세요");
+			} else {
+				$(this).attr("type", "submit");
 			}
-     $contentImgArea2.onclick = function() {
-				document.getElementById("thumbnailImg3").click();
-			}
-     $contentImgArea3.onclick = function() {
-				document.getElementById("thumbnailImg4").click();
-			}
-     $contentImgArea4.onclick = function() {
-				document.getElementById("thumbnailImg5").click();
-			}
-     $contentImgArea5.onclick = function() {
-				document.getElementById("thumbnailImg6").click();
-			}
-
-     function loadImg(value, num) {
-       if (value.files && value.files[0]) {
-         const reader = new FileReader();
-
-         reader.readAsDataURL(value.files[0]);
-
-         reader.onload = function(e) {
-           switch(num) {
-             case 1 : document.getElementById("titleImg").src = e.target.result; break;
-             case 2 : document.getElementById("contentImg1").src = e.target.result; break;
-             case 3 : document.getElementById("contentImg2").src = e.target.result; break;
-             case 4 : document.getElementById("contentImg3").src = e.target.result; break;
-             case 5 : document.getElementById("contentImg4").src = e.target.result; break;
-             case 6 : document.getElementById("contentImg5").src = e.target.result; break;
-           }
-         }
-       }
-     }
+      	   		
+		});
+	     
+	     
+     
+	     
+	     
+	     
 	 </script>
 
 </body>

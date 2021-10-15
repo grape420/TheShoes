@@ -228,7 +228,7 @@
 
 	<%-- <script src="${ pageContext.servletContext.contextPath }/resources/js/manager/regShoes.js"></script> --%>
 	
-	 <script type="text/javascript">
+	 <script>
 	 const $titleImgArea = document.getElementById("titleImg");
      const $contentImgArea1 = document.getElementById("contentImg1");
      const $contentImgArea2 = document.getElementById("contentImg2");

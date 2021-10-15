@@ -245,8 +245,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 ORDER BY A.SHOES_NO DESC
 	</select>
 	
-
-	
 	<select id="selectShoesDetail" resultMap="shoesResultMap">
 		SELECT
 		       A.SHOES_NO
