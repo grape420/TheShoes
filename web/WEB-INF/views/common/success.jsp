@@ -49,6 +49,9 @@
 				case "updateShoes" :
 					movePath = "${ pageContext.servletContext.contextPath }/manager/shoes";
 					break;
+				case "deleteShoes" :
+					movePath = "${ pageContext.servletContext.contextPath }/manager/delete";
+					break;
 			}
 			location.replace(movePath);
 		})();

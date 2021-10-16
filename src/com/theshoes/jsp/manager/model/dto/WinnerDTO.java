@@ -7,24 +7,24 @@ public class WinnerDTO implements Serializable{
 
 	private static final long serialVersionUID = 5889529200394124301L;
 	
-	private String winnerId;
 	private int winnerNo;
-	private String winnerYn;
-	private java.util.Date winnerDeadLine;
-	
+	private String memberId;
+	private String deliveryDetail;
+	private String name;
+	private String shoesModel;
+	private String shoesPrice;
+	private String eventStatus;
 	public WinnerDTO() {
 	}
-	public WinnerDTO(String winnerId, int winnerNo, String winnerYn, Date winnerDeadLine) {
-		this.winnerId = winnerId;
+	public WinnerDTO(int winnerNo, String memberId, String deliveryDetail, String name, String shoesModel,
+			String shoesPrice, String eventStatus) {
 		this.winnerNo = winnerNo;
-		this.winnerYn = winnerYn;
-		this.winnerDeadLine = winnerDeadLine;
-	}
-	public String getWinnerId() {
-		return winnerId;
-	}
-	public void setWinnerId(String winnerId) {
-		this.winnerId = winnerId;
+		this.memberId = memberId;
+		this.deliveryDetail = deliveryDetail;
+		this.name = name;
+		this.shoesModel = shoesModel;
+		this.shoesPrice = shoesPrice;
+		this.eventStatus = eventStatus;
 	}
 	public int getWinnerNo() {
 		return winnerNo;
@@ -32,27 +32,52 @@ public class WinnerDTO implements Serializable{
 	public void setWinnerNo(int winnerNo) {
 		this.winnerNo = winnerNo;
 	}
-	public String getWinnerYn() {
-		return winnerYn;
+	public String getMemberId() {
+		return memberId;
 	}
-	public void setWinnerYn(String winnerYn) {
-		this.winnerYn = winnerYn;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
-	public java.util.Date getWinnerDeadLine() {
-		return winnerDeadLine;
+	public String getDeliveryDetail() {
+		return deliveryDetail;
 	}
-	public void setWinnerDeadLine(java.util.Date winnerDeadLine) {
-		this.winnerDeadLine = winnerDeadLine;
+	public void setDeliveryDetail(String deliveryDetail) {
+		this.deliveryDetail = deliveryDetail;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getShoesModel() {
+		return shoesModel;
+	}
+	public void setShoesModel(String shoesModel) {
+		this.shoesModel = shoesModel;
+	}
+	public String getShoesPrice() {
+		return shoesPrice;
+	}
+	public void setShoesPrice(String shoesPrice) {
+		this.shoesPrice = shoesPrice;
+	}
+	public String getEventStatus() {
+		return eventStatus;
+	}
+	public void setEventStatus(String eventStatus) {
+		this.eventStatus = eventStatus;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 	@Override
 	public String toString() {
-		return "WinnerDTO [winnerId=" + winnerId + ", winnerNo=" + winnerNo + ", winnerYn=" + winnerYn
-				+ ", winnerDeadLine=" + winnerDeadLine + "]";
+		return "WinnerDTO [winnerNo=" + winnerNo + ", memberId=" + memberId + ", deliveryDetail=" + deliveryDetail
+				+ ", name=" + name + ", shoesModel=" + shoesModel + ", shoesPrice=" + shoesPrice + ", eventStatus="
+				+ eventStatus + "]";
 	}
 	
 	
-
+	
 }

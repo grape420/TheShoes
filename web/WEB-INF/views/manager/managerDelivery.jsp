@@ -100,15 +100,16 @@
 											</tr>
 										</thead>
 										<tbody>
-												<c:forEach var="delivery" items="${ requestScope.deliveryList }" begin="${ selectCriteria.startRow - 1 }" end="${ selectCriteria.endRow - 1 }">										
-													<tr style="cursor: pointer;">
-														<td style="text-align: center;"><label><c:out value="${ delivery.id }"/></label></td>
-														<td style="text-align: center;"><c:out value="${ delivery.name }"/></td>
-														<td style="text-align: center;"><c:out value="${ delivery.event[0].shoes.shoesModel }"/> </td>
-														<td style="text-align: center;"><fmt:formatNumber value="${ delivery.event[0].shoes.shoesPrice }" pattern="###,###,###"/>원</td>
-														<td style="text-align: center;"><c:out value="${ delivery.address[0].addressZip }"/></td>
-														<td style="text-align: center;"><c:out value="${ delivery.event[0].eventStatus }"/></td> 
-													</tr>
+										<%-- begin="${ selectCriteria.startRow - 1 }" end="${ selectCriteria.endRow - 1 }" --%>
+												<c:forEach var="winner" items="${ requestScope.winnerList }" begin="${ selectCriteria.startRow - 1 }" end="${ selectCriteria.endRow - 1 }" varStatus="st">
+														<tr style="cursor: pointer;">
+															<td style="text-align: center;">${ winner.memberId }</td>
+															<td style="text-align: center;">${ winner.name }</td>
+															<td style="text-align: center;">${ winner.shoesModel }</td>
+															<td style="text-align: center;"><fmt:formatNumber value="${ winner.shoesPrice }" pattern="###,###,###원"/></td>
+															<td style="text-align: center;">${ winner.deliveryDetail }</td>
+															<td style="text-align: center;">${ winner.eventStatus }</td>
+														</tr>
 												</c:forEach>	
 										</tbody>
 									</table>
