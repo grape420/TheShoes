@@ -121,6 +121,13 @@
            AND A.CATEGORY_ORDER = #{ categoryOrder }
 	</update>
 	
+	<delete id="deleteNotice" parameterType="_int">
+		DELETE 
+		  FROM BOARD A
+		 WHERE A.BOARD_CATEGORY_NO = 1
+		   AND A.CATEGORY_ORDER = #{ categoryOrder }
+	</delete>
+	
 	<!-- 자주 묻는 질문 FAQ (BOARD_CATEGORY_NO = 2) -->
 	<insert id="registFaq">
         INSERT /* com.theshoes.jsp.board.model.dao.BoardDAO#registFaq() */
@@ -226,5 +233,12 @@
          WHERE A.BOARD_CATEGORY_NO = 2
            AND A.CATEGORY_ORDER = #{ categoryOrder }
 	</update>
+	
+	<delete id="deleteFaq" parameterType="_int">
+		DELETE 
+		  FROM BOARD A
+		 WHERE A.BOARD_CATEGORY_NO = 2
+		   AND A.CATEGORY_ORDER = #{ categoryOrder }
+	</delete>
 	
 </mapper>

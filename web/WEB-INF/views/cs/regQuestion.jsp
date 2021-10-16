@@ -17,6 +17,7 @@
 <body>
 	<!-- header -->
 	<jsp:include page="../common/header.jsp" />
+	
 	<!-- section -->
 	<section>
 		<!-- Page Wrapper -->
@@ -92,12 +93,12 @@
 								</div>
 								<div class="col-md-6 mb-3">
 									<label for="lastName">작성자</label> <p class="form-control" id="lastName">${ sessionScope.entryMember.id }</p>
-									<input type="hidden" value="${ sessionScope.entryMember.id }" name="csId">
+									<input type="hidden" value="${ sessionScope.entryMember.id }" name="csId" required>
 									<div class="invalid-feedback"></div>
 								</div>
 								<div class="col-md-12">
 									<label>내용</label>
-									<textarea class="form-control" id="exampleFormControlTextarea1" rows="20" name="csContent"></textarea>
+									<textarea class="form-control" id="exampleFormControlTextarea1" rows="20" name="csContent" required="required"></textarea>
 								</div>
 	
 								<div class="col-md-6 mb-3">

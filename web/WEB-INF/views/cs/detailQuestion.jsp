@@ -138,14 +138,19 @@
 											<div class="row">
 												<div class="col-md-12">
 													<label for="exampleFormControlTextarea1">내용</label>
-													<textarea class="form-control" id="exampleFormControlTextarea1"
-														rows="20" name="requestContent"></textarea>
+													<textarea class="form-control" id="exampleFormControlTextarea1"	rows="20" name="requestContent" required="required"></textarea>
 												</div>
 												
 												<div class="col-md-12" style="text-align: center; padding: 30px;">
 													<div class="row"> 
 														<div class="col-md-4"></div>
 											             
+												    	 <!-- 목록 버튼 -->
+											             <div class="col-md-2">
+											              <button type="button" class="btn btn-outline-secondary "
+															id="listBtn" onclick="location.href='${ pageContext.servletContext.contextPath }/cs/list'">목록보기</button>
+											             </div> 
+														 
 											             <!-- 답변 등록 버튼 --> 
 												         <div class="col-md-2">
 													        <c:if test="${ sessionScope.entryMember.role eq 'MANAGER'}"> 
@@ -153,11 +158,6 @@
 													        </c:if> 
 												         </div>
 												    	 
-												    	 <!-- 목록 버튼 -->
-											             <div class="col-md-2">
-											              <button type="button" class="btn btn-outline-secondary "
-															id="listBtn" onclick="location.href='${ pageContext.servletContext.contextPath }/cs/list'">목록보기</button>
-											             </div> 
 														 <div class="col-md-4"></div>
 										            </div>
 	            							    </div>

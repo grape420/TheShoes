@@ -28,11 +28,13 @@
 					
 				case "insertNotice" :
 				case "updateNotice" :
+				case "deleteNotice" :
 					movePath = "${ pageContext.servletContext.contextPath }/board/list";
 					break;
 					
 				case "insertFaq" :
 				case "updateFaq" :
+				case "deleteFaq" :
 					movePath = "${ pageContext.servletContext.contextPath }/faq/list";
 					break;	
 					
