@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="QuestionDAO">
+	
+	<resultMap type="com.theshoes.jsp.cs.model.dto.QuestionDTO" id="csResultMap">
+		<id property="csNo" column="CS_NO"/>
+		<result property="csId" column="CS_ID"/>
+		<result property="csTitle" column="CS_TITLE"/>
+		<result property="csContent" column="CS_CONTENT"/>
+		<result property="csRegDate" column="CS_REGDATE"/>
+		
+		<collection property="qtList" resultMap="csFileResultMap"/>
+	</resultMap>
+
+	<resultMap type="com.theshoes.jsp.cs.model.dto.QuestionFileDTO" id="csFileResultMap">
+		<id property="csFileNo" column="CS_FILE_NO"/>
+		<id property="ctNo" column="CS_BOARD_NO"/>
+		<result property="originalName" column="CS_ORIGINAL_NAME"/>
+		<result property="savedName" column="CS_SAVED_NAME"/>
+		<result property="savePath" column="CS_SAVE_PATH"/>
+		<result property="fileType" column="CS_FILE_TYPE"/>
+		<result property="thumbnailPath" column="CS_THUMBNAIL_PATH"/>
+		<result property="status" column="CS_ATTACHMENT_STATUS"/>
+	</resultMap>
+
+	<resultMap type="com.theshoes.jsp.cs.model.dto.RequestDTO" id="csRequestResultMap">
+		<id property="csRequestNo" column="CS_REQUEST_NO"/>
+		<result property="managerId" column="MANAGER_ID"/>
+		<result property="requestContent" column="REQUEST_CONTENT"/>
+		<result property="requestRegDate" column="REQUEST_DATE"/>
+	</resultMap>
+
+	<!-- 첨부파일 등록 -->
+	<insert id="insertQuestionFile" parameterType="com.theshoes.jsp.cs.model.dto.QuestionFileDTO">
+        INSERT /* com.theshoes.jsp.board.model.dao.QuestionDAO#insertQuestionFile() */
+          INTO CS_BOARD_FILE A
+       	  (
+			   A.CS_FILE_NO
+			 , A.CS_BOARD_NO
+   			 , A.CS_ORIGINAL_NAME
+			 , A.CS_SAVED_NAME
+			 , A.CS_SAVE_PATH
+			 , A.CS_FILE_TYPE
+			 , A.CS_THUMBNAIL_PATH
+			 , A.CS_ATTACHMENT_STATUS
+			)
+	        VALUES
+			(
+			  SEQ_CS_BOARD_FILE_CODE.NEXTVAL
+			, SEQ_CS_BOARD_CODE.CURRVAL
+			, #{ originalName }
+			, #{ savedName }
+			, #{ savePath }
+			, #{ fileType }
+			, #{ thumbnailPath }
+			, 'Y'
+			)
+	</insert>
+
+ 	<!-- 첨부파일 있는 문의글 등록 -->
+  	<insert id="insertQuestion" >
+        INSERT /* com.theshoes.jsp.board.model.dao.QuestionDAO#insertQuestion() */
+          INTO CS_BOARD A
+        (
+          A.CS_NO
+        , A.CS_ID
+        , A.CS_TITLE
+        , A.CS_CONTENT
+        , A.CS_REGDATE
+        )
+        VALUES 
+        (
+          SEQ_CS_BOARD_CODE.NEXTVAL
+        , #{ csId }
+        , #{ csTitle }
+        , #{ csContent }
+        , #{ csRegDate }
+        )
+        <selectKey keyProperty="csNo" resultType="Integer" order="AFTER">
+        	SELECT
+        	       SEQ_CS_BOARD_CODE.CURRVAL
+        	  FROM DUAL
+        </selectKey>
+	</insert>
+	
+	<!-- 전체 문의글 목록 조회 -->
+	<select id="selectAllCsList" resultMap="csResultMap">
+	  SELECT /* com.theshoes.jsp.cs.model.dao.QuestionDAO#selectAllCsList() */
+	          A.RNUM
+	        , A.CS_NO
+	        , A.CS_ID
+	        , A.CS_TITLE
+	        , A.CS_CONTENT
+	        , A.CS_REGDATE
+         FROM (SELECT ROWNUM RNUM
+			        , B.CS_NO
+			        , B.CS_ID
+			        , B.CS_TITLE
+			        , B.CS_CONTENT
+			        , B.CS_REGDATE
+         		FROM (SELECT C.CS_NO
+	        			   , C.CS_ID
+	        			   , C.CS_TITLE
+	       				   , C.CS_CONTENT
+	        			   , C.CS_REGDATE
+         			    FROM CS_BOARD C
+         			ORDER BY C.CS_NO DESC) B
+         		<![CDATA[
+         	    WHERE ROWNUM <= #{ endRow,jdbcType=VARCHAR } ]]> ) A
+         	  WHERE A.RNUM >= #{ startRow, jdbcType=VARCHAR }
+	</select>	
+	
+	<!-- 전체 문의글 수 조회 -->
+	<select id="selectCsTotalCount" resultType="_int">
+        SELECT /* com.theshoes.jsp.cs.model.dao.QuestionDAO#selectCsTotalCount() */
+	          COUNT(*)
+         FROM CS_BOARD A
+	</select>	
+	
+	<!-- 문의글 조회  -->
+	<select id="selectCsDetail" resultMap="csResultMap">
+        SELECT /* com.theshoes.jsp.cs.model.dao.QuestionDAO#selectCsDetail() */
+               A.CS_NO
+             , A.CS_TITLE
+             , A.CS_CONTENT
+             , A.CS_REGDATE
+             , B.CS_FILE_NO
+             , B.CS_ORIGINAL_NAME
+             , B.CS_SAVED_NAME
+             , B.CS_SAVE_PATH
+             , B.CS_FILE_TYPE
+             , B.CS_THUMBNAIL_PATH
+          FROM CS_BOARD A
+          JOIN CS_BOARD_FILE B ON (A.CS_NO = B.CS_BOARD_NO)
+         WHERE B.CS_ATTACHMENT_STATUS = 'Y'
+           AND B.CS_FILE_TYPE = 'TITLE'
+           AND A.CS_NO = #{ csNo }
+	</select>
+	
+	<!-- 답변 INSERT -->
+	<insert id="registRequest">
+        INSERT /* com.theshoes.jsp.cs.model.dao.QuestionDAO#registNotice() */
+          INTO CS_REQUEST A
+        (
+          A.CS_REQUEST_NO
+        , A.MANAGER_ID
+        , A.REQUEST_CONTENT
+        , A.REQUEST_DATE
+        )
+        VALUES
+        (
+          #{ csRequestNo }
+        , #{ managerId }
+        , #{ requestContent }
+        , #{ requestRegDate }
+        )
+	</insert>
+
+	<!-- 답변글 갯수 확인 -->
+	<select id="selectRequestCount" resultType="_int">
+        SELECT /* com.theshoes.jsp.cs.model.dao.QuestionDAO#selectRequestCount() */
+	          COUNT(*)
+         FROM CS_REQUEST A
+        WHERE A.CS_REQUEST_NO = #{ csRequestNo }
+       
+	</select>	
+	
+	<!-- 답변글 상세보기  -->
+	<select id="selectRequestDetail" resultMap="csRequestResultMap">
+        SELECT /* com.theshoes.jsp.cs.model.dao.QuestionDAO#selectRequestDetail() */
+        	   A.CS_REQUEST_NO
+             , A.MANAGER_ID
+             , A.REQUEST_CONTENT
+             , A.REQUEST_DATE
+          FROM CS_REQUEST A
+         WHERE A.CS_REQUEST_NO = 6
+	</select>
+</mapper>
