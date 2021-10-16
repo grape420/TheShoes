@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.theshoes.jsp.common.paging.SelectCriteria;
 import com.theshoes.jsp.manager.model.dto.EventDTO;
+import com.theshoes.jsp.manager.model.dto.WinnerDTO;
 import com.theshoes.jsp.shoes.model.dao.ShoesDAO;
 import com.theshoes.jsp.shoes.model.dto.ShoesDTO;
 
@@ -89,7 +90,6 @@ public class ShoesService {
 	}
 	
 	public int isEntryUser(String userId) {
-		
 		SqlSession session = getSqlSession();
 		
 		int isEntry = shoesDAO.isEntryUser(session, userId);
@@ -97,6 +97,36 @@ public class ShoesService {
 		session.close();
 		
 		return isEntry;
+	}
+
+	public int selectEvnetNo(EventDTO event) {
+		SqlSession session = getSqlSession();
+		
+		int evnetNo = shoesDAO.selectEvnetNo(session, event);
+		
+		session.close();
+		
+		return evnetNo;
+	}
+
+	public int payShoes(EventDTO event) {
+		SqlSession session = getSqlSession();
+		
+		int result = 0;
+		
+		int isEvent = shoesDAO.updateEvent(session, event);
+
+		int isWinner = shoesDAO.updateWinner(session, event);
+		
+		if ((isEvent > 0) && (isWinner > 0)) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
 	}
 
 }

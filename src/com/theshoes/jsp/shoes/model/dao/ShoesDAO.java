@@ -1,11 +1,13 @@
 package com.theshoes.jsp.shoes.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.theshoes.jsp.common.paging.SelectCriteria;
 import com.theshoes.jsp.manager.model.dto.EventDTO;
+import com.theshoes.jsp.manager.model.dto.WinnerDTO;
 import com.theshoes.jsp.shoes.model.dto.ShoesDTO;
 
 public class ShoesDAO {
@@ -36,5 +38,18 @@ public class ShoesDAO {
 	
 	public int isEntryUser(SqlSession session, String userId) {
 		return session.selectOne("ShoesDAO.isEntryUser", userId);
+	}
+
+	public int selectEvnetNo(SqlSession session, EventDTO event) {
+		return session.selectOne("ShoesDAO.selectEvnetNo", event);
+	}
+
+	public int updateEvent(SqlSession session, EventDTO event) {
+		return session.update("ShoesDAO.updateEvent", event);
+	}
+
+	public int updateWinner(SqlSession session, EventDTO event) {
+		System.out.println(event);
+		return session.update("ShoesDAO.updateWinner", event);
 	}
 }

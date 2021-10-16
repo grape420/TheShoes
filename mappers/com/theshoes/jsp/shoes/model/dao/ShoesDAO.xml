@@ -168,5 +168,25 @@
 		FROM EVENT 
 		WHERE EVENT_ID = #{userId}
 	</select>
+	
+	<select id="selectEvnetNo" parameterType="com.theshoes.jsp.manager.model.dto.EventDTO" resultType="_int">
+		SELECT A.EVENT_NO
+		FROM EVENT A
+		WHERE A.EVENT_ID = #{ eventId }
+		  AND A.EVENT_SHOES_ID = #{ eventShoesId }
+	</select>
+	
+	<update id="updateEvent" parameterType="com.theshoes.jsp.manager.model.dto.EventDTO">
+		UPDATE EVENT A
+           SET A.EVENT_STATUS = '5'
+         WHERE A.EVENT_NO = #{ eventNo }
+	</update>
+	
+	<update id="updateWinner" parameterType="com.theshoes.jsp.manager.model.dto.EventDTO">
+		UPDATE WINNER A
+           SET A.DELIVERY_CODE = #{ eventId }
+             , A.DELIVERY_DETAIL = #{ eventStatus }
+         WHERE A.WINNER_NO = #{ eventNo }
+	</update>
 			
 </mapper>
