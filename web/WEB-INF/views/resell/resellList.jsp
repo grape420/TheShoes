@@ -38,8 +38,8 @@
 		<div class="sc-ciodno jeBajc">
 			<div class="sc-bYwvMP dsPtbr">
 				<div class="sc-gGCbJM aZXoH">
-					<span class="sc-crNyjn fCkOBf">신발</span>의 검색결과 <span
-						class="sc-lcpuFF llJACf">51개 </span>
+					<span class="sc-crNyjn fCkOBf">신발</span>의 검색결과 
+					<span class="sc-lcpuFF llJACf">51개 </span>
 				</div>
 			</div>
 		</div>

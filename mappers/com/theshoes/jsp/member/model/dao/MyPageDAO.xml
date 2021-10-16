@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+				
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace= "MyPageDAO.xml">
 
 	<resultMap type="com.theshoes.jsp.board.model.dto.BoardDTO" id="SalesHistoryResultMap">
@@ -12,8 +14,15 @@
 		<result property="boardHit" column="BOARD_HIT"/>
 		<result property="categoryOrder" column="CATEGORY_ORDER"/>
 	</resultMap>  
-  
-  
-  
-  
+	 
+	 <select id = "selectSalesHistory" resultMap = "SalesHistoryResultMap" > 
+	      SELECT 
+		       A.BOARD_TITLE
+		     , A.BOARD_CONTENT
+		     , A.BOARD_REGDATE
+		  FROM BOARD A
+		 WHERE A.BOARD_CATEGORY_NO = 3
+		ORDER BY 1 DESC	  
+	 </select>
+	  
 </mapper>

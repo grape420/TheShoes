@@ -98,16 +98,16 @@
 							<div class="sales-list" data-order="">
 							<c:forEach var="sales" items="${ requestScope.salesList }" begin="${ selectCriteria.startRow - 1 }" end="${ selectCriteria.endRow - 1 }">
 								<div class="header">
-									<span class="order-code">(게시글 작성일자)판매일시 2021.08.13 10:14:16</span>
+									<span class="order-code">(게시글 작성일자 (BOARD_REGDATE))판매일시 2021.08.13 10:14:16<c:out value= "${ salesList.boardregdate }"/></span>
 								</div>
 								<div class="order-item-wrap thedraw-item">
 									<div class="item-info">
 										<div class="img-wrap">
-												<img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/$" />
+												<img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/" /> 
 								         </div>
 								<div class="info-wrap">
-									 <span class="tit"> <a>에어 조던 1 로우 OG SP(판매 게시글 제목)</a> <c:out value="${ salesList.boardTitle }"/> </span> 
-									 <span class="opt">DM7866-140 / 260 (내용)<c:out value="${ salesList.boardContent }"/></span> 
+									 <span class="tit"> <a>에어 조던 1 로우 OG SP(판매 게시글 제목(BOARD_TITLE))</a> <c:out value="${ salesList.boardTitle }"/> </span> 
+									 <span class="opt">DM7866-140 / 260 (내용(BOARD_CONTENT))<c:out value="${ salesList.boardContent }"/></span> 
 								</div>
 								<div class="btnDiv">
 									  <button type="button" class="btn btn-outline-dark">게시글 이동</button>

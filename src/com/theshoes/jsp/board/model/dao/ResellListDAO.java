@@ -1,39 +1,33 @@
 package com.theshoes.jsp.board.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.theshoes.jsp.board.model.dto.BoardDTO;
+import com.theshoes.jsp.board.model.dto.ResellDTO;
 import com.theshoes.jsp.board.model.dto.ResellDetailDTO;
 import com.theshoes.jsp.board.model.dto.ResellListDTO;
 import com.theshoes.jsp.board.model.dto.ResellThumbDTO;
+import com.theshoes.jsp.common.paging.SelectCriteria;
 
 public class ResellListDAO {
 
-
 	public List<BoardDTO> selectResellList(SqlSession session) {
-		return session.selectList("ResellListDAO.selectResellList", selectCriteria);
+		
+		return session.selectList("ResellListDAO.selectResellList");
 	}
-	public ResellListDTO selectOneResellList(SqlSession session, int no) {
-			return session.selectOne("resellListDAO.selectOneResellList", no);
+	public ResellDetailDTO selectOneResellList(SqlSession session, int no) {
+			return session.selectOne("ResellListDAO.selectOneResellList", no);
 	}
-	public static int insertResellShoes(SqlSession session, ResellDetailDTO resellShoes) {
-		return session.insert("resellListDAO.insertResellShoes", resellShoes);
-	}
-	public ResellListDTO selectOneResellList(SqlSession session, int no) {
-			return session.selectOne("resellListDAO.selectOneResellList", no);
-	}
-	public static int insertResellShoes(SqlSession session, ResellDetailDTO resellShoes) {
-		return session.insert("resellListDAO.insertResellShoes", resellShoes);
+	public int insertResellShoes(SqlSession session, ResellListDTO resell) {
+		return session.insert("ResellListDAO.insertResellShoes", resell);
 	}
 
-	public static int insertResellThumb(SqlSession session, ResellThumbDTO file) {
-		return session.insert("resellListDAO.insertResellThumb", file);
+	public int insertResellThumb(SqlSession session, ResellThumbDTO resellThumb) {
+		System.out.println(resellThumb);
+		return session.insert("ResellListDAO.insertResellThumb", resellThumb);
 	}
-	public static int incrementBoardCount(SqlSession session, int categoryOrder) {
-		return session.update("ResellListDAO.incrementBoardCount", categoryOrder);	
-	}
-	
 	
 }

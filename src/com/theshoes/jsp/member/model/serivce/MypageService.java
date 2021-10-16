@@ -18,6 +18,7 @@ public class MypageService {
 		SqlSession session = getSqlSession();
 		
 		List<BoardDTO> salesList = MypageDAO.selectResellList(session);
+		
 		System.out.println("resellList" + salesList);
 	
 		session.close();

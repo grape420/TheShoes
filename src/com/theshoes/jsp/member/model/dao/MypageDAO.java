@@ -10,8 +10,7 @@ public class MypageDAO {
 
 	/* 판매내역 */ 
 	public static List<BoardDTO> selectResellList(SqlSession session) {
-		// TODO Auto-generated method stub
-		return null;
+		return session.salesList("MypageDAO.selectResellList");
 	}
 
 }
