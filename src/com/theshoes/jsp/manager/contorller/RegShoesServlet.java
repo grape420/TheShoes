@@ -49,7 +49,7 @@ public class RegShoesServlet extends HttpServlet {
 			System.out.println("최대 업로드 파일 용량 : " + maxFileSize);
 			System.out.println("인코딩 방식 : " + encodingType);
 			
-			String fileUploadDirectory = rootLocation + "/resources/upload/image/shoes/";
+			String fileUploadDirectory = rootLocation + "resources/upload/image/shoes/";
 			String thumbnailDirectory = rootLocation + "/resources/upload/thumb/";
 			
 			File directory = new File(fileUploadDirectory);
@@ -141,7 +141,7 @@ public class RegShoesServlet extends HttpServlet {
 									.toFile(thumbnailDirectory + "thumbnail_" + randomFileName);
 							
 							/* 나중에 웹서버에서 접근 가능한 경로 형태로 썸네일의 저장 경로도 함께 저장한다. */
-							fileMap.put("thumbnailPath", "/resources/upload/thumbnail/thumbnail_" + randomFileName);
+							fileMap.put("thumbnailPath", "/resources/upload/thumb/thumbnail_" + randomFileName);
 							
 							fileList.add(fileMap);
 							
@@ -160,15 +160,6 @@ public class RegShoesServlet extends HttpServlet {
 				
 				System.out.println("parameter : " + parameter);
 				System.out.println("fileList : " + fileList);
-				
-//				int infoCategoryNo = Integer.valueOf(request.getParameter("infoCategoryNo"));
-//				String shoesModel = request.getParameter("shoesModel");
-//				int shoesPrice = Integer.valueOf(request.getParameter("shoesPrice"));
-//				String winnerDate = request.getParameter("winnerDate");
-//				String salesYn = request.getParameter("salesYn");
-//				int salesAmount = Integer.valueOf(request.getParameter("salesAmount"));
-//				String startDate = request.getParameter("startDate");
-//				String endDate = request.getParameter("endDate");
 				
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
 				
@@ -190,6 +181,7 @@ public class RegShoesServlet extends HttpServlet {
 				shoes.setThumbList(new ArrayList<ShoesThumbDTO>());
 				List<ShoesThumbDTO> list = shoes.getThumbList();
 				for (int i = 0; i < fileList.size(); i++) {
+					
 					Map<String, String> file = fileList.get(i);
 					
 					ShoesThumbDTO tempFileInfo = new ShoesThumbDTO();
@@ -202,10 +194,18 @@ public class RegShoesServlet extends HttpServlet {
 					list.add(tempFileInfo);
 				}
 				
+				for (ShoesThumbDTO shoes1 : list) {
+					System.out.println("여기는 서블릿 : " + shoes1);
+				}
+				
 				System.out.println("thumbnail board : " + shoes);
 				
 				ShoesService regShoesService = new ShoesService();
 				int result = regShoesService.insertShoes(shoes);
+				
+				for (ShoesThumbDTO shoes1 : list) {
+					System.out.println("여기는 서블릿 아래 : " + shoes1);
+				}
 				
 				/* 성공 실패 페이지를 구분하여 연결한다. */
 				String path = "";

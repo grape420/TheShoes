@@ -2,7 +2,6 @@ package com.theshoes.jsp.board.contorller;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,14 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import com.theshoes.jsp.board.model.dto.ResellDTO;
-import com.theshoes.jsp.board.model.dto.ResellDetailDTO;
+import com.theshoes.jsp.board.model.dto.ResellListDTO;
 import com.theshoes.jsp.board.model.dto.ResellThumbDTO;
 import com.theshoes.jsp.board.model.service.ResellListService;
+import com.theshoes.jsp.member.model.dto.MemberDTO;
 
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -44,8 +42,8 @@ public class RegResellServlet extends HttpServlet {
 			int maxFileSize = 1024 * 1024 * 10;
 			String encodingType = "UTF-8";
 			
-			String fileUploadDirectory = rootLocation + "/resources/upload/image/resellShoes/";
-			String thumbnailDirectory = rootLocation + "/resources/upload/thumb/";
+			String fileUploadDirectory = rootLocation + "/resources/upload/thumb/";
+			String thumbnailDirectory = rootLocation + "/resources/upload/image/resellShoes/";
 			
 			File directory = new File(fileUploadDirectory);
 			File directory2 = new File(thumbnailDirectory);
@@ -108,13 +106,13 @@ public class RegResellServlet extends HttpServlet {
 							int width = 0;
 							int height = 0;
 							if("thumbnailImg1".equals(filedName)) {
-								fileMap.put("fileType", "boardTitle");
+								fileMap.put("fileType", "TITLE");
 								
 								/* 썸네일로 변환 할 사이즈를 지정한다. */
 								width = 350;
 								height = 200;
 							} else {
-								fileMap.put("fileType", "boardContent");
+								fileMap.put("fileType", "BODY");
 								
 								width = 120;
 								height = 100;
@@ -133,25 +131,21 @@ public class RegResellServlet extends HttpServlet {
 						} 
 						
 					} else {
-						/* 폼 데이터인 경우 */
-						/* 전송된 폼의 name은 getFiledName()으로 받아오고, 해당 필드의 value는 getString()으로 받아온다. 
-						 * 하지만 인코딩 설정을 하더라도 전송되는 파라미터는 ISO-8859-1로 처리된다.
-						 * 별도로 ISO-8859-1로 해석된 한글을 UTF-8로 변경해주어야 한다.
-						 * */
-//						parameter.put(item.getFieldName(), item.getString());
 						parameter.put(item.getFieldName(), new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
 					}
 				}
+				ResellListService regResellService = new ResellListService();
 				
 				System.out.println("parameter : " + parameter);
 				System.out.println("fileList : " + fileList);
 				
-				ResellDTO resellShoes = new ResellDTO(); 
+				ResellListDTO resell = new ResellListDTO(); 
 				
-				resellShoes.setResellFileName(parameter.get("resellFileName"));
-			
-				resellShoes.setResellThumb(new ArrayList<ResellThumbDTO>());
-				List<ResellThumbDTO> list = resellShoes.getResellThumb();
+				resell.setBoardTitle(parameter.get("boardTitle"));
+				resell.setBoardContent(parameter.get("boardContent"));
+				resell.setBoardId(((MemberDTO)request.getSession().getAttribute("entryMember")).getId());
+				
+				List<ResellThumbDTO> thumbList = new ArrayList<>();
 				
 				for(int i = 0; i < fileList.size(); i++) {
 					Map<String, String> file = fileList.get(i);
@@ -163,14 +157,12 @@ public class RegResellServlet extends HttpServlet {
 					tempFileInfo.setFileType(file.get("fileType"));
 					tempFileInfo.setThumbnailPath(file.get("thumbnailPath"));
 					
-					list.add(tempFileInfo);
-					
+					thumbList.add(tempFileInfo);
 				}
 				
-				System.out.println("resell board : " + resellShoes);
+				resell.setResellThumb(thumbList);
 				
-				ResellListService regResellService = new ResellListService();
-				int result = regResellService.insertResellShoes(resellShoes);
+				int result = regResellService.insertResellShoes(resell);
 				
 				String path = "";
 				if(result > 0) {

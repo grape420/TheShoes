@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,22 +18,25 @@
 
 	<!-- section -->
 	<section>
+		<%-- <c:forEach var="resellThumb" items="${ requestScope.resellDetail.resellThumb }"> --%>
 		<div class="info-section">
+			<c:forEach var="resellThumb" items="${ requestScope.resellDetail.resellThumb }">
 			<ul class="images">
 				<li><figure>
-						<img src="${ pageContext.servletContext.contextPath }/resources/uses/shoes1.png" alt="">
+						<img style="" src="/TheShoes/resources/upload/thumb/${resellThumb.savedName} alt=">
 					</figure></li>
-				<li><figure>
-						<img src="${ pageContext.servletContext.contextPath }/resources/uses/main02.jpg" alt="">
-					</figure></li>
+				<%-- <li><figure>
+						<img src="/TheShoes/resources/upload/thumb/${resellThumb.savedName} alt="">
+					</figure></li> --%>
 			</ul>
+			</c:forEach>
 			<div class="info">
 				<h1>
-					우먼스 덩크 하이 레벨
-					</h3>
-					<h2>Pastels</h2>
+					${requestScope.resellDetail.boardTitle}
+					</h1>
+					<h2></h2>
 					<h5>138,000 원</h5>
-					<p class="txt">이번 덩크 하이는 단순한 신제품이 아닌 유쾌한 반항 정신을 가미하여 출시된 제품입니다.
+					<p class="txt">${requestScope.resellDetail.boardContent}
 					</p>
 			</div>
 		</div>
@@ -96,6 +101,7 @@
 				</button>
 			</div>
 		</div>
+		<%-- </c:forEach> --%>
 	</section>
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />

@@ -81,9 +81,18 @@
   pointer-events: none;
 }
 section {
-	max-width: 70%;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.div-title {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 900;
 }
 
 .filter>option {
@@ -104,6 +113,7 @@ section {
 }
 
 .dsPtbr {
+	margin-left: 20px;
 	display: flex;
 	width: 100%;
 	-webkit-box-pack: justify;
@@ -130,6 +140,7 @@ section {
 	padding: 0px;
 	border: 0px;
 	font: inherit;
+	margin-left: 20px;
 	vertical-align: baseline;
 	color: rgb(247, 0, 0);
 }
@@ -236,8 +247,9 @@ section {
 }
 
 .row {
-	width: 100%;
-	margin: 0;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 3rem!important;
 }
 
 .card {

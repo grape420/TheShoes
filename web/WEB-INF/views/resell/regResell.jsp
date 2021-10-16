@@ -37,13 +37,19 @@
 								<img id="img_file1">이미지 등록1<input type="file" name="resellFileName" accept="image/jpg, image/jpeg, image/png" id="resell_img1" onchange="loadImg(this, 1)">
 							</li>
 							<li class="input_img" id="img_body2">
-								<img id="img_file2">이미지 등록2<input type="file" name="resellFileName" accept="image/jpg, image/jpeg, image/png" id="resell_img2" onchange="loadImg(this, 2)">
+								<img id="img_file2">이미지 등록2<input type="file" name="resellFileName1" accept="image/jpg, image/jpeg, image/png" id="resell_img2" onchange="loadImg(this, 2)">
 							</li>
 							<li class="input_img" id="img_body3">
-								<img id="img_file3">이미지 등록3<input type="file" name="resellFileName" accept="image/jpg, image/jpeg, image/png" id="resell_img3" onchange="loadImg(this, 3)">
+								<img id="img_file3">이미지 등록3<input type="file" name="resellFileName2" accept="image/jpg, image/jpeg, image/png" id="resell_img3" onchange="loadImg(this, 3)">
 							</li>
 							<li class="input_img" id="img_body4">
-								<img id="img_file4">이미지 등록4<input type="file" name="resellFileName" accept="image/jpg, image/jpeg, image/png" id="resell_img4" onchange="loadImg(this, 4)">
+								<img id="img_file4">이미지 등록4<input type="file" name="resellFileName3" accept="image/jpg, image/jpeg, image/png" id="resell_img4" onchange="loadImg(this, 4)">
+							</li>
+							<li class="input_img" id="img_body5">
+								<img id="img_file5">이미지 등록4<input type="file" name="resellFileName4" accept="image/jpg, image/jpeg, image/png" id="resell_img5" onchange="loadImg(this, 5)">
+							</li>
+							<li class="input_img" id="img_body6">
+								<img id="img_file6">이미지 등록4<input type="file" name="resellFileName5" accept="image/jpg, image/jpeg, image/png" id="resell_img6" onchange="loadImg(this, 6)">
 							</li>
 							<!--이미지 등록했을때 화면 필요 없을시 아래의 내용 삭제-->
 							<!--<li>

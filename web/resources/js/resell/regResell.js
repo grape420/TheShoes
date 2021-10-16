@@ -60,6 +60,8 @@ const $img_body1 = document.getElementById("img_file1");
 const $img_body2 = document.getElementById("img_file2");
 const $img_body3 = document.getElementById("img_file3");
 const $img_body4 = document.getElementById("img_file4");
+const $img_body5 = document.getElementById("img_file5");
+const $img_body6 = document.getElementById("img_file6");
 
 $img_body1.onclick = function() {
 			document.getElementById("resell_img1").click();
@@ -72,6 +74,12 @@ $img_body3.onclick = function() {
 		}	
 $img_body4.onclick = function() {
 			document.getElementById("resell_img4").click();
+		}
+$img_body5.onclick = function() {
+			document.getElementById("resell_img5").click();
+		}
+$img_body6.onclick = function() {
+			document.getElementById("resell_img6").click();
 		}	
 		
 function loadImg(value, num) {
@@ -86,6 +94,8 @@ function loadImg(value, num) {
           case 2 : document.getElementById("img_file2").src = e.target.result; break;
           case 3 : document.getElementById("img_file3").src = e.target.result; break;
           case 4 : document.getElementById("img_file4").src = e.target.result; break;
+		  case 5 : document.getElementById("img_file5").src = e.target.result; break;
+		  case 6 : document.getElementById("img_file6").src = e.target.result; break;
 
         }
       }
