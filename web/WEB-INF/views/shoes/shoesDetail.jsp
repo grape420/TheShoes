@@ -49,17 +49,27 @@
 			              <p><span>당첨자발표 : </span><span><fmt:formatDate value="${requestScope.shoesDetail.winnerDate}" pattern="MM/dd(E) HH:mm"/></span></p>
 			            </div>
 			          </div>
-			          <!--//211014 수정-->
-			           <fmt:formatDate value="${now}" pattern="yyyyMMddhhmm" var="nowDate" />             <%-- 오늘날짜 --%>
-						<fmt:formatDate value="${requestScope.shoesDetail.endDate}" pattern="yyyyMMddHHmm" var="closeDate"/> 
-			          <c:choose> 
-							<c:when test="${closeDate > nowDate}">
-					          <a class="btn" href="${ pageContext.servletContext.contextPath }/shoes/event?shoesNo=${ shoesDetail.shoesNo }">응모가능</a>
-							</c:when> 
-							<c:otherwise>
-							  <a class="btn" href="javascript:void(0)">응모 불가능</a>
-							</c:otherwise> 
-						</c:choose> 
+			          <!--//211015 수정-->
+			          <fmt:formatDate value="${now}" pattern="yyyyMMddhhmm" var="nowDate" />             <%-- 오늘날짜 --%>
+					  <fmt:formatDate value="${requestScope.shoesDetail.endDate}" pattern="yyyyMMddHHmm" var="closeDate"/> 
+			          <c:choose>
+				          <c:when test="${sort == 0}">
+						  	<a class="btn" href="javascript:void(0)">응모 불가능</a>
+						  </c:when>
+						  <c:when test="${sort == 1}">
+							  <c:choose> 
+									<c:when test="${closeDate > nowDate}">
+							          <a class="btn" href="${ pageContext.servletContext.contextPath }/shoes/event?shoesNo=${ shoesDetail.shoesNo }">응모 가능</a>
+									</c:when> 
+									<c:otherwise>
+									  <a class="btn" href="javascript:void(0)">응모 불가능</a>
+									</c:otherwise> 
+								</c:choose>
+						  </c:when>
+						  <c:when test="${sort == 2}">
+					          <a class="btn" href="javascript:void(0)">응모 완료</a>
+						  </c:when>
+					  </c:choose>
 					<!-- <p class="txt">이번 덩크 하이는 단순한 신제품이 아닌 유쾌한 반항 정신을 가미하여 출시된 제품입니다.
 						과장된 멀티컬러 오버레이가 돋보이는 갑피와 화이트 스택 중창이 디자인의 가장 큰 특징이며, 쥬얼 스우시 자수를 클래식한
 						가죽 스우시 위로 과감하게 레이어링하였습니다. 밝은 파스텔과 페일 코럴, 퓨어 바이올렛, 레몬 트위스트 등의 컬러가

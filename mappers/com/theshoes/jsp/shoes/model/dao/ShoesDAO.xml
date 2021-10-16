@@ -162,5 +162,11 @@
 		  FROM EVENT A
 		 WHERE A.RANDOM_NO = #{ randomNo }
 	</select>
+	
+	<select id="isEntryUser" resultType="_int">
+		SELECT COUNT(*) 
+		FROM EVENT 
+		WHERE EVENT_ID = #{userId}
+	</select>
 			
 </mapper>

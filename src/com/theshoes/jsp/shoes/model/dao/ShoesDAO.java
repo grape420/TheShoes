@@ -34,4 +34,7 @@ public class ShoesDAO {
 		return session.selectOne("ShoesDAO.selectEventByRandomNo", randomNo);
 	}
 	
+	public int isEntryUser(SqlSession session, String userId) {
+		return session.selectOne("ShoesDAO.isEntryUser", userId);
+	}
 }
