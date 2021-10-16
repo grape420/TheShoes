@@ -82,7 +82,7 @@
 					<h1 class="h3 mb-2 text-gray-800">FAQ 등록</h1>
 					<p class="mb-4"></p>
 
-					<form class="needs-validation" novalidate action="${ pageContext.servletContext.contextPath }/faq/reg" method="post">
+					<form class="needs-validation" action="${ pageContext.servletContext.contextPath }/faq/reg" method="post">
 						<div class="row">
 							<div class="col-md-6 mb-3">
 								<label for="firstName">제목</label> 

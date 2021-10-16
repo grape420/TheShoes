@@ -30,6 +30,8 @@ public class RegBoardServlet extends HttpServlet {
 	/* 공지사항 작성 후 post 요청을 할 경우 처리하는 역할 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		System.out.println("나와라");
+		
 		/* 사용자가 입력한 정보 받아오기 */
 		String noticeTitle = request.getParameter("noticeTitle");	  		// 공지사항 제목
 		String noticeWriterId = request.getParameter("noticeWriterId");		// 공지사항 작성자 id

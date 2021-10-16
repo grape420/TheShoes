@@ -81,7 +81,7 @@
 					<h1 class="h3 mb-2 text-gray-800">FAQ 수정</h1>
 					<p class="mb-4"></p>
 
-					<form class="needs-validation" novalidate action="${ pageContext.servletContext.contextPath }/faq/modify" method="post">
+					<form class="needs-validation" action="${ pageContext.servletContext.contextPath }/faq/modify" method="post">
 						<div class="row">
 							<div class="col-md-6 mb-3">
 								<label for="firstName">제목</label> 
@@ -111,9 +111,9 @@
 								<button type="button" class="btn btn-outline-secondary" id="delBtn" onclick="location.href='${ pageContext.servletContext.contextPath }/faq/delete?categoryOrder=${ requestScope.faq.categoryOrder }'">삭제</button>
 								 </div>
 												    	 
-								 <!-- FAQ 수정 버튼 -->
+								 <!-- FAQ 수정 완료 버튼 -->
 								 <div class="col-md-2">
-								<button type="submit" class="btn btn-outline-secondary" id="modify">수정</button>
+								<button type="submit" class="btn btn-outline-secondary" id="modify">등록</button>
 								 </div> 
 								 <div class="col-md-4">
 								 </div>

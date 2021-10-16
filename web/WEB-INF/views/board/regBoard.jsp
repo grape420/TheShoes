@@ -82,17 +82,17 @@
 					<h1 class="h3 mb-2 text-gray-800">공지사항 등록</h1>
 					<p class="mb-4"></p>
 
-					<form class="needs-validation" novalidate action="${ pageContext.servletContext.contextPath }/board/reg" method="post">
+					<form class="needs-validation"  action="${ pageContext.servletContext.contextPath }/board/reg" method="post">
 						<div class="row">
 							<div class="col-md-6 mb-3">
 								<label for="firstName">제목</label> 
-								<input type="text" class="form-control" id="firstName" name="noticeTitle" required="required">
+								<input type="text" class="form-control" id="firstName" name="noticeTitle" required>
 								<div class="invalid-feedback"></div>
 							</div>
 							<div class="col-md-6 mb-3">
 								<label for="lastName">작성자</label> 
 								<p class="form-control" id="lastName">${ sessionScope.entryMember.id }</p>
-								<input type="hidden" value="${ sessionScope.entryMember.id }" name="noticeWriterId" required="required">
+								<input type="hidden" value="${ sessionScope.entryMember.id }" name="noticeWriterId">
 								<div class="invalid-feedback"></div>
 							</div>
 							<div class="col-md-12">
@@ -100,7 +100,7 @@
 								<textarea class="form-control" id="exampleFormControlTextarea1" rows="20" name="noticeContent" required="required"></textarea>
 							</div>
 							
-							<button type="submit" class="btn btn-outline-secondary" onclick="location.href='${ pageContext.servletContext.contextPath }/board/list'">등록</button>
+							<button type="submit" class="btn btn-outline-secondary">등록</button>
 						</div>
 					</form>
 				</div>

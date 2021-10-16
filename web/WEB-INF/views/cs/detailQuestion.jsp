@@ -134,7 +134,7 @@
 								<c:if test="${ sessionScope.entryMember.role eq 'MANAGER' }">
 									<c:if test="${ empty requestScope.csRequest }">
 										<hr class="mb-4 mt-4">
-										<form class="needs-validation" novalidate action="${ pageContext.servletContext.contextPath }/cs/detail" method="post">
+										<form class="needs-validation" action="${ pageContext.servletContext.contextPath }/cs/detail" method="post">
 											<div class="row">
 												<div class="col-md-12">
 													<label for="exampleFormControlTextarea1">내용</label>
