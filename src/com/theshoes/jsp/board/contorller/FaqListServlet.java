@@ -17,7 +17,8 @@ import com.theshoes.jsp.common.paging.SelectCriteria;
 
 @WebServlet("/faq/list")
 public class FaqListServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -4591033944402542282L;
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		/* 페이징처리 */

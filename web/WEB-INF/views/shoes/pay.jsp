@@ -87,16 +87,14 @@
 							<h6 class="mb-3">
 								<b>배송지 정보</b>
 							</h6>
-							<label for="address">주소</label> <input type="text"
-								class="form-control" id="address" placeholder="ex) 서울시 서초구 강남대로 441"
-								required>
+							<label for="address">주소</label> 
+							<input type="text" class="form-control" id="address" placeholder="ex) 서울시 서초구 강남대로 441" required>
 							<div class="invalid-feedback">주소를 입력해주세요</div>
 						</div>
 
 						<div class="mb-3">
 							<label for="address2">상세주소<span class="text-muted"></span></label>
-							<input type="text" class="form-control" id="address2"
-								placeholder="ex) 4층 402호">
+							<input type="text" class="form-control" id="address2" placeholder="ex) 4층 402호">
 						</div>
 
 						<!-- 배송 메모 선택 -->
@@ -109,14 +107,12 @@
 								<option value="securityOffice">부재 시 경비실에 맡겨주세요.</option>
 								<option value="self">직접입력</option>
 								<!-- 직접입력 시 텍스트박스 생성 -->
-								<input type="text" hidden class="form-control mt-3" id="delMemoWrite"
-								placeholder="배송 메세지를 입력해주세요." required>
+								<input type="text" hidden class="form-control mt-3" id="delMemoWrite" placeholder="배송 메세지를 입력해주세요." required>
 							</select>
 						</div>
 						<div class="custom-control custom-checkbox">
-							<input type="checkbox" class="custom-control-input"
-								id="same-address"> <label class="custom-control-label"
-								for="same-address"> 배송 정보를 저장하겠습니다. </label>
+							<input type="checkbox" class="custom-control-input" id="same-address"> 
+							<label class="custom-control-label" for="same-address"> 배송 정보를 저장하겠습니다. </label>
 						</div>
 						<hr class="mb-4">
 
@@ -125,9 +121,8 @@
 
 						<div class="d-block my-3">
 							<div class="custom-control custom-radio">
-								<input id="credit" name="paymentMethod" type="radio"
-									class="custom-control-input" checked required> <label
-									class="custom-control-label" for="credit">일반배송 : 배송비 무료</label>
+								<input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required> 
+									<label class="custom-control-label" for="credit">일반배송 : 배송비 무료</label>
 							</div>
 							<div class="custom-control custom-radio">
 								<input id="debit" name="paymentMethod" type="radio"

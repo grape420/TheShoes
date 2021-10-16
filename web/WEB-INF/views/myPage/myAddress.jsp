@@ -59,10 +59,10 @@
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 						data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="#">응모 내역</a> <a
-								class="collapse-item" href="#">구매 내역</a> <a
-								class="collapse-item" href="#">판매 내역</a> <a
-								class="collapse-item" href="#">관심 상품</a>
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/drawHistory">응모 내역</a> 
+							<a class="collapse-item" href="#">구매 내역</a> 
+							<a class="collapse-item" href="#">판매 내역</a> 
+							<a class="collapse-item" href="#">관심 상품</a>
 						</div>
 					</div></li>
 				<!-- Nav Item - Utilities Collapse Menu -->

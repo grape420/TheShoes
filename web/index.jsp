@@ -13,5 +13,6 @@
 	<!-- <script>
 		location.replace("${ pageContext.servletContext.contextPath }/common/mainPage");
 	</script> -->
+	
 </body>
 </html>

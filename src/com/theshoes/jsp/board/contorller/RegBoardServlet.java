@@ -17,7 +17,8 @@ import com.theshoes.jsp.board.model.service.BoardService;
 
 @WebServlet("/board/reg")
 public class RegBoardServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = -7786901644057943369L;
 
 	/* '등록하기' 버튼 클릭 시 get 요청 -> 게시글 작성하는 페이지로 이동 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

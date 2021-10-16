@@ -12,7 +12,8 @@ import com.theshoes.jsp.board.model.service.ResellListService;
 
 @WebServlet("/resell/detail")
 public class ResellDetailServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = -834434148314211895L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/views/resell/resellDetail.jsp").forward(request, response);

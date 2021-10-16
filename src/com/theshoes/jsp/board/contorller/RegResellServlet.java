@@ -28,7 +28,8 @@ import net.coobird.thumbnailator.Thumbnails;
 
 @WebServlet("/resell/regResell")
 public class RegResellServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = -4076010258401564695L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
