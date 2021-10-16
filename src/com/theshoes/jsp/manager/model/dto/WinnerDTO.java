@@ -14,6 +14,7 @@ public class WinnerDTO implements Serializable{
 	private String shoesModel;
 	private int shoesPrice;
 	private String enventStatus;
+	
 	public WinnerDTO() {
 	}
 	public WinnerDTO(int winnerNo, String memberId, String deliveryDetail, String name, String shoesModel,

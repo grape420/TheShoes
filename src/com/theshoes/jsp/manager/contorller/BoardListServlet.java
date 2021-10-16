@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.theshoes.jsp.board.model.dto.BoardDTO;
 import com.theshoes.jsp.common.paging.Pagenation;
 import com.theshoes.jsp.common.paging.SelectCriteria;
+import com.theshoes.jsp.manager.model.dto.WinnerDTO;
 import com.theshoes.jsp.manager.model.service.ManagerBoardService;
 
 @WebServlet("/manager/board")
@@ -19,6 +20,7 @@ public class BoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("Test");
 		/* 페이징처리 */
 		int pageNo = 1;						// 기본 시작 페이지번호
 		int onePost = 10;					// 한 페이지에 노출시킬 게시글의 수

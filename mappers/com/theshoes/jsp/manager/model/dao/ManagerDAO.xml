@@ -10,16 +10,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<id property="shoesCategoryNo" column="SHOES_CATEGORY_NO"/>
 		<result property="shoesCategoryName" column="SHOES_CATEGORY_NAME"/>
 	</resultMap>
-
-	<resultMap type="com.theshoes.jsp.manager.model.dto.WinnerDTO" id="winnerResultMap">
-		<id property="winnerNo" column="WINNER_NO"/>
-		<result property="memberId" column="MEMBER_ID"/>
-		<result property="deliveryDetail" column="DELIVERY_DETAIL"/>
-		<result property="name" column="NAME"/>
-		<result property="shoesModel" column="SHOES_MODEL"/>
-		<result property="shoesPrice" column="SHOES_PRICE"/>
-		<result property="enventStatus" column="EVENT_STATUS"/>
-	</resultMap>
 	
 	<!-- 신발  -->
 	 <resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesDTO" id="shoesResultMap">
