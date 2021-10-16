@@ -18,7 +18,7 @@ public class ResellListDAO {
 		
 		return session.selectList("ResellListDAO.selectResellList");
 	}
-	public ResellDetailDTO selectOneResellList(SqlSession session, int no) {
+	public ResellListDTO selectOneResellList(SqlSession session, int no) {
 			return session.selectOne("ResellListDAO.selectOneResellList", no);
 	}
 	public int insertResellShoes(SqlSession session, ResellListDTO resell) {
@@ -30,4 +30,7 @@ public class ResellListDAO {
 		return session.insert("ResellListDAO.insertResellThumb", resellThumb);
 	}
 	
+	public int incrementBoardCount(SqlSession session, int categoryOrder) {
+		return session.update("ResellListDAO.incrementBoardCount", categoryOrder);	
+	}
 }
