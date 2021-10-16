@@ -2,7 +2,6 @@ package com.theshoes.jsp.board.contorller;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,13 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import com.theshoes.jsp.board.model.dto.ResellDetailDTO;
+import com.theshoes.jsp.board.model.dto.ResellListDTO;
 import com.theshoes.jsp.board.model.dto.ResellThumbDTO;
 import com.theshoes.jsp.board.model.service.ResellListService;
+import com.theshoes.jsp.member.model.dto.MemberDTO;
 
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -52,6 +51,8 @@ public class RegResellServlet extends HttpServlet {
 			/* 파일 저장경로가 존재하지 않는 경우 디렉토리를 생성한다. */
 			if(!directory.exists() || !directory2.exists()) {
 				
+				System.out.println("폴더 생성 1" + directory.mkdirs());
+				System.out.println("폴더 생성 2" + directory2.mkdirs());
 			}
 			
 			Map<String, String> parameter = new HashMap<>();
@@ -120,65 +121,48 @@ public class RegResellServlet extends HttpServlet {
 							/* 썸네일로 변환 후 저장한다. */
 							Thumbnails.of(fileUploadDirectory + randomFileName)
 									.size(width, height)
-									.toFile(thumbnailDirectory + "thumbnail_" + randomFileName);
+									.toFile(thumbnailDirectory + "thumb" + randomFileName);
 							
 							/* 나중에 웹서버에서 접근 가능한 경로 형태로 썸네일의 저장 경로도 함께 저장한다. */
-							fileMap.put("thumbnailPath", "/resources/upload/thumbnail/thumbnail_" + randomFileName);
+							fileMap.put("thumbnailPath", "/resources/upload/thumb/thumb_" + randomFileName);
 							
 							fileList.add(fileMap);
 							
 						} 
 						
 					} else {
-						/* 폼 데이터인 경우 */
-						/* 전송된 폼의 name은 getFiledName()으로 받아오고, 해당 필드의 value는 getString()으로 받아온다. 
-						 * 하지만 인코딩 설정을 하더라도 전송되는 파라미터는 ISO-8859-1로 처리된다.
-						 * 별도로 ISO-8859-1로 해석된 한글을 UTF-8로 변경해주어야 한다.
-						 * */
-//						parameter.put(item.getFieldName(), item.getString());
 						parameter.put(item.getFieldName(), new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
 					}
 				}
+				ResellListService regResellService = new ResellListService();
 				
 				System.out.println("parameter : " + parameter);
 				System.out.println("fileList : " + fileList);
 				
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+				ResellListDTO resell = new ResellListDTO(); 
 				
-				java.util.Date winner = sdf.parse(parameter.get("winnerDate"));
-				java.util.Date start = sdf.parse(parameter.get("startDate"));
-				java.util.Date end = sdf.parse(parameter.get("endDate"));
+				resell.setBoardTitle(parameter.get("boardTitle"));
+				resell.setBoardContent(parameter.get("boardContent"));
+				resell.setBoardId(((MemberDTO)request.getSession().getAttribute("entryMember")).getId());
 				
-				ResellDetailDTO resellShoes = new ResellDetailDTO(); 
-				
-				resellShoes.setBoardNo(Integer.valueOf(parameter.get("boardNo")));
-				resellShoes.setBoardId(parameter.get("boardId"));
-				resellShoes.setBoardCategoryNo(Integer.valueOf("boardCategoryNo"));
-				resellShoes.setBoardTitle(parameter.get("boardTitle"));
-				resellShoes.setBoardContent(parameter.get("boardContent"));
-				resellShoes.setCategoryOrder(Integer.valueOf("categoryOrder"));
-			
-				resellShoes.setResellThumb(new ArrayList<ResellThumbDTO>());
-				List<ResellThumbDTO> list = resellShoes.getResellThumb();
+				List<ResellThumbDTO> thumbList = new ArrayList<>();
 				
 				for(int i = 0; i < fileList.size(); i++) {
 					Map<String, String> file = fileList.get(i);
 					
 					ResellThumbDTO tempFileInfo = new ResellThumbDTO();
-					tempFileInfo.setRtFile(file.get("rtFile"));
-					tempFileInfo.setResellFileName(file.get("resellFileName"));
-					tempFileInfo.setSavaPath(file.get("savePath"));
+					tempFileInfo.setOriginalName(file.get("originFileName"));
+					tempFileInfo.setSavedName(file.get("savedFileName"));
+					tempFileInfo.setSavePath(file.get("savePath"));
 					tempFileInfo.setFileType(file.get("fileType"));
 					tempFileInfo.setThumbnailPath(file.get("thumbnailPath"));
 					
-					list.add(tempFileInfo);
-					
+					thumbList.add(tempFileInfo);
 				}
 				
-				System.out.println("resell board" + resellShoes);
+				resell.setResellThumb(thumbList);
 				
-				ResellListService regResellService = new ResellListService();
-				int result = regResellService.insertshoes(resellShoes);
+				int result = regResellService.insertResellShoes(resell);
 				
 				String path = "";
 				if(result > 0) {

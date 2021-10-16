@@ -1,7 +1,6 @@
 package com.theshoes.jsp.board.model.dto;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.List;
 
 public class ResellDetailDTO implements Serializable{
