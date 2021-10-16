@@ -19,11 +19,12 @@
 					break;
 					
 				case "myAddressCode" : 
-					movePath = "${ pageContext.servletContext.contextPath }/myPage/myAddress";
+					movePath = "${ pageContext.servletContext.contextPath }/myPage/address";
 					break;
 					
 				case "updateAddress" : 
-					movePath = "${ pageContext.servletContext.contextPath }/myPage/myAddress";
+					movePath = "${ pageContext.servletContext.contextPath }/myPage/address";
+
 					break;
 					
 				case "insertNotice" :

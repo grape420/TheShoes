@@ -9,9 +9,9 @@
 <body>
 
 	<!-- 메인페이지로 포워드 -->
-	<%-- <jsp:forward page="/WEB-INF/views/main/mainPage.jsp"></jsp:forward> --%>
-	<script>
+	<jsp:forward page="/WEB-INF/views/myPage/drawHistory.jsp"></jsp:forward>
+	<!-- <script>
 		location.replace("${ pageContext.servletContext.contextPath }/common/mainPage");
-	</script>
+	</script> -->
 </body>
 </html>
