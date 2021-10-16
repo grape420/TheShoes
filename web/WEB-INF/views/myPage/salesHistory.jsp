@@ -88,46 +88,34 @@
 					<!-- Page Heading -->
 					<br>
 					<h1 class="h3 mb-2 text-gray-800">THE SHOES 판매내역</h1>
-					<p class="mb-4">최근 2년 이내 THE SHOES 판매내역 조회 가능합니다.</p>
+					<p class="mb-4">THE SHOES 리셀 판매내역 조회 가능합니다.</p>
 
 					<!-- DataTales Example -->
 					<div class="order-filter" data-module-date-filter-thedraw="">
-						<div class="uk-grid">
-							<div class="sort-tabs" data-type-list="">
-								<a class="sort-item active" href="javascript:void(0)" data-type="type0">전체(<span>4</span>) </a> 
-								<a class="sort-item" href="javascript:void(0)"  data-type="type1">진행중(<span>0</span>)	</a> 
-								<a class="sort-item" href="javascript:void(0)"	data-type="type2">당첨(<span>1</span>) </a> 
-								<a class="sort-item" href="javascript:void(0)"	data-type="type3">미당첨(<span>3</span>)</a>
-							</div>
-						</div>
+				
 						<div>
-							<br>
 							<!--  판매 리스트  -->
-							<div class="order-list" data-order="">
+							<div class="sales-list" data-order="">
+							<c:forEach var="sales" items="${ requestScope.salesList }" begin="${ selectCriteria.startRow - 1 }" end="${ selectCriteria.endRow - 1 }">
 								<div class="header">
-									<span class="order-code">판매일시 2021.08.13 10:14:16</span>
+									<span class="order-code">(게시글 작성일자)판매일시 2021.08.13 10:14:16</span>
 								</div>
 								<div class="order-item-wrap thedraw-item">
 									<div class="item-info">
 										<div class="img-wrap">
-											<a href="/kr/launch/t/men/fw/basketball/DM7866-140/cuwc56/air-jordan-1-low-og-sp">
-												<img src="https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/DM7866-140/12d6c862-ec81-46b8-adaa-f6edf708a603_primary.jpg?browse" />
-											</a>
+												<img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/$" />
 								         </div>
 								<div class="info-wrap">
-									 <span class="tit"> <a	href="/kr/launch/t/men/fw/basketball/DM7866-140/cuwc56/air-jordan-1-low-og-sp">에어 조던 1 로우 OG SP</a> </span> 
-									 <span class="opt">DM7866-140 / 260 </span> 
-									 <span	class="price-wrap"> </span>
-									 <span class="price">189,000원 </span>
+									 <span class="tit"> <a>에어 조던 1 로우 OG SP(판매 게시글 제목)</a> <c:out value="${ salesList.boardTitle }"/> </span> 
+									 <span class="opt">DM7866-140 / 260 (내용)<c:out value="${ salesList.boardContent }"/></span> 
 								</div>
-									
 								<div class="btnDiv">
-									  <button type="button" class="btn btn-outline-dark">후기 작성</button>
-									  <button type="button" class="btn btn-outline-dark">후기 게시글</button>
+									  <button type="button" class="btn btn-outline-dark">게시글 이동</button>
 								</div>
 								    </div>
 								</div>
 							</div>
+						</c:forEach>
 						
 						
 							<div class="order-list" data-order="">
@@ -162,72 +150,7 @@
 								</div>
 							</div>
 
-							<div class="order-list" data-order="">
-								<div class="header">
-									<span class="order-code">판매일시 2021.09.02 10:00:24</span>
-								</div>
-								<div class="order-item-wrap thedraw-item">
-									<div class="item-info">
-										<div class="img-wrap">
-											<a
-												href="/kr/launch/t/men/fw/nike-sportswear/DH0601-001/nxtg34/nike-dunk-low-retro-prm">
-												<img
-												src="https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/DH0601-001/8891d25b-4b4b-453c-9159-099b224aae42_primary.jpg?browse" />
-											</a>
-										</div>
-										<div class="info-wrap">
-											<span class="tit"> <a
-												href="/kr/launch/t/men/fw/nike-sportswear/DH0601-001/nxtg34/nike-dunk-low-retro-prm">나이키
-													덩크 로우 레트로 프리미엄</a>
-											</span> <span class="opt">DH0601-001 / 260</span> <span
-												class="price-wrap"> <span class="price">129,000
-													원</span>
-											</span>
-										</div>
-										<div class="btnDiv">
-											<button type="button" class="btn btn-outline-dark">후기
-												작성</button>
-											<button type="button" class="btn btn-outline-dark">후기
-												게시글</button>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="order-list" data-order="">
-								<div class="header">
-									<span class="order-code">판매일시 2021.9.24 10:13:12</span>
-								</div>
-								<div class="order-item-wrap thedraw-item">
-									<div class="item-info">
-										<div class="img-wrap">
-											<a
-												href="/kr/launch/t/men/fw/nike-sportswear/DH2684-400/ivoa29/nike-ldwaffle-sf">
-												<img
-												src="https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/DH2684-400/19e847a7-8a65-4907-8903-3bab1be6e5f1_primary.jpg?browse" />
-											</a>
-
-										</div>
-
-										<div class="info-wrap">
-											<span class="tit"> <a
-												href="/kr/launch/t/men/fw/nike-sportswear/DH2684-400/ivoa29/nike-ldwaffle-sf">나이키
-													LD와플 x sacai x Fragment</a>
-											</span> <span class="opt">DH2684-400 / 260</span> <span
-												class="price-wrap"> <span class="price">209,000
-													원</span>
-											</span>
-										</div>
-										<div class="btnDiv">
-											<button type="button" class="btn btn-outline-dark">후기
-												작성</button>
-											<button type="button" class="btn btn-outline-dark">후기
-												게시글</button>
-										</div>
-									</div>
-								</div>
-
-							</div>
+							
 							<!-- paging -->
 
 							<div class="paging">
