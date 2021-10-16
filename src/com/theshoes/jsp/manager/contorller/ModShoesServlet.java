@@ -246,11 +246,6 @@ public class ModShoesServlet extends HttpServlet {
 					list.add(tempFileInfo);
 				}
 				
-				for (ShoesThumbDTO shoesThumb : list) {
-					System.out.println("shoesThumb : " + shoesThumb);
-				}
-				
-				
 				int result = regShoesService.updateShoes(shoes);
 				
 				/* 성공 실패 페이지를 구분하여 연결한다. */

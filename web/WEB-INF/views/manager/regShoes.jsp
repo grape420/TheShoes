@@ -55,7 +55,8 @@
 							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/manager/delivery">배송 정보 관리</a>
 							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/manager/board">회원 게시글 관리</a>
 						</div>
-					</div></li>
+					</div>
+					</li>
 
 				<!-- Divider -->
 				<hr class="sidebar-divider">
@@ -275,12 +276,6 @@
 			}
       	   		
 		});
-	     
-	     
-     
-	     
-	     
-	     
 	 </script>
 
 </body>
