@@ -8,14 +8,15 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.theshoes.jsp.board.model.dto.BoardDTO;
 import com.theshoes.jsp.common.paging.SelectCriteria;
-import com.theshoes.jsp.manager.model.dao.ManagerMapper;
+import com.theshoes.jsp.manager.model.dao.ManagerDAO;
+import com.theshoes.jsp.manager.model.dto.WinnerDTO;
 
 public class ManagerBoardService {
 	
-private final ManagerMapper mapper;
+private final ManagerDAO mapper;
 	
 	public ManagerBoardService() {
-		mapper = new ManagerMapper();
+		mapper = new ManagerDAO();
 	}
 
 	public int selectBoardTotalCount() {
@@ -38,5 +39,4 @@ private final ManagerMapper mapper;
 		
 		return boardList;
 	}
-
 }

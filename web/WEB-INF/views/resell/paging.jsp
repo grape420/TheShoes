@@ -83,7 +83,7 @@
 
 	
 	 <script>
-		 const link = "${ pageContext.servletContext.contextPath }/resell/${ requestScope.pagingPath }";
+		 const link = "${ pageContext.servletContext.contextPath }/resell/resellList;"; /* ${ requestScope.pagingPath } */
 		
 		if(document.getElementById("startPage")) {
 			const $startPage = document.getElementById("startPage");

@@ -44,26 +44,40 @@
 	<resultMap type="com.theshoes.jsp.board.model.dto.ResellThumbDTO" id="ResellThumbResultMap">
 		<id property="rtNo" column="RT_NO"/>
 		<result property="resellThumbNo" column="RESELL_THUMB_NO"/>
-		<result property="originalName" column="ORIGINAL_NAME"/>
-		<result property="savedName" column="SAVED_NAME"/>
-		<result property="savePath" column="SAVE_PATH"/>
-		<result property="fileType" column="FILE_TYPE"/>
-		<result property="thumbnailPath" column="THUMBNAIL_PATH"/>
-		<result property="status" column="ATTACHMENT_STATUS"/>
+		<result property="originalName" column="RESELL_ORIGINAL_NAME"/>
+		<result property="savedName" column="RESELL_SAVED_NAME"/>
+		<result property="savePath" column="RESELL_SAVE_PATH"/>
+		<result property="fileType" column="RESELL_FILE_TYPE"/>
+		<result property="thumbnailPath" column="RESELL_THUMBNAIL_PATH"/>
+		<result property="status" column="RESELL_ATTACHMENT_STATUS"/>
 	</resultMap>
 	
-	<select id="selectResellList" resultMap="ResellListResultMap">
+	<select id="selectResellList" resultMap="ResellDetailResultMap">
 		  SELECT
-			       A.BOARD_NO
-			     , A.BOARD_ID
-			     , A.BOARD_TITLE
-			     , A.BOARD_CONTENT
-			     , A.BOARD_REGDATE
-			     , A.BOARD_HIT
-			     , A.CATEGORY_ORDER
-			  FROM BOARD A
-			 WHERE A.BOARD_CATEGORY_NO = 3
-			ORDER BY 1 DESC
+		       A.BOARD_NO
+		     , A.BOARD_ID
+		     , A.BOARD_CATEGORY_NO
+		     , A.BOARD_TITLE
+		     , A.BOARD_CONTENT
+		     , A.CATEGORY_ORDER
+		     , B.RT_NO
+		     , B.RESELL_THUMB_NO
+		     , B.RESELL_ORIGINAL_NAME
+		     , B.RESELL_SAVED_NAME
+		     , B.RESELL_FILE_TYPE
+		     , B.RESELL_THUMBNAIL_PATH
+		     , B.RESELL_ATTACHMENT_STATUS
+		  FROM BOARD A
+		  JOIN RESELL_THUMB B ON(B.RT_NO = A.BOARD_NO)
+		 WHERE A.BOARD_CATEGORY_NO = 3
+		 ORDER BY A.BOARD_NO DESC
+	</select>
+	
+	<select id="selectResellTotalCount" resultType="_int">
+        SELECT
+	          COUNT(*)
+         FROM BOARD A
+        WHERE A.BOARD_CATEGORY_NO = 3
 	</select>
 	
 	<select id="selectOneResellList" resultMap="ResellDetailResultMap">
@@ -74,8 +88,13 @@
 		     , A.BOARD_TITLE
 		     , A.BOARD_CONTENT
 		     , A.CATEGORY_ORDER
+		     , B.RT_NO
 		     , B.RESELL_THUMB_NO
+		     , B.RESELL_ORIGINAL_NAME
 		     , B.RESELL_SAVED_NAME
+		     , B.RESELL_FILE_TYPE
+		     , B.RESELL_THUMBNAIL_PATH
+		     , B.RESELL_ATTACHMENT_STATUS
 		  FROM BOARD A
 		  JOIN RESELL_THUMB B ON(B.RT_NO = A.BOARD_NO)
 		 WHERE A.BOARD_CATEGORY_NO = 3

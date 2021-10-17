@@ -48,7 +48,7 @@
 			<c:forEach var="resellList" items="${ requestScope.board }" begin="${ selectCriteria.startRow -1}" end="${ selectCriteria.endRow -1}">
 				<div class="col-md-4" style="border: 0!important">
 					<div class="card mb-4 border-0" id="resellArea">
-						<img id="rsImg" src="/TheShoes/resources/upload/thumb/${resellThumb.savedName}">
+						<img id="rsImg" src="/TheShoes/resources/upload/image/resellShoes/${resellList.resellThumb[0].savedName }">
 						<div class="card-body ">
 							<div class="card-text">
 								<p class="none-hover">

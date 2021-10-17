@@ -42,8 +42,8 @@ public class RegResellServlet extends HttpServlet {
 			int maxFileSize = 1024 * 1024 * 10;
 			String encodingType = "UTF-8";
 			
-			String fileUploadDirectory = rootLocation + "/resources/upload/thumb/";
-			String thumbnailDirectory = rootLocation + "/resources/upload/image/resellShoes/";
+			String fileUploadDirectory = rootLocation + "/resources/upload/image/resellShoes/";
+			String thumbnailDirectory = rootLocation + "/resources/upload/thumb/";
 			
 			File directory = new File(fileUploadDirectory);
 			File directory2 = new File(thumbnailDirectory);
@@ -167,7 +167,8 @@ public class RegResellServlet extends HttpServlet {
 				String path = "";
 				if(result > 0) {
 					path = "/WEB-INF/views/common/success.jsp";
-					request.setAttribute("successCode", "insertShoes");
+					request.setAttribute("successCode", "insertResell");
+					
 				} else {
 					path = "/WEB-INF/views/common/errorPage.jsp";
 				}

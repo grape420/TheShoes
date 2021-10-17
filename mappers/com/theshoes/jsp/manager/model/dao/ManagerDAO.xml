@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<id property="shoesCategoryNo" column="SHOES_CATEGORY_NO"/>
 		<result property="shoesCategoryName" column="SHOES_CATEGORY_NAME"/>
 	</resultMap>
-
+	
 	<!-- 신발  -->
 	 <resultMap type="com.theshoes.jsp.shoes.model.dto.ShoesDTO" id="shoesResultMap">
 		<id property="shoesNo" column="SHOES_NO"/>

@@ -11,6 +11,7 @@ import com.theshoes.jsp.board.model.dto.BoardDTO;
 import com.theshoes.jsp.board.model.dto.ResellDetailDTO;
 import com.theshoes.jsp.board.model.dto.ResellListDTO;
 import com.theshoes.jsp.board.model.dto.ResellThumbDTO;
+import com.theshoes.jsp.common.paging.SelectCriteria;
 
 public class ResellListService {
 
@@ -30,11 +31,11 @@ public class ResellListService {
 //	}
 
 
-	public List<BoardDTO> selectResellList() {
+	public List<ResellDetailDTO> selectResellList(SelectCriteria selectCriteria) {
 		
 		SqlSession session = getSqlSession();
 		
-		List<BoardDTO> resellList = resellListDAO.selectResellList(session);
+		List<ResellDetailDTO> resellList = resellListDAO.selectResellList(session, selectCriteria);
 		System.out.println("resellList" + resellList);
 	
 		session.close();
@@ -84,6 +85,17 @@ public class ResellListService {
 		session.close();
 		
 		return result;
+	}
+
+	public int selectResellTotalCount() {
+		
+		SqlSession session = getSqlSession();
+		
+		int totalCount = resellListDAO.selectResellTotalCount(session);
+		
+		session.close();
+		
+		return totalCount;
 	}
 
 }

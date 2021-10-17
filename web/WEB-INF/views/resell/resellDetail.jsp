@@ -20,10 +20,10 @@
 	<section>
 		<%-- <c:forEach var="resellThumb" items="${ requestScope.resellDetail.resellThumb }"> --%>
 		<div class="info-section">
-			<c:forEach var="resellThumb" items="${ requestScope.resellDetail.resellThumb }">
+			<c:forEach var="resellList" items="${ requestScope.board }">
 			<ul class="images">
 				<li><figure>
-						<img style="" src="/TheShoes/resources/upload/thumb/${resellThumb.savedName} alt=">
+						<img style="" src="/TheShoes/resources/upload/image/resellShoes/${resellList.resellThumb[0].savedName } alt=">
 					</figure></li>
 				<%-- <li><figure>
 						<img src="/TheShoes/resources/upload/thumb/${resellThumb.savedName} alt="">

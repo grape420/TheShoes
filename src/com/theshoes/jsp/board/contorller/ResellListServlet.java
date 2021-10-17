@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.theshoes.jsp.board.model.dto.BoardDTO;
+import com.theshoes.jsp.board.model.dto.ResellDetailDTO;
 import com.theshoes.jsp.board.model.dto.ResellListDTO;
 import com.theshoes.jsp.board.model.service.ResellListService;
 import com.theshoes.jsp.common.paging.Pagenation;
@@ -32,13 +33,27 @@ public class ResellListServlet extends HttpServlet {
 		/* 기본 시작 페이지 번호 */
 		int pageNo = 1;
 		
+		String currentPage = request.getParameter("currentPage");
+		
+		if(currentPage != null && !"".equals(currentPage)) {
+			pageNo = Integer.parseInt(currentPage);
+		}
+		
 		ResellListService resellListService = new ResellListService();
-
-		List<BoardDTO> resellList = resellListService.selectResellList();
+		
+		
+		int totalResellCount = resellListService.selectResellTotalCount();
+		System.out.println("resellList.size : " + totalResellCount);
 		
 		SelectCriteria selectCriteria = null;
+				
+		selectCriteria = Pagenation.getSelectCriteria(pageNo, totalResellCount, limit, buttonAmount);
 		
-		selectCriteria = Pagenation.getSelectCriteria(pageNo, 5, limit, buttonAmount);
+		List<ResellDetailDTO> resellList = resellListService.selectResellList(selectCriteria);
+		
+		for (ResellDetailDTO board: resellList){
+			System.out.println(board);
+		}
 		
 		String path = "";
 		if (resellList != null) {
