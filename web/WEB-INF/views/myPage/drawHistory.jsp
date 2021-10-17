@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -90,7 +89,6 @@
 					<p class="mb-4">최근 2년 이내 THE SHOES 응모내역 조회 가능합니다.</p>
 	
 					<!-- DataTales Example -->
-
 							<c:forEach  varStatus ="st" var="draw" items="${ requestScope.drawHistory }" begin="${ selectCriteria.startRow - 1 }" end="${ selectCriteria.endRow - 1 }">
 							<div class="order-list" data-order="">
 								<div class="header">
@@ -135,7 +133,6 @@
 											<div class="col-10 p-0">
 												<span class="status"> 
 													<span class="lable">응모 기간</span> 
-													
 													<span class="date" style="display: inline-block; width: 100%">
 														<fmt:formatDate value="${ draw.shoes.startDate }" type="date" pattern="yyyy.MM.dd HH:mm"/> - <fmt:formatDate value="${ draw.shoes.endDate }" type="date" pattern="yyyy.MM.dd HH:mm"/></span>
 												</span> 
@@ -148,14 +145,22 @@
 												<span class="status"> 
 													<span class="lable">구매 기간</span>
 													<span class="date" style="display: inline-block; width: 100%"> 
-													
+														
 														<!-- 구매 가능 기간 -->
-														<fmt:formatDate value="${ draw.shoes.winnerDate }" type="date" pattern="yyyy.MM.dd HH:mm"/> - <fmt:formatDate value="${ requestScope.canBuyDate[st.index] }" type="date" pattern="yyyy.MM.dd HH:mm"/>
+														<fmt:formatDate value="${ draw.shoes.winnerDate }" type="date" pattern="yyyy.MM.dd HH:mm"/> - <fmt:formatDate var="canBuyDate" value="${ requestScope.canBuyDate[st.index] }" type="date" pattern="yyyy.MM.dd HH:mm"/>${ canBuyDate }
 													</span>
 												</span>
 											</div>
+											
+											<!-- 구매 버튼 -->
+			                                <!-- (현재 시간 <= 구매 가능 시간)인 경우에만 버튼 보임 -->
 											<div class="col-2 p-0">
-												<button class="btn btn-outline-secondary p-2 payBtn">나와</button>
+											<c:set var="today" value="<%=new Date()%>" />
+											<c:set var="date"><fmt:formatDate value="${ today }" pattern="yyyy.MM.dd HH:mm" /></c:set> 
+												<!-- 오늘 날짜 -->	
+				                                <c:if test="${ canBuyDate >= date }">
+													<button class="btn btn-outline-secondary p-2 payBtn" onclick="location.href='${ pageContext.servletContext.contextPath }/shoes/pay?shoesNo=${ draw.shoes.shoesNo }'">구매</button>
+				                                </c:if>
 											</div>
 										</div>
 									</div>
