@@ -51,7 +51,6 @@
 				type: "GET",
 				data: { id : id },
 				success: function(data) {
-					console.log(data);
 					if(data == "fail") {
 						$("#id-result").text("아이디를 다시 확인해 주세요.").css("color", "red");
 					} else {

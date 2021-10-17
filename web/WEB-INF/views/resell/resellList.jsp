@@ -87,17 +87,7 @@
 			<a href="#" id="regButton" onclick="location.href='${ pageContext.servletContext.contextPath }/resell/regResell';">등록하기</a>
 		</div>
 	</section>
-	<script type="text/javascript">
-	/* $(function() {
-		$("#resellTable a").hover(function() {
-			$(this).parent().css({"cursor":"pointer"});
-		}).click(function() {
-			let categoryOrder = $(this).parent().children(":eq(0)").text();
-			console.log(categoryOrder);
-			location.href = "${ pageContext.servletContext.contextPath }/resell/detail?categoryOrder=" + categoryOrder;
-		});
-	}); */
-	</script>
+	
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 </body>

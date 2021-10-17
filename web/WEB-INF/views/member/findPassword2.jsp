@@ -99,7 +99,6 @@
 						} else {
 							code = data;
 							$("#id-result").text("").css("color", "blue");
-							console.log("Test");
 							countStart();
 						}
 					},

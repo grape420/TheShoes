@@ -123,7 +123,6 @@
 			$(this).parent().css({"cursor":"pointer"});
 		}).click(function() {
 			let csNo = $(this).parent().children(":eq(0)").text();
-			console.log(csNo);
 			location.href = "${ pageContext.servletContext.contextPath }/cs/detail?csNo=" + csNo;
 		});
 	});

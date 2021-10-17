@@ -118,7 +118,6 @@
 	<script>
 		$("#withDrawbtn").click(function() {
 			if($("#reason_check").prop("checked") && ($("#reason_2").val() != "")) {
-				console.log("Test");
 				 if (confirm("정말로 탈퇴 하시겠습니까?")) {
 					location.replace("${ pageContext.servletContext.contextPath }/myPage/withDraw");
 			    } else {

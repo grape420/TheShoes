@@ -215,7 +215,6 @@
 			    (카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
 			    */
 			    }, function (rsp) {
-			    console.log(rsp);
 			    if (rsp.success) {
 			    var msg = '결제가 완료되었습니다.';
 			    msg += '고유ID : ' + rsp.imp_uid;

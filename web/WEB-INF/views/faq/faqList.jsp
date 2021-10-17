@@ -123,7 +123,6 @@
 			$(this).parent().css({"cursor":"pointer"});
 		}).click(function() {
 			let categoryOrder = $(this).parent().children(":eq(0)").text();
-			console.log(categoryOrder);
 			location.href = "${ pageContext.servletContext.contextPath }/faq/detail?categoryOrder=" + categoryOrder;
 		});
 	});

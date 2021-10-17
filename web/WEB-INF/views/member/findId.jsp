@@ -42,7 +42,6 @@
 				type: "GET",
 				data: { email : email },
 				success: function(data) {
-					console.log(data);
 					if(data == "fail") {
 						$("#email-result").text("이메일을 다시한번 확인 해주세요.").css("color", "red");
 					} else {

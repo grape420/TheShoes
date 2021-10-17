@@ -286,7 +286,6 @@
 				if (phoneFlag == true) {
 				
 				const phone = $("#phone").val();
-				console.log(phone);
 				$.ajax({
 					url: "${ pageContext.servletContext.contextPath }/member/change",
 					type: "GET",
