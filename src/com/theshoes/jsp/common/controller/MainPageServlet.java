@@ -21,7 +21,7 @@ public class MainPageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ShoesService shoesService = new ShoesService();
 		
-		List<ShoesDTO> shoesList = shoesService.selectShoesList();
+		List<ShoesDTO> shoesList = shoesService.selectShoesList("");
 		
 		String path = "";
 		if (shoesList != null) {

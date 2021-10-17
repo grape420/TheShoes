@@ -211,10 +211,11 @@
 			                              <input hidden name="shoesThumbNo6" value="${ shoes.thumbList[5].shoesThumbNo }"></label>
 			                            </div>
 
+								</div>
+								
 									<div class="col-md-12 mb-3">
 										<button type="submit" id="registBtn" class="btn btn-outline-secondary">수정</button>
 									</div>
-								</div>
 							</form>
 						</div>
 					</div>

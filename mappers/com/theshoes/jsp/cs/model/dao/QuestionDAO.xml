@@ -118,7 +118,7 @@
          FROM CS_BOARD A
 	</select>	
 	
-	<!-- 문의글 조회  -->
+	<!-- 첨부파일 있는 문의글 조회  -->
 	<select id="selectCsDetail" resultMap="csResultMap">
         SELECT /* com.theshoes.jsp.cs.model.dao.QuestionDAO#selectCsDetail() */
                A.CS_NO
@@ -136,6 +136,17 @@
          WHERE B.CS_ATTACHMENT_STATUS = 'Y'
            AND B.CS_FILE_TYPE = 'TITLE'
            AND A.CS_NO = #{ csNo }
+	</select>
+	
+	<!-- 첨부파일 없는 문의글 조회 -->
+	<select id="selectCsDetailNoPhoto" resultMap="csResultMap">
+	    SELECT /* com.theshoes.jsp.cs.model.dao.QuestionDAO#selectCsDetail() */
+               A.CS_NO
+             , A.CS_TITLE
+             , A.CS_CONTENT
+             , A.CS_REGDATE
+          FROM CS_BOARD A
+         WHERE A.CS_NO = #{ csNo }
 	</select>
 	
 	<!-- 답변 INSERT -->

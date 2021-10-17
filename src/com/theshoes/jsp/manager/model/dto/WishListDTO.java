@@ -8,6 +8,7 @@ public class WishListDTO implements Serializable{
 	
 	private int wishNo;
 	private String wishId;
+	
 	public WishListDTO() {
 	}
 	public WishListDTO(int wishNo, String wishId) {

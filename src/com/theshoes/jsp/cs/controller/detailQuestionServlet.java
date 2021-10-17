@@ -31,16 +31,16 @@ public class detailQuestionServlet extends HttpServlet {
 		
 		/* 답변 조회용 */
 		/* 등록된 답변 있는지 조회 - 있으면 jsp에 띄우고 없으면 등록창 띄우기 */
-		int requestCount = questionService.selectRequestCount();
-		System.out.println("여기가 어딘데!!!!! 서블릿 답변 갯수 : " + requestCount);
+//		int requestCount = questionService.selectRequestCount();
+//		System.out.println("여기가 어딘데!!!!! 서블릿 답변 갯수 : " + requestCount);
 		
+		RequestDTO csRequest = questionService.selectRequestDetail(csNo);
+		System.out.println("servlet - request : " + csRequest);
+
 		/* 답변이 있다면 불러오기 */
-		if (requestCount > 0) {
-			
-			RequestDTO csRequest = questionService.selectRequestDetail(csNo);
-			System.out.println("servlet - request : " + csRequest);
+//		if (csRequest != null) {
 			request.setAttribute("csRequest", csRequest);
-		}
+//		}
 		
 		String path = "";
 
@@ -48,7 +48,7 @@ public class detailQuestionServlet extends HttpServlet {
 			path = "/WEB-INF/views/cs/detailQuestion.jsp";
 			request.setAttribute("csQuestion", csQuestion);
 			System.out.print("아 왜 안나오는데!!!");
-			request.setAttribute("requestCount", requestCount);
+//			request.setAttribute("requestCount", requestCount);
 		} else {
 			path = "/WEB-INF/views/common/errorPage.jsp";
 		}

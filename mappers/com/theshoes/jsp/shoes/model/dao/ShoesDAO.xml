@@ -72,35 +72,11 @@
 		     , C.THUMBNAIL_PATH
 		  FROM SHOES_INFO A
 		  LEFT JOIN SHOES_CATEGORY B ON (A.INFO_CATEGORY_NO = B.SHOES_CATEGORY_NO)
-		  LEFT JOIN SHOES_THUMB C ON (A.SHOES_NO = C.ST_NO) AND C.FILE_TYPE = 'TITLE'
-		 WHERE A.SALES_YN = 'Y'
-		 ORDER BY A.SHOES_NO DESC
-	</select>
-	
-	<select id="selectShoesList2" resultMap="shoesResultMap">
-		SELECT
-		       A.SHOES_NO
-		     , A.INFO_CATEGORY_NO
-		     , B.SHOES_CATEGORY_NAME
-		     , A.SHOES_MODEL
-		     , A.SHOES_PRICE
-		     , A.SALES_YN
-		     , A.SALES_AMOUNT
-		     , A.REAMANING_AMOUNT
-		     , A.START_DATE
-		     , A.END_DATE
-		     , A.WINNER_DATE
-		     , A.EVENT_END_YN
-		     , C.SHOES_THUMB_NO
-		     , C.ORIGINAL_NAME
-		     , C.SAVED_NAME
-		     , C.SAVE_PATH
-		     , C.FILE_TYPE
-		     , C.THUMBNAIL_PATH
-		  FROM SHOES_INFO A
-		  LEFT JOIN SHOES_CATEGORY B ON (A.INFO_CATEGORY_NO = B.SHOES_CATEGORY_NO)
 		  LEFT JOIN SHOES_THUMB C ON (A.SHOES_NO = C.ST_NO)
 		 WHERE A.SALES_YN = 'Y'
+		<if test="search != null and search != ''">
+		   AND A.SHOES_MODEL LIKE '%' || #{ search } || '%' 
+		</if>
 		 ORDER BY A.SHOES_NO DESC
 	</select>
 	
@@ -162,5 +138,31 @@
 		  FROM EVENT A
 		 WHERE A.RANDOM_NO = #{ randomNo }
 	</select>
+	
+	<select id="isEntryUser" resultType="_int">
+		SELECT COUNT(*) 
+		FROM EVENT 
+		WHERE EVENT_ID = #{userId}
+	</select>
+	
+	<select id="selectEvnetNo" parameterType="com.theshoes.jsp.manager.model.dto.EventDTO" resultType="_int">
+		SELECT A.EVENT_NO
+		FROM EVENT A
+		WHERE A.EVENT_ID = #{ eventId }
+		  AND A.EVENT_SHOES_ID = #{ eventShoesId }
+	</select>
+	
+	<update id="updateEvent" parameterType="com.theshoes.jsp.manager.model.dto.EventDTO">
+		UPDATE EVENT A
+           SET A.EVENT_STATUS = '5'
+         WHERE A.EVENT_NO = #{ eventNo }
+	</update>
+	
+	<update id="updateWinner" parameterType="com.theshoes.jsp.manager.model.dto.EventDTO">
+		UPDATE WINNER A
+           SET A.DELIVERY_CODE = #{ eventId }
+             , A.DELIVERY_DETAIL = #{ eventStatus }
+         WHERE A.WINNER_NO = #{ eventNo }
+	</update>
 			
 </mapper>

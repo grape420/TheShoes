@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.theshoes.jsp.common.paging.SelectCriteria;
 import com.theshoes.jsp.manager.model.dao.ManagerDAO;
-import com.theshoes.jsp.manager.model.dto.DeliveryDTO;
+import com.theshoes.jsp.manager.model.dto.WinnerDTO;
 
 public class DeliveryService {
 
@@ -28,14 +28,14 @@ public class DeliveryService {
 		return totalCount;
 	}
 
-	public List<DeliveryDTO> selectAllDeliveryList(SelectCriteria selectCriteria) {
+	public List<WinnerDTO> selectAllDeliveryList(SelectCriteria selectCriteria) {
 		SqlSession session = getSqlSession();
 		
-		List<DeliveryDTO> deliveryList = mapper.selectAllDeliveryList(session, selectCriteria);
-		System.out.println("deliveryList : " + deliveryList);
+		List<WinnerDTO> winnerList = mapper.selectAllDeliveryList(session, selectCriteria);
+		System.out.println("winnerList : " + winnerList);
 		
 		session.close();
 		
-		return deliveryList;
+		return winnerList;
 	}
 }

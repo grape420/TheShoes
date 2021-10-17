@@ -17,7 +17,8 @@ import com.theshoes.jsp.board.model.service.BoardService;
 
 @WebServlet("/board/reg")
 public class RegBoardServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = -7786901644057943369L;
 
 	/* '등록하기' 버튼 클릭 시 get 요청 -> 게시글 작성하는 페이지로 이동 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,6 +30,8 @@ public class RegBoardServlet extends HttpServlet {
 
 	/* 공지사항 작성 후 post 요청을 할 경우 처리하는 역할 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		System.out.println("나와라");
 		
 		/* 사용자가 입력한 정보 받아오기 */
 		String noticeTitle = request.getParameter("noticeTitle");	  		// 공지사항 제목

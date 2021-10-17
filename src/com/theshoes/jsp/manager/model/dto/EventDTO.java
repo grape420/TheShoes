@@ -16,8 +16,10 @@ public class EventDTO implements Serializable{
 	private int randomNo;
 	private String eventStatus;
 	private ShoesDTO shoes;							// association 관계
+	
 	public EventDTO() {
 	}
+	
 	public EventDTO(int eventNo, String eventId, int eventShoesId, Date eventDate, int randomNo, String eventStatus,
 			ShoesDTO shoes) {
 		this.eventNo = eventNo;
@@ -28,6 +30,7 @@ public class EventDTO implements Serializable{
 		this.eventStatus = eventStatus;
 		this.shoes = shoes;
 	}
+	
 	public int getEventNo() {
 		return eventNo;
 	}
@@ -73,13 +76,11 @@ public class EventDTO implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
 	@Override
 	public String toString() {
 		return "EventDTO [eventNo=" + eventNo + ", eventId=" + eventId + ", eventShoesId=" + eventShoesId
 				+ ", eventDate=" + eventDate + ", randomNo=" + randomNo + ", eventStatus=" + eventStatus + ", shoes="
 				+ shoes + "]";
 	}
-	
-	
-
 }

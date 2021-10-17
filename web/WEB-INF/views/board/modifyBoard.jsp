@@ -63,10 +63,7 @@
 
 				<!-- Heading -->
 
-				<!-- Sidebar Toggler (Sidebar) -->
-				<div class="text-center d-none d-md-inline">
-					<button class="rounded-circle border-0" id="sidebarToggle"></button>
-				</div>
+
 
 			</ul>
 			<!-- End of Sidebar -->
@@ -83,27 +80,45 @@
 					<h1 class="h3 mb-2 text-gray-800">공지사항 수정</h1>
 					<p class="mb-4"></p>
 
-					<form class="needs-validation" novalidate action="${ pageContext.servletContext.contextPath }/board/modify" method="post">
+					<form class="needs-validation" action="${ pageContext.servletContext.contextPath }/board/modify" method="post">
 						<div class="row">
 							<div class="col-md-6 mb-3">
 								<label for="firstName">제목</label> 
-									<input type="text" class="form-control" name="noticeTitle" id="firstName" value="${ requestScope.notice.boardTitle }" required>
+									<input type="text" class="form-control" name="noticeTitle" id="firstName" value="${ requestScope.notice.boardTitle }" required="required">
 								<div class="invalid-feedback"></div>
 							</div>
 							<div class="col-md-6 mb-3">
 								<label for="lastName">작성자</label> 
-								<input type="text"class="form-control" name="noticeWriterId" id="lastName" value="${ requestScope.notice.boardId }" required>
+								<input type="text"class="form-control" name="noticeWriterId" id="lastName" value="${ requestScope.notice.boardId }" required="required">
 								<div class="invalid-feedback"></div>
 							</div>
 							<div class="col-md-12">
 								<label for="exampleFormControlTextarea1">내용</label>
-								<textarea class="form-control" name="noticeContent" id="exampleFormControlTextarea1" rows="20">${ requestScope.notice.boardContent }</textarea>
+								<textarea class="form-control" name="noticeContent" id="exampleFormControlTextarea1" rows="20" required="required">${ requestScope.notice.boardContent }</textarea>
 							</div>
 
 							<!-- 수정은 불가하지만 필요한 값  -->
 							<input type="hidden" name="noticeRegDate" value="${ requestScope.notice.boardRegDate }">							
 							<input type="hidden" name="categoryOrder" value="${ requestScope.notice.categoryOrder }">
-							<button type="submit" class="btn btn-outline-secondary" id="modify">수정</button>
+							
+							<div class="col-md-12" style="text-align: center; padding: 30px;">
+								<div class="row"> 
+								 <div class="col-md-4"></div>
+											             
+								 <!-- 공지사항 삭제 버튼 --> 
+								 <div class="col-md-2">
+								<button type="button" class="btn btn-outline-secondary" id="delBtn" onclick="location.href='${ pageContext.servletContext.contextPath }/board/delete?categoryOrder=${ requestScope.notice.categoryOrder }'">삭제</button>
+								 </div>
+												    	 
+								 <!-- 공지사항 수정 완료 버튼 -->
+								 <div class="col-md-2">
+							<button type="submit" class="btn btn-outline-secondary" id="modify">등록</button>
+								 </div> 
+								 <div class="col-md-4">
+								 </div>
+    							</div>
+	           			    </div>
+							
 						</div>
 					</form>
 				</div>

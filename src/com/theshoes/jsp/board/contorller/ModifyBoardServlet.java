@@ -14,7 +14,8 @@ import com.theshoes.jsp.board.model.service.BoardService;
 
 @WebServlet("/board/modify")
 public class ModifyBoardServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = -3364872017507473294L;
 
 	/* 기존 값 불러와서 수정 화면에 띄우기 */
 	/* selectNoticeDetail 은 조회 수가 올라감 -> 새로운 메소드 이용 */

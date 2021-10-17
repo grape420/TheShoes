@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.theshoes.jsp.common.paging.SelectCriteria;
 import com.theshoes.jsp.manager.model.dto.EventDTO;
+import com.theshoes.jsp.manager.model.dto.WinnerDTO;
 import com.theshoes.jsp.shoes.model.dao.ShoesDAO;
 import com.theshoes.jsp.shoes.model.dto.ShoesDTO;
 
@@ -19,10 +20,10 @@ public class ShoesService {
 		shoesDAO = new ShoesDAO();
 	}
 	
-	public List<ShoesDTO> selectShoesList(SelectCriteria selectCriteria) {
+	public List<ShoesDTO> selectShoesList(String search) {
 		SqlSession session = getSqlSession();
 		
-		List<ShoesDTO> shoesList = shoesDAO.selectShoesList(session, selectCriteria);
+		List<ShoesDTO> shoesList = shoesDAO.selectShoesList(session, search);
 		
 		session.close();
 		
@@ -30,17 +31,6 @@ public class ShoesService {
 		
 	}
 	
-	public List<ShoesDTO> selectShoesList() {
-		SqlSession session = getSqlSession();
-		
-		List<ShoesDTO> shoesList = shoesDAO.selectShoesList(session);
-		
-		session.close();
-		
-		return shoesList;
-		
-	}
-
 	public int selectShoesListCnt() {
 		SqlSession session = getSqlSession();
 		
@@ -86,6 +76,46 @@ public class ShoesService {
 		session.close();
 		
 		return userName;
+	}
+	
+	public int isEntryUser(String userId) {
+		SqlSession session = getSqlSession();
+		
+		int isEntry = shoesDAO.isEntryUser(session, userId);
+		
+		session.close();
+		
+		return isEntry;
+	}
+
+	public int selectEvnetNo(EventDTO event) {
+		SqlSession session = getSqlSession();
+		
+		int evnetNo = shoesDAO.selectEvnetNo(session, event);
+		
+		session.close();
+		
+		return evnetNo;
+	}
+
+	public int payShoes(EventDTO event) {
+		SqlSession session = getSqlSession();
+		
+		int result = 0;
+		
+		int isEvent = shoesDAO.updateEvent(session, event);
+
+		int isWinner = shoesDAO.updateWinner(session, event);
+		
+		if ((isEvent > 0) && (isWinner > 0)) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
 	}
 
 }

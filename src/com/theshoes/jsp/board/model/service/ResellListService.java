@@ -1,17 +1,16 @@
 package com.theshoes.jsp.board.model.service;
 
+import static com.theshoes.jsp.common.mybatis.Template.getSqlSession;
+
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import static com.theshoes.jsp.common.mybatis.Template.getSqlSession;
-
+import com.theshoes.jsp.board.model.dao.ResellListDAO;
 import com.theshoes.jsp.board.model.dto.BoardDTO;
 import com.theshoes.jsp.board.model.dto.ResellDetailDTO;
 import com.theshoes.jsp.board.model.dto.ResellListDTO;
 import com.theshoes.jsp.board.model.dto.ResellThumbDTO;
-import com.theshoes.jsp.board.model.dao.ResellListDAO;
 import com.theshoes.jsp.common.paging.SelectCriteria;
 
 public class ResellListService {
@@ -32,11 +31,11 @@ public class ResellListService {
 //	}
 
 
-	public List<BoardDTO> selectResellList() {
+	public List<ResellDetailDTO> selectResellList(SelectCriteria selectCriteria) {
 		
 		SqlSession session = getSqlSession();
 		
-		List<BoardDTO> resellList = resellListDAO.selectResellList(session);
+		List<ResellDetailDTO> resellList = resellListDAO.selectResellList(session, selectCriteria);
 		System.out.println("resellList" + resellList);
 	
 		session.close();
@@ -45,25 +44,11 @@ public class ResellListService {
 	}
 	
 	/* 리셀 디테일 */
-	public ResellListDTO selectOneResellList(int no) {
+	public ResellDetailDTO selectOneResellList(int no) {
 		
 		SqlSession session = getSqlSession();
 		
-		ResellListDTO resell = null;
-		
-		int result = ResellListDAO.incrementBoardCount(session, no);
-		
-		if(result > 0) {
-			resell = resellListDAO.selectOneResellList(session, no);
-			
-			if(resell != null) {
-				session.commit();
-			} else {
-				session.rollback();
-			}
-		} else {
-			session.rollback();
-		}
+		ResellDetailDTO resell = resellListDAO.selectOneResellList(session, no);
 		
 		session.close();
 		
@@ -71,23 +56,23 @@ public class ResellListService {
 	}
 	
 
-	public int insertshoes(ResellDetailDTO resellShoes) {
+	public int insertResellShoes(ResellListDTO resell) {
 		
 		SqlSession session = getSqlSession();
-		
+		System.out.println("test");
 		int result = 0;
 		
-		int resellResult = ResellListDAO.insertResellShoes(session, resellShoes);
+		int resellResult = resellListDAO.insertResellShoes(session, resell);
 		
-		List<ResellThumbDTO> fileList = resellShoes.getResellThumb();
+		System.out.println("board Insert Test");
 		
-		for(int i = 0; i < fileList.size(); i++) {
-			fileList.get(i).setRtNo(resellShoes.getResellNo());
-		}
-		
+		List<ResellThumbDTO> fileList = resell.getResellThumb();
+
 		int resellShoesThumbResult = 0;
+		
 		for(int i = 0; i < fileList.size(); i++) {
-			resellShoesThumbResult += ResellListDAO.insertResellThumb(session, fileList.get(i));
+			fileList.get(i).setResellThumbNo(i + 1);
+			resellShoesThumbResult += resellListDAO.insertResellThumb(session, fileList.get(i));
 		}
 		
 		if(resellResult > 0 && resellShoesThumbResult == fileList.size()) {
@@ -102,7 +87,15 @@ public class ResellListService {
 		return result;
 	}
 
-
-
+	public int selectResellTotalCount() {
+		
+		SqlSession session = getSqlSession();
+		
+		int totalCount = resellListDAO.selectResellTotalCount(session);
+		
+		session.close();
+		
+		return totalCount;
+	}
 
 }

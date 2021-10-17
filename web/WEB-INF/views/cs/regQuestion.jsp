@@ -17,6 +17,7 @@
 <body>
 	<!-- header -->
 	<jsp:include page="../common/header.jsp" />
+	
 	<!-- section -->
 	<section>
 		<!-- Page Wrapper -->
@@ -62,11 +63,6 @@
 
 				<!-- Heading -->
 
-				<!-- Sidebar Toggler (Sidebar) -->
-				<div class="text-center d-none d-md-inline">
-					<button class="rounded-circle border-0" id="sidebarToggle"></button>
-				</div>
-
 			</ul>
 			<!-- End of Sidebar -->
 
@@ -91,12 +87,13 @@
 									<label>제목</label> <input type="text" class="form-control" id="title" placeholder="" name="csTitle" required>
 								</div>
 								<div class="col-md-6 mb-3">
-									<label for="lastName">작성자</label> <input type="text" class="form-control" id="lastName" placeholder="" value="" required name="csId">
+									<label for="lastName">작성자</label> <p class="form-control" id="lastName">${ sessionScope.entryMember.id }</p>
+									<input type="hidden" value="${ sessionScope.entryMember.id }" name="csId" required>
 									<div class="invalid-feedback"></div>
 								</div>
 								<div class="col-md-12">
 									<label>내용</label>
-									<textarea class="form-control" id="exampleFormControlTextarea1" rows="20" name="csContent"></textarea>
+									<textarea class="form-control" id="exampleFormControlTextarea1" rows="20" name="csContent" required="required"></textarea>
 								</div>
 	
 								<div class="col-md-6 mb-3">

@@ -31,7 +31,6 @@ public class AddressService {
 			
 			return result;
 		}
-		
 
 		/* 주소록 전체 조회용 메소드 */
 		public List<AddressDTO> selectAllAddressList(String id) {
@@ -56,7 +55,6 @@ public class AddressService {
 				session.rollback();
 			}
 			session.close();
-			
 			return result;
 		}
 
@@ -65,7 +63,7 @@ public class AddressService {
 			SqlSession session = getSqlSession();
 			
 			int result = addressDAO.deleteAddress(session, addressNo);
-			System.out.println("나는야 서비스 ");
+			System.out.println("나는야 삭제서비스 ");
 			
 			if (result > 0) {
 				session.commit();
@@ -74,9 +72,7 @@ public class AddressService {
 			}
 			
 			session.close();
-			
 			return result;
 		}
 
-
-}
+	}

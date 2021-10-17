@@ -21,14 +21,13 @@ public class DeliveryDTO implements Serializable{
 	private String birth;
 	private String role;
 	private List<EventDTO> event;					// collection 관계
-	private List<WinnerDTO> winner;					// collection 관계
 	private List<AddressDTO> address;				// collection 관계
 	private List<WishListDTO> wishList;
 	public DeliveryDTO() {
 	}
 	public DeliveryDTO(String id, String name, String pwd, String email, String phone, java.util.Date enrollDate,
 			String blackReason, String blackListYn, String withDrawYn, String birth, String role, List<EventDTO> event,
-			List<WinnerDTO> winner, List<AddressDTO> address, List<WishListDTO> wishList) {
+			List<AddressDTO> address, List<WishListDTO> wishList) {
 		this.id = id;
 		this.name = name;
 		this.pwd = pwd;
@@ -41,7 +40,6 @@ public class DeliveryDTO implements Serializable{
 		this.birth = birth;
 		this.role = role;
 		this.event = event;
-		this.winner = winner;
 		this.address = address;
 		this.wishList = wishList;
 	}
@@ -117,12 +115,6 @@ public class DeliveryDTO implements Serializable{
 	public void setEvent(List<EventDTO> event) {
 		this.event = event;
 	}
-	public List<WinnerDTO> getWinner() {
-		return winner;
-	}
-	public void setWinner(List<WinnerDTO> winner) {
-		this.winner = winner;
-	}
 	public List<AddressDTO> getAddress() {
 		return address;
 	}
@@ -143,12 +135,7 @@ public class DeliveryDTO implements Serializable{
 		return "DeliveryDTO [id=" + id + ", name=" + name + ", pwd=" + pwd + ", email=" + email + ", phone=" + phone
 				+ ", enrollDate=" + enrollDate + ", blackReason=" + blackReason + ", blackListYn=" + blackListYn
 				+ ", withDrawYn=" + withDrawYn + ", birth=" + birth + ", role=" + role + ", event=" + event
-				+ ", winner=" + winner + ", address=" + address + ", wishList=" + wishList + "]";
+				+ ", address=" + address + ", wishList=" + wishList + "]";
 	}
-	
-	
-	
-	
-	
 	
 }

@@ -7,28 +7,28 @@ public class ResellThumbDTO implements Serializable{
 	private static final long serialVersionUID = 4292895152934337466L;
 	
 	private int rtNo;
-	private String rtFile;
-	private int resellNo;
-	private String resellFileName;
-	private String savaPath;
+	private int resellThumbNo;
+	private String originalName;
+	private String savedName;
+	private String savePath;
 	private String fileType;
 	private String thumbnailPath;
 	private String status;
-	
-	public ResellThumbDTO(int rtNo, String rtFile, int resellNo, String resellFileName, String savaPath,
+
+	public ResellThumbDTO() {
+		
+	}
+
+	public ResellThumbDTO(int rtNo, int resellThumbNo, String originalName, String savedName, String savePath,
 			String fileType, String thumbnailPath, String status) {
 		this.rtNo = rtNo;
-		this.rtFile = rtFile;
-		this.resellNo = resellNo;
-		this.resellFileName = resellFileName;
-		this.savaPath = savaPath;
+		this.resellThumbNo = resellThumbNo;
+		this.originalName = originalName;
+		this.savedName = savedName;
+		this.savePath = savePath;
 		this.fileType = fileType;
 		this.thumbnailPath = thumbnailPath;
 		this.status = status;
-	}
-
-	public ResellThumbDTO() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getRtNo() {
@@ -39,36 +39,36 @@ public class ResellThumbDTO implements Serializable{
 		this.rtNo = rtNo;
 	}
 
-	public String getRtFile() {
-		return rtFile;
+	public int getResellThumbNo() {
+		return resellThumbNo;
 	}
 
-	public void setRtFile(String rtFile) {
-		this.rtFile = rtFile;
+	public void setResellThumbNo(int resellThumbNo) {
+		this.resellThumbNo = resellThumbNo;
 	}
 
-	public int getResellNo() {
-		return resellNo;
+	public String getOriginalName() {
+		return originalName;
 	}
 
-	public void setResellNo(int resellNo) {
-		this.resellNo = resellNo;
+	public void setOriginalName(String originalName) {
+		this.originalName = originalName;
 	}
 
-	public String getResellFileName() {
-		return resellFileName;
+	public String getSavedName() {
+		return savedName;
 	}
 
-	public void setResellFileName(String resellFileName) {
-		this.resellFileName = resellFileName;
+	public void setSavedName(String savedName) {
+		this.savedName = savedName;
 	}
 
-	public String getSavaPath() {
-		return savaPath;
+	public String getSavePath() {
+		return savePath;
 	}
 
-	public void setSavaPath(String savaPath) {
-		this.savaPath = savaPath;
+	public void setSavePath(String savePath) {
+		this.savePath = savePath;
 	}
 
 	public String getFileType() {
@@ -101,10 +101,11 @@ public class ResellThumbDTO implements Serializable{
 
 	@Override
 	public String toString() {
-		return "ResellThumbDTO [rtNo=" + rtNo + ", rtFile=" + rtFile + ", resellNo=" + resellNo + ", resellFileName="
-				+ resellFileName + ", savaPath=" + savaPath + ", fileType=" + fileType + ", thumbnailPath="
+		return "ResellThumbDTO [rtNo=" + rtNo + ", resellThumbNo=" + resellThumbNo + ", originalName=" + originalName
+				+ ", savedName=" + savedName + ", savePath=" + savePath + ", fileType=" + fileType + ", thumbnailPath="
 				+ thumbnailPath + ", status=" + status + "]";
 	}
+
 	
 	
 }

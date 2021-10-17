@@ -42,6 +42,10 @@ public class BoardDAO {
 		return session.update("BoardDAO.updateNoticeDetail", notice);
 	}
 
+	/* 공지사항 삭제 */
+	public int deleteNotice(SqlSession session, int categoryOrder) {
+		return session.delete("BoardDAO.deleteNotice", categoryOrder);
+	}
 	
 	/* FAQ */
 	/* FAQ 조회수 증가 */
@@ -61,8 +65,8 @@ public class BoardDAO {
 	}
 
 	/* 새로운 FAQ 삽입 */
-	public int registFaq(SqlSession session, BoardDTO notice) {
-		return session.insert("BoardDAO.registFaq", notice);
+	public int registFaq(SqlSession session, BoardDTO faq) {
+		return session.insert("BoardDAO.registFaq", faq);
 	}
 
 	/* FAQ 상세보기 조회 */
@@ -72,7 +76,14 @@ public class BoardDAO {
 	}
 
 	/* FAQ 수정 */
-	public int updateFaqDetail(SqlSession session, BoardDTO notice) {
-		return session.update("BoardDAO.updateFaqDetail", notice);
+	public int updateFaqDetail(SqlSession session, BoardDTO faq) {
+		return session.update("BoardDAO.updateFaqDetail", faq);
 	}
+	
+	/* FAQ 삭제 */
+	public int deleteFaq(SqlSession session, int categoryOrder) {
+		System.out.println("faq 삭제 DAO : " + categoryOrder);
+		return session.delete("BoardDAO.deleteFaq", categoryOrder);
+	}
+
 }

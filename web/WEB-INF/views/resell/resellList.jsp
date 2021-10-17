@@ -31,9 +31,10 @@
 			</select>
 			</label>
 		</div>
-
+	
+		<hr style="border-top: 1px solid rgba(0,0,0,.1); margin-top: 1rem; margin-bottom: 1rem; border: 0;">
 		<div class="reselltitle">
-			<h2>resell shop</h2>
+			<p class="title">RESELL SHOP</p>
 		</div>
 		<div class="sc-ciodno jeBajc">
 			<div class="sc-bYwvMP dsPtbr">
@@ -43,22 +44,22 @@
 				</div>
 			</div>
 		</div>
-		<div class="row mt-5" id="resellTable">
-			<c:forEach var="resellList" items="${ requestScope.resellList }" begin="${ selectCriteria.startRow }" end="${ selectCriteria.endRow }">
-				<div class="col-md-4">
+		<div class="row mt-5" id="resellTable" style="width:70%;">
+			<c:forEach var="resellList" items="${ requestScope.board }" begin="${ selectCriteria.startRow -1}" end="${ selectCriteria.endRow -1}">
+				<div class="col-md-4" style="border: 0!important">
 					<div class="card mb-4 border-0" id="resellArea">
-						<img id="rsImg" src="${ pageContext.servletContext.contextPath }/resources/upload/image/sample/search01.jpg">
+						<img id="rsImg" src="/TheShoes/resources/upload/image/resellShoes/${resellList.resellThumb[0].savedName }">
 						<div class="card-body ">
 							<div class="card-text">
 								<p class="none-hover">
-									<span class="tit">나이키 신발<c:out value="${ resellList.boardTitle }"/></span> 
-									<span class="color">0 원<c:out value="${ resellList.boardContent }"/></span>
+									<span class="tit"><c:out value="${ resellList.boardTitle }"/></span> 
+									<span class="color"><c:out value="${ resellList.boardContent }"/></span>
 								</p>
 								<p class="hover">
-									<a href="javascript:void(0)">Resell</a>
+									<a href="${ pageContext.servletContext.contextPath }/resell/detail?no=${ resellList.boardNo }">Resell</a>
 								</p>
 							</div>
-							<a class="stretched-link" href="#"></a>
+							<a class="stretched-link" href="${ pageContext.servletContext.contextPath }/resell/detail?no=${ resellList.boardNo }"></a>
 						</div>
 					</div>
 				</div>
@@ -82,9 +83,12 @@
 		<div class="regArea" style="text-align: center; margin: 20px;">
 			<a href="#" style="margin: 20px auto;text-decoration: none !important;color: black !important;border: 1px solid gray;padding: 10px 20px;border-radius: 20px;" id="regButton" onclick="location.href='${ pageContext.servletContext.contextPath }/resell/regResell';">게시글 등록</a>
 		</div> --%>
+		<div class="regArea" style="text-align: center; margin: 20px;">
+			<a href="#" id="regButton" onclick="location.href='${ pageContext.servletContext.contextPath }/resell/regResell';">등록하기</a>
+		</div>
 	</section>
 	<script type="text/javascript">
-	$(function() {
+	/* $(function() {
 		$("#resellTable a").hover(function() {
 			$(this).parent().css({"cursor":"pointer"});
 		}).click(function() {
@@ -92,7 +96,7 @@
 			console.log(categoryOrder);
 			location.href = "${ pageContext.servletContext.contextPath }/resell/detail?categoryOrder=" + categoryOrder;
 		});
-	});
+	}); */
 	</script>
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />

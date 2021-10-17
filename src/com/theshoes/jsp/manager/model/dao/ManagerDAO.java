@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.theshoes.jsp.board.model.dto.BoardDTO;
 import com.theshoes.jsp.common.paging.SelectCriteria;
-import com.theshoes.jsp.manager.model.dto.DeliveryDTO;
+import com.theshoes.jsp.manager.model.dto.WinnerDTO;
 import com.theshoes.jsp.member.model.dto.MemberDTO;
 import com.theshoes.jsp.shoes.model.dto.ShoesDTO;
 import com.theshoes.jsp.shoes.model.dto.ShoesThumbDTO;
@@ -70,7 +70,7 @@ public class ManagerDAO {
 		return session.selectOne("ManagerDAO.selectDeliveryTotalCount");
 	}
 
-	public List<DeliveryDTO> selectAllDeliveryList(SqlSession session, SelectCriteria selectCriteria) {
+	public List<WinnerDTO> selectAllDeliveryList(SqlSession session, SelectCriteria selectCriteria) {
 		System.out.println("여기는 DAO : " + selectCriteria);
 		return session.selectList("ManagerDAO.selectAllDeliveryList", selectCriteria);
 	}
@@ -87,17 +87,5 @@ public class ManagerDAO {
 	public List<ShoesThumbDTO> selectShoesThumbNo(SqlSession session, int shoesNo) {
 		return session.selectList("ManagerDAO.selectShoesThumbNo", shoesNo);
 	}
-
-
-
-
-	
-
-	
-
-	
-
-	
-	
 
 }

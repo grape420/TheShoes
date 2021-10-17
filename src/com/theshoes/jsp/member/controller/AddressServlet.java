@@ -21,9 +21,8 @@ public class AddressServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		AddressService addressService = new AddressService();
-		
+		/* 배송지 삭제 */
 		if(request.getParameter("delete") != null) {
 			int result = addressService.deletAddress(request.getParameter("delete"));
 			
@@ -35,11 +34,14 @@ public class AddressServlet extends HttpServlet {
 		}
 	
 		HttpSession session = request.getSession();
+		
 		String id =  ((MemberDTO)session.getAttribute("entryMember")).getId();
+		
 		/* 전체 주소록 조회 */ 
 		List<AddressDTO> addressList = new AddressService().selectAllAddressList(id);
 		
-		System.out.println("addressList : " + addressList);
+		/* 이것도 3번보기 list size + "" addressCT로 넘어간다. */ 
+		request.setAttribute("addressCT", addressList.size()+"");
 		
 		SelectCriteria selectCriteria = null;
 		
@@ -51,7 +53,6 @@ public class AddressServlet extends HttpServlet {
 			path = "/WEB-INF/views/common/errorPage.jsp";
 		}
 		request.getRequestDispatcher(path).forward(request, response);
-		
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -76,20 +77,14 @@ public class AddressServlet extends HttpServlet {
 		System.out.println("memberController newAddress : " + newAddress);
 		
 		AddressService addressService = new AddressService();
+		
 		int result = addressService.insertAddress(newAddress);
 		
-		String path = "";
-		
-		/* address 추가 후 주소록 메인페이지로 이동  */
-		if(result > 0) {
-			path = "/WEB-INF/views/common/success.jsp";
-			request.setAttribute("myAddressCode", "insertAddress");
-		} else {
-			path = "/WEB-INF/views/common/errorPage.jsp";
+		if (result > 0) { 
+			request.setAttribute("successCode", "updateAddress");
+			request.getRequestDispatcher("/WEB-INF/views/common/success.jsp").forward(request, response);
+		} else { 
+			request.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(request, response);
+			}
 		}
-		request.getRequestDispatcher(path).forward(request, response);
 	}
-	
-
-	
-}

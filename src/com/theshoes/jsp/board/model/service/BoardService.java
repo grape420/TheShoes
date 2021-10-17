@@ -119,6 +119,23 @@ public class BoardService {
 		return noticeDetail;
 	}
 
+	/* 공지사항 삭제 */
+	public int deleteNotice(int categoryOrder) {
+		SqlSession session = getSqlSession();
+		
+		int result = boardDAO.deleteNotice(session, categoryOrder);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}	
+	
 	/*---- FAQ ----*/
 	
 	/* FAQ 상세보기 + 조회수 증가*/
@@ -204,6 +221,25 @@ public class BoardService {
 		SqlSession session = getSqlSession();
 		
 		int result = boardDAO.registFaq(session, faq);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
+	/* FAQ 삭제 */
+	public int deleteFaq(int categoryOrder) {
+		SqlSession session = getSqlSession();
+		
+		int result = boardDAO.deleteFaq(session, categoryOrder);
+		
+		System.out.println("FAQ 삭제 서비스 : " + categoryOrder);
 		
 		if(result > 0) {
 			session.commit();

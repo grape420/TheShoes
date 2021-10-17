@@ -17,9 +17,11 @@
 				case "insertShoes" :
 					movePath = "${ pageContext.servletContext.contextPath }/manager/shoes";
 					break;
-					
+				case "updateMember" :
+					movePath = "${ pageContext.servletContext.contextPath }/manager/memberList";
+					break;
 				case "myAddressCode" : 
-					movePath = "${ pageContext.servletContext.contextPath }/myPage/myAddress";
+					movePath = "${ pageContext.servletContext.contextPath }/myPage/address";
 					break;
 					
 				case "updateAddress" : 
@@ -28,11 +30,13 @@
 					
 				case "insertNotice" :
 				case "updateNotice" :
+				case "deleteNotice" :
 					movePath = "${ pageContext.servletContext.contextPath }/board/list";
 					break;
 					
 				case "insertFaq" :
 				case "updateFaq" :
+				case "deleteFaq" :
 					movePath = "${ pageContext.servletContext.contextPath }/faq/list";
 					break;	
 					

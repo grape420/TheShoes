@@ -6,9 +6,9 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.theshoes.jsp.board.model.dto.BoardDTO;
 import com.theshoes.jsp.common.paging.SelectCriteria;
 import com.theshoes.jsp.cs.model.dao.QuestionDAO;
+import com.theshoes.jsp.cs.model.dto.OnlyQuestionDTO;
 import com.theshoes.jsp.cs.model.dto.QuestionDTO;
 import com.theshoes.jsp.cs.model.dto.QuestionFileDTO;
 import com.theshoes.jsp.cs.model.dto.RequestDTO;
@@ -84,7 +84,13 @@ public class QuestionService {
 		
 		QuestionDTO csDetail= questionDAO.selectCsDetail(session, csNo);
 		
-		System.out.println("service detail: " + csDetail);
+		System.out.println("service csdetail: " + csDetail);
+		
+		/* 파일이 없어서 전체 null로 넘어오는 경우 */
+		if (csDetail == null ) {
+			csDetail = questionDAO.selectCsDetailNoPhoto(session, csNo);
+			System.out.println("service noPhoto detail : " + csDetail);
+		}
 		session.close();
 		
 		return csDetail;

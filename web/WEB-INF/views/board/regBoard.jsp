@@ -53,18 +53,14 @@
 						<div class="bg-white py-2 collapse-inner rounded">
              			  	  <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/board/list" >공지사항</a>
 							  <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/faq/list">FAQ</a> 
-			                  <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/cs/list">1:1 문의</a>						</div>
+			                  <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/cs/list">1:1 문의</a>						
+			            </div>
 					</div></li>
 
 				<!-- Divider -->
 				<hr class="sidebar-divider">
 
 				<!-- Heading -->
-
-				<!-- Sidebar Toggler (Sidebar) -->
-				<div class="text-center d-none d-md-inline">
-					<button class="rounded-circle border-0" id="sidebarToggle"></button>
-				</div>
 
 			</ul>
 			<!-- End of Sidebar -->
@@ -81,27 +77,25 @@
 					<h1 class="h3 mb-2 text-gray-800">공지사항 등록</h1>
 					<p class="mb-4"></p>
 
-					<form class="needs-validation" novalidate action="${ pageContext.servletContext.contextPath }/board/reg" method="post">
+					<form class="needs-validation"  action="${ pageContext.servletContext.contextPath }/board/reg" method="post">
 						<div class="row">
 							<div class="col-md-6 mb-3">
-								<label for="firstName">제목</label> <input type="text"
-									class="form-control" id="firstName" placeholder="" value=""
-									required name="noticeTitle">
+								<label for="firstName">제목</label> 
+								<input type="text" class="form-control" id="firstName" name="noticeTitle" required>
 								<div class="invalid-feedback"></div>
 							</div>
 							<div class="col-md-6 mb-3">
-								<label for="lastName">작성자</label> <input type="text"
-									class="form-control" id="lastName" placeholder="" value=""
-									required name="noticeWriterId">
+								<label for="lastName">작성자</label> 
+								<p class="form-control" id="lastName">${ sessionScope.entryMember.id }</p>
+								<input type="hidden" value="${ sessionScope.entryMember.id }" name="noticeWriterId">
 								<div class="invalid-feedback"></div>
 							</div>
 							<div class="col-md-12">
 								<label for="exampleFormControlTextarea1">내용</label>
-								<textarea class="form-control" id="exampleFormControlTextarea1"
-									rows="20" name="noticeContent"></textarea>
+								<textarea class="form-control" id="exampleFormControlTextarea1" rows="20" name="noticeContent" required="required"></textarea>
 							</div>
 							
-							<button type="submit" class="btn btn-outline-secondary" onclick="location.href='${ pageContext.servletContext.contextPath }/board/list'">등록</button>
+							<button type="submit" class="btn btn-outline-secondary">등록</button>
 						</div>
 					</form>
 				</div>

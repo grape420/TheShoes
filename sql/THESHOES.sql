@@ -193,7 +193,9 @@ CREATE TABLE WINNER (
 	WINNER_NO	NUMBER		NOT NULL,
 	WINNER_YN	VARCHAR2(1)	DEFAULT 'Y'	NOT NULL,
 	WINNER_DEADLINE	DATE		NOT NULL,
-    CONSTRAINT UK_WINNER_YN CHECK(WINNER_YN IN ('Y', 'N'))
+    CONSTRAINT UK_WINNER_YN CHECK(WINNER_YN IN ('Y', 'N')),
+    DELIVERY_CODE	VARCHAR2(250)	NULL,
+	DELIVERY_DETAIL	VARCHAR2(250)	NULL
 );
 
 COMMENT ON COLUMN WINNER.WINNER_ID IS '아이디';
@@ -583,291 +585,7 @@ INSERT INTO MEMBER VALUES ('USER04', '이찬혁', '$2a$10$hdOtSrU5W9j5erqqmq9R6.
                            DEFAULT, DEFAULT, '19860912', 'MEMBER');
 INSERT INTO MEMBER VALUES ('USER05', '아누팜', '$2a$10$z.j54bIq.MNKDY7TxMlMKOdx3HRtE8n4KYRYYPAgbwoljMYpeten6', 'salAli@naver.com',
                            '01012121212', SYSDATE, NULL,
-                           DEFAULT, DEFAULT, '19881102', 'MEMBER');                        
-
-                            
-
--- 주소 ADDRESS INSERT
-INSERT INTO ADDRESS VALUES (1, 'USER01', '서울시 어쩌구', '202동 1302호', '집');
-INSERT INTO ADDRESS VALUES (2, 'USER01', '서울시 어쩌구', '202동 1302호', '회사');
-INSERT INTO ADDRESS VALUES (1, 'USER02', '서울시 어쩌구', '202동 1302호', '집');
-INSERT INTO ADDRESS VALUES (2, 'USER02', '서울시 어쩌구', '202동 1302호', '회사');
-INSERT INTO ADDRESS VALUES (1, 'USER04', '서울시 어쩌구', '202동 1302호', '집');
-INSERT INTO ADDRESS VALUES (2, 'USER04', '서울시 어쩌구', '202동 1302호', '회사');
-INSERT INTO ADDRESS VALUES (1, 'USER05', '서울시 어쩌구', '202동 1302호', '집');
-INSERT INTO ADDRESS VALUES (2, 'USER05', '서울시 어쩌구', '202동 1302호', '회사');
-
--- 게시판 카테고리 BOARD_CATEGORY INSERT
-INSERT INTO BOARD_CATEGORY VALUES (1, '공지사항'); 
-INSERT INTO BOARD_CATEGORY VALUES (2, 'FAQ'); 
-INSERT INTO BOARD_CATEGORY VALUES (3, '리셀'); 
-
--- 게시판(FAQ) BOARD_FAQ INSERT
-INSERT INTO BOARD VALUES (SEQ_BOARD_CODE.NEXTVAL, 'USER03', 2, '상품 구매는 어떻게 하나요?',
-                            '서비스 가입 후 로그인 한 회원은 누구나 상품을 구매할 수 있습니다. 
-                            상품을 검색하고, 원하는 사이즈를 선택한 후 구매 버튼을 누르면 즉시 구매 혹은 구매 입찰이 가능합니다. 
-                            즉시 구매하거나 입찰 후 거래가 체결되면 판매자가 상품을 검수 센터로 전달하여 검수를 진행하게 되며, 검수를 합격한 상품은 구매자에게 안전하게 배송됩니다.', 
-                            SYSDATE, DEFAULT, 1);
-INSERT INTO BOARD VALUES (SEQ_BOARD_CODE.NEXTVAL, 'USER03', 2, '결제는 언제 진행되나요?',
-                            '구매 입찰을 통해 구매 희망가를 제시하신 경우, 해당 가격에 판매를 원하는 판매자가 판매 희망가를 등록하면 해당 시점에 바로 일시불로 결제가 진행됩니다. 
-                            즉시 구매는 바로 결제가 진행됩니다.', 
-                            SYSDATE, DEFAULT, 2);
-INSERT INTO BOARD VALUES (SEQ_BOARD_CODE.NEXTVAL, 'USER03', 2, '배송 주소 변경은 어떻게 하나요?',
-                            '구매 입찰 중인 주문은 언제든지 "입찰 변경하기" 버튼을 선택하여 주소를 변경하실 수 있습니다. 
-                            구매 진행 중인 주문은 해당 주문의 상세화면에서 진행 상황이 <대기 중 / 발송완료 / 입고완료>인 경우 배송 주소에서 "배송지 변경" 버튼으로 변경 가능합니다.', 
-                            SYSDATE, DEFAULT, 3);
-INSERT INTO BOARD VALUES (SEQ_BOARD_CODE.NEXTVAL, 'USER03', 2, '구매한 상품을 반품할 수 있나요?',
-                            '원칙적으로는 검수 합격을 한 상품에 대하여 반품이 불가능 합니다. 
-                            사이즈 선택 실수나 단순 변심의 경우에는 THE SHOES에서 다시 판매하실 수 있습니다.', 
-                            SYSDATE, DEFAULT, 4);                            
-INSERT INTO BOARD VALUES (SEQ_BOARD_CODE.NEXTVAL, 'USER03', 2, '국내 발매 상품인지 확인하고 싶어요.',
-                            'THE SHOES에서는 정품이고 새상품이면 발매 국가가 어디인지와 상관없이 거래가 가능합니다. 
-                            구매하신 상품이 국내 발매 상품인지 여부(나이키코리아탭/아디다스코리아탭/컨버스코리아탭 등)는 확인이 어려우며, 
-                            해당 사유로 인한 구매 취소는 불가능합니다.', 
-                            SYSDATE, DEFAULT, 5);        
-                            
-
--- 댓글 COMMENTS INSERT
-INSERT INTO COMMENTS VALUES (SEQ_COMMENTS_CODE.NEXTVAL, SEQ_BOARD_CODE.CURRVAL, '판매되었나요?',
-                                DEFAULT, SYSDATE);
-INSERT INTO COMMENTS VALUES (SEQ_COMMENTS_CODE.NEXTVAL, SEQ_BOARD_CODE.CURRVAL, '구매하고 싶어요~~',
-                                DEFAULT, SYSDATE);
-INSERT INTO COMMENTS VALUES (SEQ_COMMENTS_CODE.NEXTVAL, SEQ_BOARD_CODE.CURRVAL, '구매 가능할까요??',
-                                DEFAULT, SYSDATE);
-INSERT INTO COMMENTS VALUES (SEQ_COMMENTS_CODE.NEXTVAL, SEQ_BOARD_CODE.CURRVAL, '<광고> 여기가 더 싸요!! https://www.naver.com/ ',
-                                DEFAULT, SYSDATE);
-INSERT INTO COMMENTS VALUES (SEQ_COMMENTS_CODE.NEXTVAL, SEQ_BOARD_CODE.CURRVAL, '비밀입니다~~~!',
-                                'N', SYSDATE);
-                         
--- 신발 카테고리 INSERT
-INSERT INTO SHOES_CATEGORY VALUES(1, '나이키');
-INSERT INTO SHOES_CATEGORY VALUES(2, '스캇');
-INSERT INTO SHOES_CATEGORY VALUES(3, '사카이');
-INSERT INTO SHOES_CATEGORY VALUES(4, 'Jordan');
-INSERT INTO SHOES_CATEGORY VALUES(5, 'Dunk');
-                            
--- 리셀 게시판 INSERT
-INSERT INTO BOARD VALUES (SEQ_BOARD_CODE.NEXTVAL, 'USER01', 3, '나이키', '나이키 신발', TO_DATE('10-08-2021 19:00:11', 'MM-DD-YYYY HH24:MI:SS'), 10, 1); 
-INSERT INTO BOARD VALUES(SEQ_BOARD_CODE.NEXTVAL, 'USER01', 3, '스캇', '스캇 신발', TO_DATE('10-08-2021 19:00:11', 'MM-DD-YYYY HH24:MI:SS'), 10, 2);
-INSERT INTO BOARD VALUES(SEQ_BOARD_CODE.NEXTVAL, 'USER01', 3, '사카이', '사카이 신발', TO_DATE('10-08-2021 19:00:11', 'MM-DD-YYYY HH24:MI:SS'), 10, 3); 
-INSERT INTO BOARD VALUES(SEQ_BOARD_CODE.NEXTVAL, 'USER01', 3, '조던', '조던 신발', TO_DATE('10-08-2021 19:00:11', 'MM-DD-YYYY HH24:MI:SS'), 10, 4); 
-INSERT INTO BOARD VALUES(SEQ_BOARD_CODE.NEXTVAL, 'USER01', 3, '덩크', '덩크 신발', TO_DATE('10-08-2021 19:00:11', 'MM-DD-YYYY HH24:MI:SS'), 10, 5); 
-                            
--- 응모내역 EVENT
--- 응모상태 (1:미당첨, 2:구매안함, 3:구매/상품준비중, 4:배송중, 5:배송완료)
-INSERT INTO EVENT VALUES (SEQ_EVENT_CODE.NEXTVAL, 'USER01', SEQ_SHOES_CODE.CURRVAL, SYSDATE, 1, '1');
-INSERT INTO EVENT VALUES (SEQ_EVENT_CODE.NEXTVAL, 'USER01', SEQ_SHOES_CODE.CURRVAL, SYSDATE, 2, '2');
-INSERT INTO EVENT VALUES (SEQ_EVENT_CODE.NEXTVAL, 'USER02', SEQ_SHOES_CODE.CURRVAL, SYSDATE, 3, '3');
-INSERT INTO EVENT VALUES (SEQ_EVENT_CODE.NEXTVAL, 'USER02', SEQ_SHOES_CODE.CURRVAL, SYSDATE, 4, '4');
-INSERT INTO EVENT VALUES (SEQ_EVENT_CODE.NEXTVAL, 'USER04', SEQ_SHOES_CODE.CURRVAL, SYSDATE, 5, '5');
-INSERT INTO EVENT VALUES (SEQ_EVENT_CODE.NEXTVAL, 'USER04', SEQ_SHOES_CODE.CURRVAL, SYSDATE, 6, '1');
-INSERT INTO EVENT VALUES (SEQ_EVENT_CODE.NEXTVAL, 'USER05', SEQ_SHOES_CODE.CURRVAL, SYSDATE, 7, '2');
-INSERT INTO EVENT VALUES (SEQ_EVENT_CODE.NEXTVAL, 'USER05', SEQ_SHOES_CODE.CURRVAL, SYSDATE, 8, '3');                            
-
--- 신발 파일 INSERT
-INSERT INTO SHOES_FILE VALUES ('Billie Eilish(1).jpg',1);
-INSERT INTO SHOES_FILE VALUES ('Billie Eilish(2).jpg',1);
-INSERT INTO SHOES_FILE VALUES ('Billie Eilish(3).jpg',1);
-INSERT INTO SHOES_FILE VALUES ('Billie Eilish(4).jpg',1);
-INSERT INTO SHOES_FILE VALUES ('Billie Eilish(5).jpg',1);
-INSERT INTO SHOES_FILE VALUES ('Billie Eilish(6).jpg',1);
-
-INSERT INTO SHOES_FILE VALUES ('NYC Cool Grey_1.jpg',2);
-INSERT INTO SHOES_FILE VALUES ('NYC Cool Grey_2.jpg',2);
-INSERT INTO SHOES_FILE VALUES ('NYC Cool Grey_3.jpg',2);
-INSERT INTO SHOES_FILE VALUES ('NYC Cool Grey_4.jpg',2);
-INSERT INTO SHOES_FILE VALUES ('NYC Cool Grey_5.jpg',2);
-INSERT INTO SHOES_FILE VALUES ('NYC Cool Grey_6.jpg',2);
-
-INSERT INTO SHOES_FILE VALUES ('Prototype_1.jpg',3);
-INSERT INTO SHOES_FILE VALUES ('Prototype_2.jpg',3);
-INSERT INTO SHOES_FILE VALUES ('Prototype_3.jpg',3);
-INSERT INTO SHOES_FILE VALUES ('Prototype_4.jpg',3);
-INSERT INTO SHOES_FILE VALUES ('Prototype_5.jpg',3);
-INSERT INTO SHOES_FILE VALUES ('Prototype_6.jpg',3);
-
-INSERT INTO SHOES_FILE VALUES ('PNets_1.jpg',4);
-INSERT INTO SHOES_FILE VALUES ('PNets_2.jpg',4);
-INSERT INTO SHOES_FILE VALUES ('PNets_3.jpg',4);
-INSERT INTO SHOES_FILE VALUES ('PNets_4.jpg',4);
-INSERT INTO SHOES_FILE VALUES ('PNets_5.jpg',4);
-INSERT INTO SHOES_FILE VALUES ('PNets_6.jpg',4);
-
-INSERT INTO SHOES_FILE VALUES ('한글날_1.jpg',5);
-INSERT INTO SHOES_FILE VALUES ('한글날_2.jpg',5);
-INSERT INTO SHOES_FILE VALUES ('한글날_3.jpg',5);
-INSERT INTO SHOES_FILE VALUES ('한글날_4.jpg',5);
-INSERT INTO SHOES_FILE VALUES ('한글날_5.jpg',5);
-INSERT INTO SHOES_FILE VALUES ('한글날_6.jpg',5);
-
-  
-
--- 신발 사이즈
-INSERT INTO SHOES_SIZE VALUES(230,1);
-INSERT INTO SHOES_SIZE VALUES(235,1);
-INSERT INTO SHOES_SIZE VALUES(240,1);
-INSERT INTO SHOES_SIZE VALUES(245,1);
-INSERT INTO SHOES_SIZE VALUES(250,1);
-INSERT INTO SHOES_SIZE VALUES(255,1);
-INSERT INTO SHOES_SIZE VALUES(260,1);
-INSERT INTO SHOES_SIZE VALUES(265,1);
-INSERT INTO SHOES_SIZE VALUES(270,1);
-INSERT INTO SHOES_SIZE VALUES(275,1);
-INSERT INTO SHOES_SIZE VALUES(280,1);
-INSERT INTO SHOES_SIZE VALUES(285,1);
-INSERT INTO SHOES_SIZE VALUES(290,1);
-INSERT INTO SHOES_SIZE VALUES(295,1);
-INSERT INTO SHOES_SIZE VALUES(300,1);
-
-INSERT INTO SHOES_SIZE VALUES(230,2);
-INSERT INTO SHOES_SIZE VALUES(235,2);
-INSERT INTO SHOES_SIZE VALUES(240,2);
-INSERT INTO SHOES_SIZE VALUES(245,2);
-INSERT INTO SHOES_SIZE VALUES(250,2);
-INSERT INTO SHOES_SIZE VALUES(255,2);
-INSERT INTO SHOES_SIZE VALUES(260,2);
-INSERT INTO SHOES_SIZE VALUES(265,2);
-INSERT INTO SHOES_SIZE VALUES(270,2);
-INSERT INTO SHOES_SIZE VALUES(275,2);
-INSERT INTO SHOES_SIZE VALUES(280,2);
-INSERT INTO SHOES_SIZE VALUES(285,2);
-INSERT INTO SHOES_SIZE VALUES(290,2);
-INSERT INTO SHOES_SIZE VALUES(295,2);
-INSERT INTO SHOES_SIZE VALUES(300,2);
-
-INSERT INTO SHOES_SIZE VALUES(230,3);
-INSERT INTO SHOES_SIZE VALUES(235,3);
-INSERT INTO SHOES_SIZE VALUES(240,3);
-INSERT INTO SHOES_SIZE VALUES(245,3);
-INSERT INTO SHOES_SIZE VALUES(250,3);
-INSERT INTO SHOES_SIZE VALUES(255,3);
-INSERT INTO SHOES_SIZE VALUES(260,3);
-INSERT INTO SHOES_SIZE VALUES(265,3);
-INSERT INTO SHOES_SIZE VALUES(270,3);
-INSERT INTO SHOES_SIZE VALUES(275,3);
-INSERT INTO SHOES_SIZE VALUES(280,3);
-INSERT INTO SHOES_SIZE VALUES(285,3);
-INSERT INTO SHOES_SIZE VALUES(290,3);
-INSERT INTO SHOES_SIZE VALUES(295,3);
-INSERT INTO SHOES_SIZE VALUES(300,3);
-
-INSERT INTO SHOES_SIZE VALUES(230,4);
-INSERT INTO SHOES_SIZE VALUES(235,4);
-INSERT INTO SHOES_SIZE VALUES(240,4);
-INSERT INTO SHOES_SIZE VALUES(245,4);
-INSERT INTO SHOES_SIZE VALUES(250,4);
-INSERT INTO SHOES_SIZE VALUES(255,4);
-INSERT INTO SHOES_SIZE VALUES(260,4);
-INSERT INTO SHOES_SIZE VALUES(265,4);
-INSERT INTO SHOES_SIZE VALUES(270,4);
-INSERT INTO SHOES_SIZE VALUES(275,4);
-INSERT INTO SHOES_SIZE VALUES(280,4);
-INSERT INTO SHOES_SIZE VALUES(285,4);
-INSERT INTO SHOES_SIZE VALUES(290,4);
-INSERT INTO SHOES_SIZE VALUES(295,4);
-INSERT INTO SHOES_SIZE VALUES(300,4);
-
-INSERT INTO SHOES_SIZE VALUES(230,5);
-INSERT INTO SHOES_SIZE VALUES(235,5);
-INSERT INTO SHOES_SIZE VALUES(240,5);
-INSERT INTO SHOES_SIZE VALUES(245,5);
-INSERT INTO SHOES_SIZE VALUES(250,5);
-INSERT INTO SHOES_SIZE VALUES(255,5);
-INSERT INTO SHOES_SIZE VALUES(260,5);
-INSERT INTO SHOES_SIZE VALUES(265,5);
-INSERT INTO SHOES_SIZE VALUES(270,5);
-INSERT INTO SHOES_SIZE VALUES(275,5);
-INSERT INTO SHOES_SIZE VALUES(280,5);
-INSERT INTO SHOES_SIZE VALUES(285,5);
-INSERT INTO SHOES_SIZE VALUES(290,5);
-INSERT INTO SHOES_SIZE VALUES(295,5);
-INSERT INTO SHOES_SIZE VALUES(300,5);
-
--- 공지사항 INSERT
-INSERT INTO BOARD VALUES (SEQ_BOARD_CODE.NEXTVAL, 'USER03', 1, '1번 공지사항 제목', '1번 공지사항 내용'
-                            ,SYSDATE, 0, 1);
-INSERT INTO BOARD VALUES (SEQ_BOARD_CODE.NEXTVAL, 'USER03', 1, '2번 공지사항 제목', '2번 공지사항 내용'
-                            ,SYSDATE, 0, 2);
-INSERT INTO BOARD VALUES (SEQ_BOARD_CODE.NEXTVAL, 'USER03', 1, '3번 공지사항 제목', '3번 공지사항 내용'
-                            ,SYSDATE, 0, 3);                            
-INSERT INTO BOARD VALUES (SEQ_BOARD_CODE.NEXTVAL, 'USER03', 1, '4번 공지사항 제목', '4번 공지사항 내용'
-                            ,SYSDATE, 0, 4);
-INSERT INTO BOARD VALUES (SEQ_BOARD_CODE.NEXTVAL, 'USER03', 1, '5번 공지사항 제목', '5번 공지사항 내용'
-                            ,SYSDATE, 0, 5);
-INSERT INTO BOARD VALUES (SEQ_BOARD_CODE.NEXTVAL, 'USER03', 1, '6번 공지사항 제목', '6번 공지사항 내용'
-                            ,SYSDATE, 0, 6);
-INSERT INTO BOARD VALUES (SEQ_BOARD_CODE.NEXTVAL, 'USER03', 1, '7번 공지사항 제목', '7번 공지사항 내용'
-                            ,SYSDATE, 0, 7);                            
-INSERT INTO BOARD VALUES (SEQ_BOARD_CODE.NEXTVAL, 'USER03', 1, '8번 공지사항 제목', '8번 공지사항 내용'
-                            ,SYSDATE, 0, 8);                            
-INSERT INTO BOARD VALUES (SEQ_BOARD_CODE.NEXTVAL, 'USER03', 1, '9번 공지사항 제목', '9번 공지사항 내용'
-                            ,SYSDATE, 0, 9);                            
-INSERT INTO BOARD VALUES (SEQ_BOARD_CODE.NEXTVAL, 'USER03', 1, '10번 공지사항 제목', '10번 공지사항 내용'
-                            ,SYSDATE, 0, 10);                            
-INSERT INTO BOARD VALUES (SEQ_BOARD_CODE.NEXTVAL, 'USER03', 1, '11번 공지사항 제목', '11번 공지사항 내용'
-                            ,SYSDATE, 0, 11);
-                            
-
-
-
-/* 리셀 사진 파일 */
-INSERT INTO RESELL_FILE VALUES ('Billie Eilish(1).jpg',1);
-INSERT INTO RESELL_FILE VALUES ('Billie Eilish(2).jpg',1);
-INSERT INTO RESELL_FILE VALUES ('Billie Eilish(3).jpg',1);
-INSERT INTO RESELL_FILE VALUES ('Billie Eilish(4).jpg',1);
-INSERT INTO RESELL_FILE VALUES ('Billie Eilish(5).jpg',1);
-INSERT INTO RESELL_FILE VALUES ('Billie Eilish(6).jpg',1);
-
-INSERT INTO RESELL_FILE VALUES ('NYC Cool Grey_1.jpg',2);
-INSERT INTO RESELL_FILE VALUES ('NYC Cool Grey_2.jpg',2);
-INSERT INTO RESELL_FILE VALUES ('NYC Cool Grey_3.jpg',2);
-INSERT INTO RESELL_FILE VALUES ('NYC Cool Grey_4.jpg',2);
-INSERT INTO RESELL_FILE VALUES ('NYC Cool Grey_5.jpg',2);
-INSERT INTO RESELL_FILE VALUES ('NYC Cool Grey_6.jpg',2);
-
-INSERT INTO RESELL_FILE VALUES ('Prototype_1.jpg',3);
-INSERT INTO RESELL_FILE VALUES ('Prototype_2.jpg',3);
-INSERT INTO RESELL_FILE VALUES ('Prototype_3.jpg',3);
-INSERT INTO RESELL_FILE VALUES ('Prototype_4.jpg',3);
-INSERT INTO RESELL_FILE VALUES ('Prototype_5.jpg',3);
-INSERT INTO RESELL_FILE VALUES ('Prototype_6.jpg',3);
-
-INSERT INTO RESELL_FILE VALUES ('PNets_1.jpg',4);
-INSERT INTO RESELL_FILE VALUES ('PNets_2.jpg',4);
-INSERT INTO RESELL_FILE VALUES ('PNets_3.jpg',4);
-INSERT INTO RESELL_FILE VALUES ('PNets_4.jpg',4);
-INSERT INTO RESELL_FILE VALUES ('PNets_5.jpg',4);
-INSERT INTO RESELL_FILE VALUES ('PNets_6.jpg',4);
-
-INSERT INTO RESELL_FILE VALUES ('한글날_1.jpg',5);
-INSERT INTO RESELL_FILE VALUES ('한글날_2.jpg',5);
-INSERT INTO RESELL_FILE VALUES ('한글날_3.jpg',5);
-INSERT INTO RESELL_FILE VALUES ('한글날_4.jpg',5);
-INSERT INTO RESELL_FILE VALUES ('한글날_5.jpg',5);
-INSERT INTO RESELL_FILE VALUES ('한글날_6.jpg',5);
-
-INSERT INTO RESELL_THUMB VALUES (1, 'Billie Eilish_thumbnail.jpg');
-INSERT INTO RESELL_THUMB VALUES (2, 'NYC Cool Grey_thumbnail.jpg');
-INSERT INTO RESELL_THUMB VALUES (3, 'Prototype_thumbnail.jpg');
-INSERT INTO RESELL_THUMB VALUES (4, 'Nets_thumbnail.jpg');
-INSERT INTO RESELL_THUMB VALUES (5, '한글날_thumbnail.jpg');
-
--- 고객문의 CS_BOARD
-INSERT INTO CS_BOARD VALUES(SEQ_CS_BOARD_CODE.NEXTVAL, 'USER01', '배송이 왜 이렇게 느려요~~', '제가 찾으러 갈게요 그냥!!! 주소를 알려주시오!!',SYSDATE);
-INSERT INTO CS_BOARD VALUES(SEQ_CS_BOARD_CODE.NEXTVAL, 'USER02', '더슈즈 짱!', '예쁜 거 많이 내주셔서 감사해요~~',SYSDATE);
-INSERT INTO CS_BOARD VALUES(SEQ_CS_BOARD_CODE.NEXTVAL, 'USER04', '업무시간이 이상해요', '더슈즈 영업 시간에는 함정이 있다 두둥',SYSDATE);
-INSERT INTO CS_BOARD VALUES(SEQ_CS_BOARD_CODE.NEXTVAL, 'USER05', '재입고 문의', '재입고 예정 날짜를 알고 싶어요ㅜㅜ',SYSDATE);
-INSERT INTO CS_BOARD VALUES(SEQ_CS_BOARD_CODE.NEXTVAL, 'USER05', '제가 당첨자입니다 음하하', '여러분 싸라해여 제가 당첨이라니 더 슈즈 체고체고~!!!',SYSDATE);
-
--- 관심상품 WISHLIST
--- '추첨상태' 컬럼 삭제
-INSERT INTO WISHLIST VALUES(1, 'USER01');
-INSERT INTO WISHLIST VALUES(2, 'USER01');
-INSERT INTO WISHLIST VALUES(3, 'USER01');
-INSERT INTO WISHLIST VALUES(4, 'USER01');
-
--- 당첨자 WINNER
-INSERT INTO WINNER VALUES('USER05', SEQ_EVENT_CODE.CURRVAL, DEFAULT, SYSDATE);
+                           DEFAULT, DEFAULT, '19881102', 'MEMBER');
 
 SET SERVEROUTPUT ON;
 SET AUTOPRINT ON;
@@ -886,7 +604,11 @@ BEGIN
     INTO AMOUNT_SHOES
     FROM SHOES_INFO A
    WHERE A.SALES_YN = 'Y'
+     AND A.EVENT_END_YN = 'N'
      AND A.WINNER_DATE < SYSDATE;
+     
+     DBMS_OUTPUT.PUT_LINE('Test1');
+     DBMS_OUTPUT.PUT_LINE(AMOUNT_SHOES);
      
   FOR I IN 1..AMOUNT_SHOES
     LOOP
@@ -906,55 +628,79 @@ BEGIN
                  AND A.EVENT_END_YN = 'N'
                  AND A.WINNER_DATE < SYSDATE) B
                WHERE B.번호 = I;
+        
+        DBMS_OUTPUT.PUT_LINE('Test2');
+        DBMS_OUTPUT.PUT_LINE(EVENT_START_SHOES_NO);
+        DBMS_OUTPUT.PUT_LINE(EVENT_START_SHOES_AMOUNT);
+        DBMS_OUTPUT.PUT_LINE(EVENT_START_REAMANING_AMOUNT);
                
-      SELECT ROWNUM
+      SELECT COUNT(*)
         INTO WINNER_AMOUNT
         FROM EVENT C
        WHERE C.EVENT_SHOES_ID = EVENT_START_SHOES_NO
          AND ROWNUM <= EVENT_START_REAMANING_AMOUNT
        ORDER BY C.RANDOM_NO;
        
-      FOR J IN 1..WINNER_AMOUNT
-        LOOP
-          
-          SELECT 
-                 F.EVENT_NO
-               , F.EVENT_ID
-            INTO WINNER_EVENT_NO
-               , WINNER_EVENT_ID
-            FROM (SELECT D.EVENT_NO
-                       , D.EVENT_ID
-                       , ROWNUM 번호
-                    FROM EVENT D
-                   WHERE D.EVENT_SHOES_ID = EVENT_START_SHOES_NO
-                     AND ROWNUM <= EVENT_START_REAMANING_AMOUNT
-                   ORDER BY D.RANDOM_NO) F
-          WHERE 번호 = J;
-          
-          INSERT
-            INTO WINNER
-          VALUES 
-               (
-                 WINNER_EVENT_NO
-               , WINNER_EVENT_ID
-               , 'N'
-               , SYSDATE + 7
-               );
-          
-          UPDATE EVENT
-             SET EVENT_STATUS = '2'
-           WHERE EVENT_NO = WINNER_EVENT_NO;
-                    
+       DBMS_OUTPUT.PUT_LINE('Test3');
+       DBMS_OUTPUT.PUT_LINE(WINNER_AMOUNT);
+       IF WINNER_AMOUNT >= 1 THEN
+          FOR J IN 1..WINNER_AMOUNT
+            LOOP
+              
+              SELECT 
+                     F.EVENT_NO
+                   , F.EVENT_ID
+                INTO WINNER_EVENT_NO
+                   , WINNER_EVENT_ID
+                FROM (SELECT D.EVENT_NO
+                           , D.EVENT_ID
+                           , ROWNUM 번호
+                        FROM EVENT D
+                       WHERE D.EVENT_SHOES_ID = EVENT_START_SHOES_NO
+                         AND ROWNUM <= EVENT_START_REAMANING_AMOUNT
+                       ORDER BY D.RANDOM_NO) F
+              WHERE 번호 = J;
+              
+              DBMS_OUTPUT.PUT_LINE('Test4');
+              DBMS_OUTPUT.PUT_LINE(WINNER_EVENT_NO);
+              DBMS_OUTPUT.PUT_LINE(WINNER_EVENT_ID);
+              
+              INSERT
+                INTO WINNER A
+                   (
+                     A.WINNER_NO
+                   , A.WINNER_ID
+                   , A.WINNER_YN
+                   , A.WINNER_DEADLINE
+                   )
+              VALUES 
+                   (
+                     WINNER_EVENT_NO
+                   , WINNER_EVENT_ID
+                   , 'N'
+                   , SYSDATE + 7
+                   );
+              
+              UPDATE EVENT
+                 SET EVENT_STATUS = '2'
+               WHERE EVENT_NO = WINNER_EVENT_NO;
+                        
+            END LOOP;
+            END IF;
+            
+            UPDATE SHOES_INFO
+               SET EVENT_END_YN = 'Y'
+             WHERE SHOES_NO = EVENT_START_SHOES_NO;
+            DBMS_OUTPUT.PUT_LINE('Test5');
+            
         END LOOP;
-        
-        UPDATE SHOES_INFO
-           SET EVENT_END_YN = 'Y'
-         WHERE SHOES_NO = EVENT_START_SHOES_NO;
-        
-    END LOOP;
+    
+    exception  when no_data_found then null;
     
 END;
 /
+
+EXECUTE SHOES_EVENT_START;
 
 DECLARE
   X NUMBER;

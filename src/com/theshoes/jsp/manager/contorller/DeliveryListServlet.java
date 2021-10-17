@@ -15,6 +15,7 @@ import com.theshoes.jsp.common.paging.Pagenation;
 import com.theshoes.jsp.common.paging.SelectCriteria;
 import com.theshoes.jsp.manager.model.dto.DeliveryDTO;
 import com.theshoes.jsp.manager.model.dto.EventDTO;
+import com.theshoes.jsp.manager.model.dto.WinnerDTO;
 import com.theshoes.jsp.manager.model.service.DeliveryService;
 
 @WebServlet("/manager/delivery")
@@ -47,30 +48,29 @@ public class DeliveryListServlet extends HttpServlet {
 		
 		System.out.println(selectCriteria);
 		
-		List<DeliveryDTO> deliveryList = deliveryService.selectAllDeliveryList(selectCriteria);
+		List<WinnerDTO> winnerList = deliveryService.selectAllDeliveryList(selectCriteria);
 		
-		/* DeliveryDTO 안에 있는 EventDTO 안에 있는 getEventStatus를 가져오는 과정 */
-		for (DeliveryDTO delivery : deliveryList) {
-			for (EventDTO event : delivery.getEvent()) {
-				if ("1".equals(event.getEventStatus())) {
-					event.setEventStatus("미당첨");
-				} else if ("2".equals(event.getEventStatus())) {
-					event.setEventStatus("비구매");
-				} else if ("3".equals(event.getEventStatus())) {
-					event.setEventStatus("구매-준비중");
-				} else if ("4".equals(event.getEventStatus())) {
-					event.setEventStatus("배송중");
-				} else if ("5".equals(event.getEventStatus())) {
-					event.setEventStatus("배송완료");
-				}
-			}
+		for (WinnerDTO winner : winnerList) {
+					if ("1".equals(winner.getEventStatus())) {
+						winner.setEventStatus("미당첨");
+					} else if ("2".equals(winner.getEventStatus())) {
+						winner.setEventStatus("비구매");
+					} else if ("3".equals(winner.getEventStatus())) {
+						winner.setEventStatus("구매-준비중");
+					} else if ("4".equals(winner.getEventStatus())) {
+						winner.setEventStatus("배송중");
+					} else if ("5".equals(winner.getEventStatus())) {
+						winner.setEventStatus("배송완료");
+					}
 		}
 		
+		System.out.println("winnerList의 사이즈 : " + winnerList.size());
+		
 		String path = "";
-		if (deliveryList != null) {
+		if (winnerList != null) {
 			path = "/WEB-INF/views/manager/managerDelivery.jsp";
 			request.setAttribute("pagingPath", "delivery");
-			request.setAttribute("deliveryList", deliveryList);
+			request.setAttribute("winnerList", winnerList);
 			request.setAttribute("selectCriteria", selectCriteria);
 		} else {
 			path = "/WEB-INF/views/common/errorPage.jsp";

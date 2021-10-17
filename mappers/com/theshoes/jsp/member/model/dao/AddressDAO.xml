@@ -8,7 +8,6 @@
 		<result property="address1MM" column="ADDRESS_ZIP"/>
 		<result property="address2MM" column="ADDRESS_DETAIL"/>
 		<result property="addressName" column="ADDRESS_NAME"/>
-
 	</resultMap>
 	
 
@@ -42,7 +41,6 @@
       	  FROM ADDRESS A  
       	  JOIN MEMBER B ON(B.MEMBER_ID = A.ADDRESS_ID)
       	 WHERE B.MEMBER_ID = #{ id }
-	
 	</select>
 
 	<update id="updateAddress"  parameterType="com.theshoes.jsp.member.model.dto.AddressDTO" >
@@ -53,8 +51,6 @@
 		      , A.ADDRESS_DETAIL = #{ address2MM }
     	      , A.ADDRESS_NAME = #{ addressName }
     	  WHERE A.ADDRESS_NO = #{ addressNo }
-    	     
-		     
 	</update>
 	
 	<delete id="deleteAddress">
@@ -62,6 +58,5 @@
 		  FROM ADDRESS A
 		 WHERE A.ADDRESS_NO = #{ addressNo }
 	</delete>
-	
 	
 </mapper>
