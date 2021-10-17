@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ResellListDAO">
 
-	<resultMap type="com.theshoes.jsp.board.model.dto.BoardDTO" id="ResellListResultMap">
+	<resultMap type="com.theshoes.jsp.board.model.dto.ResellListDTO" id="ResellListResultMap">
 		<id property="boardNo" column="BOARD_NO"/>
 		<result property="boardId" column="BOARD_ID"/>
 		<result property="boardCategoryNo" column="BOARD_CATEGORY_NO"/>
@@ -13,16 +13,16 @@
 		<result property="boardRegDate" column="BOARD_REGDATE"/>
 		<result property="boardHit" column="BOARD_HIT"/>
 		<result property="categoryOrder" column="CATEGORY_ORDER"/>
+		
 	</resultMap>
 	
 	<resultMap type="com.theshoes.jsp.board.model.dto.BoardCategoryDTO" id="BoardCategoryResultMap">
-		<id property="boardCategoryNo" column="BOARD_CATEGORY_NO"/>
-		<result property="boardCategoryName" column="BOARD_CATEGORY_NAME"/>
+		<id property="categoryNo" column="CATEGORY_NO"/>
+		<result property="categoryName" column="CATEGORY_NAME"/>
 	</resultMap>
 	
 	<resultMap type="com.theshoes.jsp.board.model.dto.ResellDetailDTO" id="ResellDetailResultMap">
-		<id property="resellNo" column="RESELL_NO"/>
-		<result property="boardNo" column="BOARD_NO"/>
+		<id property="boardNo" column="BOARD_NO"/>
 		<result property="boardId" column="BOARD_ID"/>
 		<result property="boardCategoryNo" column="BOARD_CATEGORY_NO"/>
 		<result property="boardTitle" column="BOARD_TITLE"/>
@@ -44,46 +44,62 @@
 	<resultMap type="com.theshoes.jsp.board.model.dto.ResellThumbDTO" id="ResellThumbResultMap">
 		<id property="rtNo" column="RT_NO"/>
 		<result property="resellThumbNo" column="RESELL_THUMB_NO"/>
-		<result property="originalName" column="ORIGINAL_NAME"/>
-		<result property="savedName" column="SAVED_NAME"/>
-		<result property="savePath" column="SAVE_PATH"/>
-		<result property="fileType" column="FILE_TYPE"/>
-		<result property="thumbnailPath" column="THUMBNAIL_PATH"/>
-		<result property="status" column="ATTACHMENT_STATUS"/>
+		<result property="originalName" column="RESELL_ORIGINAL_NAME"/>
+		<result property="savedName" column="RESELL_SAVED_NAME"/>
+		<result property="savePath" column="RESELL_SAVE_PATH"/>
+		<result property="fileType" column="RESELL_FILE_TYPE"/>
+		<result property="thumbnailPath" column="RESELL_THUMBNAIL_PATH"/>
+		<result property="status" column="RESELL_ATTACHMENT_STATUS"/>
 	</resultMap>
 	
-	<select id="selectResellList" resultMap="ResellListResultMap">
+	<select id="selectResellList" resultMap="ResellDetailResultMap">
 		  SELECT
 		       A.BOARD_NO
 		     , A.BOARD_ID
+		     , A.BOARD_CATEGORY_NO
 		     , A.BOARD_TITLE
 		     , A.BOARD_CONTENT
-		     , A.BOARD_REGDATE
-		     , A.BOARD_HIT
 		     , A.CATEGORY_ORDER
+		     , B.RT_NO
+		     , B.RESELL_THUMB_NO
+		     , B.RESELL_ORIGINAL_NAME
+		     , B.RESELL_SAVED_NAME
+		     , B.RESELL_FILE_TYPE
+		     , B.RESELL_THUMBNAIL_PATH
+		     , B.RESELL_ATTACHMENT_STATUS
 		  FROM BOARD A
+		  JOIN RESELL_THUMB B ON(B.RT_NO = A.BOARD_NO)
 		 WHERE A.BOARD_CATEGORY_NO = 3
-		ORDER BY 1 DESC
+		 ORDER BY A.BOARD_NO DESC
 	</select>
 	
-	<!-- <insert id="insertResellShoes" parameterType="com.theshoes.jsp.board.model.dto.BoardDTO">
-		INSERT 
-		  INTO RESELL_FILE A
-			(
-			  A.RESELL_NO
-	        , A.RESELL_FILENAME
-	        )
-	        VALUES
-	        (
-	          SEQ_RESELL_SHOES_CODE.NEXTVAL
-	        , #{ resellFileName }
-	        )
-	     <selectKey keyProperty="resellNo" resultType="Integer" order="AFTER">
-        	SELECT
-        	       SEQ_RESELL_SHOES_CODE.CURRVAL
-        	  FROM DUAL
-        </selectKey>
-	</insert> -->
+	<select id="selectResellTotalCount" resultType="_int">
+        SELECT
+	          COUNT(*)
+         FROM BOARD A
+        WHERE A.BOARD_CATEGORY_NO = 3
+	</select>
+	
+	<select id="selectOneResellList" resultMap="ResellDetailResultMap">
+		SELECT
+		       A.BOARD_NO
+		     , A.BOARD_ID
+		     , A.BOARD_CATEGORY_NO
+		     , A.BOARD_TITLE
+		     , A.BOARD_CONTENT
+		     , A.CATEGORY_ORDER
+		     , B.RT_NO
+		     , B.RESELL_THUMB_NO
+		     , B.RESELL_ORIGINAL_NAME
+		     , B.RESELL_SAVED_NAME
+		     , B.RESELL_FILE_TYPE
+		     , B.RESELL_THUMBNAIL_PATH
+		     , B.RESELL_ATTACHMENT_STATUS
+		  FROM BOARD A
+		  JOIN RESELL_THUMB B ON(B.RT_NO = A.BOARD_NO)
+		 WHERE A.BOARD_CATEGORY_NO = 3
+		   AND A.BOARD_NO = #{ boardNo }
+	</select>
 	
 	<insert id="insertResellThumb" parameterType="com.theshoes.jsp.board.model.dto.ResellThumbDTO">
 		INSERT 

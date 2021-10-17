@@ -6,24 +6,41 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.theshoes.jsp.board.model.dto.BoardDTO;
-import com.theshoes.jsp.member.model.dao.MypageDAO;
+import com.theshoes.jsp.board.model.dto.ResellListDTO;
+import com.theshoes.jsp.common.paging.SelectCriteria;
+import com.theshoes.jsp.member.model.dao.MyPageDAO;
 
 public class MypageService {
+	
+	private final MyPageDAO myPageDAO;
+	
+	public MypageService() {
+		myPageDAO = new MyPageDAO();
+	}
 
 	
 	/* 게시글 조회 리스트 */
-	public List<BoardDTO> salesHistorylList() {
+	public List<ResellListDTO> salesHistorylList(SelectCriteria selectCriteria) {
 		
 		SqlSession session = getSqlSession();
 		
-		List<BoardDTO> salesList = MypageDAO.selectResellList(session);
+		List<ResellListDTO> salesList = myPageDAO.selectSaleslList(session, selectCriteria);
 		
 		System.out.println("resellList" + salesList);
 	
 		session.close();
 		
 		return salesList;
+	}
+
+	public int selectSalesHistoryTotalCount() {
+		SqlSession session = getSqlSession();
+		
+		int totalCount = myPageDAO.selectSalesHistoryTotalCount(session);
+		
+		session.close();
+		
+		return totalCount;
 	}
 
 }

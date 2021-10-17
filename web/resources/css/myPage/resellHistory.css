@@ -5,6 +5,14 @@
 	background-size: cover;
 }
 
+.opt{ 
+	overflow:hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 400px; 
+	height: 20px;
+}
+
 .tit > a {
 	text-decoration: none !important;
 	color: black;

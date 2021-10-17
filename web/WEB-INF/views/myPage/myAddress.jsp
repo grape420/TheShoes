@@ -38,7 +38,7 @@
 			<!-- Sidebar -->
 			<ul	class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 				<!-- Sidebar - Brand -->
-				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="${ pageContext.servletContext.contextPath }/myPage/drawHistory">
 					<div class="sidebar-brand-icon rotate-n-15"></div>
 					<div class="sidebar-brand-text mx-3">MY PAGE</div>
 				</a>
@@ -55,21 +55,19 @@
 				</a>
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"	data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/drawHistory">응모 내역</a> 
-							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/salesHistory">구매 내역</a> 
-							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/resellHistory">판매 내역</a> 
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/drawHistory">응모.구매 내역</a> 
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/salesHistory">판매 내역</a> 
 							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/wishList">관심 상품</a>
 						</div>
 					</div>
 					</li>
 				<!-- Nav Item - Utilities Collapse Menu -->
-				<li class="nav-item"><a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-					aria-expanded="true" aria-controls="collapseUtilities"> 
+				<li class="nav-item">
+				<a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities"> 
 				<i class="fas fa-fw fa-wrench"></i> 
 					<span>나의정보</span>
 				</a>
-					<div id="collapseUtilities" class="collapse"
-						aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+					<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
 							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/common/nav?no=3">프로필 정보</a> 
 							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/address">주소록</a> 
@@ -77,15 +75,10 @@
 						</div>
 					</div>
 				</li>
-				
 				<!-- Divider -->
 				<hr class="sidebar-divider">
-				<!-- Sidebar Toggler (Sidebar) -->
-				<div class="text-center d-none d-md-inline">
-					<button class="rounded-circle border-0" id="sidebarToggle"></button>
-				</div>
-			</ul>
-			<!-- End of Sidebar -->
+				</ul>
+				<!-- End of Sidebar -->
 
 			<!-- Content Wrapper -->
 			<div id="content-wrapper" class="d-flex flex-column">
@@ -101,7 +94,6 @@
 						<h1 class="h3 mb-2 text-gray-800">주소록</h1>
 
 						<!-- 주소록 추가 modal-->
-						
 						<!-- 이건 3번 되야대 -->
 						<c:if test="${ addressCT le 2 }">
 						<button type="button" class="Add-addressBTN" data-toggle="modal"
@@ -118,7 +110,6 @@
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
-									
 									<div class="contents">
 										<div class="address-form"
 											data-module-shipping-address-write="{isModify:false}">
@@ -126,22 +117,17 @@
 												action="${ pageContext.servletContext.contextPath }/myPage/address">
 
 												<h2 class="tit">배송지 이름</h2>
-												<input required type="text" name="addressNameMM"
-													id="addressName" class="form-control" placeholder="배송지 이름">
+												<input required type="text" name="addressNameMM" id="addressName" class="form-control" placeholder="배송지 이름">
 												<label class="addressName-result" id="addressName-result"></label>
 									
 												<h2 class="tit">배송지 검색</h2>
-												<input required type="text" name="address1" id="address1MM"
-													class="form-control" value="" placeholder="예) 사랑시 고백구 행복동">
-												<input type="button" id="searchZipCode" class="btn_search"
-													value="검색">
+												<input required type="text" name="address1" id="address1MM" class="form-control" placeholder="예) 사랑시 고백구 행복동">
+												<input type="button" id="searchZipCode" class="btn_search" value="검색">
 
 												<h2 class="tit">상세주소</h2>
-												<input required type="text" name="address2" id="address2MM"
-													class="form-control" placeholder="상세주소">
+												<input required type="text" name="address2" id="address2MM" class="form-control" placeholder="상세주소">
 
-												<button type="submit" class="abtn-link width-large"
-													id="sizeBtn" data-dismiss="modal">배송지 추가</button>
+												<button type="submit" class="abtn-link width-large" id="sizeBtn" data-dismiss="modal">배송지 추가</button>
 											</form>
 										</div>
 									</div>
@@ -162,12 +148,12 @@
 														<span class="name" id ="name"> <c:out value="${ addressA.addressName }"/> </span> <br>
 														<span class="zipcode" id ="zipcode"> <c:out value="${ addressA.address1MM }"/> </span> 
 														<span class="address" id ="address"> <c:out value="${ addressA.address2MM }"/> </span>
-														<div class="right_btm">
-														<a id="btnM"  type="button" class="btn outlinegrey small modi" data-toggle="modal" data-target="#exampleModa"
-														   data-whatever="@getbootstrap"> 수정 </a> 
-														<a href="${ pageContext.servletContext.contextPath }/myPage/address?delete=${ addressA.addressNo }" 
-														id="" type="button" class="btn outlinegrey small"> 삭제 </a>
-														</div>
+													<div class="right_btm">
+													  <a id="btnM"  type="button" class="btn outlinegrey small modi" data-toggle="modal" data-target="#exampleModa"
+													     data-whatever="@getbootstrap"> 수정 </a> 
+													  <a href="${ pageContext.servletContext.contextPath }/myPage/address?delete=${ addressA.addressNo }" 
+														 id="" type="button" class="btn outlinegrey small"> 삭제 </a>
+													</div>
 													</div>
 												</div>
 											</div>
@@ -180,36 +166,34 @@
 				</div>
 			</div>
 			<!-- 주소록수정  modal-->
-		<div class="modal fade" id="exampleModa" tabindex="-1"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade" id="exampleModa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-H">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<div class="contents">
 						<div class="address-form">
-							<form class="manage-account"  id="modify" novalidate action="${ pageContext.servletContext.contextPath }/myPage/modifyAddress" method="post">
+							<form class="manage-account" id="modify" novalidate action="${ pageContext.servletContext.contextPath }/myPage/modifyAddress" method="post">
 								
 								<h2 class="tit">배송지 이름</h2>
 								<input type="text" name="addressName2" id="addressName2" class="form-control" value="${ requestScope.addressList[0].addressName }" required >
 								<label class="addressName-result2" id="addressName-result" ></label>
 
 								<h2 class="tit">배송지 검색</h2>
-								<input type="text" name="address1" id="address1" class="form-control address-search" value ="${ reqiestScope.addressList[0].address1MM }" required>
-								 <input type="button" class="btn_search" id="searchZipCodeMM" value="검색">
+								<input type="text" name="address1" id="address1" class="form-control address-search" value ="${ reqiestScope.addressList[0].address1MM }" required >
+								<input type="button" class="btn_search" id="searchZipCodeMM" value="검색">
 
 								<h2 class="tit">상세주소</h2>
-								<input type="text" name="address2" id="address2" class="form-control" value ="${ reqiestScope.addressList[0].address2MM }" required>
+								<input type="text" name="address2" id="address2" class="form-control" value ="${ reqiestScope.addressList[0].address2MM }" required >
         
 								<div class="btn-wrap">
 									<!-- 전체 데이터를 불러와서 수정을 해야하는데 수정불가하지만 필요한 값 -->
 									<input type="hidden" name="addressNo" value="${ requestScope.addressList[0].addressNo }">							
 									<input type="hidden" name="nameMM" value="${ requestScope.addressList[0].nameMM }">
-									<button type="submit" class="abtn-link width-large"	id="changeBtn" data-dismiss="modal" >배송지 수정</button>
+									<button type="submit" class="abtn-link width-large"	id="changeBtn" data-dismiss="modal">배송지 수정</button>
 								</div>
 							</form>
 						</div>
@@ -274,8 +258,6 @@
       	})
 
 	</script>
-	
-
 
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />

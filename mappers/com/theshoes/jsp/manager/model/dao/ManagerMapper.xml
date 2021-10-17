@@ -220,10 +220,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	         	  WHERE A.RNUM >= #{ startRow, jdbcType=VARCHAR }
 	</select>
 	
-	<select id="selectShoesTotalCount" resultType="_int">
+<!-- 	<select id="selectShoesTotalCount" resultType="_int">
 		SELECT 
 	          COUNT(*)
          FROM SHOES_INFO A
-	</select>
+	</select> -->
 	
 </mapper>
