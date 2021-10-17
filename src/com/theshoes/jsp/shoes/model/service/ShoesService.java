@@ -109,6 +109,7 @@ public class ShoesService {
 		int isWinner = shoesDAO.updateWinner(session, event);
 		
 		if ((isEvent > 0) && (isWinner > 0)) {
+			result = 1;
 			session.commit();
 		} else {
 			session.rollback();

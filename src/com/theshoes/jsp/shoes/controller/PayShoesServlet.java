@@ -54,7 +54,6 @@ public class PayShoesServlet extends HttpServlet {
 		int result = shoesService.payShoes(event);
 		
 		if(result > 0) {
-			System.out.println("Test");
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		} else {
 			request.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(request, response);
