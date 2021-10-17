@@ -156,7 +156,12 @@
 											</span>
 										</div>
 										<div class="col-5 m-0 p-0" >
-											<button type="button" class="btn btn-outline-secondary" id="listBtn" onclick="location.href='#'">구매하기</button>
+										
+											<!-- 구매 버튼 -->
+											<!-- (현재 시간 <= 구매 가능 시간)인 경우에만 버튼 보임 -->
+											<c:if test="${ requestScope.canBuyDate[st.index] }">
+												<button type="button" class="btn btn-outline-secondary" id="listBtn" onclick="location.href=''">구매하기</button>
+											</c:if>
 										</div> 
 									</div>
 									</c:if>
