@@ -12,7 +12,6 @@ public class MyPageDAO {
 
 	/* 판매내역 */ 
 	public List<BoardDTO> selectResellList(SqlSession session) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -23,4 +22,6 @@ public class MyPageDAO {
 		System.out.println("DAO drawHistory : " + test);
 		return test;	
 	}
+	
+	
 }

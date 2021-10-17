@@ -2,11 +2,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.util.Date" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/myPage/resellHistory.css">
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/myPage/drawHistory.css">
 <link rel="shortcut icon" href="${ pageContext.servletContext.contextPath }/resources/uses/the-shoes-favicon.png">
 <link href="${ pageContext.servletContext.contextPath }/resources/uses/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -91,171 +94,94 @@
 	
 					<!-- DataTales Example -->
 
-							<br>
-							<c:forEach var="draw" items="${ requestScope.drawHistory }">
+							<c:forEach  varStatus ="st" var="draw" items="${ requestScope.drawHistory }" begin="${ selectCriteria.startRow - 1 }" end="${ selectCriteria.endRow - 1 }">
 							<div class="order-list" data-order="">
 								<div class="header">
-									<span class="order-code">${ draw.eventDate }</span> <span
-										class="btn-order-detail thedraw">${ draw.eventStatus }</span>
+									<span class="order-code">응모일시 <fmt:formatDate value="${ draw.eventDate }" type="date" pattern="yyyy.MM.dd HH:mm:ss"/></span> 
+									<span class="btn-order-detail thedraw">
+										<c:choose>
+											<c:when test="${ draw.eventStatus eq 1}">미당첨</c:when>
+											<c:when test="${ draw.eventStatus eq 2}">비구매</c:when>
+										    <c:when test="${ draw.eventStatus eq 3}">상품 준비 중</c:when>
+										    <c:when test="${ draw.eventStatus eq 4}">배송 중</c:when>
+										    <c:when test="${ draw.eventStatus eq 5}">배송 완료</c:when>
+										</c:choose>
+									</span>
 								</div>
 								<div class="order-item-wrap thedraw-item">
 									<div class="item-info">
 										<div class="img-wrap">
-											<a
-												href="/kr/launch/t/men/fw/basketball/DM7866-140/cuwc56/air-jordan-1-low-og-sp">
-												<!-- ${ draw.shoes.thumbList[0] } -->
-												<img
-												src="https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/DM7866-140/12d6c862-ec81-46b8-adaa-f6edf708a603_primary.jpg?browse" />
+
+											<!-- 해당 신발 상세 정보 페이지로 이동 -->
+											<a href="${ pageContext.servletContext.contextPath }/shoes/detail?no=${ draw.shoes.shoesNo }">
+												<!-- ${ draw.shoes.thumbList[0].savedName } -->
+												<img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ draw.shoes.thumbList[0].savedName }" />
 											</a>
 										</div>
 										<div class="info-wrap">
-											<span class="tit"> 
-											
+											<span class="tit" style="font-size:15px;"> 
+	
 											<!-- 해당 신발 상세 정보 페이지로 이동 -->
-											<a href="/kr/launch/t/men/fw/basketball/DM7866-140/cuwc56/air-jordan-1-low-og-sp">${ draw.shoes.shoesModel }</a>
+											<a href="${ pageContext.servletContext.contextPath }/shoes/detail?no=${ draw.shoes.shoesNo }">${ draw.shoes.shoesModel }</a>
 											</span> 
+											<span class="opt" style="font-size:13px;">${ draw.shoes.category.shoesCategoryName }</span>
 											<span class="price-wrap"> 
-											<span class="price">${ draw.shoes.shoesPrice }</span>
+											<span class="price"><fmt:formatNumber value="${ draw.shoes.shoesPrice }" pattern="#,###,###"/> 원</span>
 											</span>
 										</div>
 									</div>
 									
 									<!-- ${ draw.eventStatus eq '당첨' } -->
-									<c:if test="">
+							   	    <c:if test="${ draw.eventStatus ne 1 }">
 									<div class="item-status date-type">
 	
 										<span class="status"> 
 											<span class="lable">응모 기간</span> 
-											<span class="date" style="display: inline-block; width: 100%">${ draw.shoes.startDate } - ${ draw.shoes.endDate }</span>
+											
+											<span class="date" style="display: inline-block; width: 100%">
+												<fmt:formatDate value="${ draw.shoes.startDate }" type="date" pattern="yyyy.MM.dd HH:mm"/> - <fmt:formatDate value="${ draw.shoes.endDate }" type="date" pattern="yyyy.MM.dd HH:mm"/></span>
 										</span> 
 										<span class="status"> 
 											<span class="lable">당첨 발표일</span>
-											<span class="date" style="display: inline-block; width: 100%">${ draw.shoes.winnerDate }</span>
+											<span class="date" style="display: inline-block; width: 100%">
+												<fmt:formatDate value="${ draw.shoes.winnerDate }" type="date" pattern="yyyy.MM.dd HH:mm"/>
+											</span>
 										</span> 
 										<span class="status"> 
 											<span class="lable">구매 기간</span>
-											<span class="date" style="display: inline-block; width: 100%"> 구매 가능 기간 어디? </span>
+											<span class="date" style="display: inline-block; width: 100%"> 
+											
+												<!-- 구매 가능 기간 -->
+												<fmt:formatDate value="${ draw.shoes.winnerDate }" type="date" pattern="yyyy.MM.dd HH:mm"/> - <fmt:formatDate value="${ requestScope.canBuyDate[st.index] }" type="date" pattern="yyyy.MM.dd HH:mm"/>
+											</span>
 										</span>
 									</div>
 									</c:if>
 								</div>
 								<div class="btn-wrap">
 									<span class="status"> 
-										<span class="btn-link line-thin border-top large width-max">${ draw.shoes.eventEndYn }</span>
+										<span class="btn-link line-thin border-top large width-max">
+											<c:choose>
+												<c:when test="${ draw.shoes.eventEndYn eq 'Y'}">THE DRAW 종료</c:when>
+												<c:when test="${ draw.shoes.eventEndYn eq 'N'}">THE DRAW 진행 중</c:when>
+											</c:choose>
+										</span>
 									</span>
 								</div>
 							</div>
 							</c:forEach>
-							
-							<div class="order-list" data-order="">
-								<div class="header">
-									<span class="order-code">응모일시 2021.08.02 10:00:46</span> <span
-										class="btn-order-detail thedraw"> 미당첨 </span>
-								</div>
-								<div class="order-item-wrap thedraw-item">
-									<div class="item-info">
-										<div class="img-wrap">
-											<a
-												href="/kr/launch/t/men/fw/nike-sportswear/DD1391-003/iljl65/nike-dunk-low-retro">
-												<img
-												src="https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/DD1391-003/5e494167-4f6c-4fad-8b0c-04570fc86bf7_primary.jpg?browse" />
-											</a>
-										</div>
-										<div class="info-wrap">
-											<span class="tit"> <a
-												href="/kr/launch/t/men/fw/nike-sportswear/DD1391-003/iljl65/nike-dunk-low-retro">나이키
-													덩크 로우 레트로</a>
-											</span> <span class="opt">DD1391-003 / 260</span> <span
-												class="price-wrap"> <span class="price">119,000
-													원</span>
-											</span>
-										</div>
-									</div>
-									<div class="item-status date-type"></div>
-								</div>
-								<div class="btn-wrap">
-									<span class="btn-link line-thin border-top large width-max">THE
-										DRAW 종료</span>
-								</div>
-							</div>
-	
-
-							<div class="order-list" data-order="">
-								<div class="header">
-									<span class="order-code">응모일시 2021.09.02 10:00:24</span> <span
-										class="btn-order-detail thedraw"> 미당첨 </span>
-								</div>
-								<div class="order-item-wrap thedraw-item">
-									<div class="item-info">
-										<div class="img-wrap">
-											<a
-												href="/kr/launch/t/men/fw/nike-sportswear/DH0601-001/nxtg34/nike-dunk-low-retro-prm">
-												<img
-												src="https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/DH0601-001/8891d25b-4b4b-453c-9159-099b224aae42_primary.jpg?browse" />
-											</a>
-										</div>
-										<div class="info-wrap">
-											<span class="tit"> <a
-												href="/kr/launch/t/men/fw/nike-sportswear/DH0601-001/nxtg34/nike-dunk-low-retro-prm">나이키
-													덩크 로우 레트로 프리미엄</a>
-											</span> <span class="opt">DH0601-001 / 260</span> <span
-												class="price-wrap"> <span class="price">129,000
-													원</span>
-											</span>
-										</div>
-									</div>
-									<div class="item-status date-type"></div>
-								</div>
-								<div class="btn-wrap">
-									<span class="btn-link line-thin border-top large width-max">THE
-										DRAW 종료</span>
-								</div>
-							</div>
-							<div class="order-list" data-order="">
-								<div class="header">
-									<span class="order-code">응모일시 2021.9.24 10:13:12</span> <span
-										class="btn-order-detail thedraw"> 미당첨 </span>
-								</div>
-								<div class="order-item-wrap thedraw-item">
-									<div class="item-info">
-										<div class="img-wrap">
-											<a
-												href="/kr/launch/t/men/fw/nike-sportswear/DH2684-400/ivoa29/nike-ldwaffle-sf">
-												<img
-												src="https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/DH2684-400/19e847a7-8a65-4907-8903-3bab1be6e5f1_primary.jpg?browse" />
-											</a>
-										</div>
-										<div class="info-wrap">
-											<span class="tit"> <a
-												href="/kr/launch/t/men/fw/nike-sportswear/DH2684-400/ivoa29/nike-ldwaffle-sf">나이키
-													LD와플 x sacai x Fragment</a>
-											</span> <span class="opt">DH2684-400 / 260</span> <span
-												class="price-wrap"> <span class="price">209,000
-													원</span>
-											</span>
-										</div>
-									</div>
-									<div class="item-status date-type"></div>
-								</div>
-								<div class="btn-wrap">
-									<span class="btn-link line-thin border-top large width-max">THE
-										DRAW 종료</span>
-								</div>
-							</div>
 	
 							<!-- paging -->
 							<jsp:include page="../board/paging.jsp"/>
 	
 						</div>
-	
 					</div>
-	
 				</div>
 			</div>
 		</div>
 	</section>
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
-
+	
 </body>
 </html>
