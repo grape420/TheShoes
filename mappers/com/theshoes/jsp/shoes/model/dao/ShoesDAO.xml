@@ -75,7 +75,7 @@
 		  LEFT JOIN SHOES_THUMB C ON (A.SHOES_NO = C.ST_NO)
 		 WHERE A.SALES_YN = 'Y'
 		<if test="search != null and search != ''">
-		   AND A.SHOES_MODEL LIKE '%' || #{ search } || '%' 
+		   AND LOWER(A.SHOES_MODEL) LIKE LOWER('%' || #{ search } || '%') 
 		</if>
 		 ORDER BY A.SHOES_NO DESC
 	</select>

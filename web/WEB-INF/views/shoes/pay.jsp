@@ -215,23 +215,22 @@
 			    (카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
 			    */
 			    }, function (rsp) {
-			    if (rsp.success) {
-			    var msg = '신발 구매가 완료되었습니다.';
-			    payFlag = true;
-			    } else {
-			    var msg = '결제에 실패하였습니다.';
-			    msg += '에러내용 : ' + rsp.error_msg;
-			    }
-			    alert(msg);
-			    if(payFlag == true) {
-			    	$("#payForm").submit();
-			    }
+				    if (rsp.success) {
+					    var msg = '신발 구매가 완료되었습니다.';
+					    payFlag = true;
+				    } else {
+					    var msg = '결제에 실패하였습니다.';
+					    msg += '에러내용 : ' + rsp.error_msg;
+				    }
+				    alert(msg);
+				    if(payFlag == true) {
+				    	$("#payForm").submit();
+				    }
 			    });			 
-			    }
-			 else {
+			 } else {
 				 alert("모든 작성을 완료 해 주세요.");
 			 }
-			    });
+		});
 		
 	</script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
