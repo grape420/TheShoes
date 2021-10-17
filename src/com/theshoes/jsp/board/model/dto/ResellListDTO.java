@@ -16,13 +16,15 @@ public class ResellListDTO implements Serializable {
 	private Date boardRegDate;			// 작성일자
 	private int boardHit;				// 조회수
 	private int categoryOrder;			// 카테고리별 게시글 순서
+	private BoardCategoryDTO category;
 	private List<ResellThumbDTO> resellThumb;
 	
 	public ResellListDTO() {
 	}
 
 	public ResellListDTO(int boardNo, String boardId, int boardCategoryNo, String boardTitle, String boardContent,
-			Date boardRegDate, int boardHit, int categoryOrder, List<ResellThumbDTO> resellThumb) {
+			Date boardRegDate, int boardHit, int categoryOrder, BoardCategoryDTO category,
+			List<ResellThumbDTO> resellThumb) {
 		this.boardNo = boardNo;
 		this.boardId = boardId;
 		this.boardCategoryNo = boardCategoryNo;
@@ -31,6 +33,7 @@ public class ResellListDTO implements Serializable {
 		this.boardRegDate = boardRegDate;
 		this.boardHit = boardHit;
 		this.categoryOrder = categoryOrder;
+		this.category = category;
 		this.resellThumb = resellThumb;
 	}
 
@@ -98,6 +101,14 @@ public class ResellListDTO implements Serializable {
 		this.categoryOrder = categoryOrder;
 	}
 
+	public BoardCategoryDTO getCategory() {
+		return category;
+	}
+
+	public void setCategory(BoardCategoryDTO category) {
+		this.category = category;
+	}
+
 	public List<ResellThumbDTO> getResellThumb() {
 		return resellThumb;
 	}
@@ -110,7 +121,10 @@ public class ResellListDTO implements Serializable {
 	public String toString() {
 		return "ResellListDTO [boardNo=" + boardNo + ", boardId=" + boardId + ", boardCategoryNo=" + boardCategoryNo
 				+ ", boardTitle=" + boardTitle + ", boardContent=" + boardContent + ", boardRegDate=" + boardRegDate
-				+ ", boardHit=" + boardHit + ", categoryOrder=" + categoryOrder + ", resellThumb=" + resellThumb + "]";
+				+ ", boardHit=" + boardHit + ", categoryOrder=" + categoryOrder + ", category=" + category
+				+ ", resellThumb=" + resellThumb + "]";
 	}
+
+	
 	
 }

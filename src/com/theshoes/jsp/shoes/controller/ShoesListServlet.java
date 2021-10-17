@@ -42,6 +42,8 @@ public class ShoesListServlet extends HttpServlet {
 			list = shoesService.selectShoesList(search);
 		}
 		
+		System.out.println(list);
+		
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
 		selectCriteria = Pagenation.getSelectCriteria(pageNo, list.size(), onePost, onePage);
 		

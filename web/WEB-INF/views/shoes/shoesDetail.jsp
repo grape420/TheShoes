@@ -24,9 +24,11 @@
 		<div class="info-section">
 			<ul class="images">
 			<c:forEach var="thumb" items="${requestScope.shoesDetail.thumbList}">
-		        <li><figure>
+		        <li>
+		        	<figure>
 						<img src="/TheShoes/resources/upload/image/shoes/${thumb.savedName}" alt="">
-				</figure></li>
+					</figure>
+				</li>
 			
 			</c:forEach>
 

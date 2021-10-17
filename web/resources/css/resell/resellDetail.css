@@ -12,7 +12,7 @@ section {
 .info-section .images {
   display: flex;
   flex-wrap: wrap;
-  width: 40.333333333333%;
+  width: 66.666666666666%;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -38,17 +38,146 @@ section {
   width: 100%;
 }
 .info-section .info {
-  width: 59.666666666666%;
+  width: 33.333333333333%;
   text-align: center;
   line-height: 1.75;
   padding: 0 50px;
-  padding-top: 50px;
+  padding-top: 200px;
 }
 .info-section .info h1 {
   padding-bottom: 12px;
+  font-weight: 400;
+  font-size: 50px !important;
+  line-height: 1.5;
+}
+.info-section .info h2 {
+  padding-bottom: 12px;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.125;
+}
+.info-section .info h5 {
+  padding-bottom: 24px;
+  font-weight: 400;
+  font-size: 16px;
+}
+.info-section .info .txt {
+  word-break: keep-all;
+  word-wrap: break-word;
+  font-size: 14px;
+}
+.info-section .info .select {
+  position: relative;
+}
+.info-section .info .select-size {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  color: #383838;
+  padding: 14px 24px;
+  box-sizing: border-box;
+  text-align: center;
+}
+.info-section .info .select-size span {
+  font-size: 14px;
+}
+.info-section .info .select-size i {
+  position: absolute;
+  top: 27px;
+  right: 24px;
+  font-size: 27px;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transition: transform 0.25s ease-in-out 0s;
+  -webkit-transition: transform 0.25s ease-in-out 0s;
+}
+.info-section .info .select-size.on i {
+  transform: rotate(180deg) translateY(50%);
+  -webkit-transform: rotate(180deg) translateY(50%);
+  transition: transform 0.25s ease-in-out 0s;
+  -webkit-transition: transform 0.25s ease-in-out 0s;
+}
+.info-section .info .select .lists {
+  display: none;
+  position: absolute;
+  width: 100%;
+  max-height: 180px;
+  overflow: auto;
+  border: 1px solid #d1d1d1;
+  background: #ffffff;
+  box-sizing: border-box;
+  padding: 0;
+}
+.info-section .info .select .lists li {
+  list-style: none;
+  width: 100%;
+  text-align: center;
+  padding: 10px 8px;
+  color: #383838;
+  cursor: pointer;
+}
+.info-section .info .select .lists li:hover {
+  background: #f7f7f7;
+}
+.info-section .info .select .lists li.checked {
+  background: #39f;
+}
+.info-section .info .select .lists li.disabled {
+  background: #ebebeb;
+  color: #999;
+  cursor: default;
+}
+.info-section .info .btn {
+  width: 100%;
+  margin: 20px 0 24px 0;
+  padding: 18px 1.5em;
+  border-radius: 30px;
+  color: #fff;
   font-weight: 500;
-  font-size: 20px;
-  line-height: 1.4;
+  background: #000;
+}
+.info-section .info .btn.disable {
+  background: #666;
+}
+.info-section .info .delivery {
+  position: relative;
+  display: flex;
+  padding: 20px 0;
+  padding-left: 100px;
+}
+.info-section .info .delivery .sameday {
+  position: absolute;
+  top: 10px;
+  left: 0;
+}
+.info-section .info .delivery .sameday span {
+  font-size: 12px;
+  height: 16px;
+  padding: 0 5px;
+  line-height: 18px;
+  background: #000;
+  color: #fff;
+  margin-left: 10px;
+}
+.info-section .info .delivery .detail-sameday {
+  font-size: 13px;
+  line-height: 13px;
+  text-align: left;
+}
+.info-section .info .delivery .detail-sameday a {
+  display: inline-block;
+  font-size: 12px;
+  color: #2e2e2e;
+  margin-top: 8px;
+  text-decoration: underline;
+}
+.img {
+  margin-top: 30px;
+}
+.img img {
+  width: 100%;
 }
 
 .commnets {

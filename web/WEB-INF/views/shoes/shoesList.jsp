@@ -49,8 +49,12 @@
 						</div>
 					</div>
 				</c:forEach>
-			
 		</div>
+		<c:if test="${ empty requestScope.list }">
+			<div style="text-align: center; margin: 15em auto;">
+				<h3>검색 결과가 존재하지 않습니다.</h3>
+			</div>
+		</c:if>
 		<!-- paging -->
 		<jsp:include page="paging.jsp"/>
 	</section>
