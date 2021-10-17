@@ -159,7 +159,7 @@
 											<c:set var="date"><fmt:formatDate value="${ today }" pattern="yyyy.MM.dd HH:mm" /></c:set> 
 												<!-- 오늘 날짜 -->	
 				                                <c:if test="${ canBuyDate >= date }">
-							   	   					<c:if test="${ draw.eventStatus ne 5 }">
+							   	   					<c:if test="${ draw.eventStatus eq 2 }">
 														<button class="btn btn-outline-secondary p-2 payBtn" onclick="location.href='${ pageContext.servletContext.contextPath }/shoes/pay?shoesNo=${ draw.shoes.shoesNo }'">구매</button>
 				                                	</c:if>
 				                                </c:if>
