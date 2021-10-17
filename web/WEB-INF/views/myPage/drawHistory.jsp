@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -29,54 +28,51 @@
 			<ul
 				class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 				id="accordionSidebar">
-	
+
 				<!-- Sidebar - Brand -->
-				<a
-					class="text-white sidebar-brand d-flex align-items-center justify-content-center"
-					href="index.html">
+				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="${ pageContext.servletContext.contextPath }/myPage/drawHistory">
 					<div class="sidebar-brand-icon rotate-n-15">
 					</div>
 					<div class="sidebar-brand-text mx-3">MY PAGE</div>
 				</a>
+
 				<!-- Divider -->
 				<hr class="sidebar-divider my-0">
-	
+
 				<!-- Divider -->
 				<hr class="sidebar-divider">
-	
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item"><a class="nav-link collapsed" href="#"   data-toggle="collapse" data-target="#collapseTwo"
-               aria-expanded="true" aria-controls="collapseTwo"> 
-               <i class="fas fa-fw fa-cog"></i> 
-               <span>쇼핑정보</span>
-            </a>
-               <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"   data-parent="#accordionSidebar">
-                  <div class="bg-white py-2 collapse-inner rounded">
-                     <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/drawHistory">응모 내역</a> 
-                     <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/salesHistory">구매 내역</a> 
-                     <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/resellHistory">판매 내역</a> 
-                     <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/wishList">관심 상품</a>
-                  </div>
-               </div>
-               </li>
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item"><a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-               aria-expanded="true" aria-controls="collapseUtilities"> 
-            <i class="fas fa-fw fa-wrench"></i> 
-               <span>나의정보</span>
-            </a>
-               <div id="collapseUtilities" class="collapse"
-                  aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                  <div class="bg-white py-2 collapse-inner rounded">
-                     <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/common/nav?no=3">프로필 정보</a> 
-                     <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/address">주소록</a> 
-                     <a class="collapse-item" href="${ pageContext.servletContext.contextPath }/common/nav?no=2">회원 탈퇴</a>
-                  </div>
-               </div>
-            </li>
+
+				<!-- Nav Item - Pages Collapse Menu -->
+				<li class="nav-item"><a class="nav-link collapsed" href="#"	data-toggle="collapse" data-target="#collapseTwo"
+					aria-expanded="true" aria-controls="collapseTwo"> 
+					<i class="fas fa-fw fa-cog"></i> 
+					<span>쇼핑정보</span>
+				</a>
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"	data-parent="#accordionSidebar">
+						<div class="bg-white py-2 collapse-inner rounded">
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/drawHistory">응모.구매 내역</a> 
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/salesHistory">판매 내역</a> 
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/wishList">관심 상품</a>
+						</div>
+					</div>
+					</li>
+				<!-- Nav Item - Utilities Collapse Menu -->
+				<li class="nav-item"><a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+					aria-expanded="true" aria-controls="collapseUtilities"> 
+				<i class="fas fa-fw fa-wrench"></i> 
+					<span>나의정보</span>
+				</a>
+					<div id="collapseUtilities" class="collapse"
+						aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+						<div class="bg-white py-2 collapse-inner rounded">
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/common/nav?no=3">프로필 정보</a> 
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/myPage/address">주소록</a> 
+							<a class="collapse-item" href="${ pageContext.servletContext.contextPath }/common/nav?no=2">회원 탈퇴</a>
+						</div>
+					</div>
+				</li>
 				<!-- Divider -->
 				<hr class="sidebar-divider">
-	
 			</ul>
 			<!-- End of Sidebar -->
 	
@@ -110,7 +106,7 @@
 								</div>
 								<div class="order-item-wrap thedraw-item">
 									<div class="item-info">
-										<div class="img-wrap" >
+										<div class="img-wrap">
 
 											<!-- 해당 신발 상세 정보 페이지로 이동 -->
 											<a href="${ pageContext.servletContext.contextPath }/shoes/detail?no=${ draw.shoes.shoesNo }">
@@ -133,36 +129,45 @@
 									
 									<!-- ${ draw.eventStatus eq '당첨' } -->
 							   	    <c:if test="${ draw.eventStatus ne 1 }">
-									<div class="item-status date-type row p-0">
-										<div class="col-6 m-0 p-0">
-											<span class="status"> 
-												<span class="lable">응모 기간</span> 
-												<span class="date" style="display: inline-block; width: 100%">
-													<fmt:formatDate value="${ draw.shoes.startDate }" type="date" pattern="yyyy.MM.dd HH:mm"/> - <fmt:formatDate value="${ draw.shoes.endDate }" type="date" pattern="yyyy.MM.dd HH:mm"/></span>
-											</span> 
-											<span class="status"> 
-												<span class="lable">당첨 발표일</span>
-												<span class="date" style="display: inline-block; width: 100%">
-													<fmt:formatDate value="${ draw.shoes.winnerDate }" type="date" pattern="yyyy.MM.dd HH:mm"/>
+									<div class="item-status date-type">
+										<div class="m-0 p-0 row">
+											<div class="col-10 p-0">
+												<span class="status"> 
+													<span class="lable">응모 기간</span> 
+													
+													<span class="date" style="display: inline-block; width: 100%">
+														<fmt:formatDate value="${ draw.shoes.startDate }" type="date" pattern="yyyy.MM.dd HH:mm"/> - <fmt:formatDate value="${ draw.shoes.endDate }" type="date" pattern="yyyy.MM.dd HH:mm"/></span>
+												</span> 
+												<span class="status"> 
+													<span class="lable">당첨 발표일</span>
+													<span class="date" style="display: inline-block; width: 100%">
+														<fmt:formatDate value="${ draw.shoes.winnerDate }" type="date" pattern="yyyy.MM.dd HH:mm"/>
+													</span>
+												</span> 
+												<span class="status"> 
+													<span class="lable">구매 기간</span>
+													<span class="date" style="display: inline-block; width: 100%"> 
+													
+														<!-- 구매 가능 기간 -->
+														<fmt:formatDate value="${ draw.shoes.winnerDate }" type="date" pattern="yyyy.MM.dd HH:mm"/> - <fmt:formatDate var="canBuyDate" value="${ requestScope.canBuyDate[st.index] }" type="date" pattern="yyyy.MM.dd HH:mm"/>${ canBuyDate }
+													</span>
 												</span>
-											</span> 
-											<span class="status"> 
-												<span class="lable">구매 기간</span>
-												<span class="date" style="display: inline-block; width: 100%"> 
-												
-													<!-- 구매 가능 기간 -->
-													<fmt:formatDate value="${ draw.shoes.winnerDate }" type="date" pattern="yyyy.MM.dd HH:mm"/> - <fmt:formatDate value="${ requestScope.canBuyDate[st.index] }" type="date" pattern="yyyy.MM.dd HH:mm"/>
-												</span>
-											</span>
-										</div>
-										<div class="col-5 m-0 p-0" >
-										
+											</div>
+											
 											<!-- 구매 버튼 -->
-											<!-- (현재 시간 <= 구매 가능 시간)인 경우에만 버튼 보임 -->
-											<c:if test="${ requestScope.canBuyDate[st.index] }">
-												<button type="button" class="btn btn-outline-secondary" id="listBtn" onclick="location.href=''">구매하기</button>
-											</c:if>
-										</div> 
+			                                <!-- (현재 시간 <= 구매 가능 시간)인 경우에만 버튼 보임 -->
+											<div class="col-2 p-0">
+											<c:set var="today" value="<%=new java.util.Date()%>" />
+											<c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy.MM.dd HH:mm" /></c:set> 
+												<!-- 오늘 날짜 -->	
+												
+																						
+				                                <c:if test="${ canBuyDate >= date }">
+													<button class="btn btn-outline-secondary p-2 payBtn" onclick="location.href='${ pageContext.servletContext.contextPath }/shoes/pay?shoesNo=${ draw.shoes.shoesNo }'">구매</button>
+				                                </c:if>
+											</div>
+											
+										</div>
 									</div>
 									</c:if>
 								</div>

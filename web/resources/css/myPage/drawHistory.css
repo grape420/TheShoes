@@ -115,7 +115,13 @@ a.underline {
 /* 마이페이지 style (class: 'order-item-wrap')
 - 공통 class로 variation하여 사용하는 곳이 많으므로 수정하면 영향도가 큼. 
 */
-
+.payBtn {
+	display: block !important;
+	margin-top: 3em;
+	margin-bottom: auto !important;
+	margin-right: 0.5em !important;
+	margin-left: auto !important;
+}
 .order-list .header .btn-order-detail {
   float: right;
   padding: 0;
@@ -142,7 +148,7 @@ a.underline {
 .order-item-wrap .item-info {
   padding-left: 20px;
   display: table-cell;
-  width: 53%;
+  width: 60%;
   vertical-align: top;
 }
 .order-item-wrap .item-info > ul {
@@ -226,16 +232,16 @@ a.underline {
 }
 .order-item-wrap .item-status {
   display: table-cell;
-   width: 20%; 
-	vertical-align: top;
+  width: 20%;
+  vertical-align: top;
 }
 .order-item-wrap .item-status .status .label {
   display: inline-block;
-   width: 100%; 
+  width: 100%;
 }
 .order-item-wrap .item-status .status .date {
   display: inline-block;
-   width: 100%; 
+  width: 100%;
   font-weight: bold;
   color: #111;
 }
