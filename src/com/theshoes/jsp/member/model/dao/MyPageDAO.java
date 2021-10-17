@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.theshoes.jsp.board.model.dto.BoardDTO;
-import com.theshoes.jsp.common.paging.SelectCriteriaContainId;
 import com.theshoes.jsp.manager.model.dto.EventDTO;
 
 public class MyPageDAO {

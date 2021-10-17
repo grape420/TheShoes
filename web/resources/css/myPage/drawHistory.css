@@ -226,16 +226,16 @@ a.underline {
 }
 .order-item-wrap .item-status {
   display: table-cell;
-  width: 20%;
-  vertical-align: top;
+   width: 20%; 
+	vertical-align: top;
 }
 .order-item-wrap .item-status .status .label {
   display: inline-block;
-  width: 100%;
+   width: 100%; 
 }
 .order-item-wrap .item-status .status .date {
   display: inline-block;
-  width: 100%;
+   width: 100%; 
   font-weight: bold;
   color: #111;
 }
