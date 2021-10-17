@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.theshoes.jsp.board.model.dto.ResellDetailDTO;
+import com.theshoes.jsp.board.model.dto.ResellThumbDTO;
 import com.theshoes.jsp.board.model.service.ResellListService;
 
 @WebServlet("/resell/detail")
@@ -21,6 +22,10 @@ public class ResellDetailServlet extends HttpServlet {
 		int no = Integer.parseInt(request.getParameter("no"));
 		
 		ResellDetailDTO resellDetail = resellListService.selectOneResellList(no);
+		
+		for(ResellThumbDTO thumb: resellDetail.getResellThumb()) {
+			System.out.println("dfsdfs" + thumb);
+		}
 		
 		String path = "";
 		path = "/WEB-INF/views/resell/resellDetail.jsp?no=" + no;
