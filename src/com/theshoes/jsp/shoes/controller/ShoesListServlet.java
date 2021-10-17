@@ -24,7 +24,7 @@ public class ShoesListServlet extends HttpServlet {
 		
 		/* 페이징처리 */
 		int pageNo = 1;						// 기본 시작 페이지번호
-		int onePost = ９;					// 한 페이지에 노출시킬 게시글의 수
+		int onePost = 12;					// 한 페이지에 노출시킬 게시글의 수
 		int onePage = 5;					// 한번에 보여줄 페이지 버튼의 갯수
 		
 		String currentPage = request.getParameter("currentPage");
@@ -33,14 +33,17 @@ public class ShoesListServlet extends HttpServlet {
 			pageNo = Integer.parseInt(currentPage);
 		}
 		
-		int totalNoticeCount = shoesService.selectShoesListCnt();
-		
+		String search = null;
+		List<ShoesDTO> list = null;
 		SelectCriteria selectCriteria = null;
+		if((search = request.getParameter("search")) == null) {
+			list = shoesService.selectShoesList("");
+		} else {
+			list = shoesService.selectShoesList(search);
+		}
 		
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
-		selectCriteria = Pagenation.getSelectCriteria(pageNo, totalNoticeCount, onePost, onePage);
-		
-		List<ShoesDTO> list = shoesService.selectShoesList(selectCriteria);
+		selectCriteria = Pagenation.getSelectCriteria(pageNo, list.size(), onePost, onePage);
 		
 		String path = "";
 		
@@ -50,9 +53,6 @@ public class ShoesListServlet extends HttpServlet {
 			
 			request.setAttribute("list", list);
 			request.setAttribute("selectCriteria", selectCriteria);
-			
-			System.out.println(selectCriteria.toString());
-			
 		} else {
 			path = "/WEB-INF/views/common/errorPage.jsp";
 		}

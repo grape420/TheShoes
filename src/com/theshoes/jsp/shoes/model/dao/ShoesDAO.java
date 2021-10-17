@@ -12,8 +12,8 @@ import com.theshoes.jsp.shoes.model.dto.ShoesDTO;
 
 public class ShoesDAO {
 
-	public List<ShoesDTO> selectShoesList(SqlSession session, SelectCriteria selectCriteria) {
-		return session.selectList("ShoesDAO.selectShoesList", selectCriteria);
+	public List<ShoesDTO> selectShoesList(SqlSession session, String search) {
+		return session.selectList("ShoesDAO.selectShoesList", search);
 	}
 
 	public int selectShoesListCnt(SqlSession session) {

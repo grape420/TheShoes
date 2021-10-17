@@ -20,10 +20,10 @@ public class ShoesService {
 		shoesDAO = new ShoesDAO();
 	}
 	
-	public List<ShoesDTO> selectShoesList(SelectCriteria selectCriteria) {
+	public List<ShoesDTO> selectShoesList(String search) {
 		SqlSession session = getSqlSession();
 		
-		List<ShoesDTO> shoesList = shoesDAO.selectShoesList(session, selectCriteria);
+		List<ShoesDTO> shoesList = shoesDAO.selectShoesList(session, search);
 		
 		session.close();
 		
