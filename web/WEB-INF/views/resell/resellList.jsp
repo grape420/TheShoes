@@ -66,23 +66,7 @@
 			</c:forEach>
 		</div>
 		<jsp:include page="paging.jsp"/>
-		<%-- <div class="paging">
-
-			<a href="#" class="btn_arr first"><i class="fa fa-chevron-left"
-				aria-hidden="true"></i><span class="hide">처음페이지</span></a> <a href="#"
-				class="btn_arr prev"><i class="fa fa-chevron-left"
-				aria-hidden="true"></i><span class="hide">이전페이지</span></a> <a href="#"
-				class="on">1</a>
-			<!-- D : 활성화페이지일 경우 : on 처리 -->
-			<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-			<a href="#" class="btn_arr next"><i class="fa fa-chevron-right"
-				aria-hidden="true"></i><span class="hide">다음페이지</span></a> <a href="#"
-				class="btn_arr last"><i class="fa fa-chevron-right"
-				aria-hidden="true"></i><span class="hide">마지막페이지</span></a>
-		</div>
-		<div class="regArea" style="text-align: center; margin: 20px;">
-			<a href="#" style="margin: 20px auto;text-decoration: none !important;color: black !important;border: 1px solid gray;padding: 10px 20px;border-radius: 20px;" id="regButton" onclick="location.href='${ pageContext.servletContext.contextPath }/resell/regResell';">게시글 등록</a>
-		</div> --%>
+		
 		<div class="regArea" style="text-align: center; margin: 20px;">
 			<a href="#" id="regButton" onclick="location.href='${ pageContext.servletContext.contextPath }/resell/regResell';">등록하기</a>
 		</div>

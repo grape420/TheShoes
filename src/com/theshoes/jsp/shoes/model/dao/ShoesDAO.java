@@ -32,8 +32,8 @@ public class ShoesDAO {
 		return session.selectOne("ShoesDAO.selectEventByRandomNo", randomNo);
 	}
 	
-	public int isEntryUser(SqlSession session, String userId) {
-		return session.selectOne("ShoesDAO.isEntryUser", userId);
+	public int isEntryUser(SqlSession session, Map<String, String> map) {
+		return session.selectOne("ShoesDAO.isEntryUser", map);
 	}
 
 	public int selectEvnetNo(SqlSession session, EventDTO event) {

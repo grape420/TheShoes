@@ -131,27 +131,33 @@
 									<!-- ${ draw.eventStatus eq '당첨' } -->
 							   	    <c:if test="${ draw.eventStatus ne 1 }">
 									<div class="item-status date-type">
-	
-										<span class="status"> 
-											<span class="lable">응모 기간</span> 
-											
-											<span class="date" style="display: inline-block; width: 100%">
-												<fmt:formatDate value="${ draw.shoes.startDate }" type="date" pattern="yyyy.MM.dd HH:mm"/> - <fmt:formatDate value="${ draw.shoes.endDate }" type="date" pattern="yyyy.MM.dd HH:mm"/></span>
-										</span> 
-										<span class="status"> 
-											<span class="lable">당첨 발표일</span>
-											<span class="date" style="display: inline-block; width: 100%">
-												<fmt:formatDate value="${ draw.shoes.winnerDate }" type="date" pattern="yyyy.MM.dd HH:mm"/>
-											</span>
-										</span> 
-										<span class="status"> 
-											<span class="lable">구매 기간</span>
-											<span class="date" style="display: inline-block; width: 100%"> 
-											
-												<!-- 구매 가능 기간 -->
-												<fmt:formatDate value="${ draw.shoes.winnerDate }" type="date" pattern="yyyy.MM.dd HH:mm"/> - <fmt:formatDate value="${ requestScope.canBuyDate[st.index] }" type="date" pattern="yyyy.MM.dd HH:mm"/>
-											</span>
-										</span>
+										<div class="m-0 p-0 row">
+											<div class="col-10 p-0">
+												<span class="status"> 
+													<span class="lable">응모 기간</span> 
+													
+													<span class="date" style="display: inline-block; width: 100%">
+														<fmt:formatDate value="${ draw.shoes.startDate }" type="date" pattern="yyyy.MM.dd HH:mm"/> - <fmt:formatDate value="${ draw.shoes.endDate }" type="date" pattern="yyyy.MM.dd HH:mm"/></span>
+												</span> 
+												<span class="status"> 
+													<span class="lable">당첨 발표일</span>
+													<span class="date" style="display: inline-block; width: 100%">
+														<fmt:formatDate value="${ draw.shoes.winnerDate }" type="date" pattern="yyyy.MM.dd HH:mm"/>
+													</span>
+												</span> 
+												<span class="status"> 
+													<span class="lable">구매 기간</span>
+													<span class="date" style="display: inline-block; width: 100%"> 
+													
+														<!-- 구매 가능 기간 -->
+														<fmt:formatDate value="${ draw.shoes.winnerDate }" type="date" pattern="yyyy.MM.dd HH:mm"/> - <fmt:formatDate value="${ requestScope.canBuyDate[st.index] }" type="date" pattern="yyyy.MM.dd HH:mm"/>
+													</span>
+												</span>
+											</div>
+											<div class="col-2 p-0">
+												<button class="btn btn-outline-secondary p-2 payBtn">나와</button>
+											</div>
+										</div>
 									</div>
 									</c:if>
 								</div>

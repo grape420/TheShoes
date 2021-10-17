@@ -1,7 +1,8 @@
 package com.theshoes.jsp.shoes.controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.theshoes.jsp.common.paging.Pagenation;
-import com.theshoes.jsp.common.paging.SelectCriteria;
 import com.theshoes.jsp.member.model.dto.MemberDTO;
 import com.theshoes.jsp.shoes.model.dto.ShoesDTO;
 import com.theshoes.jsp.shoes.model.service.ShoesService;
@@ -40,10 +39,12 @@ public class ShoesDetailServlet extends HttpServlet {
 		if(member != null) {
 			sort = 1;
 			
-			String userId = member.getId();
+			Map<String, String> map = new HashMap<>();
+			map.put("id", member.getId());
+			map.put("no", no + "");
 			
 			// 응모한사람인지 체크
-			int isEntry = shoesService.isEntryUser(userId);
+			int isEntry = shoesService.isEntryUser(map);
 			if(isEntry == 1)
 				sort = 2;
 		}

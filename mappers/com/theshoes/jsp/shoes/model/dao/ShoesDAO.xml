@@ -139,10 +139,11 @@
 		 WHERE A.RANDOM_NO = #{ randomNo }
 	</select>
 	
-	<select id="isEntryUser" resultType="_int">
+	<select id="isEntryUser" parameterType="hashmap" resultType="_int">
 		SELECT COUNT(*) 
 		FROM EVENT 
-		WHERE EVENT_ID = #{userId}
+		WHERE EVENT_ID = #{ id }
+		  AND EVENT_SHOES_ID = #{ no }
 	</select>
 	
 	<select id="selectEvnetNo" parameterType="com.theshoes.jsp.manager.model.dto.EventDTO" resultType="_int">

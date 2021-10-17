@@ -3,6 +3,7 @@ package com.theshoes.jsp.shoes.model.service;
 import static com.theshoes.jsp.common.mybatis.Template.getSqlSession;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -78,10 +79,10 @@ public class ShoesService {
 		return userName;
 	}
 	
-	public int isEntryUser(String userId) {
+	public int isEntryUser(Map<String, String> map) {
 		SqlSession session = getSqlSession();
 		
-		int isEntry = shoesDAO.isEntryUser(session, userId);
+		int isEntry = shoesDAO.isEntryUser(session, map);
 		
 		session.close();
 		
