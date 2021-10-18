@@ -54,6 +54,7 @@
 	
 	<resultMap type="com.theshoes.jsp.board.model.dto.CommentsDTO" id="CommentsResultMap">
 		<id property="commentsNo" column="COMMENTS_NO"/>
+		<result property="commentsId" column="COMMENTS_ID"/>
 		<result property="boardNo" column="BOARD_COMMENTS_NO"/>
 		<result property="commentsContent" column="COMMENTS_CONTENT"/>
 		<result property="commentsYn" column="COMMENTS_YN"/>
@@ -189,23 +190,25 @@
         )
 	</insert>
 	
-	<insert id="comments" parameterType="com.theshoes.jsp.board.model.dto.CommentsDTO">
+	<insert id="comments">
 		INSERT 
-			  INTO COMMENTS A
-			(
-			  COMMENTS_NO
-			, BOARD_COMMENTS_NO
-			, COMMENTS_CONTENT
-			, COMMENTS_YN
-			, COMMENTS_REGDATE
-			)
-			VALUES
-			(
-			  SEQ_COMMENTS_CODE.NEXTVAL
-			, #{ boardNo }
-			, #{ commentsContent }
-			, 'Y'
-			, SYSDATE
-			)
+		  INTO COMMENTS A
+		(
+		  A.COMMENTS_NO
+		, A.COMMENTS_ID
+		, A.BOARD_COMMENTS_NO
+		, A.COMMENTS_CONTENT
+		, A.COMMENTS_YN
+		, A.COMMENTS_REGDATE
+		)
+		VALUES
+		(
+		  SEQ_COMMENTS_CODE.NEXTVAL
+		, #{ commentsId }
+		, #{ boardNo }
+		, #{ commentsContent }
+		, #{ commentsYn }
+		, SYSDATE
+		)
 	</insert>
 </mapper>

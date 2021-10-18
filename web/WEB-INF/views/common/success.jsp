@@ -54,6 +54,12 @@
 					movePath = "${ pageContext.servletContext.contextPath }/shoes/detail?no=${ no }";
 					alert("응모 되셨습니다.");
 					break;
+				case "insertResell" :
+					movePath = "${ pageContext.servletContext.contextPath }/resell/resellList";
+					break;
+				case "insertComments" :
+					movePath = "${ pageContext.servletContext.contextPath }/resell/detail?no=${ no }";
+					break;
 			}
 			location.replace(movePath);
 		})();

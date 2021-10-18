@@ -34,6 +34,7 @@ public class ResellListDAO {
 		return session.selectOne("ResellListDAO.selectResellTotalCount");
 	}
 	public int comments(SqlSession session, CommentsDTO commentsDTO) {
+		System.out.println(commentsDTO);
 		return session.insert("ResellListDAO.comments", session);
 	}
 	

@@ -1,9 +1,6 @@
 package com.theshoes.jsp.board.contorller;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.theshoes.jsp.board.model.dto.CommentsDTO;
 import com.theshoes.jsp.board.model.dto.ResellDetailDTO;
-import com.theshoes.jsp.board.model.dto.ResellThumbDTO;
 import com.theshoes.jsp.board.model.service.ResellListService;
+import com.theshoes.jsp.member.model.dto.MemberDTO;
 
 @WebServlet("/resell/detail")
 public class ResellDetailServlet extends HttpServlet {
@@ -42,34 +39,29 @@ public class ResellDetailServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
-		int commentsNo = Integer.parseInt(request.getParameter("commentsNo"));
-		String commentsContent = request.getParameter("commentsContent");
-		String commentsYn = request.getParameter("commentsYn");
-		
-		Calendar cal = new GregorianCalendar();
-		
-		Date commentsRegDate = new Date(cal.getTimeInMillis());
+		String commentsContent = request.getParameter("content");
 		
 		CommentsDTO commentsDTO = new CommentsDTO();
-		commentsDTO.setCommentsNo(commentsNo);
 		commentsDTO.setBoardNo(boardNo);
 		commentsDTO.setCommentsContent(commentsContent);
-		commentsDTO.setCommentsYn(commentsYn);
-		commentsDTO.setCommentsRegDate(commentsRegDate);
-		
+		if(request.getParameter("commentsYn") == null) {
+			commentsDTO.setCommentsYn("N");
+		} else {
+			commentsDTO.setCommentsYn("Y");
+		}
+		commentsDTO.setCommentsId(((MemberDTO)request.getSession().getAttribute("entryMember")).getId());
 		
 		ResellListService resellListService = new ResellListService();
 		
 		int result = resellListService.comments(commentsDTO);
 		
-		String path = "";
-		
 		if(result > 0) {
-			path = "/WEB-INF/views/resell/resellDetail.jsp";
-			request.setAttribute("comments", commentsDTO);
-			request.getRequestDispatcher(path).forward(request, response);
+			request.setAttribute("successCode", "insertComments");
+			request.setAttribute("no", boardNo + "");
+			request.getRequestDispatcher("/WEB-INF/views/common/success.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(request, response);
 		}
 	}
 	

@@ -22,16 +22,6 @@ public class ResellListService {
 		resellListDAO = new ResellListDAO();
 	}
 	
-//	/* 게시물 조회 */
-//	public List<ResellListDTO> selectResellList(SelectCriteria selectCriteria) {
-//		
-//		SqlSession session = getSqlSession();
-//		
-//		List<ResellListDTO> resellList = resellListDAO.selectResellList(session, selectCriteria);
-//		return null;
-//	}
-
-
 	public List<ResellDetailDTO> selectResellList(SelectCriteria selectCriteria) {
 		
 		SqlSession session = getSqlSession();

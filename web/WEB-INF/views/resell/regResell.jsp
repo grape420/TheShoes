@@ -45,11 +45,11 @@
 							<li class="input_img" id="img_body4">
 								<img id="img_file4">이미지 등록4<input type="file" name="resellFileName3" accept="image/jpg, image/jpeg, image/png" id="resell_img4" onchange="loadImg(this, 4)">
 							</li>
-							<li class="input_img" id="img_body5">
-								<img id="img_file5">이미지 등록4<input type="file" name="resellFileName4" accept="image/jpg, image/jpeg, image/png" id="resell_img5" onchange="loadImg(this, 5)">
+							<li class="input_img mt-4" id="img_body5">
+								<img id="img_file5">이미지 등록5<input type="file" name="resellFileName4" accept="image/jpg, image/jpeg, image/png" id="resell_img5" onchange="loadImg(this, 5)">
 							</li>
-							<li class="input_img" id="img_body6">
-								<img id="img_file6">이미지 등록4<input type="file" name="resellFileName5" accept="image/jpg, image/jpeg, image/png" id="resell_img6" onchange="loadImg(this, 6)">
+							<li class="input_img mt-4" id="img_body6">
+								<img id="img_file6">이미지 등록6<input type="file" name="resellFileName5" accept="image/jpg, image/jpeg, image/png" id="resell_img6" onchange="loadImg(this, 6)">
 							</li>
 							<!--이미지 등록했을때 화면 필요 없을시 아래의 내용 삭제-->
 							<!--<li>
