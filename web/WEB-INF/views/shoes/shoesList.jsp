@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:useBean id="now" class="java.util.Date" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +42,21 @@
 										<span class="tit"><fmt:formatDate value="${ list.startDate }" pattern="a hh:mm"/> 응모 시작</span> <span class="color">${list.shoesModel }</span>
 									</p>
 									<p class="hover">
-										<a href="javascript:void(0)">THE DRAW <b>추첨예정</b></a>
+									<fmt:formatDate value="${ now }" pattern="yyyyMMddhhmm" var="nowDate" />
+									<fmt:formatDate value="${ list.endDate }" pattern="yyyyMMddHHmm" var="closeDate"/>
+									<fmt:formatDate value="${ list.startDate }" pattern="yyyyMMddHHmm" var="beginDate"/>
+									<fmt:formatDate value="${ list.winnerDate }" pattern="yyyyMMddHHmm" var="winDate"/>
+										<c:choose>
+											<c:when test="${ now lt list.startDate }">
+												<a href="javascript:void(0)">THE DRAW <b>추첨예정</b></a>
+											</c:when>
+											<c:when test="${ now lt list.endDate }">
+												<a href="javascript:void(0)">THE DRAW <b>응모 중</b></a>
+											</c:when>
+											<c:otherwise>
+												<a href="javascript:void(0)">THE DRAW <b>응모 종료</b></a>
+											</c:otherwise>
+										</c:choose>
 									</p>
 								</div>
 								<a class="stretched-link" href="/TheShoes/shoes/detail?no=${list.shoesNo }" ></a>
