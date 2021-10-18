@@ -135,7 +135,7 @@
 										<label for="firstName">추첨 종료 상태</label>
 										<select class="custom-select d-block w-100" id="eventEndYn" name="eventEndYn" >
 											<option value="Y">Y</option>
-											<option value="N">N</option>
+											<option selected="selected" value="N">N</option>
 										</select>
 									</div>
 
