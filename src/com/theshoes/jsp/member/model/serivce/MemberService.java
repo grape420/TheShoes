@@ -163,4 +163,20 @@ public class MemberService {
 		return result;
 	}
 
+	public int insertWish(WishDTO wish) {
+		SqlSession session = getSqlSession();
+		
+		int result = memberDAO.insertWish(session, wish);
+		
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
 }

@@ -105,7 +105,7 @@ public class RegResellServlet extends HttpServlet {
 							/* 제목 사진과 나머지 사진을 구분하고 썸네일도 생성한다. */
 							int width = 0;
 							int height = 0;
-							if("thumbnailImg1".equals(filedName)) {
+							if("resellFileName".equals(filedName)) {
 								fileMap.put("fileType", "TITLE");
 								
 								/* 썸네일로 변환 할 사이즈를 지정한다. */

@@ -29,7 +29,7 @@
 				<li>
 					<div class="left">
 						<p class="text pill_text">상품이미지</p>
-						<span class="count" id="img_count">(0/4)</span>
+						<span class="count" id="img_count">    </span>
 					</div>
 					<div class="right">
 						<ul class="img_list">

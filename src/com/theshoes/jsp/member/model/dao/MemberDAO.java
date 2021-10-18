@@ -45,4 +45,8 @@ public class MemberDAO {
 		return session.update("MemberDAO.birthChange", member);
 	}
 
+	public int insertWish(SqlSession session, WishDTO wish) {
+		return session.insert("MemberDAO.insertWish", wish);
+	}
+
 }

@@ -24,7 +24,11 @@
 			<c:forEach var="resellList" items="${ requestScope.board }" begin="${ selectCriteria.startRow -1}" end="${ selectCriteria.endRow -1}">
 				<div class="col-md-4" style="border: 0!important">
 					<div class="card mb-4 border-0" id="resellArea">
-						<img id="rsImg" src="/TheShoes/resources/upload/image/resellShoes/${resellList.resellThumb[0].savedName }">
+						<c:forEach var="thumb" items="${ resellList.resellThumb }" varStatus="st">
+							<c:if test="${ thumb.fileType eq 'TITLE' }">
+								<img id="rsImg" src="/TheShoes/resources/upload/image/resellShoes/${resellList.resellThumb[st.index].savedName }">
+							</c:if>
+						</c:forEach>
 						<div class="card-body ">
 							<div class="card-text">
 								<p class="none-hover">

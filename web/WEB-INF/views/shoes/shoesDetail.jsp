@@ -69,20 +69,50 @@
 								</c:choose>
 						  </c:when>
 						  <c:when test="${sort == 2}">
-					          <a class="btn" href="javascript:void(0)">응모 완료</a>
+				          	<a class="btn" href="javascript:void(0)">응모 완료</a>
 						  </c:when>
 					  </c:choose>
-					  <a onclick="addWish()">
-					  	<span class="heart">
-					  		<i class="fa fa-heart-o" aria-hidden="true"></i>
-					  	</span>
-					  	<span class="wish">관심 상품</span>
-					  </a>
+					  	<c:if test="${ empty flag }">
+							  <a id="wishBtn" onclick="addWish()">
+							  	<span class="heart">
+							  		<i class="fa fa-heart-o" aria-hidden="true"></i>
+							  	</span>
+							  	<span class="wish">관심 상품</span>
+							  </a>
+						  </c:if>
+				<input id="shoesNo" value="${ shoesDetail.shoesNo }" hidden>
 			</div>
 		</div>
 	</section>
 
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
+	
+	<script>
+		function addWish() {
+			var shoesNo = $("#shoesNo").val();
+			$.ajax({
+				url: "${ pageContext.servletContext.contextPath }/shoes/regWish",
+				type: "GET",
+				data: { shoesNo : shoesNo },
+				success: function(data) {
+					if(data == "fail") {
+						location.replace("/WEB-INF/views/common/errorPage.jsp");
+					} else {
+						$("#wishBtn").hide();
+						if (confirm("관심 상품 목록으로 이동 하시겠습니까?")) {
+							location.replace("${ pageContext.servletContext.contextPath }/myPage/wishList");
+					    } else {
+					    }
+					}
+				},
+				error: function(request, status, error) {
+					alert("code:" + request.responseText + "\n"
+						+ "message:" + request.responseText + "\n"
+						+ "error:" + error);
+				}
+			});
+		}
+	</script>
 </body>
 </html>

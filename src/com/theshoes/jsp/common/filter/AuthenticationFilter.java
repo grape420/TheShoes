@@ -110,6 +110,8 @@ public class AuthenticationFilter implements Filter {
 		memberPermitList.add("/myPage/withDraw");
 		memberPermitList.add("/shoes/pay");
 		memberPermitList.add("/shoes/event");
+		memberPermitList.add("/shoes/regWish");
+		memberPermitList.add("/resell/comments/delete");
 
 		allPermitList.add("/notice/list");
 		allPermitList.add("/board/detail");

@@ -176,4 +176,18 @@
            SET A.BIRTH = #{ birth }
          WHERE A.MEMBER_ID = #{ id }
 	</update>
+	
+	<insert id="insertWish" parameterType="com.theshoes.jsp.member.model.dto.WishDTO">
+		INSERT /* com.theshoes.jsp.member.model.dao.MemberDAO#"insertWish"() */
+          INTO WISHLIST A
+        (
+          A.WISH_NO
+	    , A.WISH_ID
+        )
+        VALUES 
+        (
+          #{ wishNo }
+        , #{ wishId }
+        )
+	</insert>
 </mapper>

@@ -2,6 +2,7 @@ package com.theshoes.jsp.shoes.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.theshoes.jsp.member.model.dto.MemberDTO;
+import com.theshoes.jsp.member.model.dto.WishDTO;
+import com.theshoes.jsp.member.model.serivce.MemberService;
 import com.theshoes.jsp.shoes.model.dto.ShoesDTO;
 import com.theshoes.jsp.shoes.model.service.ShoesService;
 
@@ -37,6 +40,15 @@ public class ShoesDetailServlet extends HttpServlet {
 		
 		// 로그인한 사용자이면
 		if(member != null) {
+			MemberDTO member2 = (new MemberService().selectAllWishList(member.getId()));
+			if(member2 != null) {
+				for(WishDTO wish : member2.getWishList()) {
+					if(wish.getWishNo() == no) {
+						request.setAttribute("flag", "flag");
+					}
+				}
+			}
+			
 			sort = 1;
 			
 			Map<String, String> map = new HashMap<>();

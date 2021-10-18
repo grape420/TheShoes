@@ -25,11 +25,7 @@ public class ResellDetailServlet extends HttpServlet {
 		
 		ResellDetailDTO resellDetail = resellListService.selectOneResellList(no);
 		
-		System.out.println(resellDetail.getComments().size());
-		
-		for(CommentsDTO thumb: resellDetail.getComments()) {
-			System.out.println("thumb" + thumb);
-		}
+		request.setAttribute("commentCnt", resellDetail.getComments().size());
 		
 		String path = "";
 		path = "/WEB-INF/views/resell/resellDetail.jsp";

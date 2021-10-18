@@ -14,8 +14,8 @@ public class CommentsDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int commentNo = (Integer.valueOf(request.getParameter("deleteComment")));
-		int boardNo = Integer.parseInt(request.getParameter("no"));
+		int boardNo = Integer.parseInt(request.getParameter("shoesNo"));
+		int commentNo = Integer.valueOf(request.getParameter("deleteComment"));
 		
 		ResellListService resellListService = new ResellListService();
 		
