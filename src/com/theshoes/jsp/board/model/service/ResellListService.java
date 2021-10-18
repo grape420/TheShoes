@@ -106,4 +106,20 @@ public class ResellListService {
 		return result;
 	}
 
+	public int deleteComment(int no) {
+		SqlSession session = getSqlSession();
+		
+		int result = resellListDAO.deleteComment(session, no);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
 }

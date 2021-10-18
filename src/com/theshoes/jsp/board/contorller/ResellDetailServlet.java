@@ -28,7 +28,7 @@ public class ResellDetailServlet extends HttpServlet {
 		System.out.println(resellDetail.getComments().size());
 		
 		for(CommentsDTO thumb: resellDetail.getComments()) {
-			System.out.println("dfsdfs" + thumb);
+			System.out.println("thumb" + thumb);
 		}
 		
 		String path = "";

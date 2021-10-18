@@ -13,7 +13,6 @@
 		<result property="boardRegDate" column="BOARD_REGDATE"/>
 		<result property="boardHit" column="BOARD_HIT"/>
 		<result property="categoryOrder" column="CATEGORY_ORDER"/>
-		
 	</resultMap>
 	
 	<resultMap type="com.theshoes.jsp.board.model.dto.BoardCategoryDTO" id="BoardCategoryResultMap">
@@ -133,6 +132,7 @@
 		     , C.COMMENTS_CONTENT
 		     , C.COMMENTS_YN
 		     , C.COMMENTS_REGDATE
+		     , C.COMMENTS_ID
 		  FROM BOARD A
 		  LEFT JOIN RESELL_THUMB B ON(B.RT_NO = A.BOARD_NO)
 		  LEFT JOIN COMMENTS C ON(C.BOARD_COMMENTS_NO = A.BOARD_NO)
@@ -211,4 +211,9 @@
 		, SYSDATE
 		)
 	</insert>
+	
+	<delete id="deleteComment">
+		DELETE FROM COMMENTS A
+		WHERE A.COMMENTS_NO = #{ no }
+	</delete>
 </mapper>

@@ -27,15 +27,16 @@ public class ResellListDAO {
 	}
 
 	public int insertResellThumb(SqlSession session, ResellThumbDTO resellThumb) {
-		System.out.println(resellThumb);
 		return session.insert("ResellListDAO.insertResellThumb", resellThumb);
 	}
 	public int selectResellTotalCount(SqlSession session) {
 		return session.selectOne("ResellListDAO.selectResellTotalCount");
 	}
 	public int comments(SqlSession session, CommentsDTO commentsDTO) {
-		System.out.println(commentsDTO);
-		return session.insert("ResellListDAO.comments", session);
+		return session.insert("ResellListDAO.comments", commentsDTO);
+	}
+	public int deleteComment(SqlSession session, int no) {
+		return session.delete("ResellListDAO.deleteComment", no);
 	}
 	
 }

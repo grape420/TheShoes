@@ -57,6 +57,7 @@
 				case "insertResell" :
 					movePath = "${ pageContext.servletContext.contextPath }/resell/resellList";
 					break;
+				case "deleteComments" :
 				case "insertComments" :
 					movePath = "${ pageContext.servletContext.contextPath }/resell/detail?no=${ no }";
 					break;
