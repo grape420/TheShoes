@@ -17,13 +17,8 @@
 	<!-- section -->
 	<section>
 		<div class="orderby">
-			<span> <select class="filter">
-					<option>필터</option>
-					<option>최신순</option>
-					<option>저가순</option>
-					<option>고가순</option>
-			</select> <i class="fa fa-sliders" aria-hidden="true"> </i>
-			</span> <label class="select"> <select>
+			<label class="select m-0"> 
+			<select>
 					<option>제목 + 내용</option>
 					<option>작성자</option>
 					<option>제목</option>
@@ -32,18 +27,11 @@
 			</label>
 		</div>
 	
-		<hr style="border-top: 1px solid rgba(0,0,0,.1); margin-top: 1rem; margin-bottom: 1rem; border: 0;">
+		<hr>
 		<div class="reselltitle">
-			<p class="title">RESELL SHOP</p>
+			<p class="title" style="border-top: 1px solid rgba(0,0,0,.1); margin-top: 1rem; margin-bottom: 1rem; border: 0;">RESELL SHOP</p>
 		</div>
-		<div class="sc-ciodno jeBajc">
-			<div class="sc-bYwvMP dsPtbr">
-				<div class="sc-gGCbJM aZXoH">
-					<span class="sc-crNyjn fCkOBf">신발</span>의 검색결과 <span
-						class="sc-lcpuFF llJACf">51개 </span>
-				</div>
-			</div>
-		</div>
+		<hr style="border-top: 1px solid rgba(0,0,0,.1);">
 		<div class="row mt-5" id="resellTable" style="width:70%;">
 			<c:forEach var="resellList" items="${ requestScope.board }" begin="${ selectCriteria.startRow -1}" end="${ selectCriteria.endRow -1}">
 				<div class="col-md-4" style="border: 0!important">
@@ -66,12 +54,38 @@
 			</c:forEach>
 		</div>
 		<jsp:include page="paging.jsp"/>
-		
+		<%-- <div class="paging">
+
+			<a href="#" class="btn_arr first"><i class="fa fa-chevron-left"
+				aria-hidden="true"></i><span class="hide">처음페이지</span></a> <a href="#"
+				class="btn_arr prev"><i class="fa fa-chevron-left"
+				aria-hidden="true"></i><span class="hide">이전페이지</span></a> <a href="#"
+				class="on">1</a>
+			<!-- D : 활성화페이지일 경우 : on 처리 -->
+			<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
+			<a href="#" class="btn_arr next"><i class="fa fa-chevron-right"
+				aria-hidden="true"></i><span class="hide">다음페이지</span></a> <a href="#"
+				class="btn_arr last"><i class="fa fa-chevron-right"
+				aria-hidden="true"></i><span class="hide">마지막페이지</span></a>
+		</div>
+		<div class="regArea" style="text-align: center; margin: 20px;">
+			<a href="#" style="margin: 20px auto;text-decoration: none !important;color: black !important;border: 1px solid gray;padding: 10px 20px;border-radius: 20px;" id="regButton" onclick="location.href='${ pageContext.servletContext.contextPath }/resell/regResell';">게시글 등록</a>
+		</div> --%>
 		<div class="regArea" style="text-align: center; margin: 20px;">
 			<a href="#" id="regButton" onclick="location.href='${ pageContext.servletContext.contextPath }/resell/regResell';">등록하기</a>
 		</div>
 	</section>
-	
+	<script type="text/javascript">
+	/* $(function() {
+		$("#resellTable a").hover(function() {
+			$(this).parent().css({"cursor":"pointer"});
+		}).click(function() {
+			let categoryOrder = $(this).parent().children(":eq(0)").text();
+			console.log(categoryOrder);
+			location.href = "${ pageContext.servletContext.contextPath }/resell/detail?categoryOrder=" + categoryOrder;
+		});
+	}); */
+	</script>
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 </body>

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.theshoes.jsp.board.model.dto.BoardDTO;
+import com.theshoes.jsp.board.model.dto.CommentsDTO;
 import com.theshoes.jsp.board.model.dto.ResellDTO;
 import com.theshoes.jsp.board.model.dto.ResellDetailDTO;
 import com.theshoes.jsp.board.model.dto.ResellListDTO;
@@ -31,6 +32,9 @@ public class ResellListDAO {
 	}
 	public int selectResellTotalCount(SqlSession session) {
 		return session.selectOne("ResellListDAO.selectResellTotalCount");
+	}
+	public int comments(SqlSession session, CommentsDTO commentsDTO) {
+		return session.insert("ResellListDAO.comments", session);
 	}
 	
 }

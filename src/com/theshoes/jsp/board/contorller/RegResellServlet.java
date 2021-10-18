@@ -167,7 +167,8 @@ public class RegResellServlet extends HttpServlet {
 				String path = "";
 				if(result > 0) {
 					path = "/WEB-INF/views/common/success.jsp";
-					request.setAttribute("successCode", "insertShoes");
+					request.setAttribute("successCode", "insertResell");
+					
 				} else {
 					path = "/WEB-INF/views/common/errorPage.jsp";
 				}
