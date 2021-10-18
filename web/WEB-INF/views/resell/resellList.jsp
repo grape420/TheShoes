@@ -17,13 +17,8 @@
 	<!-- section -->
 	<section>
 		<div class="orderby">
-			<span> <select class="filter">
-					<option>필터</option>
-					<option>최신순</option>
-					<option>저가순</option>
-					<option>고가순</option>
-			</select> <i class="fa fa-sliders" aria-hidden="true"> </i>
-			</span> <label class="select"> <select>
+			<label class="select m-0"> 
+			<select>
 					<option>제목 + 내용</option>
 					<option>작성자</option>
 					<option>제목</option>
@@ -32,18 +27,11 @@
 			</label>
 		</div>
 	
-		<hr style="border-top: 1px solid rgba(0,0,0,.1); margin-top: 1rem; margin-bottom: 1rem; border: 0;">
+		<hr>
 		<div class="reselltitle">
-			<p class="title">RESELL SHOP</p>
+			<p class="title" style="border-top: 1px solid rgba(0,0,0,.1); margin-top: 1rem; margin-bottom: 1rem; border: 0;">RESELL SHOP</p>
 		</div>
-		<div class="sc-ciodno jeBajc">
-			<div class="sc-bYwvMP dsPtbr">
-				<div class="sc-gGCbJM aZXoH">
-					<span class="sc-crNyjn fCkOBf">신발</span>의 검색결과 <span
-						class="sc-lcpuFF llJACf">51개 </span>
-				</div>
-			</div>
-		</div>
+		<hr style="border-top: 1px solid rgba(0,0,0,.1);">
 		<div class="row mt-5" id="resellTable" style="width:70%;">
 			<c:forEach var="resellList" items="${ requestScope.board }" begin="${ selectCriteria.startRow -1}" end="${ selectCriteria.endRow -1}">
 				<div class="col-md-4" style="border: 0!important">

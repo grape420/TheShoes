@@ -15,6 +15,7 @@ public class ResellDetailDTO implements Serializable{
 	private String boardContent;
 	private int categoryOrder;
 	private BoardCategoryDTO category;
+	private List<CommentsDTO> comments;
 	private List<ResellThumbDTO> resellThumb;
 	
 	public ResellDetailDTO() {
@@ -22,7 +23,8 @@ public class ResellDetailDTO implements Serializable{
 	}
 
 	public ResellDetailDTO(int resellNo, int boardNo, String boardId, int boardCategoryNo, String boardTitle,
-			String boardContent, int categoryOrder, BoardCategoryDTO category, List<ResellThumbDTO> resellThumb) {
+			String boardContent, int categoryOrder, BoardCategoryDTO category, List<CommentsDTO> comments,
+			List<ResellThumbDTO> resellThumb) {
 		this.resellNo = resellNo;
 		this.boardNo = boardNo;
 		this.boardId = boardId;
@@ -31,6 +33,7 @@ public class ResellDetailDTO implements Serializable{
 		this.boardContent = boardContent;
 		this.categoryOrder = categoryOrder;
 		this.category = category;
+		this.comments = comments;
 		this.resellThumb = resellThumb;
 	}
 
@@ -98,6 +101,14 @@ public class ResellDetailDTO implements Serializable{
 		this.category = category;
 	}
 
+	public List<CommentsDTO> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentsDTO> comments) {
+		this.comments = comments;
+	}
+
 	public List<ResellThumbDTO> getResellThumb() {
 		return resellThumb;
 	}
@@ -110,10 +121,10 @@ public class ResellDetailDTO implements Serializable{
 	public String toString() {
 		return "ResellDetailDTO [resellNo=" + resellNo + ", boardNo=" + boardNo + ", boardId=" + boardId
 				+ ", boardCategoryNo=" + boardCategoryNo + ", boardTitle=" + boardTitle + ", boardContent="
-				+ boardContent + ", categoryOrder=" + categoryOrder + ", category=" + category + ", resellThumb="
-				+ resellThumb + "]";
+				+ boardContent + ", categoryOrder=" + categoryOrder + ", category=" + category + ", comments="
+				+ comments + ", resellThumb=" + resellThumb + "]";
 	}
-	
+
 	
 	
 }

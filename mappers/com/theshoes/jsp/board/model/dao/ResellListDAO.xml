@@ -29,7 +29,7 @@
 		<result property="boardContent" column="BOARD_CONTENT"/>
 		<result property="categoryOrder" column="CATEGORY_ORDER"/>
 		
-		<association property="category" resultMap="BoardCategoryResultMap"></association>
+		<collection property="comments" resultMap="CommentsResultMap"/>
 		<collection property="resellThumb" resultMap="ResellThumbResultMap"/>
 	</resultMap>
 	
@@ -43,13 +43,22 @@
 	
 	<resultMap type="com.theshoes.jsp.board.model.dto.ResellThumbDTO" id="ResellThumbResultMap">
 		<id property="rtNo" column="RT_NO"/>
-		<result property="resellThumbNo" column="RESELL_THUMB_NO"/>
+		<id property="resellThumbNo" column="RESELL_THUMB_NO"/>
 		<result property="originalName" column="RESELL_ORIGINAL_NAME"/>
 		<result property="savedName" column="RESELL_SAVED_NAME"/>
 		<result property="savePath" column="RESELL_SAVE_PATH"/>
 		<result property="fileType" column="RESELL_FILE_TYPE"/>
 		<result property="thumbnailPath" column="RESELL_THUMBNAIL_PATH"/>
 		<result property="status" column="RESELL_ATTACHMENT_STATUS"/>
+	</resultMap>
+	
+	<resultMap type="com.theshoes.jsp.board.model.dto.CommentsDTO" id="CommentsResultMap">
+		<id property="commentsNo" column="COMMENTS_NO"/>
+		<result property="boardNo" column="BOARD_COMMENTS_NO"/>
+		<result property="commentsContent" column="COMMENTS_CONTENT"/>
+		<result property="commentsYn" column="COMMENTS_YN"/>
+		<result property="commentsRegDate" column="COMMENTS_REGDATE"/>
+		
 	</resultMap>
 	
 	<select id="selectResellList" resultMap="ResellDetailResultMap">
@@ -80,7 +89,7 @@
         WHERE A.BOARD_CATEGORY_NO = 3
 	</select>
 	
-	<select id="selectOneResellList" resultMap="ResellDetailResultMap">
+	<!-- <select id="selectOneResellList" resultMap="ResellDetailResultMap">
 		SELECT
 		       A.BOARD_NO
 		     , A.BOARD_ID
@@ -98,6 +107,34 @@
 		     , B.RESELL_ATTACHMENT_STATUS
 		  FROM BOARD A
 		  JOIN RESELL_THUMB B ON(B.RT_NO = A.BOARD_NO)
+		 WHERE A.BOARD_CATEGORY_NO = 3
+		   AND A.BOARD_NO = #{ boardNo }
+	</select> -->
+	
+	<select id="selectOneResellList" resultMap="ResellDetailResultMap">
+		SELECT
+		       A.BOARD_NO
+		     , A.BOARD_ID
+		     , A.BOARD_CATEGORY_NO
+		     , A.BOARD_TITLE
+		     , A.BOARD_CONTENT
+		     , A.CATEGORY_ORDER
+		     , B.RT_NO
+		     , B.RESELL_THUMB_NO
+		     , B.RESELL_ORIGINAL_NAME
+		     , B.RESELL_SAVED_NAME
+		     , B.RESELL_SAVE_PATH
+		     , B.RESELL_FILE_TYPE
+		     , B.RESELL_THUMBNAIL_PATH
+		     , B.RESELL_ATTACHMENT_STATUS
+		     , C.COMMENTS_NO
+		     , C.BOARD_COMMENTS_NO
+		     , C.COMMENTS_CONTENT
+		     , C.COMMENTS_YN
+		     , C.COMMENTS_REGDATE
+		  FROM BOARD A
+		  LEFT JOIN RESELL_THUMB B ON(B.RT_NO = A.BOARD_NO)
+		  LEFT JOIN COMMENTS C ON(C.BOARD_COMMENTS_NO = A.BOARD_NO)
 		 WHERE A.BOARD_CATEGORY_NO = 3
 		   AND A.BOARD_NO = #{ boardNo }
 	</select>
@@ -150,5 +187,25 @@
         , 1
         , SEQ_CATEGORY_RESELL_CODE.NEXTVAL
         )
+	</insert>
+	
+	<insert id="comments" parameterType="com.theshoes.jsp.board.model.dto.CommentsDTO">
+		INSERT 
+			  INTO COMMENTS A
+			(
+			  COMMENTS_NO
+			, BOARD_COMMENTS_NO
+			, COMMENTS_CONTENT
+			, COMMENTS_YN
+			, COMMENTS_REGDATE
+			)
+			VALUES
+			(
+			  SEQ_COMMENTS_CODE.NEXTVAL
+			, #{ boardNo }
+			, #{ commentsContent }
+			, 'Y'
+			, SYSDATE
+			)
 	</insert>
 </mapper>

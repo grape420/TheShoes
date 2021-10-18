@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.theshoes.jsp.board.model.dao.ResellListDAO;
 import com.theshoes.jsp.board.model.dto.BoardDTO;
+import com.theshoes.jsp.board.model.dto.CommentsDTO;
 import com.theshoes.jsp.board.model.dto.ResellDetailDTO;
 import com.theshoes.jsp.board.model.dto.ResellListDTO;
 import com.theshoes.jsp.board.model.dto.ResellThumbDTO;
@@ -96,6 +97,23 @@ public class ResellListService {
 		session.close();
 		
 		return totalCount;
+	}
+
+	public int comments(CommentsDTO commentsDTO) {
+		
+		SqlSession session = getSqlSession();
+		
+		int result = resellListDAO.comments(session, commentsDTO);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
 	}
 
 }
