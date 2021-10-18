@@ -24,6 +24,21 @@
 	cursor: pointer;
 }
 
+.wish {
+	width: 40px;
+	height: 40px;
+	font-size: 24px;
+	color: rgba(0, 0, 0, 0.5);
+	text-align: center;
+	line-height: 40px;
+	cursor: pointer;
+	text-decoration: none !important;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
 .heart:hover, .shopping-cart:hover {
 	background: #e5e5e5;
 	border-radius: 100%;

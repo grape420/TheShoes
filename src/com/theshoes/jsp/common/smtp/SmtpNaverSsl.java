@@ -17,7 +17,7 @@ public class SmtpNaverSsl {
 
 		// 발신자의 메일 계정 및 비밀번호
 		String user = "yujeong_study@naver.com";
-		String pwd = "yj1128yujeong";
+		String pwd = "YUJEONG_STUDY";
 
 		// SMTP 서버 설정
 		Properties props = new Properties();

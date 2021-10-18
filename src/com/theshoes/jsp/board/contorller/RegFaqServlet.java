@@ -18,9 +18,6 @@ import com.theshoes.jsp.board.model.service.BoardService;
 @WebServlet("/faq/reg")
 public class RegFaqServlet extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 9158614119088852874L;
 
 	/* '등록하기' 버튼 클릭 시 get 요청 -> 게시글 작성하는 페이지로 이동 */

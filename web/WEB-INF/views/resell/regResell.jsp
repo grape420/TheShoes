@@ -42,7 +42,7 @@
 							<li class="input_img" id="img_body3">
 								<img id="img_file3">이미지 등록3<input type="file" name="resellFileName2" accept="image/jpg, image/jpeg, image/png" id="resell_img3" onchange="loadImg(this, 3)">
 							</li>
-							<li class="input_img" id="img_body4">
+							<li class="input_img mt-4 mr-3" id="img_body4">
 								<img id="img_file4">이미지 등록4<input type="file" name="resellFileName3" accept="image/jpg, image/jpeg, image/png" id="resell_img4" onchange="loadImg(this, 4)">
 							</li>
 							<li class="input_img mt-4" id="img_body5">

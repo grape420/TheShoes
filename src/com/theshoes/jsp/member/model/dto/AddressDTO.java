@@ -2,6 +2,7 @@ package com.theshoes.jsp.member.model.dto;
 
 public class AddressDTO implements java.io.Serializable{
 	
+	private static final long serialVersionUID = -6259592647288924831L;
 	private String nameMM; 
 	private String addressNo;
 	private String addressName;
