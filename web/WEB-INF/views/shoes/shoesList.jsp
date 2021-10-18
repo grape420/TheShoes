@@ -46,17 +46,17 @@
 									<fmt:formatDate value="${ list.endDate }" pattern="yyyyMMddHHmm" var="closeDate"/>
 									<fmt:formatDate value="${ list.startDate }" pattern="yyyyMMddHHmm" var="beginDate"/>
 									<fmt:formatDate value="${ list.winnerDate }" pattern="yyyyMMddHHmm" var="winDate"/>
-										<c:choose>
-											<c:when test="${ now lt list.startDate }">
-												<a href="javascript:void(0)">THE DRAW <b>추첨예정</b></a>
-											</c:when>
-											<c:when test="${ now lt list.endDate }">
-												<a href="javascript:void(0)">THE DRAW <b>응모 중</b></a>
-											</c:when>
-											<c:otherwise>
-												<a href="javascript:void(0)">THE DRAW <b>응모 종료</b></a>
-											</c:otherwise>
-										</c:choose>
+									<c:choose>
+										<c:when test="${ now lt list.startDate }">
+											<a href="javascript:void(0)">THE DRAW <b>추첨예정</b></a>
+										</c:when>
+										<c:when test="${ now lt list.endDate }">
+											<a href="javascript:void(0)">THE DRAW <b>응모 중</b></a>
+										</c:when>
+										<c:otherwise>
+											<a href="javascript:void(0)">THE DRAW <b>응모 종료</b></a>
+										</c:otherwise>
+									</c:choose>
 									</p>
 								</div>
 								<a class="stretched-link" href="/TheShoes/shoes/detail?no=${list.shoesNo }" ></a>
