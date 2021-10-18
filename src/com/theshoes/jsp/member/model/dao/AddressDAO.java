@@ -24,7 +24,7 @@ public class AddressDAO {
 
 	/* 주소록 수정  */ 
 	public int updateAddress(SqlSession session, AddressDTO address) {
-		System.out.println("나는 addressDAO");
+		System.out.println("나는 addressDAO" + address);
 		return session.update("AddressDAO.updateAddress", address);
 
 	

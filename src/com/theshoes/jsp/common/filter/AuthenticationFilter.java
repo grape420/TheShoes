@@ -91,6 +91,7 @@ public class AuthenticationFilter implements Filter {
 		managerPermitList.add("/manager/board");
 		managerPermitList.add("/manager/delivery");
 		managerPermitList.add("/manager/shoes");
+		managerPermitList.add("/manager/regShoes");
 		managerPermitList.add("/manager/memberList");
 		managerPermitList.add("/manager/modMember");
 		managerPermitList.add("/manager/modShoes");

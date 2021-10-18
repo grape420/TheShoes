@@ -45,9 +45,8 @@
 
 	<update id="updateAddress"  parameterType="com.theshoes.jsp.member.model.dto.AddressDTO" >
         UPDATE /* com.theshoes.jsp.board.model.dao.BoardDAO#updateAddress */
-                  ADDRESS A
-	        SET A.ADDRESS_ID = #{ nameMM }
-		      , A.ADDRESS_ZIP = #{ address1MM }
+                ADDRESS A
+	        SET A.ADDRESS_ZIP = #{ address1MM }
 		      , A.ADDRESS_DETAIL = #{ address2MM }
     	      , A.ADDRESS_NAME = #{ addressName }
     	  WHERE A.ADDRESS_NO = #{ addressNo }
