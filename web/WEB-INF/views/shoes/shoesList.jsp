@@ -42,7 +42,7 @@
 							<div class="card-body">
 								<div class="card-text">
 									<p class="none-hover">
-										<span class="tit"><fmt:formatDate value="${ list.startDate }" pattern="a hh:mm"/> 응모 시작</span> <span class="color">${list.shoesModel }</span>
+										<span class="tit"><fmt:formatDate value="${ list.startDate }" pattern="MM월 dd일 a hh:mm"/> 응모 시작</span> <span class="color">${list.shoesModel }</span>
 									</p>
 									<p class="hover">
 									<fmt:formatDate value="${ now }" pattern="yyyyMMddhhmm" var="nowDate" />
@@ -50,10 +50,10 @@
 									<fmt:formatDate value="${ list.startDate }" pattern="yyyyMMddHHmm" var="beginDate"/>
 									<fmt:formatDate value="${ list.winnerDate }" pattern="yyyyMMddHHmm" var="winDate"/>
 									<c:choose>
-										<c:when test="${ now lt list.startDate }">
+										<c:when test="${ nowDate < beginDate }">
 											<a href="javascript:void(0)">THE DRAW <b>추첨예정</b></a>
 										</c:when>
-										<c:when test="${ now lt list.endDate }">
+										<c:when test="${ nowDate < closeDate }">
 											<a href="javascript:void(0)">THE DRAW <b>응모 중</b></a>
 										</c:when>
 										<c:otherwise>
