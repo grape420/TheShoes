@@ -34,8 +34,11 @@
 									<p class="headline-1" data-qa="draw-day"><fmt:formatDate value="${ list.startDate }" pattern="dd"/></p>
 								</div>
 							</div>
-							<img src="/TheShoes/resources/upload/image/shoes/${list.thumbList[0].savedName}">
-							
+							<c:forEach var="thumb" items="${ list.thumbList }" varStatus="st">
+								<c:if test="${ thumb.fileType eq 'TITLE' }">
+									<img src="/TheShoes/resources/upload/image/shoes/${ thumb.savedName }">
+								</c:if>
+							</c:forEach>
 							<div class="card-body">
 								<div class="card-text">
 									<p class="none-hover">

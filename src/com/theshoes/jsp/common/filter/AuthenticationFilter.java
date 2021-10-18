@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 
 import com.theshoes.jsp.member.model.dto.MemberDTO;
 
-@WebFilter(urlPatterns = {"/board/*", "/member/*", "/manager/*", "/resell/*", "/common/*"})
+@WebFilter(urlPatterns = {"/board/*", "/member/*", "/manager/*", "/resell/*", "/common/*", "/shoes/*"})
 public class AuthenticationFilter implements Filter {
 	
 	Map<String, List<String>> permitURIList;
@@ -106,7 +106,6 @@ public class AuthenticationFilter implements Filter {
 		memberPermitList.add("/member/change");
 		memberPermitList.add("/myPage/modifyAddress");
 		memberPermitList.add("/myPage/salesHistory");
-		memberPermitList.add("/member/signup");
 		memberPermitList.add("/myPage/wishList");
 		memberPermitList.add("/myPage/withDraw");
 		memberPermitList.add("/shoes/pay");
@@ -131,6 +130,7 @@ public class AuthenticationFilter implements Filter {
 		allPermitList.add("/member/findId");
 		allPermitList.add("/shoes/detail");
 		allPermitList.add("/shoes/list");
+		allPermitList.add("/member/signup");
 		
 		permitURIList.put("managerPermitList", managerPermitList);
 		permitURIList.put("memberPermitList", memberPermitList);

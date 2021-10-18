@@ -29,6 +29,11 @@
       <nav class="navbar navbar-expand-sm navbar-light bg-light" style="padding: 0;">
         <div class="collapse navbar-collapse justify-content-end">
           <ul class="navbar-nav mr-3">
+          	<c:if test="${ !empty sessionScope.entryMember }">
+	          	<li class="nav-item mr-2 ml-2">
+	              <a href="">${ entryMember.id } 님 환영합니다.</a>
+	            </li>
+            </c:if>
             <li class="nav-item mr-2 ml-2">
               <a href="${ pageContext.servletContext.contextPath }/board/list">고객센터</a>
             </li>
