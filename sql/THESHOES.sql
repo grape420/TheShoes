@@ -645,22 +645,21 @@ BEGIN
             DBMS_OUTPUT.PUT_LINE('Test5');
         END LOOP;
         COMMIT;
-    exception  when no_data_found then null;
+    EXCEPTION  WHEN no_data_found THEN NULL;
 END;
 /
 
-EXECUTE SHOES_EVENT_START;
-
-DECLARE
-  X NUMBER;
 BEGIN
-  SYS.DBMS_JOB.SUBMIT
-    ( JOB       => X
-    , WHAT      => 'SHOES_EVENT_START'
-    , NEXT_DATE => '21/10/17 10:00:00'
-    , INTERVAL  => 'SYSDATE + 1 / 24 / 12'
-    , NO_PARSE  => TRUE
+    DBMS_SCHEDULER.CREATE_JOB
+    (
+    JOB_NAME => 'EX_JOB',
+    JOB_TYPE => 'STORED_PROCEDURE',
+    START_DATE => SYSDATE ,
+    JOB_ACTION => 'SHOES_EVENT_START',
+    REPEAT_INTERVAL => 'FREQ=MINUTELY; INTERVAL =1', --1분에 1번
+    COMMENTS => '잡객체 1'
     );
+    DBMS_SCHEDULER.ENABLE('EX_JOB');
 END;
 /
 
