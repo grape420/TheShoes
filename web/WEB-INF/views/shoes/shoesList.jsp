@@ -45,7 +45,7 @@
 										<span class="tit"><fmt:formatDate value="${ list.startDate }" pattern="MM월 dd일 a hh:mm"/> 응모 시작</span> <span class="color">${list.shoesModel }</span>
 									</p>
 									<p class="hover">
-									<fmt:formatDate value="${ now }" pattern="yyyyMMddhhmm" var="nowDate" />
+									<fmt:formatDate value="${ now }" pattern="yyyyMMddHHmm" var="nowDate" />
 									<fmt:formatDate value="${ list.endDate }" pattern="yyyyMMddHHmm" var="closeDate"/>
 									<fmt:formatDate value="${ list.startDate }" pattern="yyyyMMddHHmm" var="beginDate"/>
 									<fmt:formatDate value="${ list.winnerDate }" pattern="yyyyMMddHHmm" var="winDate"/>
