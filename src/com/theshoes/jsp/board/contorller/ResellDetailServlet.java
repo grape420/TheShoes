@@ -15,7 +15,8 @@ import com.theshoes.jsp.member.model.dto.MemberDTO;
 
 @WebServlet("/resell/detail")
 public class ResellDetailServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = -834434148314211895L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

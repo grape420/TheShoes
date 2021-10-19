@@ -26,6 +26,10 @@
 					
 				case "updateAddress" : 
 					movePath = "${ pageContext.servletContext.contextPath }/myPage/address";
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'YUJEONG' of https://github.com/Semi-The-Shoes/TheShoes.git
 					break;
 					
 				case "insertNotice" :

@@ -20,8 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/resell/resellList")
 public class ResellListServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
        
+	private static final long serialVersionUID = 8128071123536470492L;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		/* 페이지 하나에 보여줄 게시물 수 */
