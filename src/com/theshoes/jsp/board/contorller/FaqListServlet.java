@@ -50,6 +50,9 @@ public class FaqListServlet extends HttpServlet {
 		List<BoardDTO> faqList = boardService.selectAllFaqList(selectCriteria);
 		System.out.println(faqList);
 		
+		List<BoardDTO> noticeList = boardService.selectAllNoticeList(selectCriteria);
+		System.out.println(noticeList);
+		
 		String path = "";
 		
 		if(faqList != null) {
@@ -57,6 +60,7 @@ public class FaqListServlet extends HttpServlet {
 			path = "/WEB-INF/views/faq/faqList.jsp";
 			request.setAttribute("pagingPath", "faq/list");			
 			request.setAttribute("faqList", faqList);
+			request.setAttribute("noticeList", noticeList);
 			request.setAttribute("selectCriteria", selectCriteria);
 
 		} else {

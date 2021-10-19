@@ -78,7 +78,7 @@
 					<h1 class="h3 mb-2 text-gray-800">1:1 문의</h1>
 						<p class="mb-4"></p>
 				
-					<table class="table table-hover" id="csTable">
+					<table class="table table-hover">
 						<tbody>
 							<tr style="background-color:black; color:white;" class="align-items-center">
 								<th colspan="1" class="text-center col-sm-1">번호</th>
@@ -87,8 +87,16 @@
 								<th colspan="1" class="text-center col-sm-3">작성일</th>
 							</tr>
 							<tr>
+								<c:forEach var="noticeList" items="${ requestScope.noticeList }" begin="0" end="2" >
+									<tr class="notice-tr" style="cursor: pointer; background-color:#f1f1f3" onclick="location.href = '${ pageContext.servletContext.contextPath }/board/detail?categoryOrder=' + ${ noticeList.categoryOrder };">
+										<td class="text-center">[공지]</td>
+										<td colspan="5"><c:out value="${ noticeList.boardTitle }"/></td>
+										<td class="text-center"><c:out value="${ noticeList.boardId }"/></td>
+										<td class="text-center"><c:out value="${ noticeList.boardRegDate }"/></td>
+									</tr>
+								</c:forEach> 
 								<c:forEach var="cs" items="${ requestScope.csList }" >
-									<tr>							
+									<tr style="cursor: pointer" onclick="location.href = '${ pageContext.servletContext.contextPath }/cs/detail?csNo=' + ${ cs.csNo };">
 										<td class="text-center"><c:out value="${ cs.csNo }"/></td>
 										<td colspan="5"><c:out value="${ cs.csTitle }"/></td>
 										<td class="text-center"><c:out value="${ cs.csId }"/></td>
@@ -113,19 +121,9 @@
 			</div>
 		</div>
 	</section>
+	
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 
-	<!-- 클릭 시 디테일 페이지로 이동 -->
-	<script>
-	$(function() {
-		$("#csTable td").hover(function() {
-			$(this).parent().css({"cursor":"pointer"});
-		}).click(function() {
-			let csNo = $(this).parent().children(":eq(0)").text();
-			location.href = "${ pageContext.servletContext.contextPath }/cs/detail?csNo=" + csNo;
-		});
-	});
-	</script>
 </body>
 </html>

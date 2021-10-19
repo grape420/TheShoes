@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.theshoes.jsp.board.model.dto.BoardDTO;
+import com.theshoes.jsp.board.model.service.BoardService;
 import com.theshoes.jsp.common.paging.Pagenation;
 import com.theshoes.jsp.common.paging.SelectCriteria;
 import com.theshoes.jsp.cs.model.dto.QuestionDTO;
@@ -31,6 +33,7 @@ public class QuestionListServlet extends HttpServlet {
 		}
 		
 		QuestionService questionService = new QuestionService();
+		BoardService boardService = new BoardService();
 
 		
 		/* 전체 게시물 수 조회 */
@@ -48,6 +51,9 @@ public class QuestionListServlet extends HttpServlet {
 		List<QuestionDTO> csList = questionService.selectAllCsList(selectCriteria);
 		System.out.println(csList);
 		
+		List<BoardDTO> noticeList = boardService.selectAllNoticeList(selectCriteria);
+		System.out.println(noticeList);
+		
 		String path = "";
 		
 		if(csList != null) {
@@ -55,6 +61,7 @@ public class QuestionListServlet extends HttpServlet {
 			path = "/WEB-INF/views/cs/questionList.jsp";
 			request.setAttribute("pagingPath", "cs/list");
 			request.setAttribute("csList", csList);
+			request.setAttribute("noticeList", noticeList);
 			request.setAttribute("selectCriteria", selectCriteria);
 
 		} else {

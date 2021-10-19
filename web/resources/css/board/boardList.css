@@ -5,6 +5,10 @@
 	background-size: cover;
 }
 
+.notice-tr:hover {
+	background-color: #e6e6e9 !important;
+} 
+
 /* section */
  .bgray {
 	background-color: darkgray !important;
