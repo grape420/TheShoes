@@ -581,7 +581,7 @@ BEGIN
                WHERE A.SALES_YN = 'Y'
                  AND A.EVENT_END_YN = 'N'
                  AND A.WINNER_DATE < SYSDATE) B
-               WHERE B.번호 = I;
+       WHERE B.번호 = I;
         DBMS_OUTPUT.PUT_LINE('Test2');
         DBMS_OUTPUT.PUT_LINE(EVENT_START_SHOES_NO);
         DBMS_OUTPUT.PUT_LINE(EVENT_START_SHOES_AMOUNT);
@@ -636,7 +636,11 @@ BEGIN
               UPDATE EVENT
                  SET EVENT_STATUS = '2'
                WHERE EVENT_NO = WINNER_EVENT_NO;
-                        
+               
+              UPDATE SHOES_INFO A
+                 SET A.REAMANING_AMOUNT = A.REAMANING_AMOUNT - 1
+               WHERE A.SHOES_NO = EVENT_START_SHOES_NO;
+               
             END LOOP;
             END IF;
             UPDATE SHOES_INFO
