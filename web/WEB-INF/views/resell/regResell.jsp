@@ -76,7 +76,7 @@
 					</div>
 					<div class="right">
 						<input type="text" id="productName" class="textlength" placeholder="상품 제목을 입력해 주세요."
-							style="width: 92%;" name="boardTitle" required /> 
+							style="width: 90%;" name="boardTitle" required /> 
 							<span class="count black" id="title_count">0 / 40</span>
 						<!--제목 input 클릭시 나옴 필요 없을시 아래의 내용 삭제-->
 
