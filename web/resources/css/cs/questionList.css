@@ -1,5 +1,14 @@
 @charset "UTF-8";
 
+/* .notice-tr{
+	cursor: pointer; 
+	background-color:#EEEEEE" !important;
+} */
+
+.notice-tr:hover {
+	background-color: #e6e6e9 !important;
+} 
+
 .bg-gradient-primary {
 	background-image: linear-gradient(180deg, #070707 10%, #000000 100%) !important;
 	background-size: cover;
