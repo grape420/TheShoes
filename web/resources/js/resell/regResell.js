@@ -33,7 +33,7 @@ $(document).ready(function() {
 
 
 $('#productName').keydown(function (){
-    var content = $(this).val();
+    var content = $(this).val() + 1;
     $('#title_count').html(+content.length+" / 40");    // 제목 글자수 실시간 카운팅
 
     if (content.length > 40){
@@ -44,8 +44,8 @@ $('#productName').keydown(function (){
 });
 
 $('#content_body').keydown(function (){
-    var content = $(this).val();
-    $('#content_count').html(+content.length+" / 2000");    // 설명 글자수 실시간 카운팅
+    var content = $(this).val() + 1;
+    $('#content_count').html(+content.length + " / 2000");    // 설명 글자수 실시간 카운팅
 	
     if (content.length > 2000){
         alert("최대 2000자까지 입력 가능합니다.");
