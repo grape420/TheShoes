@@ -96,12 +96,26 @@
 									</tr>
 								</c:forEach> 
 								<c:forEach var="cs" items="${ requestScope.csList }" >
-									<tr style="cursor: pointer" onclick="location.href = '${ pageContext.servletContext.contextPath }/cs/detail?csNo=' + ${ cs.csNo };">
-										<td class="text-center"><c:out value="${ cs.csNo }"/></td>
-										<td colspan="5"><c:out value="${ cs.csTitle }"/></td>
-										<td class="text-center"><c:out value="${ cs.csId }"/></td>
-										<td class="text-center"><c:out value="${ cs.csRegDate }"/></td>
-									</tr>
+									<c:choose>
+									 	<c:when test="${ sessionScope.entryMember.role eq 'MEMBER' }">
+											<c:if test="${ cs.csId eq sessionScope.entryMember.id }">
+												<tr style="cursor: pointer" onclick="location.href = '${ pageContext.servletContext.contextPath }/cs/detail?csNo=' + ${ cs.csNo };">
+													<td class="text-center"><c:out value="${ cs.csNo }"/></td>
+													<td colspan="5"><c:out value="${ cs.csTitle }"/></td>
+													<td class="text-center"><c:out value="${ cs.csId }"/></td>
+													<td class="text-center"><c:out value="${ cs.csRegDate }"/></td>
+												</tr>
+											</c:if>
+										</c:when>
+									 	<c:when test="${ sessionScope.entryMember.role eq 'MANAGER' }">
+											<tr style="cursor: pointer" onclick="location.href = '${ pageContext.servletContext.contextPath }/cs/detail?csNo=' + ${ cs.csNo };">
+												<td class="text-center"><c:out value="${ cs.csNo }"/></td>
+												<td colspan="5"><c:out value="${ cs.csTitle }"/></td>
+												<td class="text-center"><c:out value="${ cs.csId }"/></td>
+												<td class="text-center"><c:out value="${ cs.csRegDate }"/></td>
+											</tr>
+										</c:when>
+									</c:choose>
 								</c:forEach> 
 							</tr>
 						</tbody>
