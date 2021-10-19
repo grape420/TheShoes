@@ -31,7 +31,7 @@
           <ul class="navbar-nav mr-3">
           	<c:if test="${ !empty sessionScope.entryMember }">
 	          	<li class="nav-item mr-2 ml-2">
-	              <a href="">${ entryMember.id } 님 환영합니다.</a>
+	              <a>${ entryMember.id } 님 환영합니다.</a>
 	            </li>
             </c:if>
             <li class="nav-item mr-2 ml-2">

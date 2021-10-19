@@ -92,18 +92,18 @@
 							<c:forEach var="wish" items="${ wishList }" begin="${ selectCriteria.startRow - 1 }" end="${ selectCriteria.endRow - 1 }">
 								<div class="item-info">
 									<div class="img-wrap">
-										<a href="/kr/launch/t/men/fw/nike-sportswear/DD1391-003/iljl65/nike-dunk-low-retro">
+										<a href="${ pageContext.servletContext.contextPath }/shoes/detail?no=${ wish.wishNo }">
 											<img src="${ pageContext.servletContext.contextPath }/resources/upload/image/shoes/${ wish.shoes.thumbList[0].savedName }" />
 										</a>
 									</div>
 									<div class="info-wrap">
 										<span class="tit">
-										<a class="text-black" href="/kr/launch/t/men/fw/nike-sportswear/DD1391-003/iljl65/nike-dunk-low-retro">${ wish.shoes.shoesModel }</a>
+										<a class="text-black" href="${ pageContext.servletContext.contextPath }/shoes/detail?no=${ wish.wishNo }">${ wish.shoes.shoesModel }</a>
 										</span> 
 										<span class="opt">${ wish.shoes.category.shoesCategoryName }</span>
 										<div class="right_btm">
-											<a href="#n" class="price">
-												<em>구매</em>
+											<a href="${ pageContext.servletContext.contextPath }/shoes/detail?no=${ wish.wishNo }" class="price">
+												<em>가격</em>
 												<span class="price_num"><fmt:formatNumber value="${ wish.shoes.shoesPrice }" pattern="#,###,###"></fmt:formatNumber> 원</span>
 											</a>
 

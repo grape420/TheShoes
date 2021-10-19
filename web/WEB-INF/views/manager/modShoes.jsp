@@ -95,15 +95,15 @@
 									</div> 
 									<div class="col-md-4 mb-3">
 										<label for="lastName">모델명</label> 
-										<input type="text" class="form-control" id="shoesModel" placeholder="" name="shoesModel" value="${ shoes.shoesModel }">
+										<input required type="text" class="form-control" id="shoesModel" placeholder="" name="shoesModel" value="${ shoes.shoesModel }">
 									</div>
 									 <div class="col-md-4 mb-3">
 										<label for="lastName">발매가</label> 
-										<input type="number" class="form-control" id="shoesPrice" placeholder="" name="shoesPrice" value="${ shoes.shoesPrice }">
+										<input required type="number" class="form-control" id="shoesPrice" placeholder="" name="shoesPrice" value="${ shoes.shoesPrice }">
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="firstName">당첨자 발표일</label> 
-										<input type="datetime-local" class="form-control" id="winnerDate" placeholder="" name="winnerDate" 
+										<input required type="datetime-local" class="form-control" id="winnerDate" placeholder="" name="winnerDate" 
 										value="<fmt:formatDate value="${ shoes.winnerDate }" pattern="yyyy-MM-dd'T'HH:mm"/>">
 									</div>
 									<div class="col-md-4 mb-3">
@@ -117,16 +117,16 @@
 
 									<div class="col-md-4 mb-3">
 										<label for="lastName">수량</label> 
-										<input type="number" class="form-control" id="salesAmount" placeholder="" name="salesAmount" value="${ shoes.salesAmount }">
+										<input required type="number" class="form-control" id="salesAmount" placeholder="" name="salesAmount" value="${ shoes.salesAmount }">
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="firstName">응모 시작일</label> 
-										<input type="datetime-local" class="form-control" id="startDate" placeholder="" name="startDate" 
+										<input required type="datetime-local" class="form-control" id="startDate" placeholder="" name="startDate" 
 										value="<fmt:formatDate value="${ shoes.startDate }" pattern="yyyy-MM-dd'T'HH:mm"/>">
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="firstName">응모 종료일</label> 
-										<input type="datetime-local" class="form-control" id="endDate" placeholder="" name="endDate" 
+										<input required type="datetime-local" class="form-control" id="endDate" placeholder="" name="endDate" 
 										value="<fmt:formatDate value="${ shoes.endDate }" pattern="yyyy-MM-dd'T'HH:mm"/>">
 									</div>
 									<div class="col-md-4 mb-3">

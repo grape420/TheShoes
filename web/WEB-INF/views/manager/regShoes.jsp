@@ -98,13 +98,13 @@
 											name="shoesModel" required>
 									</div>
 									<div class="col-md-4 mb-3">
-										<label for="lastName">발매가</label> <input type="number"
+										<label for="lastName">발매가</label> <input required type="number"
 											class="form-control" id="shoesPrice" placeholder=""
 											name="shoesPrice" >
 									</div>
 									<div class="col-md-4 mb-3">
 										<label for="firstName">당첨자 발표일</label> 
-										<input type="datetime-local" class="form-control" id="winnerDate"
+										<input required type="datetime-local" class="form-control" id="winnerDate"
 											placeholder="" name="winnerDate" >
 									</div>
 									<div class="col-md-4 mb-3">
@@ -117,17 +117,17 @@
 									</div>
 
 									<div class="col-md-4 mb-3">
-										<label for="lastName">수량</label> <input type="number"
+										<label for="lastName">수량</label> <input required type="number"
 											class="form-control" id="salesAmount" placeholder=""
 											name="salesAmount" >
 									</div>
 									<div class="col-md-4 mb-3">
-										<label for="firstName">응모 시작일</label> <input
+										<label for="firstName">응모 시작일</label> <input required
 											type="datetime-local" class="form-control" id="startDate"
 											placeholder="" name="startDate" >
 									</div>
 									<div class="col-md-4 mb-3">
-										<label for="firstName">응모 종료일</label> <input
+										<label for="firstName">응모 종료일</label> <input required
 											type="datetime-local" class="form-control" id="endDate"
 											placeholder="" name="endDate" >
 									</div>

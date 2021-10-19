@@ -76,7 +76,7 @@
 					</div>
 					<div class="right">
 						<input type="text" id="productName" class="textlength" placeholder="상품 제목을 입력해 주세요."
-							style="width: 92%;" name="boardTitle" /> 
+							style="width: 92%;" name="boardTitle" required /> 
 							<span class="count black" id="title_count">0/40</span>
 						<!--제목 input 클릭시 나옴 필요 없을시 아래의 내용 삭제-->
 
@@ -92,7 +92,7 @@
 						<p class="text pill_text">설명</p>
 					</div>
 					<div class="right">
-						<textarea placeholder="상품 설명을 입력해 주세요." id="content_body" name="boardContent"></textarea>
+						<textarea placeholder="상품 설명을 입력해 주세요." id="content_body" name="boardContent" required="required"></textarea>
 						<span class="count black right_p" id="content_count">0/2000</span>
 					</div>
 				</li>
