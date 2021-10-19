@@ -20,9 +20,9 @@
 			<div>
 				<h1 class="headline-2">NOT AVAILABLE</h1>
 				<div>
+					<h2 class="headline-3 m10-sm ta-sm-c">더 이상 확인 할 수 없는 페이지 입니다.</h2>
 					<c:choose>
 						<c:when test="${ message eq 'login' }">
-							<h2 class="headline-3 m10-sm ta-sm-c">더 이상 확인 할 수 없는 페이지 입니다.</h2>
 							<div>
 								<p class="summary">
 									로그인이 필요한 페이지 입니다., <br>로그인 후 사용해 주세요.
@@ -30,7 +30,6 @@
 							</div>
 						</c:when>
 						<c:otherwise>
-							<h2 class="headline-3 m10-sm ta-sm-c">더 이상 확인 할 수 없는 페이지 입니다.</h2>
 							<div>
 								<p class="summary">
 									이용에 불편을 드린 점 진심으로 사과 드리며, <br>고객 여러분의 양해 부탁 드립니다.
