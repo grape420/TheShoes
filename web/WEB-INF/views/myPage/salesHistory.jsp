@@ -90,23 +90,25 @@
 							<!--  판매 리스트  -->
 							<div class="order-list" >
 							<c:forEach var="sales" items="${ requestScope.salesList }" >
-								<div class="header">
-									<span class="order-code"> 판매일시 <c:out value= "${ sales.boardRegDate }"/></span>
-								</div>
-								<div class="order-item-wrap thedraw-item">
-									<div class="item-info">
-										<div class="img-wrap">
-											<img src="${ pageContext.servletContext.contextPath }/resources/upload/image/resellShoes/${ sales.resellThumb[0].savedName }"/> 
-								        </div>
-								<div class="info-wrap">
-									 <span class="tit"><c:out value="${ sales.boardTitle }"/></span> 
-									 <span class="opt"><c:out value="${ sales.boardContent }"/></span> 
-								</div>
-								<div class="btnDiv">
-									<a type="button" class="btn btn-outline-dark" href="${ pageContext.servletContext.contextPath }/resell/detail?no=${ sales.boardNo }">게시글 이동</a>
-								</div>
-								  </div>
-								</div>
+								<c:if test="${ sales.boardId eq sessionScope.entryMember.id }">
+									<div class="header">
+										<span class="order-code"> 판매일시 <c:out value= "${ sales.boardRegDate }"/></span>
+									</div>
+									<div class="order-item-wrap thedraw-item">
+										<div class="item-info">
+											<div class="img-wrap">
+												<img src="${ pageContext.servletContext.contextPath }/resources/upload/image/resellShoes/${ sales.resellThumb[0].savedName }"/> 
+									        </div>
+									<div class="info-wrap">
+										 <span class="tit"><c:out value="${ sales.boardTitle }"/></span> 
+										 <span class="opt"><c:out value="${ sales.boardContent }"/></span> 
+									</div>
+									<div class="btnDiv">
+										<a type="button" class="btn btn-outline-dark" href="${ pageContext.servletContext.contextPath }/resell/detail?no=${ sales.boardNo }">게시글 이동</a>
+									</div>
+									  </div>
+									</div>
+								</c:if>
 							</c:forEach>
 							</div>
 							<!-- paging -->
