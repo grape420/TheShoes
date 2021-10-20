@@ -97,7 +97,7 @@
 										<tbody>
 										<%-- begin="${ selectCriteria.startRow - 1 }" end="${ selectCriteria.endRow - 1 }" --%>
 												<c:forEach var="winner" items="${ requestScope.winnerList }" begin="${ selectCriteria.startRow - 1 }" end="${ selectCriteria.endRow - 1 }" varStatus="st">
-														<tr style="cursor: pointer;">
+														<tr>
 															<td style="text-align: center;">${ winner.memberId }</td>
 															<td style="text-align: center;">${ winner.name }</td>
 															<td style="text-align: center;">${ winner.shoesModel }</td>
