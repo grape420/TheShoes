@@ -74,7 +74,6 @@
 		     , A.ROLE
 		  FROM MEMBER A
 		 WHERE A.BLACKLIST_YN = 'N'
-		   AND A.WITHDRAW_YN = 'N'
 		   AND A.MEMBER_ID = #{ id }
 	</select>
 	
