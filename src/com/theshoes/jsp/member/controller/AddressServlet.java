@@ -42,7 +42,6 @@ public class AddressServlet extends HttpServlet {
 		
 		/* 이것도 3번보기 list size + "" addressCT로 넘어간다. */ 
 		request.setAttribute("addressCT", addressList.size()+"");
-		
 		SelectCriteria selectCriteria = null;
 		
 		String path = "";
@@ -64,8 +63,6 @@ public class AddressServlet extends HttpServlet {
 		String addressName = request.getParameter("addressNameMM"); 
 		String address1MM = request.getParameter("address1"); 
 		String address2MM = request.getParameter("address2");
-		
-		System.out.println("AddressServlet 쓰윽~");
 		
 		AddressDTO newAddress = new AddressDTO();
 		newAddress.setNameMM(nameMM);

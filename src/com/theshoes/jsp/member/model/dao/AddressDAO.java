@@ -10,11 +10,9 @@ import com.theshoes.jsp.member.model.dto.AddressDTO;
 
 public class AddressDAO {
 
-	
 	/* 주소록 추가  */ 
 	public int insertAddress(SqlSession session, AddressDTO newAddress) {
 		return session.insert("AddressDAO.insertAddress",newAddress);
-			
 	}
 
 	/* 주소록 목록 전체 조회  */
@@ -24,15 +22,12 @@ public class AddressDAO {
 
 	/* 주소록 수정  */ 
 	public int updateAddress(SqlSession session, AddressDTO address) {
-		System.out.println("나는 addressDAO" + address);
 		return session.update("AddressDAO.updateAddress", address);
 
-	
 	}
 	/* 주소록 삭제 */
 	public int deleteAddress(SqlSession session, String addressNo) {
 		return session.delete("AddressDAO.deleteAddress", addressNo);
 	}
-
 
 }

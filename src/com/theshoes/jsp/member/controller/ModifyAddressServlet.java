@@ -28,8 +28,6 @@ public class ModifyAddressServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 	HttpSession session = request.getSession();
-		
-	System.out.println("modifyAddress서블릿이랑께");
 	
 	/* 사용자가 입력한 정보 받아오기 */ 	
 	String nameMM =  request.getParameter("nameMM");

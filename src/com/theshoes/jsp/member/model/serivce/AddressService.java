@@ -28,7 +28,6 @@ public class AddressService {
 				session.rollback();
 			}
 			session.close();
-			
 			return result;
 		}
 
@@ -38,15 +37,12 @@ public class AddressService {
 			List<AddressDTO> addressList = AddressDAO.selectAllAddressList(session, id);
 			
 			session.close();
-			
 			return addressList;
 		}
 		
 		/* 주소록 수정 메소드 */ 
 		public int updateAddress(AddressDTO address) {
 			SqlSession session = getSqlSession();
-			
-			
 			int result = addressDAO.updateAddress(session, address);
 			
 			if(result > 0) {
@@ -61,16 +57,13 @@ public class AddressService {
 		/* 주소록 삭제 메소드 */ 
 		public int deletAddress(String addressNo) {
 			SqlSession session = getSqlSession();
-			
 			int result = addressDAO.deleteAddress(session, addressNo);
-			System.out.println("나는야 삭제서비스 ");
 			
 			if (result > 0) {
 				session.commit();
 			} else {
 				session.rollback();
 			}
-			
 			session.close();
 			return result;
 		}
