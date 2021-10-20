@@ -216,4 +216,15 @@
 		DELETE FROM COMMENTS A
 		WHERE A.COMMENTS_NO = #{ no }
 	</delete>
+	
+	<update id="incrementResellCount">
+        UPDATE /* com.theshoes.jsp.board.model.dao.ResellListDAO#incrementResellCount() */
+               BOARD A
+           SET A.BOARD_HIT = (SELECT B.BOARD_HIT
+                                   FROM BOARD B
+                                  WHERE B.BOARD_NO = #{ boardNo }
+         			   			    AND B.BOARD_CATEGORY_NO = 3 
+                                ) + 1
+         WHERE A.BOARD_NO = #{ boardNo }
+	</update>
 </mapper>

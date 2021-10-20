@@ -38,5 +38,9 @@ public class ResellListDAO {
 	public int deleteComment(SqlSession session, int no) {
 		return session.delete("ResellListDAO.deleteComment", no);
 	}
+	public int incrementResellCount(SqlSession session, int no) {
+		return session.update("ResellListDAO.incrementResellCount", no);
+	}
+	
 	
 }

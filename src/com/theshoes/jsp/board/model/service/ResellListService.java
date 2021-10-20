@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.theshoes.jsp.board.model.dao.BoardDAO;
 import com.theshoes.jsp.board.model.dao.ResellListDAO;
-import com.theshoes.jsp.board.model.dto.BoardDTO;
 import com.theshoes.jsp.board.model.dto.CommentsDTO;
 import com.theshoes.jsp.board.model.dto.ResellDetailDTO;
 import com.theshoes.jsp.board.model.dto.ResellListDTO;
@@ -36,14 +36,28 @@ public class ResellListService {
 	
 	/* 리셀 디테일 */
 	public ResellDetailDTO selectOneResellList(int no) {
-		
+				
 		SqlSession session = getSqlSession();
+		ResellDetailDTO resellDetail = null;
 		
-		ResellDetailDTO resell = resellListDAO.selectOneResellList(session, no);
+		/* 게시글 조회수 */
+		int result = resellListDAO.incrementResellCount(session, no);
+				
+		if(result > 0) {
+			resellDetail = resellListDAO.selectOneResellList(session, no);
+			
+			System.out.println(resellDetail);
+			
+			if(resellDetail != null) {
+				session.commit();
+			} else {
+				session.rollback();
+			}
+		} else {
+			session.rollback();
+		}
 		
-		session.close();
-		
-		return resell;
+		return resellDetail;
 	}
 	
 
