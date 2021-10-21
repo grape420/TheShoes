@@ -51,10 +51,6 @@ tr:hover {
 	display: block;
 }
 
-#content {
-	margin-top: 30px;
-}
-
 .item-info {
 	position: relative;
 }
@@ -63,14 +59,6 @@ tr:hover {
 	position: absolute;
 	right: 30px;
 	top: 30px;
-}
-
-.realBonmun {
-	background-color: rgb(245, 245, 245);
-	height: 500px;
-	padding: 50px;
-	text-align: justify;
-	line-height: 2.0;
 }
 
 .btn-outline-secondary {
