@@ -47,7 +47,7 @@ public class ResellListServlet extends HttpServlet {
 		
 		SelectCriteria selectCriteria = null;
 				
-		selectCriteria = Pagenation.getSelectCriteria(pageNo, totalResellCount, limit, buttonAmount);
+		selectCriteria = Pagenation.getSelectCriteria(pageNo, totalResellCount, 1, buttonAmount);
 		
 		List<ResellDetailDTO> resellList = resellListService.selectResellList(selectCriteria);
 		
@@ -58,7 +58,7 @@ public class ResellListServlet extends HttpServlet {
 		String path = "";
 		if (resellList != null) {
 			path = "/WEB-INF/views/resell/resellList.jsp";
-			request.setAttribute("pagingPath", "board");
+			request.setAttribute("pagingPath", "resellList");
 			request.setAttribute("board", resellList);
 			request.setAttribute("selectCriteria", selectCriteria);			
 		} else {
