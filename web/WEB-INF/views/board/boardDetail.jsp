@@ -86,7 +86,7 @@
             
             <!-- 공지사항 내용 -->
             <div class="realBonmun">
-            <c:out value="${ requestScope.notice.boardContent}"></c:out>
+            <c:out value="${ requestScope.notice.boardContent}" escapeXml="false"></c:out>
             </div>
             <div style="text-align: center; margin: 30px;">
               <button type="button" class="btn btn-outline-secondary" id="listBtn"
