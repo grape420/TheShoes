@@ -47,7 +47,7 @@ public class ResellListServlet extends HttpServlet {
 		
 		SelectCriteria selectCriteria = null;
 				
-		selectCriteria = Pagenation.getSelectCriteria(pageNo, totalResellCount, 1, buttonAmount);
+		selectCriteria = Pagenation.getSelectCriteria(pageNo, totalResellCount, limit, buttonAmount);
 		
 		List<ResellDetailDTO> resellList = resellListService.selectResellList(selectCriteria);
 		
