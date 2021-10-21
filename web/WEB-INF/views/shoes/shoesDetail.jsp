@@ -63,8 +63,15 @@
 						  </c:when>
 						  <c:when test="${sort == 1}">
 							  <c:choose> 
-									<c:when test="${closeDate > nowDate > beginDate}">
-							          <a class="btn" href="${ pageContext.servletContext.contextPath }/shoes/event?shoesNo=${ shoesDetail.shoesNo }">응모 가능</a>
+									<c:when test="${closeDate > nowDate}">
+							          	<c:choose>
+							          		<c:when test="${nowDate > beginDate}">
+							          			<a class="btn" href="${ pageContext.servletContext.contextPath }/shoes/event?shoesNo=${ shoesDetail.shoesNo }">응모 가능</a>
+							          		</c:when>
+							          		<c:otherwise>
+											  <a class="btn" href="javascript:void(0)">응모 불가능</a>
+											</c:otherwise> 
+							          	</c:choose>
 									</c:when> 
 									<c:otherwise>
 									  <a class="btn" href="javascript:void(0)">응모 불가능</a>
@@ -87,7 +94,7 @@
 			</div>
 		</div>
 	</section>
-
+	
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
 	
