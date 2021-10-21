@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,7 +88,10 @@
             
             <!-- 공지사항 내용 -->
             <div class="realBonmun">
-            <c:out value="${ requestScope.notice.boardContent}" escapeXml="false"></c:out>
+            	<c:set var="str1" value="${ requestScope.notice.boardContent }"/>
+            	<c:set var="str2" value="${fn:replace(str1, '
+', '<br>')}" />
+            	<c:out value="${ str2 }" escapeXml="false"/>
             </div>
             <div style="text-align: center; margin: 30px;">
               <button type="button" class="btn btn-outline-secondary" id="listBtn"
@@ -100,7 +105,8 @@
         
             </div>
           </div>
-
+			
+		<input hidden id="text" value="${ requestScope.notice.boardContent}">
         </div>
       </div>
     </div>
@@ -109,5 +115,8 @@
 
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
+	
+	<script>
+	</script>
 </body>
 </html>
