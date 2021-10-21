@@ -41,13 +41,15 @@ public class FaqListServlet extends HttpServlet {
 
 		/* 전체 공지사항 목록 조회 */
 		SelectCriteria selectCriteria = null;
+		SelectCriteria selectCriteria2 = null;
 
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
 		selectCriteria = Pagenation.getSelectCriteria(pageNo, totalFaqCount, onePost, onePage);
+		selectCriteria2 = Pagenation.getSelectCriteria(1, totalFaqCount, 10, 5);
 		
 		System.out.println(selectCriteria);
 
-		List<BoardDTO> faqList = boardService.selectAllFaqList(selectCriteria);
+		List<BoardDTO> faqList = boardService.selectAllFaqList(selectCriteria2);
 		System.out.println(faqList);
 		
 		List<BoardDTO> noticeList = boardService.selectAllNoticeList(selectCriteria);
