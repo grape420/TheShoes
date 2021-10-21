@@ -19,7 +19,8 @@
 	<!-- header -->
 	<jsp:include page="../common/header.jsp" />
    	<fmt:formatDate value="${now}" pattern="yyyyMMddHHmm" var="nowDate" />             <%-- 오늘날짜 --%>
-  	<fmt:formatDate value="${requestScope.shoesDetail.endDate}" pattern="yyyyMMddHHmm" var="closeDate"/> 
+  	<fmt:formatDate value="${requestScope.shoesDetail.endDate}" pattern="yyyyMMddHHmm" var="closeDate"/>
+  	<fmt:formatDate value="${requestScope.shoesDetail.startDate}" pattern="yyyyMMddHHmm" var="beginDate"/>  
 
 	<!-- section -->
 	<section>
@@ -62,7 +63,7 @@
 						  </c:when>
 						  <c:when test="${sort == 1}">
 							  <c:choose> 
-									<c:when test="${closeDate > nowDate}">
+									<c:when test="${closeDate > nowDate > beginDate}">
 							          <a class="btn" href="${ pageContext.servletContext.contextPath }/shoes/event?shoesNo=${ shoesDetail.shoesNo }">응모 가능</a>
 									</c:when> 
 									<c:otherwise>
