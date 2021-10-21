@@ -49,10 +49,10 @@ public class FaqListServlet extends HttpServlet {
 		
 		System.out.println(selectCriteria);
 
-		List<BoardDTO> faqList = boardService.selectAllFaqList(selectCriteria2);
+		List<BoardDTO> faqList = boardService.selectAllFaqList(selectCriteria);
 		System.out.println(faqList);
 		
-		List<BoardDTO> noticeList = boardService.selectAllNoticeList(selectCriteria);
+		List<BoardDTO> noticeList = boardService.selectAllNoticeList(selectCriteria2);
 		System.out.println(noticeList);
 		
 		String path = "";
