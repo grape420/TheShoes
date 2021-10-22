@@ -265,6 +265,7 @@
 			
 			if((idFlag == true) && (passwordFlag == true) && (nameFlag == true) && (birthFlag == true) && (phoneFlag == true) &&
 			   (emailFlag == true) && (emailChangeFlag == true) && $("#agree").prop('checked')) {
+				alert("회원가입이 성공적으로 완료되었습니다");
 				$("#signup-form").submit();
 			}
 		});
