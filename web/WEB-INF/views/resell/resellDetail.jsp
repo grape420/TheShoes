@@ -55,6 +55,9 @@
 						<div class="boad-body2">
 							<div class="user">
 								<a class="user-id">${ resellComments.commentsId }</a>
+								<c:if test="${ resellComments.commentsId eq resellDetail.boardId }">
+									<span style="color: red;">&nbsp;&nbsp;&nbsp;(작성자)</span>
+								</c:if>
 							</div>
 							<c:if test="${ resellComments.commentsYn eq 'N' }">
 								<div class="content" >${ resellComments.commentsContent }</div>
